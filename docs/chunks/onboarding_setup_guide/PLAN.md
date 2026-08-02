@@ -1,179 +1,273 @@
-
-
-<!--
-This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
--->
-
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+`setup/` becomes the pre-cohort path: one participant-facing guide, one
+scripted installer that pins pi and writes its configuration, one smoke
+test, and the operator's per-cohort checklist. The managed terminal
+environment from `docs/chunks/onboarding_terminal_env` already owns the
+terminal, the shell, node, git, and the `commit`/`revert`/`course-check`
+commands; this chunk owns everything from "pi is not installed" to "a
+verified pass".
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+Three structural choices shape everything below.
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+**One bash script serves both platforms after the environment is
+installed.** DEC-008 put bash on both platforms (Ghostty runs
+`/bin/bash -l` on macOS; Git Bash inside Windows Terminal on Windows), so
+only the *environment* install step differs per platform. `setup/install-pi.sh`
+runs unmodified under macOS bash 3.2 and Git Bash bash 5, matching
+`env/`'s dialect constraint. The guide therefore has exactly two install
+commands: one that differs by platform (the environment) and one that does
+not (pi).
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/onboarding_setup_guide/GOAL.md)
-with references to the files that you expect to touch.
--->
+**Setup is scripted, not narrated.** DEC-004's floor is a participant with
+no terminal experience, and the GOAL forbids any step that requires
+understanding what a command does. Walking someone through pi's interactive
+`/login` TUI — arrow keys, a provider list of dozens of entries, a paste
+prompt — fails that bar and cannot be paired with exact expected output.
+Instead `install-pi.sh` writes `~/.pi/agent/auth.json` and
+`~/.pi/agent/settings.json` directly, so the participant's entire auth step
+is pasting one line the facilitator emailed them. This is the same trade the
+environment installer already made ("runs start to finish with no questions
+asked").
+
+**Reuse `env/`'s conventions rather than inventing new ones.** Managed
+blocks, timestamped backups, the `say`/`good`/`warn` output vocabulary, the
+PASS/FAIL final line, and the "what to do if it fails" footer all come from
+`env/lib/common.sh` and `env/bin/course-check`. The smoke test installs into
+`~/.agentic-101/bin` — the same root — so `env/uninstall.sh` still removes
+everything in one place and the participant has one PATH to think about.
+
+### Decisions this plan makes
+
+**Auth: `auth.json`, not an environment variable.** The GOAL leans this way
+and the reasoning holds. An `export OPENROUTER_API_KEY=…` lives only in the
+shell session that ran it; a participant who closes the terminal loses it
+with no visible cause, and the recovery ("add it to a startup file") is
+exactly the terminal knowledge the floor says we cannot assume.
+`~/.pi/agent/auth.json` survives restarts, is created `0600`, is what pi's
+own `/login` would have written, and takes priority over env vars (pi
+`docs/providers.md`, Auth File). The installer merges into an existing
+`auth.json` rather than overwriting it, so a participant who already uses pi
+keeps their other credentials.
+
+**The pinned model is `anthropic/claude-sonnet-5` at thinking level
+`medium`, via provider `openrouter`.** Verified present in pi 0.83.0's
+OpenRouter catalog (`pi --list-models`). It is strong enough that a
+first-session delegation succeeds on the first try — the thing that decides
+whether a non-programmer believes the course works — without the per-token
+cost of an Opus-class model across a cohort. `defaultThinkingLevel: medium`
+matches DEC-006's "shipped configuration prescribes the model" and keeps
+latency reasonable in a live session. The pin is data in `setup/pins.env`,
+not a literal in prose, so re-pinning is a one-file edit.
+
+**pi is pinned to `0.83.0`** — the current published version of
+`@earendil-works/pi-coding-agent`, verified installed and working on the
+authoring machine. npm enforces exact pins, so unlike the Homebrew casks in
+`env/versions.env` this pin is real on both platforms.
+
+**The guide embeds the remote `curl | bash` one-liner, marked with its
+publish prerequisite.** `env/DISTRIBUTION.md` forbids embedding it as
+working truth until the repository is published, but the local-checkout form
+(`bash env/install.sh`) is worse for the audience: it presupposes cloning a
+git repository, which is further outside the floor than anything else in the
+guide. So the guide shows the shape participants will actually use, carrying
+the same `REPLACE-ME` token the installers already carry, with a facilitator
+note directly above it and item 1 of the pre-cohort checklist blocking
+distribution until the substitution is done and verified. The local form is
+documented in the checklist as the dry-run path.
+
+**The practice directory is `~/course-practice`.** Visible in Finder and
+Explorer (unlike `~/.agentic-101`), short enough to type, and not `$HOME` —
+which matters because `commit` refuses to run there.
 
 ## Subsystem Considerations
 
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+No subsystems exist in `docs/subsystems/`. The managed environment in `env/`
+is a sibling deliverable owned by `docs/chunks/onboarding_terminal_env`, not
+a subsystem; this chunk consumes it through three documented surfaces
+(the install root `~/.agentic-101`, `course-check`, and `commit`/`revert` on
+PATH) and adds one file to its `bin/`.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: `setup/pins.env` — the per-cohort pin set
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+Mirrors `env/versions.env` in shape and commentary so the two files read as
+one system. Holds `PI_VERSION`, `PI_PROVIDER`, `PI_MODEL`,
+`PI_THINKING_LEVEL`, `EXPECTED_ENV_VERSION`, `COHORT`, and the practice
+directory name. Documents at the top how to re-pin and where the *other*
+pin file lives.
 
-Example:
+### Step 2: `setup/install-pi.sh`
 
-### Step 1: Define the SegmentHeader struct
+Bash 3.2, same argument style as `env/install.sh` (`--dry-run`,
+`--prefix`, `-h`), plus `--key <KEY>` and `--no-smoke-test`. Resolves its
+own payload locally or from the base URL exactly as `env/install.sh` does,
+sourcing `~/.agentic-101/lib/common.sh` when present and falling back to a
+minimal inline copy of the output helpers when it is not (the script must
+survive being run before, or without, the environment).
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+Steps, each announced as "Step N of 5":
 
-Location: src/segment/format.rs
+1. Preflight — refuse `sudo`; require `node` and `npm`; warn if the managed
+   environment is missing or its `VERSION` does not match
+   `EXPECTED_ENV_VERSION`.
+2. Install pi: `npm install -g --ignore-scripts @earendil-works/pi-coding-agent@$PI_VERSION`,
+   then verify `pi --version` equals the pin.
+3. Write `~/.pi/agent/settings.json` — generated from `pins.env`, so the
+   model pin has exactly one source. Backs up any existing file first and
+   preserves unrelated keys the participant may have set.
+4. Write `~/.pi/agent/auth.json` — `{"openrouter": {"type":"api_key","key":"…"}}`,
+   merged into any existing file, `chmod 0600`. The key comes from `--key`,
+   else from `$OPENROUTER_API_KEY`, else a prompt read from `/dev/tty` (so
+   it works under `curl | bash`, where stdin is the script). Validates the
+   key's shape (`sk-or-…`) and refuses an obvious placeholder.
+5. Create `~/course-practice` with a short `README.txt`, install
+   `course-smoke-test` into `~/.agentic-101/bin`, then run it unless
+   `--no-smoke-test`.
 
-### Step 2: Implement header serialization
+### Step 3: `setup/bin/course-smoke-test`
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+The participant-runnable verifier. Structure and vocabulary copied from
+`env/bin/course-check`: one line per check, `[ok]`/`[no]`, one final PASS or
+FAIL line, and a "what to do" footer on failure. Checks, in order, each
+short-circuiting sensibly:
 
-### Step 3: ...
+1. The managed environment — delegates to `course-check` (which covers
+   `commit`/`revert` on PATH, git, node, bash, terminal config) and reports
+   its verdict as this test's first check.
+2. pi is installed and is the pinned version.
+3. `~/.pi/agent/settings.json` names the pinned provider, model, and
+   thinking level.
+4. `~/.pi/agent/auth.json` exists, is `0600`, and holds an `openrouter` key.
+5. The key works and the prescribed model answers: `pi -p --no-session`
+   with a prompt demanding an exact token back. Separating this from check 6
+   is what makes a bad key distinguishable from a failed task.
+6. One trivial agent task, run inside a scratch directory under
+   `~/course-practice`: ask pi to create a file with known content, then
+   verify the file on disk. This is the outcome-checked design
+   TESTING_PHILOSOPHY.md asks for — it does not grade pi's prose. The
+   scratch directory is removed afterwards.
 
----
+Network-dependent checks 5 and 6 get a timeout and a failure message that
+names the likely cause (no internet, key not yet activated, spend limit
+reached).
 
-**BACKREFERENCE COMMENTS**
+### Step 4: `setup/README.md` — the participant guide
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+The deliverable. Voice matched to `pi-learning-paths.md` Stage 0/1: the
+GUI analogy first, the reason it matters second, the command third, the
+expected output fourth. Sections:
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+- What you're about to do, and how long it takes.
+- **What this costs you: nothing** — stated before the first command, per
+  the GOAL and trunk GOAL.md Constraints.
+- What you need before you start (laptop, the two things the facilitator
+  emailed you).
+- Step 1 — install the course environment (per-platform: macOS block,
+  Windows block, each with how to find the app that runs the command and
+  the expected tail of the output).
+- Step 2 — open the course terminal (per-platform, with what you should see).
+- Step 3 — install pi and your key (one command, both platforms).
+- Step 4 — check everything works (`course-smoke-test`, with the full
+  expected PASS output shown verbatim).
+- If something went wrong — a symptom→action table, ending in "send your
+  facilitator the whole screen".
+- What you just installed and how to remove it — the honest inventory,
+  pointing at `env/README.md`'s undo story.
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
+Every command block is one pasteable line. Expected output is shown as a
+fenced block immediately after each command.
 
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
+### Step 5: `setup/PRE_COHORT_CHECKLIST.md`
 
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
+The TESTING_PHILOSOPHY.md (Test Organization) checklist, as ordered
+checkboxes with the command to run beside each item:
 
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+1. **Blocking**: publish the repository and replace `REPLACE-ME` in
+   `env/install.sh`, `env/install.ps1`, `setup/install-pi.sh`, and
+   `setup/README.md`; verify the one-liners from a machine with no checkout.
+2. Re-pin: run both installers clean, copy `installed-versions.txt` into
+   `env/versions.env`, check npm for a newer pi and re-pin `setup/pins.env`,
+   confirm the model ID still exists in `pi --list-models`.
+3. Operator cost expectations and per-key spend limits — the numbers the
+   GOAL requires be documented here: how keys are issued, what limit each
+   carries, what a cohort is expected to consume, and rotation after the
+   cohort.
+4. Re-run the smoke test on both platforms; re-run `env/tests/` and
+   `setup/tests/`.
+5. Re-run exercise dry-runs (points at `setup/DRY_RUN.md` and the pending
+   items in `env/FLOOR_TEST.md`).
+6. Tag `cohort-YYYY-MM`.
+
+Carries the pending Windows dry-run and the pending floor tests from
+`env/FLOOR_TEST.md` as explicit blocking items, per the handoff from
+`onboarding_terminal_env`.
+
+### Step 6: `setup/DRY_RUN.md`
+
+The clean-environment dry-run record the GOAL asks for, per platform: what
+was run, what was observed, what remains. Records honestly that the macOS
+run was performed against a temporary HOME by an agent (not a clean
+machine, not a human), and that Windows is unperformed — matching the
+`env/FLOOR_TEST.md` precedent of stating testing status plainly.
+
+### Step 7: `setup/tests/test-setup.sh`
+
+Automated checks in the style of `env/tests/`: run against a temporary HOME
+and a temporary npm prefix, never the operator's real files. Covers
+`install-pi.sh --dry-run`; settings.json generation and merge-preservation;
+auth.json creation, permissions, merge, and placeholder rejection; the
+smoke test's non-network checks failing and passing correctly; and idempotent
+re-runs. The two live-model checks are exercised against a stub `pi` on
+PATH; a real key is required for the genuine article, and the script says so.
+
+### Step 8: Trunk updates
+
+- `docs/trunk/SPEC.md` — confirm and sharpen the Repository Layout entry for
+  `setup/`, naming the actual files, and record in the DRAFT list that
+  `setup/` is now settled (as `env/` already is).
+- `docs/trunk/DECISIONS.md` — DEC-009 recording the three cross-chunk
+  contracts this chunk creates: `auth.json` as the auth path, the pin split
+  between `env/versions.env` and `setup/pins.env`, and `setup/` installing
+  `course-smoke-test` into the environment's install root.
+
+### Step 9: Verify and complete
+
+`uvx --from vibe-engineer ve validate`, `bash -n` on every script,
+`setup/tests/test-setup.sh` green, one real end-to-end run of
+`install-pi.sh` + `course-smoke-test` against a temp HOME on this machine
+(the authoring machine has a working pi and node), then `ve chunk complete`.
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+- `docs/chunks/onboarding_terminal_env` (ACTIVE) — supplies `~/.agentic-101`,
+  `course-check`, `commit`/`revert`, node, git, and the terminals.
+- An OpenRouter API key for the live-model portion of the smoke test. Not
+  available to the authoring agent; those two checks are verified with a stub
+  `pi` and by inspection, and are listed as an operator follow-up.
+- Publishing the repository — blocks the one-liner, not this chunk.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **The two live-model checks cannot be executed here.** No OpenRouter key
+  is available. Mitigation: exercise the surrounding logic with a stub `pi`
+  on PATH in the tests, and record a blocking operator follow-up.
+- **Windows is authored-untested, twice over.** `env/install.ps1` was never
+  run, and `install-pi.sh` has never run under Git Bash. The guide must not
+  claim otherwise; `DRY_RUN.md` and the checklist say so plainly.
+- **`npm install -g` may need elevated permissions** on a machine where node
+  came from somewhere other than Homebrew/winget. The installer detects
+  `EACCES` and prints the specific recovery rather than a raw npm error.
+- **Model availability drift.** `anthropic/claude-sonnet-5` could leave
+  OpenRouter's catalog between cohorts; checklist item 2 verifies it and the
+  smoke test fails loudly with a readable message if it is gone.
+- **The key lands in shell history** when pasted as `--key`. Acceptable for
+  a spend-limited course key; the checklist requires rotation after each
+  cohort.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+<!-- POPULATE DURING IMPLEMENTATION -->

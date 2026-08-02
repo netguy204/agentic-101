@@ -1,17 +1,26 @@
 ---
-status: FUTURE
+status: IMPLEMENTING
 ticket: null
 parent_chunk: null
-code_paths: []
+code_paths:
+- setup/README.md
+- setup/pins.env
+- setup/install-pi.sh
+- setup/bin/course-smoke-test
+- setup/PRE_COHORT_CHECKLIST.md
+- setup/DRY_RUN.md
+- setup/tests/test-setup.sh
+- docs/trunk/SPEC.md
+- docs/trunk/DECISIONS.md
 code_references: []
 narrative: null
 investigation: null
 subsystems: []
 friction_entries: []
-depends_on: ["onboarding_terminal_env"]
+depends_on:
+- onboarding_terminal_env
 created_after: []
 ---
-
 <!--
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║  DO NOT DELETE THIS COMMENT BLOCK until the chunk complete command is run.   ║

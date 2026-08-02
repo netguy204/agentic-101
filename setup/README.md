@@ -220,6 +220,16 @@ Step 5 of 5 — making your practice folder
   Created /Users/you/course-practice
 ```
 
+and then, without you doing anything, it runs the check described in Step 4
+and finishes with either
+
+```
+That's setup finished. Nothing else to do before the first session.
+```
+
+or a line telling you setup is *not* finished, in which case read Step 4 and
+the troubleshooting section below.
+
 You never have to type or remember that key again. It is saved in a file only
 your account can read.
 

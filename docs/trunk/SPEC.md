@@ -115,15 +115,20 @@ Every session, when authored, consists of:
 - `curriculum/` — the deliverable material, one directory per session
   (`curriculum/session_01_mental_models/`, etc.), each containing the
   artifacts listed in Session Anatomy.
-- `setup/` — participant environment setup instructions and smoke-test
-  script (see Prerequisites). Consumes the installer from `env/`.
+- `setup/` — the pre-cohort path (see Prerequisites): the participant guide
+  (`setup/README.md`), the scripted pi installer (`setup/install-pi.sh`),
+  the participant-runnable smoke test (`setup/bin/course-smoke-test`), the
+  per-cohort pi and model pins (`setup/pins.env`), the operator's
+  pre-cohort checklist, and the dry-run record. Consumes the installer and
+  the install root from `env/`.
 - `env/` — source of the managed terminal environment (DEC-006/DEC-007/
   DEC-008): platform installers, the guided `commit`/`revert`/
   `course-check` commands, per-cohort version pins (`env/versions.env`),
   smoke tests, and the floor-test protocol.
 
-Layout is draft until the first session chunk is implemented (`env/` is
-settled per DEC-008).
+Layout is draft until the first session chunk is implemented; `env/` is
+settled per DEC-008 and `setup/` is settled per DEC-009. What remains draft
+is `curriculum/`.
 
 ## Participant Prerequisites
 
@@ -164,4 +169,6 @@ as scoped — capstone selection (Session 6) exists to catch and rescope these.
 
 - [ ] Curriculum Structure: session count, titles, and per-session outcomes
       solidify as session chunks are planned.
-- [ ] Repository Layout: solidifies with the first implemented session chunk.
+- [ ] Repository Layout: `env/` (DEC-008) and `setup/` (DEC-009) are
+      settled; `curriculum/` solidifies with the first implemented session
+      chunk.

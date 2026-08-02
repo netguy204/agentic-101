@@ -12,7 +12,21 @@ code_paths:
 - setup/tests/test-setup.sh
 - docs/trunk/SPEC.md
 - docs/trunk/DECISIONS.md
-code_references: []
+code_references:
+  - ref: setup/README.md
+    implements: "The participant-facing guide: cost message before any install, per-platform environment install, opening the prescribed terminal, scripted pi install, smoke test, troubleshooting table, and the honest what-was-installed inventory"
+  - ref: setup/pins.env
+    implements: "Per-cohort pins for pi and the prescribed model (DEC-006 model pinning; the other half of the pin set is env/versions.env, DEC-009)"
+  - ref: setup/install-pi.sh
+    implements: "Scripted pi install: pinned npm version, generated ~/.pi/agent/settings.json, merged 0600 ~/.pi/agent/auth.json, practice directory, smoke-test installation (DEC-009)"
+  - ref: setup/bin/course-smoke-test
+    implements: "Participant-runnable PASS/FAIL smoke test: delegates to course-check, verifies the pi pin, model configuration and key file, then the model answering and one outcome-checked agent task in a sandbox directory"
+  - ref: setup/PRE_COHORT_CHECKLIST.md
+    implements: "The pre-cohort checklist required by TESTING_PHILOSOPHY.md Test Organization: publish-before-send gate, re-pinning, per-key spend limits and operator cost expectations, both-platform smoke tests, outstanding first-time verification, cohort tagging"
+  - ref: setup/DRY_RUN.md
+    implements: "Dry-run record and its honest limits: what the automated macOS run establishes, what Windows and human floor testing still owe"
+  - ref: setup/tests/test-setup.sh
+    implements: "Regression tests against a throwaway HOME and npm prefix, including stub-pi coverage of both live-model check paths"
 narrative: null
 investigation: null
 subsystems: []

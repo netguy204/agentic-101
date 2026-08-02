@@ -407,3 +407,76 @@ leaves installed applications alone.
 
 **Revisit If**: A future macOS drops bash from the base system, or session
 material turns out to need zsh-specific behavior.
+
+---
+
+### DEC-009: Setup writes pi's configuration for the participant; pins split across two files
+
+**Date**: 2026-08-02
+
+**Status**: ACCEPTED
+
+**Decision**: `setup/` completes DEC-006's operator-provisioned environment
+with a scripted step rather than a narrated one. `setup/install-pi.sh`
+installs pi at a pinned npm version and writes both
+`~/.pi/agent/settings.json` (the prescribed provider, model, and thinking
+level) and `~/.pi/agent/auth.json` (the operator's OpenRouter key, `0600`)
+directly. Version pins live in two files by domain — `env/versions.env` for
+the terminal environment, `setup/pins.env` for pi and the model — and
+`setup/` installs its smoke test into the environment's install root,
+`~/.agentic-101/bin`.
+
+**Context**: DEC-006 settled *what* participants get (one key, one model, one
+terminal). Implementing the setup guide forced three questions it left open:
+how the key reaches pi, where the pi and model pins live relative to the
+environment's pins, and where a participant-runnable smoke test lives.
+
+**Alternatives Considered**:
+- **Walk participants through pi's `/login`**: the path pi itself documents,
+  and it means no script ever handles a key. Rejected: `/login` is an
+  interactive TUI with a provider list of dozens of entries and arrow-key
+  navigation. It cannot be paired with exact expected output, and it fails
+  the guide's copy-paste-and-verify rule (chunk GOAL.md) for an audience
+  that has never used a terminal (DEC-004).
+- **`export OPENROUTER_API_KEY=…`**: one line, no file writing. Rejected: an
+  exported variable lives only in the window that set it. A participant who
+  closes the terminal loses their key with no visible cause, and the fix —
+  editing a shell startup file — is exactly the knowledge the floor says we
+  cannot assume.
+- **One pin file for everything**: fewer files. Rejected: the two pin sets
+  are enforced differently (npm and winget install an exact version;
+  Homebrew casks cannot) and are re-validated by different procedures. One
+  file would have to explain both, and a mistake in either half would look
+  like a mistake in the other.
+- **A separate install root for `setup/`**: cleaner chunk ownership.
+  Rejected: it would give the participant two PATH entries and two things to
+  uninstall, and `env/uninstall.sh` would silently leave half the course
+  behind.
+
+**Rationale**: Scripting the configuration is the same trade the environment
+installer already made — "runs start to finish with no questions asked" —
+extended to the last two files pi needs. It converts the participant's auth
+step into pasting one line their facilitator composed for them, which is the
+only shape of this step that survives contact with the audience floor.
+`auth.json` is what pi's own `/login` would have written, survives shell
+restarts, is created `0600`, and takes priority over environment variables
+(pi `docs/providers.md`, Auth File). Splitting the pins keeps each file
+truthful about how its pins are enforced; sharing one install root keeps the
+uninstall story a single sentence.
+
+**Consequences**: The course key is pasted on a command line and therefore
+lands in shell history — keys must be per-participant, spend-limited, and
+rotated after each cohort (`setup/PRE_COHORT_CHECKLIST.md` item 3). `setup/`
+now writes into a directory `env/` owns, so the two must stay in step: this
+is a named contract, not an accident, and `EXPECTED_ENV_VERSION` in
+`setup/pins.env` makes a mismatch visible. Re-pinning a cohort means editing
+two files and the sample outputs in `setup/README.md`, which the checklist
+enforces. The chunk that eventually documents the post-course off-ramp
+(DEC-006, Consequences) will need to explain how to replace the shipped
+`settings.json` and `auth.json` with the graduate's own.
+
+**Revisit If**: pi ships a non-interactive login command that a participant
+could paste (which would make the script's file-writing unnecessary), the
+operator moves to per-participant provisioning that never puts a key on a
+command line, or the two pin files drift often enough that one file with two
+clearly labelled halves proves less error-prone.

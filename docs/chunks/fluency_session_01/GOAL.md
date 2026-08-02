@@ -265,6 +265,12 @@ Constraints the implementing agent must honor:
   for anyone who can't use their real toil (SPEC.md, Session Anatomy).
 - **Audience floor** (DEC-004): no programming or terminal knowledge
   assumed anywhere in the session.
+- **Operator-authored source material**: `pi-learning-paths.md` (repo
+  root) is a staged learning path written by the operator in the
+  course's intended voice — its "Why this guide, why you" opening is a
+  worked example of the judgment-leverage framing aimed at this exact
+  audience. Mine it for tone, phrasing, and staging; where it overlaps
+  Session 1's concepts, prefer its voice.
 
 ## Success Criteria
 

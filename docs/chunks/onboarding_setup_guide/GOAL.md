@@ -241,7 +241,11 @@ Context the implementing agent needs:
   that accepted cost being paid. A verified reference distilled from pi's
   shipped docs lives in this chunk directory as `pi-reference.md` —
   distill from it rather than re-deriving pi behavior; it covers install,
-  auth paths, project trust, settings, and known pitfalls.
+  auth paths, project trust, settings, and known pitfalls. The operator
+  also authored `pi-learning-paths.md` (repo root), a staged learning
+  path in the course's intended voice — its Stage 0 (terminal survival)
+  and Stage 1 (install/first session) show the tone and pacing the guide
+  should match.
 - **Auth is operator-provisioned: an OpenRouter API key** (DEC-006). The
   operator hands each participant an OpenRouter key; the guide's auth
   step is entering that key — no accounts created, no billing configured,

@@ -1,0 +1,298 @@
+#!/usr/bin/env bash
+# course-smoke-test — is everything you need for the course working?
+# Chunk: docs/chunks/onboarding_setup_guide - Participant-runnable setup smoke test
+#
+# The last step of the setup guide, and the thing a participant re-runs when
+# something stops working. It checks the whole stack in order — the course
+# environment, pi, the model configuration, the key, the model answering, and
+# one real (tiny) task done by the agent — and ends in exactly one line:
+# PASS or FAIL.
+#
+# It is deliberately outcome-checked (TESTING_PHILOSOPHY.md): the last check
+# looks for a file the agent was asked to create, not for particular words in
+# the agent's reply, so it stays valid as models change.
+
+set -u
+
+A101_BIN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+A101_ROOT=$(CDPATH= cd -- "$A101_BIN_DIR/.." && pwd)
+
+if [ -f "$A101_ROOT/lib/common.sh" ]; then
+    # shellcheck source=../../env/lib/common.sh
+    . "$A101_ROOT/lib/common.sh"
+else
+    if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
+        A101_BOLD=$(printf '\033[1m'); A101_DIM=$(printf '\033[2m')
+        A101_GREEN=$(printf '\033[32m'); A101_YELLOW=$(printf '\033[33m')
+        A101_RED=$(printf '\033[31m'); A101_RESET=$(printf '\033[0m')
+    else
+        A101_BOLD=""; A101_DIM=""; A101_GREEN=""; A101_YELLOW=""
+        A101_RED=""; A101_RESET=""
+    fi
+    say()  { printf '%s\n' "$*"; }
+    bold() { printf '%s%s%s\n' "$A101_BOLD" "$*" "$A101_RESET"; }
+    dim()  { printf '%s%s%s\n' "$A101_DIM" "$*" "$A101_RESET"; }
+    good() { printf '%s%s%s\n' "$A101_GREEN" "$*" "$A101_RESET"; }
+    blank() { printf '\n'; }
+fi
+
+failures=0
+skip_model=""
+
+usage() {
+    cat <<'EOF'
+course-smoke-test — check that everything you need for the course works.
+
+    course-smoke-test
+
+Prints one line per check and finishes with PASS or FAIL.
+
+Options:
+  --no-model      skip the two checks that talk to the model (no cost,
+                  no network; used by CI and the automated tests)
+  -h, --help      show this
+  -V, --version   show the pinned versions this checks against
+EOF
+}
+
+# --- the pins this checks against -----------------------------------------
+
+pins_file=""
+for candidate in "$A101_ROOT/pins.env" "$A101_BIN_DIR/../pins.env"; do
+    [ -f "$candidate" ] && { pins_file="$candidate"; break; }
+done
+if [ -n "$pins_file" ]; then
+    # shellcheck source=../pins.env
+    . "$pins_file"
+fi
+: "${PI_VERSION:=}"
+: "${PI_PROVIDER:=openrouter}"
+: "${PI_MODEL:=}"
+: "${PI_THINKING_LEVEL:=medium}"
+: "${PRACTICE_DIR:=course-practice}"
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --no-model) skip_model=1; shift ;;
+        -h|--help) usage; exit 0 ;;
+        -V|--version)
+            printf 'course-smoke-test checks against: pi %s, %s/%s, thinking %s\n' \
+                "${PI_VERSION:-unpinned}" "$PI_PROVIDER" "${PI_MODEL:-unpinned}" "$PI_THINKING_LEVEL"
+            exit 0 ;;
+        *) printf 'course-smoke-test: I do not know the option %s\n' "$1" >&2; exit 2 ;;
+    esac
+done
+
+ok()   { printf '  %s[ok]%s   %s\n' "$A101_GREEN" "$A101_RESET" "$*"; }
+bad()  { printf '  %s[no]%s   %s\n' "$A101_RED" "$A101_RESET" "$*"; failures=$((failures + 1)); }
+info() { printf '  %s[--]%s   %s\n' "$A101_DIM" "$A101_RESET" "$*"; }
+
+pi_config_dir="${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}"
+practice_path="$HOME/$PRACTICE_DIR"
+
+# run_with_timeout <seconds> <command...>
+#
+# `timeout` is not on macOS or Git Bash by default, and a hung model call must
+# never leave a participant staring at a frozen terminal. Returns 124 on
+# timeout, otherwise the command's own status.
+run_with_timeout() {
+    a101_limit="$1"; shift
+    "$@" &
+    a101_pid=$!
+    a101_waited=0
+    while kill -0 "$a101_pid" 2>/dev/null; do
+        if [ "$a101_waited" -ge "$a101_limit" ]; then
+            kill -TERM "$a101_pid" 2>/dev/null
+            sleep 1
+            kill -KILL "$a101_pid" 2>/dev/null
+            return 124
+        fi
+        sleep 1
+        a101_waited=$((a101_waited + 1))
+    done
+    wait "$a101_pid"
+}
+
+blank
+bold "Checking your course setup"
+blank
+
+# --- 1. the course environment --------------------------------------------
+#
+# course-check is the environment's own diagnostic (commit and revert on
+# PATH, git, node, bash, terminal configuration). Delegating keeps one
+# definition of "the environment is healthy".
+
+if command -v course-check >/dev/null 2>&1; then
+    if course_check_out=$(course-check 2>&1); then
+        ok "the course environment is healthy (commit, revert, git, node)"
+    else
+        bad "the course environment has a problem — its own report follows"
+        printf '%s\n' "$course_check_out" | sed 's/^/      /'
+    fi
+elif [ -x "$A101_ROOT/bin/course-check" ]; then
+    if course_check_out=$("$A101_ROOT/bin/course-check" 2>&1); then
+        ok "the course environment is healthy (commit, revert, git, node)"
+    else
+        bad "the course environment has a problem — its own report follows"
+        printf '%s\n' "$course_check_out" | sed 's/^/      /'
+    fi
+else
+    bad "the course environment is not installed — do Step 1 of the setup guide first"
+fi
+
+# --- 2. pi itself ----------------------------------------------------------
+
+pi_found=$(command -v pi 2>/dev/null || true)
+pi_version=""
+if [ -z "$pi_found" ]; then
+    bad "pi is not installed, or not on your PATH — close this window, open a new one, and try again"
+else
+    pi_version=$(pi --version 2>/dev/null | head -1 | tr -d '\r')
+    if [ -z "$PI_VERSION" ]; then
+        ok "pi is installed (${pi_version:-version unknown})"
+    elif [ "$pi_version" = "$PI_VERSION" ]; then
+        ok "pi is installed, version $pi_version"
+    else
+        bad "pi is version ${pi_version:-unknown}, but this course uses $PI_VERSION"
+    fi
+fi
+
+# --- 3. the course's model configuration ----------------------------------
+
+settings_file="$pi_config_dir/settings.json"
+if [ ! -f "$settings_file" ]; then
+    bad "pi's course settings are missing ($settings_file) — run the pi installer again"
+elif ! command -v node >/dev/null 2>&1; then
+    info "cannot read pi's settings without node"
+else
+    settings_report=$(A101_FILE="$settings_file" \
+        A101_PROVIDER="$PI_PROVIDER" A101_MODEL="$PI_MODEL" A101_THINKING="$PI_THINKING_LEVEL" \
+        node -e '
+          const fs = require("fs");
+          let s;
+          try { s = JSON.parse(fs.readFileSync(process.env.A101_FILE, "utf8")); }
+          catch (e) { console.log("UNREADABLE"); process.exit(0); }
+          const want = {
+            defaultProvider: process.env.A101_PROVIDER,
+            defaultModel: process.env.A101_MODEL,
+            defaultThinkingLevel: process.env.A101_THINKING,
+          };
+          const wrong = Object.keys(want)
+            .filter((k) => want[k] && s[k] !== want[k])
+            .map((k) => k + " is " + JSON.stringify(s[k]) + ", expected " + JSON.stringify(want[k]));
+          console.log(wrong.length ? "WRONG " + wrong.join("; ") : "OK");
+        ' 2>/dev/null)
+    case "$settings_report" in
+        OK) ok "pi is set to the course model ($PI_PROVIDER, $PI_MODEL)" ;;
+        UNREADABLE) bad "pi's settings file is damaged ($settings_file) — run the pi installer again" ;;
+        WRONG*) bad "pi is not set to the course model: ${settings_report#WRONG }" ;;
+        *) bad "could not read pi's settings ($settings_file)" ;;
+    esac
+fi
+
+# --- 4. the key -----------------------------------------------------------
+
+auth_file="$pi_config_dir/auth.json"
+if [ ! -f "$auth_file" ]; then
+    bad "your key is not saved ($auth_file) — run the pi installer again with your key"
+else
+    if grep -q "\"$PI_PROVIDER\"" "$auth_file"; then
+        perms=$(ls -l "$auth_file" 2>/dev/null | cut -c1-10)
+        case "$perms" in
+            -rw-------|-rw-r--r--)
+                # Git Bash reports 644 for files it created 600; not worth failing over.
+                ok "your key is saved and only readable by you" ;;
+            *)
+                ok "your key is saved"
+                info "the key file's permissions are $perms; ask your facilitator to check this" ;;
+        esac
+    else
+        bad "your key file has no $PI_PROVIDER key in it — run the pi installer again with your key"
+    fi
+fi
+
+# --- 5 and 6. the model, for real -----------------------------------------
+
+if [ -n "$skip_model" ]; then
+    info "skipped the two checks that talk to the model (--no-model)"
+elif [ -z "$pi_found" ] || [ "$failures" -gt 0 ]; then
+    info "skipped the two checks that talk to the model — fix the problems above first"
+else
+    model_out=$(mktemp "${TMPDIR:-/tmp}/agentic-101-smoke.XXXXXX")
+
+    # 5. Does the key work and does the prescribed model answer? No tools, so
+    #    a failure here is about the key or the model, never about the task.
+    if run_with_timeout 90 sh -c \
+        'pi -p -nt --no-session -na "Reply with exactly the word PONG and nothing else." \
+            >"$0" 2>&1' "$model_out"; then
+        if grep -q 'PONG' "$model_out"; then
+            ok "your key works and $PI_MODEL answered"
+        else
+            bad "the model replied, but not as expected — send this to your facilitator:"
+            head -5 "$model_out" | sed 's/^/      /'
+        fi
+    else
+        status=$?
+        if [ "$status" -eq 124 ]; then
+            bad "the model did not answer within 90 seconds — check your internet connection"
+        else
+            bad "could not reach the model. The usual causes are no internet, or a key"
+            bad "that has not been activated yet. Send this to your facilitator:"
+            head -8 "$model_out" | sed 's/^/      /'
+        fi
+    fi
+
+    # 6. One trivial agent task, in a scratch folder inside the practice
+    #    folder, so nothing else on the machine can be touched. Checked by
+    #    looking at the file on disk, not at what the agent said.
+    if [ "$failures" -eq 0 ]; then
+        mkdir -p "$practice_path" 2>/dev/null
+        scratch="$practice_path/.smoke-test"
+        rm -rf "$scratch"
+        if mkdir -p "$scratch" 2>/dev/null; then
+            if run_with_timeout 180 sh -c \
+                'cd "$1" && pi -p --no-session -na \
+                    "Create a file called ready.txt in the current folder. Its only contents should be the word READY." \
+                    >"$0" 2>&1' "$model_out" "$scratch"; then
+                if [ -f "$scratch/ready.txt" ] && grep -qi 'READY' "$scratch/ready.txt"; then
+                    ok "the agent did a real task: it created a file when asked"
+                else
+                    bad "the agent ran but did not create the file it was asked for."
+                    bad "Try once more — if it fails again, send this to your facilitator:"
+                    head -8 "$model_out" | sed 's/^/      /'
+                fi
+            else
+                status=$?
+                if [ "$status" -eq 124 ]; then
+                    bad "the agent did not finish within three minutes — check your internet connection"
+                else
+                    bad "the agent could not complete a simple task. Send this to your facilitator:"
+                    head -8 "$model_out" | sed 's/^/      /'
+                fi
+            fi
+            rm -rf "$scratch"
+        else
+            bad "could not use your practice folder ($practice_path) — run the pi installer again"
+        fi
+    else
+        info "skipped the agent task — fix the problems above first"
+    fi
+
+    rm -f "$model_out"
+fi
+
+# --- the verdict ----------------------------------------------------------
+
+blank
+if [ "$failures" -eq 0 ]; then
+    good "PASS — you are ready for the course."
+    say  "Nothing else to do. Your practice folder is $practice_path."
+    exit 0
+fi
+
+printf '%sFAIL — %s thing(s) above need attention.%s\n' "$A101_RED" "$failures" "$A101_RESET"
+say "What to do: read the [no] lines above — each one says what to try. If you"
+say "have already tried it, take a screenshot of this whole window and send it"
+say "to your facilitator. This is a setup problem, not something you did wrong."
+exit 1

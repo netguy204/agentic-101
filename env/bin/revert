@@ -1,0 +1,234 @@
+#!/usr/bin/env bash
+# revert — go back to an earlier checkpoint of this folder, in plain language.
+# Chunk: docs/chunks/onboarding_terminal_env - Guided restore command
+#
+# Two guarantees this command must never break (chunk GOAL.md):
+#   1. Nothing is destroyed silently. Changes made since the last checkpoint
+#      are saved, or deliberately set aside, before anything is restored.
+#   2. Going back is itself undoable. The restore is recorded as a new
+#      checkpoint rather than erasing history, so a participant who reverts by
+#      mistake can revert that.
+
+set -u
+
+A101_BIN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# shellcheck source=../lib/common.sh
+. "$A101_BIN_DIR/../lib/common.sh"
+
+A101_VERSION_FILE="$A101_BIN_DIR/../VERSION"
+A101_MAX_LISTED=10
+
+usage() {
+    cat <<'EOF'
+revert — put this folder back the way it was at an earlier checkpoint.
+
+Just type:
+
+    revert
+
+and it will show you your checkpoints and walk you through it.
+
+Options (for facilitators and scripts, not needed in the course):
+  -l, --list           show the checkpoints and stop
+  -t, --to N           choose checkpoint number N from that list
+  -y, --yes            accept every default; never wait for an answer
+  -h, --help           show this
+  -V, --version        show the environment version
+EOF
+}
+
+version() {
+    if [ -f "$A101_VERSION_FILE" ]; then
+        printf 'agentic-101 environment %s\n' "$(cat "$A101_VERSION_FILE")"
+    else
+        printf 'agentic-101 environment (unreleased)\n'
+    fi
+}
+
+list_only=""
+choice=""
+assume_yes=""
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -h|--help) usage; exit 0 ;;
+        -V|--version) version; exit 0 ;;
+        -l|--list) list_only=1; shift ;;
+        -y|--yes) assume_yes=1; shift ;;
+        -t|--to) shift; choice="${1:-}"; shift ;;
+        --) shift; break ;;
+        *) fail "revert: I do not know the option '$1'. Type 'revert --help'." ;;
+    esac
+done
+if [ -n "$assume_yes" ]; then
+    A101_ASSUME_DEFAULTS=1
+    export A101_ASSUME_DEFAULTS
+fi
+
+command -v git >/dev/null 2>&1 || fail "revert: git is not installed. Run the course environment installer again."
+# `git restore` arrived in git 2.23 (2019); the restore step below depends on
+# its --source behaviour of removing files added after the chosen checkpoint.
+if ! git restore -h 2>&1 | grep -q 'git restore'; then
+    fail "revert: the git on this computer is too old for the course (needs 2.23 or newer). Run the course environment installer again."
+fi
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    blank
+    say "This folder is not saving checkpoints yet, so there is nothing to go back to."
+    say "Type ${A101_BOLD}commit${A101_RESET} to save your first checkpoint."
+    exit 1
+fi
+
+if ! git rev-parse --verify --quiet HEAD >/dev/null 2>&1; then
+    blank
+    say "This folder is set up for checkpoints, but you have not saved one yet."
+    say "Type ${A101_BOLD}commit${A101_RESET} to save your first checkpoint."
+    exit 1
+fi
+
+# --- the checkpoint list --------------------------------------------------
+
+# Each line: <full sha><TAB><how long ago><TAB><name>
+checkpoints=$(git log -n "$A101_MAX_LISTED" --format='%H	%ar	%s')
+[ -n "$checkpoints" ] || fail "revert: could not read this folder's checkpoints."
+
+show_checkpoints() {
+    n=0
+    printf '%s\n' "$checkpoints" | while IFS='	' read -r _sha when name; do
+        n=$((n + 1))
+        printf '  %s%2d)%s %s%-16s%s %s\n' \
+            "$A101_BOLD" "$n" "$A101_RESET" \
+            "$A101_DIM" "$when" "$A101_RESET" "$name"
+    done
+}
+
+nth_field() {
+    # nth_field <index> <field-number>
+    printf '%s\n' "$checkpoints" | sed -n "${1}p" | cut -f"${2}"
+}
+
+total=$(printf '%s\n' "$checkpoints" | wc -l | tr -d ' ')
+
+if [ -n "$list_only" ]; then
+    blank
+    bold "Your checkpoints, newest first:"
+    show_checkpoints
+    exit 0
+fi
+
+# --- protect anything not yet checkpointed --------------------------------
+
+if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+    changed=$(git status --porcelain | wc -l | tr -d ' ')
+    blank
+    if [ "$changed" = "1" ]; then
+        bold "Wait — 1 thing in this folder has changed since your last checkpoint."
+    else
+        bold "Wait — $changed things in this folder have changed since your last checkpoint."
+    fi
+    say "Going back would undo those changes, so let's deal with them first."
+    blank
+    say "  ${A101_BOLD}1)${A101_RESET} Save them as a checkpoint now, then go back  ${A101_DIM}(recommended)${A101_RESET}"
+    say "  ${A101_BOLD}2)${A101_RESET} Set them aside and go back without them"
+    say "  ${A101_BOLD}3)${A101_RESET} Stop — don't go anywhere"
+    blank
+    what=$(ask "What would you like to do? Type 1, 2 or 3." "1")
+    case "$what" in
+        1)
+            if [ -x "$A101_BIN_DIR/commit" ]; then
+                "$A101_BIN_DIR/commit" ${assume_yes:+--yes} || fail "revert: stopping, because saving your changes did not work."
+            else
+                fail "revert: cannot find the commit command next to me."
+            fi
+            # The list changed: there is a new checkpoint at the top.
+            checkpoints=$(git log -n "$A101_MAX_LISTED" --format='%H	%ar	%s')
+            total=$(printf '%s\n' "$checkpoints" | wc -l | tr -d ' ')
+            ;;
+        2)
+            blank
+            say "Setting changes aside means this folder forgets them, but they are not"
+            say "destroyed — your facilitator can bring them back if you need them."
+            blank
+            sure=$(ask "Type the word ${A101_BOLD}aside${A101_RESET} to confirm, or press Enter to stop." "")
+            if [ "$sure" != "aside" ]; then
+                blank
+                say "Stopped. Nothing was changed."
+                exit 0
+            fi
+            if ! git stash push --include-untracked --quiet \
+                    --message "set aside by revert on $(date '+%Y-%m-%d %H:%M')"; then
+                fail "revert: could not set those changes aside. Nothing was changed."
+            fi
+            good "Set aside."
+            ;;
+        *)
+            blank
+            say "Stopped. Nothing was changed."
+            exit 0
+            ;;
+    esac
+fi
+
+# --- pick a checkpoint ----------------------------------------------------
+
+blank
+bold "Your checkpoints, newest first:"
+show_checkpoints
+blank
+
+if [ -z "$choice" ]; then
+    choice=$(ask "Which one should this folder go back to? Type its number, or press Enter to stop." "")
+fi
+
+if [ -z "$choice" ]; then
+    blank
+    say "Stopped. Nothing was changed."
+    exit 0
+fi
+
+case "$choice" in
+    ''|*[!0-9]*) fail "revert: '$choice' is not one of the numbers in the list. Nothing was changed." ;;
+esac
+if [ "$choice" -lt 1 ] || [ "$choice" -gt "$total" ]; then
+    fail "revert: there is no checkpoint number $choice in the list. Nothing was changed."
+fi
+
+target_sha=$(nth_field "$choice" 1)
+target_when=$(nth_field "$choice" 2)
+target_name=$(nth_field "$choice" 3)
+
+# --- confirm, in plain language -------------------------------------------
+
+blank
+say "This will put every file in this folder back exactly as it was at:"
+blank
+say "    ${A101_BOLD}${target_name}${A101_RESET}  ${A101_DIM}(${target_when})${A101_RESET}"
+blank
+say "Anything you did after that point will be undone. Your later checkpoints"
+say "stay in the list, so you can come back forward again if you change your mind."
+blank
+if ! confirm "Go back to this checkpoint?" "no"; then
+    blank
+    say "Stopped. Nothing was changed."
+    exit 0
+fi
+
+# --- restore forward ------------------------------------------------------
+
+if ! git restore --source="$target_sha" --staged --worktree -- . ; then
+    fail "revert: could not restore that checkpoint. Nothing was changed."
+fi
+
+if git diff --cached --quiet; then
+    blank
+    good "This folder was already exactly as it was at \"$target_name\"."
+    exit 0
+fi
+
+if ! git commit --quiet -m "Back to: $target_name"; then
+    fail "revert: restored your files, but could not record the checkpoint for it."
+fi
+
+blank
+good "Done. This folder is back to \"$target_name\"."
+say "Nothing was lost — every checkpoint you made is still in the list,"
+say "and this move is itself a checkpoint you can go back from."

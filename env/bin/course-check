@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+# course-check — is the course environment healthy?
+# Chunk: docs/chunks/onboarding_terminal_env - Environment self-test
+#
+# Diagnostic, not a convenience command. The installer runs it as its last
+# step, and the setup guide's smoke test (docs/chunks/onboarding_setup_guide)
+# calls it to verify the managed environment before checking pi itself.
+# Output ends in exactly one line: PASS or FAIL.
+
+set -u
+
+A101_BIN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# shellcheck source=../lib/common.sh
+. "$A101_BIN_DIR/../lib/common.sh"
+
+A101_ROOT=$(CDPATH= cd -- "$A101_BIN_DIR/.." && pwd)
+failures=0
+
+usage() {
+    cat <<'EOF'
+course-check — check that the course environment is working.
+
+    course-check
+
+Prints one line per check and finishes with PASS or FAIL.
+
+Options:
+  -h, --help      show this
+  -V, --version   show the environment version
+EOF
+}
+
+case "${1:-}" in
+    -h|--help) usage; exit 0 ;;
+    -V|--version)
+        if [ -f "$A101_ROOT/VERSION" ]; then
+            printf 'agentic-101 environment %s\n' "$(cat "$A101_ROOT/VERSION")"
+        else
+            printf 'agentic-101 environment (unreleased)\n'
+        fi
+        exit 0
+        ;;
+    "") ;;
+    *) fail "course-check: I do not know the option '$1'." ;;
+esac
+
+ok()   { printf '  %s[ok]%s   %s\n' "$A101_GREEN" "$A101_RESET" "$*"; }
+bad()  { printf '  %s[no]%s   %s\n' "$A101_RED" "$A101_RESET" "$*"; failures=$((failures + 1)); }
+info() { printf '  %s[--]%s   %s\n' "$A101_DIM" "$A101_RESET" "$*"; }
+
+blank
+if [ -f "$A101_ROOT/VERSION" ]; then
+    bold "Course environment $(cat "$A101_ROOT/VERSION")"
+else
+    bold "Course environment (running from a source checkout)"
+fi
+blank
+
+# --- the commands the course teaches --------------------------------------
+
+for cmd in commit revert; do
+    found=$(command -v "$cmd" 2>/dev/null || true)
+    if [ -z "$found" ]; then
+        bad "$cmd is not on your PATH — open a new terminal window, or run the installer again"
+    elif [ ! -x "$found" ]; then
+        bad "$cmd was found at $found but is not runnable"
+    else
+        ok "$cmd is ready ($found)"
+    fi
+done
+
+# --- what those commands rely on ------------------------------------------
+
+if command -v git >/dev/null 2>&1; then
+    if git restore -h 2>&1 | grep -q 'git restore'; then
+        ok "git is installed ($(git --version | head -1))"
+    else
+        bad "git is installed but too old for the course ($(git --version | head -1)); needs 2.23 or newer"
+    fi
+else
+    bad "git is not installed"
+fi
+
+if command -v node >/dev/null 2>&1; then
+    ok "node is installed ($(node --version 2>/dev/null))"
+else
+    bad "node is not installed — pi cannot run without it"
+fi
+
+if [ -n "${BASH_VERSION:-}" ]; then
+    ok "bash is the shell ($BASH_VERSION)"
+else
+    bad "this is not running under bash"
+fi
+
+# --- terminal configuration, where we can see it --------------------------
+
+case "$(uname -s 2>/dev/null || echo unknown)" in
+    Darwin)
+        ghostty_config="$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+        if [ -f "$ghostty_config" ] && grep -Fq "agentic-101" "$ghostty_config"; then
+            ok "Ghostty is configured for pi's keyboard shortcuts"
+        else
+            bad "Ghostty's configuration has not been set up — run the installer again"
+        fi
+        ;;
+    MINGW*|MSYS*|CYGWIN*)
+        wt_store="$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+        wt_plain="$LOCALAPPDATA/Microsoft/Windows Terminal/settings.json"
+        if { [ -f "$wt_store" ] && grep -Fq "agentic-101" "$wt_store"; } ||
+           { [ -f "$wt_plain" ] && grep -Fq "agentic-101" "$wt_plain"; }; then
+            ok "Windows Terminal is configured for pi's keyboard shortcuts"
+        else
+            bad "Windows Terminal's configuration has not been set up — run the installer again"
+        fi
+        ;;
+    *)
+        info "terminal configuration is not checked on this system"
+        ;;
+esac
+
+blank
+if [ "$failures" -eq 0 ]; then
+    good "PASS — your course environment is ready."
+    exit 0
+fi
+
+printf '%sFAIL — %s thing(s) above need attention.%s\n' "$A101_RED" "$failures" "$A101_RESET"
+say "What to do: run the course environment installer again, then close every"
+say "terminal window and open a new one. If it still says FAIL, send this whole"
+say "screen to your facilitator."
+exit 1

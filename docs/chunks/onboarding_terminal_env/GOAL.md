@@ -1,8 +1,23 @@
 ---
-status: FUTURE
+status: IMPLEMENTING
 ticket: null
 parent_chunk: null
-code_paths: []
+code_paths:
+  - env/README.md
+  - env/DISTRIBUTION.md
+  - env/FLOOR_TEST.md
+  - env/versions.env
+  - env/install.sh
+  - env/install.ps1
+  - env/uninstall.sh
+  - env/lib/common.sh
+  - env/lib/shellrc.sh
+  - env/bin/commit
+  - env/bin/revert
+  - env/bin/course-check
+  - env/windows/Patch-WindowsTerminal.ps1
+  - docs/trunk/SPEC.md
+  - docs/trunk/DECISIONS.md
 code_references: []
 narrative: null
 investigation: null
@@ -11,7 +26,6 @@ friction_entries: []
 depends_on: []
 created_after: []
 ---
-
 <!--
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║  DO NOT DELETE THIS COMMENT BLOCK until the chunk complete command is run.   ║

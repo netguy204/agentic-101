@@ -1,0 +1,172 @@
+#!/usr/bin/env bash
+# commit — save a checkpoint of this folder, in plain language.
+# Chunk: docs/chunks/onboarding_terminal_env - Guided checkpoint command
+#
+# The audience floor (DEC-004) has never used git. This command is a
+# walkthrough, not an alias: it says what changed in words, asks what to call
+# the checkpoint, and saves it. No staging, no flags, no git vocabulary.
+#
+# Checkpointing is the mitigation for pi having no undo (DEC-006).
+
+set -u
+
+A101_BIN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# shellcheck source=../lib/common.sh
+. "$A101_BIN_DIR/../lib/common.sh"
+
+A101_VERSION_FILE="$A101_BIN_DIR/../VERSION"
+
+usage() {
+    cat <<'EOF'
+commit — save a checkpoint of this folder.
+
+Just type:
+
+    commit
+
+and it will walk you through it.
+
+Options (for facilitators and scripts, not needed in the course):
+  -m, --message TEXT   name the checkpoint without being asked
+  -y, --yes            accept every default; never wait for an answer
+  -h, --help           show this
+  -V, --version        show the environment version
+EOF
+}
+
+version() {
+    if [ -f "$A101_VERSION_FILE" ]; then
+        printf 'agentic-101 environment %s\n' "$(cat "$A101_VERSION_FILE")"
+    else
+        printf 'agentic-101 environment (unreleased)\n'
+    fi
+}
+
+message=""
+assume_yes=""
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -h|--help) usage; exit 0 ;;
+        -V|--version) version; exit 0 ;;
+        -y|--yes) assume_yes=1; shift ;;
+        -m|--message) shift; message="${1:-}"; shift ;;
+        --) shift; break ;;
+        -*) fail "commit: I do not know the option '$1'. Type 'commit --help'." ;;
+        *) message="$1"; shift ;;
+    esac
+done
+if [ -n "$assume_yes" ]; then
+    A101_ASSUME_DEFAULTS=1
+    export A101_ASSUME_DEFAULTS
+fi
+
+command -v git >/dev/null 2>&1 || fail "commit: git is not installed. Run the course environment installer again."
+
+# --- is this folder being checkpointed yet? ------------------------------
+
+start_checkpointing_here() {
+    here=$(pwd)
+    case "$here" in
+        "$HOME"|/|/[a-zA-Z])
+            blank
+            warn "This is your top-level home folder, and checkpointing all of it"
+            warn "is more than you want. Make a folder for your work first:"
+            blank
+            warn "    mkdir my-project"
+            warn "    cd my-project"
+            warn "    commit"
+            exit 1
+            ;;
+    esac
+
+    folder=$(basename "$here")
+    blank
+    say "This folder (${A101_BOLD}${folder}${A101_RESET}) is not saving checkpoints yet."
+    say "Turning them on lets you save a snapshot of everything in it at any"
+    say "moment, and go back to that snapshot later. It changes nothing about"
+    say "your files."
+    blank
+    if confirm "Turn on checkpoints for this folder?" "yes"; then
+        git init --quiet . || fail "commit: could not turn on checkpoints here."
+        good "Done — this folder now remembers checkpoints."
+    else
+        blank
+        say "No problem. Nothing was changed."
+        exit 0
+    fi
+}
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    start_checkpointing_here
+fi
+
+# Whoever git thinks we are. Unset identity is a wall of git error text that
+# teaches nothing, so fill it in quietly and say so once.
+if [ -z "$(git config user.email 2>/dev/null)" ] || [ -z "$(git config user.name 2>/dev/null)" ]; then
+    who="${USER:-${USERNAME:-participant}}"
+    git config user.name "$who"
+    git config user.email "$who@agentic-101.local"
+    dim "(Checkpoints in this folder will be signed '$who'.)"
+fi
+
+# --- what changed? --------------------------------------------------------
+
+# Prints one plain-language line per change, e.g. "notes.txt (edited)".
+list_changes() {
+    git status --porcelain=v1 -z | (
+        while IFS= read -r -d '' entry; do
+            code=$(printf '%s' "$entry" | cut -c1-2)
+            path=$(printf '%s' "$entry" | cut -c4-)
+            case "$code" in
+                R*|C*)
+                    # Rename/copy entries carry a second NUL-terminated path.
+                    IFS= read -r -d '' _oldpath || true
+                    printf '%s (renamed)\n' "$path"
+                    ;;
+                '??'|A*) printf '%s (new)\n' "$path" ;;
+                D*|' D') printf '%s (deleted)\n' "$path" ;;
+                U*|*U)   printf '%s (half-finished merge)\n' "$path" ;;
+                *)       printf '%s (edited)\n' "$path" ;;
+            esac
+        done
+    )
+}
+
+changes=$(list_changes)
+if [ -z "$changes" ]; then
+    blank
+    good "Nothing has changed in this folder since your last checkpoint."
+    say "There is nothing to save right now."
+    exit 0
+fi
+
+count=$(printf '%s\n' "$changes" | wc -l | tr -d ' ')
+blank
+if [ "$count" = "1" ]; then
+    bold "1 thing changed in this folder:"
+else
+    bold "$count things changed in this folder:"
+fi
+printf '%s\n' "$changes" | head -n 20 | sed 's/^/  /'
+if [ "$count" -gt 20 ]; then
+    dim "  …and $((count - 20)) more"
+fi
+blank
+
+# --- name it and save it --------------------------------------------------
+
+default_name="Checkpoint on $(date '+%A, %B %-d at %-I:%M %p' 2>/dev/null || date)"
+
+if [ -z "$message" ]; then
+    message=$(ask "What should we call this checkpoint?" "$default_name")
+fi
+[ -z "$message" ] && message="$default_name"
+
+git add -A || fail "commit: could not collect your changes."
+if ! git commit --quiet -m "$message"; then
+    fail "commit: could not save the checkpoint. Nothing was lost — your files are untouched."
+fi
+
+blank
+good "Saved: \"$message\""
+say "Whenever you want to come back to exactly this, type: ${A101_BOLD}revert${A101_RESET}"

@@ -195,7 +195,10 @@ if [ -z "$api_key" ]; then
 fi
 
 if [ -z "$api_key" ] && [ -z "$dry_run" ]; then
-    if [ -r /dev/tty ]; then
+    # A101_ASSUME_DEFAULTS is the environment's convention for "never prompt"
+    # (env/lib/common.sh). The tests set it so a missing key fails fast
+    # instead of blocking on a terminal that may not exist.
+    if [ -r /dev/tty ] && [ -z "${A101_ASSUME_DEFAULTS:-}" ]; then
         # stdin is the script itself under `curl | bash`, so read the tty.
         printf '%sPaste the key your facilitator emailed you, then press Enter:%s\n' \
             "$A101_BOLD" "$A101_RESET" >&2

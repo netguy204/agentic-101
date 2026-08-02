@@ -116,9 +116,14 @@ Every session, when authored, consists of:
   (`curriculum/session_01_mental_models/`, etc.), each containing the
   artifacts listed in Session Anatomy.
 - `setup/` — participant environment setup instructions and smoke-test
-  script (see Prerequisites).
+  script (see Prerequisites). Consumes the installer from `env/`.
+- `env/` — source of the managed terminal environment (DEC-006/DEC-007/
+  DEC-008): platform installers, the guided `commit`/`revert`/
+  `course-check` commands, per-cohort version pins (`env/versions.env`),
+  smoke tests, and the floor-test protocol.
 
-Layout is draft until the first session chunk is implemented.
+Layout is draft until the first session chunk is implemented (`env/` is
+settled per DEC-008).
 
 ## Participant Prerequisites
 

@@ -369,4 +369,17 @@ convention.
 
 ## Deviations
 
-<!-- Populated during implementation. -->
+- **Step 7.6 parity check implemented in Node, not `jq`**
+  (`docs/chunks/onboarding_terminal_env/wt-patch-parity.js`). Node is
+  already a hard course dependency and expresses the settings.json
+  transformation more directly than jq; the fixture coverage matches what
+  Step 7.6 specified (20 checks, including idempotency and the old-schema
+  wrapping case).
+- **Execution was interrupted three times** by API connection failures in
+  the original implementing agent; the orchestrating session completed
+  Steps 8–11 (README, DISTRIBUTION, FLOOR_TEST, DEC-008, SPEC update,
+  validation, completion) following this plan directly. No design changes
+  resulted.
+- **Ghostty config validation (Step 7.5) was performed** with the ghostty
+  binary bundled on the authoring machine (`+validate-config` against the
+  generated config): valid.

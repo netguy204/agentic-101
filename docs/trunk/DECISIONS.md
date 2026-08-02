@@ -359,3 +359,51 @@ behavior on Ghostty.
 **Revisit If**: WezTerm resumes stable releases (re-run the single-app
 comparison), Ghostty ships an official Windows build, or floor testing
 surfaces protocol failures the sendInput/keybind patches can't cover.
+
+---
+
+### DEC-008: Environment source in `env/`, install root `~/.agentic-101/`, bash inside Ghostty on macOS
+
+**Date**: 2026-08-02
+
+**Status**: ACCEPTED
+
+**Decision**: The managed environment's source lives in the repository's
+top-level `env/` directory; it installs into a single self-contained root,
+`~/.agentic-101/`; and on macOS the prescribed terminal (Ghostty) runs
+bash (`command = /bin/bash -l`) so that both platforms present the same
+shell.
+
+**Context**: Implementing DEC-006/DEC-007 forced three placement choices:
+where the environment's source lives relative to `setup/`, where it
+installs on participant machines, and what shell macOS participants get —
+Ghostty would default to zsh while Windows participants get Git Bash.
+
+**Alternatives Considered**:
+- **Source inside `setup/`**: rejected — `setup/` owns participant-facing
+  instructions authored by a different chunk (onboarding_setup_guide);
+  mixing installable software into it blurs which chunk owns what.
+- **Keep zsh on macOS** with a parallel zsh prompt and rc file: rejected —
+  doubles the startup-file surface (two rc files, two prompt syntaxes, two
+  PATH mechanisms) and diverges the platforms exactly where DEC-007 says
+  they should converge. Scripts are written to bash 3.2 (macOS system
+  bash) so identical files run under Git Bash's bash 5.
+- **Scattered install (commands into /usr/local/bin, config in place)**:
+  rejected — a single root makes uninstall honest and the "what did this
+  change on my machine" story tellable in one sentence.
+
+**Rationale**: One shell means one startup file (`~/.bash_profile`), one
+prompt, one PATH mechanism, and one scripting dialect for
+`commit`/`revert` on both platforms. Scoping the bash switch to Ghostty's
+config leaves the participant's system login shell untouched — nothing
+outside the course terminal changes.
+
+**Consequences**: Course material can assume bash syntax everywhere.
+Participants who open stock Terminal.app on macOS still get the commands
+on PATH (a guarded `~/.zshrc` block) but not the course prompt or
+keybindings. All environment edits are delimited managed blocks with
+timestamped backups; `env/uninstall.sh` reverses them but deliberately
+leaves installed applications alone.
+
+**Revisit If**: A future macOS drops bash from the base system, or session
+material turns out to need zsh-specific behavior.

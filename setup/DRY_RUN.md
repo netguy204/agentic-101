@@ -29,6 +29,8 @@ npm packages were never touched.
 | Guide Step 1 — `env/install.sh --skip-packages` into a temp HOME | PASS (`course-check` reports PASS; the applications themselves were not reinstalled) |
 | Guide Step 3 — `setup/install-pi.sh` with a real `npm install -g @earendil-works/pi-coding-agent@0.83.0` into a temp prefix | pi installed, `pi --version` = `0.83.0`, matches the pin. 11 seconds on a warm npm cache. |
 | Guide Step 4 — `course-smoke-test --no-model` | PASS on all four offline checks |
+| The `curl … \| bash -s -- --key …` form of Step 3, served from a local HTTP server standing in for the published repository | PASS — payload downloaded, installed, configured, smoke test run; no hang despite the script itself occupying stdin |
+| The same run's smoke-test check 5, against the **real** OpenRouter endpoint with a deliberately invalid key | Reached the service and returned `401 {"message":"User not found."}`, rendered as the readable "could not reach the model" failure; check 6 correctly skipped rather than spending a second call |
 | `bash -n` on `install-pi.sh` and `course-smoke-test` | clean |
 | `--help` / `--version` on both | exercised |
 
@@ -41,6 +43,12 @@ What the automated run covers, check by check:
   and answers-but-does-nothing — confirming the pass path, both failure
   messages, that a rejected key does not trigger a second paid call, and that
   the task is judged by the file on disk rather than by what the agent said.
+- **Check 5's failure path additionally ran for real.** With an invalid key,
+  the pinned pi read the generated `settings.json` and `auth.json`, resolved
+  `openrouter` / `anthropic/claude-sonnet-5`, reached OpenRouter, and was
+  rejected with a 401 — which the check rendered as its readable failure
+  message. That exercises the whole configuration chain end to end; what it
+  does not exercise is the *success* path, which needs a funded key.
 
 The sample outputs quoted in `setup/README.md` Steps 3 and 4 are copied
 verbatim from this run, with the temporary paths rewritten to `/Users/you`.
@@ -51,10 +59,12 @@ verbatim from this run, with the temporary paths rewritten to `/Users/you`.
   Homebrew. Nothing here proves the first-run experience: the Homebrew
   install and its single password prompt, the Ghostty download, or a
   `PATH` that does not yet contain `npm`'s global bin.
-- **No real key, so no real model call.** Checks 5 and 6 have never talked to
-  OpenRouter. The prompts, the timeouts, the parsing of the reply, and the
-  actual behaviour of `anthropic/claude-sonnet-5` under `pi -p` are unverified
-  against the live service.
+- **No funded key, so no successful model call.** The rejection path reached
+  OpenRouter for real (above), but nothing has yet confirmed that
+  `anthropic/claude-sonnet-5` under `pi -p` returns `PONG` on demand, that it
+  creates the file check 6 asks for, or that either finishes inside the 90-
+  and 180-second timeouts. Those three are the substance of items 5 and 6 of
+  the checklist.
 - **No human.** An agent following instructions it wrote is the wrong test
   environment (TESTING_PHILOSOPHY.md, first principle).
 
@@ -107,7 +117,7 @@ Route observed friction to `docs/trunk/FRICTION.md`.
 
 | Date | Platform | What was run | Result | By |
 |---|---|---|---|---|
-| 2026-08-02 | macOS 15 | Automated: full test suite `--with-npm`; guide steps 1, 3, 4 against a temp HOME | 62/62 PASS; guide steps PASS | agent (chunk `onboarding_setup_guide`) |
+| 2026-08-02 | macOS 15 | Automated: full test suite `--with-npm`; guide steps 1, 3, 4 against a temp HOME; the `curl \| bash` form of step 3 against a local server | 62/62 PASS; guide steps PASS; check 5 reached OpenRouter and failed correctly on an invalid key | agent (chunk `onboarding_setup_guide`) |
 | | Windows | — | **pending** | |
 | | macOS | Clean machine, real key, human | **pending** | |
 | | Windows | Clean machine, real key, human | **pending** | |

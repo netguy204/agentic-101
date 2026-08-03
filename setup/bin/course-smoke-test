@@ -223,9 +223,12 @@ else
 
     # 5. Does the key work and does the prescribed model answer? No tools, so
     #    a failure here is about the key or the model, never about the task.
+    # stdin is closed for both calls: when this runs at the end of a
+    # `curl | bash` install, the script's own pipe is still this process's
+    # stdin, and pi -p reads stdin when it is not a terminal.
     if run_with_timeout 90 sh -c \
         'pi -p -nt --no-session -na "Reply with exactly the word PONG and nothing else." \
-            >"$0" 2>&1' "$model_out"; then
+            >"$0" 2>&1 </dev/null' "$model_out"; then
         if grep -q 'PONG' "$model_out"; then
             ok "your key works and $PI_MODEL answered"
         else
@@ -254,7 +257,7 @@ else
             if run_with_timeout 180 sh -c \
                 'cd "$1" && pi -p --no-session -na \
                     "Create a file called ready.txt in the current folder. Its only contents should be the word READY." \
-                    >"$0" 2>&1' "$model_out" "$scratch"; then
+                    >"$0" 2>&1 </dev/null' "$model_out" "$scratch"; then
                 if [ -f "$scratch/ready.txt" ] && grep -qi 'READY' "$scratch/ready.txt"; then
                     ok "the agent did a real task: it created a file when asked"
                 else

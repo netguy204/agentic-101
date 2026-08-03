@@ -70,9 +70,10 @@ Paste the command, then press **Enter**. Nothing runs until you do.
 This installs the terminal app the course uses, plus the handful of things it
 needs underneath. Follow the section for your computer and skip the other one.
 
-> **Facilitator: before you send this page to anyone**, the two commands below
-> contain `REPLACE-ME` and will not work as written. Publish the repository
-> and substitute the real address first — see item 1 of
+> **Facilitator: before you send this page to anyone**, the three install
+> commands on it (two here, one in Step 3) contain `REPLACE-ME` and will not
+> work as written. Publish the repository and substitute the real address
+> first — see item 1 of
 > [PRE_COHORT_CHECKLIST.md](PRE_COHORT_CHECKLIST.md) and
 > [../env/DISTRIBUTION.md](../env/DISTRIBUTION.md).
 
@@ -322,9 +323,11 @@ The honest inventory, because you should know what's on your own machine:
 | **`~/.pi/agent/`** | pi's own settings folder: the course model configuration, and your key in a file only your account can read. |
 | **`~/course-practice/`** | Your practice folder. A normal folder — you can open it in Finder or File Explorer. Everything you do on the course happens here. |
 
-Two small edits are also made to files that control how your terminal starts
-up, so the course commands are available when you open a window. They're
-marked, backed up first, and reversible.
+A few small edits are also made to the settings files that control how your
+terminal starts up and how it handles the keyboard — so the course commands
+are there when you open a window, and so pi's shortcuts work. Each edit is a
+clearly marked block in a file that is backed up before it is touched, and
+each is reversible.
 
 Nothing runs in the background. Nothing starts when your computer starts.
 

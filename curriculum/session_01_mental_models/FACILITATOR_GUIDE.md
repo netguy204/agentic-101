@@ -32,9 +32,17 @@ fixed before Session 2, which is the one that needs it.
   canned-toil sheet for anyone who asked for it in prework. Print them
   even for a remote cohort — say "print this or copy the four columns
   onto anything" in the joining email.
+- **Send the prework a week ahead** — [`PREWORK.md`](PREWORK.md), by email,
+  with no verbal preamble beyond "this is the prework". Part 3 asks people
+  to reply with their setup status and whether they want the canned task
+  set, so you need the replies in hand before the room; chase the
+  non-repliers two days out, because a non-reply usually means a failed
+  setup rather than a busy week.
 - **Test the demo** (see Demo, below) on your own machine the day before,
   on the pinned model. It needs a working pi install on the *facilitator's*
-  machine — not on anyone else's.
+  machine — not on anyone else's. If you don't have one, you install it the
+  same way the participants did: follow `setup/README.md` end to end,
+  including its smoke test. Do this a week out, not the night before.
 - **Tally the prework replies**: who reported `PASS`, who reported `FAIL`,
   who didn't reply, who asked for the canned set.
 

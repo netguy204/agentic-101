@@ -249,4 +249,30 @@ and inventory format rather than the reverse.
 
 ## Deviations
 
-<!-- Populated during implementation. -->
+- **Step 6 (facilitator guide), added during review:** the guide's "Before
+  the room" section did not tell a facilitator to *send* the prework (only
+  to tally the replies), and did not say how a facilitator without a pi
+  install gets one for the demo. Both are load-bearing for the
+  re-teachability criterion — a guide that assumes the reader already has
+  the things the author had is exactly the failure that criterion names.
+  Added: send a week ahead, chase non-repliers two days out because a
+  non-reply usually means a failed setup, and follow `setup/README.md` end
+  to end a week out if you don't have pi.
+- **Step 6, timing:** the 60-minute variant's column summed to 59. The
+  spare minute went to the cold open (9 rather than 8), on the rule that
+  the recruitment beat is the last thing to compress.
+- **Step 3 (canned toil):** the persona's task list is eight entries rather
+  than a round number chosen for balance, and the handout deliberately
+  refuses to publish an answer key — three tasks are clearly inside
+  Priya's boundary, two clearly outside, and the rest genuinely
+  underdetermined by the sheet. Noticing that the sheet doesn't say enough
+  is scored as a correct answer. This is a slightly stronger position than
+  the plan's "deliberately spanning" wording implied, and it exists so the
+  fallback path produces the same argument-having that the real-work path
+  does.
+- **No `DRY_RUN.md`:** Session 1 has no participant-executable steps, so
+  per the Step-1 convention the file is omitted. The one executable thing
+  in the session — the facilitator's demo — is covered by the facilitator
+  dry-run section of `FLOOR_TEST.md` instead, which keeps the model-
+  nondeterminism requirement (three runs, stated failure condition) in the
+  same place as the rest of the session's verification.

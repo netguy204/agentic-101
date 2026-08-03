@@ -1,5 +1,5 @@
 ---
-status: IMPLEMENTING
+status: ACTIVE
 ticket: null
 parent_chunk: null
 code_paths:
@@ -15,7 +15,60 @@ code_paths:
 - curriculum/session_01_mental_models/handouts/canned-toil.md
 - docs/trunk/SPEC.md
 - docs/trunk/DECISIONS.md
-code_references: []
+code_references:
+- ref: curriculum/README.md
+  implements: 'The per-session directory convention: session_<NN>_<slug>/ naming,
+    the six required filenames, handouts/ and FLOOR_TEST.md/DRY_RUN.md as optional,
+    and the rule that cross-session artifacts stay in the introducing session''s handouts/'
+- ref: curriculum/session_01_mental_models/README.md
+  implements: The session index and the teaching spine stated as load-bearing order,
+    with the constraints an editor must not break
+- ref: curriculum/session_01_mental_models/PREWORK.md
+  implements: 'Prework in ~22 minutes: the leverage argument in the operator''s voice,
+    the five-recurring-tasks list, and the setup-status reply that routes a failed
+    setup to remediation instead of to a lost evening'
+- ref: curriculum/session_01_mental_models/FACILITATOR_GUIDE.md
+  implements: 'The re-teachable session: pre-session prep, setup-status collection
+    and the remediation route, a 90-minute timing table with a 60-minute variant and
+    ordered cutting rules, the cold open''s three statements and two forbidden framings,
+    SPEC terminology quoted verbatim, the two-beat demo with its planted judgment
+    call and backup row, eleven anticipated failure points with recovery moves, the
+    FAQ, and a read-aloud transcript for a demo that cannot run'
+- ref: curriculum/session_01_mental_models/EXERCISES.md
+  implements: "The three-exercise block with per-exercise fallbacks, observable outputs,\
+    \ and the misfires each produces \u2014 brain dump, the check column (the load-bearing\
+    \ one), and the skeptic pass where conceding \"I couldn't tell\" is the success\
+    \ case"
+- ref: curriculum/session_01_mental_models/PRACTICE.md
+  implements: 'The observation-shaped practice week: a 55-minute budget under the
+    90-minute cap, the daily pass, the check test that resolves "not sure" entries
+    by watching yourself work, the consolidation pass, and the optional new-hire brief'
+- ref: curriculum/session_01_mental_models/CHECKPOINT.md
+  implements: "The observable checkpoint (\u22653 annotated entries plus a spoken\
+    \ boundary claim), how to run the round in seven minutes, the pass/near-miss discrimination\
+    \ guide, the private recovery path, and what a room-wide failure obligates in\
+    \ Session 2"
+- ref: curriculum/session_01_mental_models/FLOOR_TEST.md
+  implements: "The floor-test protocol for a comprehension-only session \u2014 verbatim\
+    \ tasks, timing measurement against every claimed budget, seven session-specific\
+    \ watch-fors, the facilitator demo dry-run with its nondeterminism rule, and the\
+    \ pending results log"
+- ref: curriculum/session_01_mental_models/handouts/toil-inventory.md
+  implements: The four-column toil inventory that persists to the Session 6 capstone
+    gate, with worked rows for an in-boundary and an out-of-boundary task and the
+    rule that later sessions may add columns but not rename these
+- ref: curriculum/session_01_mental_models/handouts/canned-toil.md
+  implements: "The no-dead-ends fallback \u2014 a persona with eight recurring tasks\
+    \ spanning clearly-judgeable, clearly-not, and underdetermined, with no answer\
+    \ key"
+- ref: docs/trunk/DECISIONS.md
+  implements: DEC-010, recording the session directory convention and the toil inventory
+    format as cross-session contracts, with the rejected alternatives (free-form layout,
+    one document per session, spreadsheet inventory, task-plus-flag inventory)
+- ref: docs/trunk/SPEC.md
+  implements: Repository Layout settled for curriculum/ and the Session 1 entry in
+    Curriculum Structure corrected to name the cold-open ordering and the conceptual-only
+    constraint
 narrative: null
 investigation: null
 subsystems: []

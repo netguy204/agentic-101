@@ -129,6 +129,18 @@ perms=$(ls -l "$FAKE/.pi/agent/auth.json" | cut -c1-10)
 [ "$perms" = "-rw-------" ] && ok "auth file is 0600" || no "auth file is $perms, expected -rw-------"
 has "the practice folder is not the home folder" "cd ~/$PRACTICE_DIR" "$FAKE/$PRACTICE_DIR/README.txt"
 
+echo "== a key copied out of an email, with stray whitespace =="
+fresh_home
+install_env
+run_setup --skip-packages --no-smoke-test --key "  $KEY
+"
+has "the key is stored without the stray whitespace" "\"key\": \"$KEY\"" "$FAKE/.pi/agent/auth.json"
+
+fresh_home
+install_env
+run_setup --skip-packages --no-smoke-test --key "$(printf '%s\r' "$KEY")"
+has "a Windows carriage return is stripped too" "\"key\": \"$KEY\"" "$FAKE/.pi/agent/auth.json"
+
 echo "== an existing pi setup survives =="
 fresh_home
 install_env

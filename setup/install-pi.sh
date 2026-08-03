@@ -208,6 +208,12 @@ if [ -z "$api_key" ] && [ -z "$dry_run" ]; then
     fi
 fi
 
+# A key copied out of an email arrives with a trailing space, a newline, or —
+# on Windows — a carriage return more often than not, and the resulting 401
+# looks exactly like a bad key. OpenRouter keys contain no whitespace, so
+# removing all of it is safe and saves a support round trip.
+api_key=$(printf '%s' "$api_key" | tr -d ' \t\r\n')
+
 if [ -z "$dry_run" ]; then
     case "$api_key" in
         "")

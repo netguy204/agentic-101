@@ -90,11 +90,24 @@ info() { printf '  %s[--]%s   %s\n' "$A101_DIM" "$A101_RESET" "$*"; }
 pi_config_dir="${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}"
 practice_path="$HOME/$PRACTICE_DIR"
 
+# How long to wait for each of the two model calls. Overridable only so the
+# tests can exercise the timeout path in seconds rather than minutes; the
+# guide quotes the defaults.
+: "${A101_MODEL_TIMEOUT:=90}"
+: "${A101_TASK_TIMEOUT:=180}"
+
 # run_with_timeout <seconds> <command...>
 #
 # `timeout` is not on macOS or Git Bash by default, and a hung model call must
 # never leave a participant staring at a frozen terminal. Returns 124 on
 # timeout, otherwise the command's own status.
+#
+# Both callers `exec` their payload, so $a101_pid is pi itself rather than a
+# wrapper shell. Killing a wrapper would leave pi running as an orphan —
+# still talking to the model, still spending the operator's key, and writing
+# into files this script has already deleted. The teardown's own output is
+# discarded because the shell otherwise reports the killed job ("Terminated:
+# 15") over the friendly message that follows.
 run_with_timeout() {
     a101_limit="$1"; shift
     "$@" &
@@ -102,9 +115,12 @@ run_with_timeout() {
     a101_waited=0
     while kill -0 "$a101_pid" 2>/dev/null; do
         if [ "$a101_waited" -ge "$a101_limit" ]; then
-            kill -TERM "$a101_pid" 2>/dev/null
-            sleep 1
-            kill -KILL "$a101_pid" 2>/dev/null
+            {
+                kill -TERM "$a101_pid" 2>/dev/null
+                sleep 1
+                kill -KILL "$a101_pid" 2>/dev/null
+                wait "$a101_pid"
+            } 2>/dev/null
             return 124
         fi
         sleep 1
@@ -200,9 +216,19 @@ else
     if grep -q "\"$PI_PROVIDER\"" "$auth_file"; then
         perms=$(ls -l "$auth_file" 2>/dev/null | cut -c1-10)
         case "$perms" in
-            -rw-------|-rw-r--r--)
-                # Git Bash reports 644 for files it created 600; not worth failing over.
+            -rw-------)
                 ok "your key is saved and only readable by you" ;;
+            -rw-r--r--)
+                # Git Bash reports 644 for files it created 600, so on Windows
+                # this is expected and says nothing either way. Anywhere else
+                # it is real, and claiming privacy we do not have would be a
+                # lie in the one place a participant might rely on it.
+                case "$(uname -s 2>/dev/null || echo unknown)" in
+                    MINGW*|MSYS*|CYGWIN*) ok "your key is saved" ;;
+                    *)
+                        ok "your key is saved"
+                        info "the key file is readable by other accounts on this computer ($perms); tell your facilitator" ;;
+                esac ;;
             *)
                 ok "your key is saved"
                 info "the key file's permissions are $perms; ask your facilitator to check this" ;;
@@ -223,13 +249,24 @@ else
 
     # 5. Does the key work and does the prescribed model answer? No tools, so
     #    a failure here is about the key or the model, never about the task.
-    # stdin is closed for both calls: when this runs at the end of a
-    # `curl | bash` install, the script's own pipe is still this process's
-    # stdin, and pi -p reads stdin when it is not a terminal.
-    if run_with_timeout 90 sh -c \
-        'pi -p -nt --no-session -na "Reply with exactly the word PONG and nothing else." \
+    #
+    #    The model is asked to *compute* something rather than to repeat a
+    #    word back. A prompt whose expected answer appears in the prompt
+    #    itself can be passed by any error path that echoes the request —
+    #    which would be a false PASS on the one check whose entire job is
+    #    proving the key works. 42 appears nowhere in what we send.
+    #
+    #    stdin is closed for both calls: when this runs at the end of a
+    #    `curl | bash` install, the script's own pipe is still this process's
+    #    stdin, and pi -p reads stdin when it is not a terminal.
+    info "asking the model a question — this can take up to a minute…"
+    if run_with_timeout "$A101_MODEL_TIMEOUT" sh -c \
+        'exec pi -p -nt --no-session -na "What is 19 plus 23? Reply with only the number." \
             >"$0" 2>&1 </dev/null' "$model_out"; then
-        if grep -q 'PONG' "$model_out"; then
+        # Only the last non-empty line counts, reduced to its digits, so a
+        # chatty reply still passes and a stray number in a warning does not.
+        answer=$(grep -v '^[[:space:]]*$' "$model_out" | tail -1 | tr -cd '0-9')
+        if [ "$answer" = "42" ]; then
             ok "your key works and $PI_MODEL answered"
         else
             bad "the model replied, but not as expected — send this to your facilitator:"
@@ -238,7 +275,7 @@ else
     else
         status=$?
         if [ "$status" -eq 124 ]; then
-            bad "the model did not answer within 90 seconds — check your internet connection"
+            bad "the model did not answer within $A101_MODEL_TIMEOUT seconds — check your internet connection"
         else
             bad "could not reach the model. The usual causes are no internet, or a key"
             bad "that has not been activated yet. Send this to your facilitator:"
@@ -254,8 +291,9 @@ else
         scratch="$practice_path/.smoke-test"
         rm -rf "$scratch"
         if mkdir -p "$scratch" 2>/dev/null; then
-            if run_with_timeout 180 sh -c \
-                'cd "$1" && pi -p --no-session -na \
+            info "asking the agent to do a small task — this can take a few minutes…"
+            if run_with_timeout "$A101_TASK_TIMEOUT" sh -c \
+                'cd "$1" && exec pi -p --no-session -na \
                     "Create a file called ready.txt in the current folder. Its only contents should be the word READY." \
                     >"$0" 2>&1 </dev/null' "$model_out" "$scratch"; then
                 if [ -f "$scratch/ready.txt" ] && grep -qi 'READY' "$scratch/ready.txt"; then
@@ -268,7 +306,7 @@ else
             else
                 status=$?
                 if [ "$status" -eq 124 ]; then
-                    bad "the agent did not finish within three minutes — check your internet connection"
+                    bad "the agent did not finish within $A101_TASK_TIMEOUT seconds — check your internet connection"
                 else
                     bad "the agent could not complete a simple task. Send this to your facilitator:"
                     head -8 "$model_out" | sed 's/^/      /'

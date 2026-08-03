@@ -166,7 +166,7 @@ case "$(uname -s 2>/dev/null || echo unknown)" in
 esac
 
 if [ -f "$install_root/VERSION" ]; then
-    found_env=$(cat "$install_root/VERSION")
+    found_env=$(tr -d '\r' < "$install_root/VERSION")
     if [ -n "${EXPECTED_ENV_VERSION:-}" ] && [ "$found_env" != "$EXPECTED_ENV_VERSION" ]; then
         warn "  The course environment is version $found_env; this setup expects"
         warn "  $EXPECTED_ENV_VERSION. Continuing, but tell your facilitator."
@@ -200,10 +200,14 @@ if [ -z "$api_key" ] && [ -z "$dry_run" ]; then
     # instead of blocking on a terminal that may not exist.
     if [ -r /dev/tty ] && [ -z "${A101_ASSUME_DEFAULTS:-}" ]; then
         # stdin is the script itself under `curl | bash`, so read the tty.
-        printf '%sPaste the key your facilitator emailed you, then press Enter:%s\n' \
+        printf '%sPaste the key your facilitator emailed you, then press Enter.%s\n' \
             "$A101_BOLD" "$A101_RESET" >&2
+        printf '%s(Nothing will appear as you paste — that is deliberate, it keeps the%s\n' \
+            "$A101_DIM" "$A101_RESET" >&2
+        printf '%skey off your screen.)%s\n' "$A101_DIM" "$A101_RESET" >&2
         printf '> ' >&2
-        IFS= read -r api_key < /dev/tty || api_key=""
+        # -s so the key is not left on screen for whoever walks past.
+        IFS= read -rs api_key < /dev/tty || api_key=""
         printf '\n' >&2
     fi
 fi
@@ -242,7 +246,13 @@ if [ -n "$skip_packages" ]; then
 elif [ -n "$dry_run" ]; then
     would "npm install -g --ignore-scripts $pi_pkg"
 else
-    say "  This takes a minute or two. npm prints a lot; that is normal."
+    # npm's own output is captured rather than shown: it is pages of noise
+    # that reads as failure to someone who has never seen it. The cost is a
+    # motionless terminal for a minute or two, which has to be announced —
+    # an unexplained frozen screen is where a participant gives up.
+    say "  Downloading pi. This usually takes a minute or two, and"
+    say "  ${A101_BOLD}nothing at all will appear on screen while it runs${A101_RESET}."
+    say "  That is normal. Do not close this window."
     npm_log=$(mktemp "${TMPDIR:-/tmp}/agentic-101-npm.XXXXXX")
     if npm install -g --ignore-scripts "$pi_pkg" >"$npm_log" 2>&1; then
         good "  pi installed"
@@ -374,9 +384,16 @@ EOF
     good "  Created $practice_path"
 
     if [ -d "$install_root/bin" ] || mkdir -p "$install_root/bin" 2>/dev/null; then
-        cp "$A101_SRC/bin/course-smoke-test" "$install_root/bin/course-smoke-test" &&
-            chmod +x "$install_root/bin/course-smoke-test" ||
-            warn "  could not install course-smoke-test into $install_root/bin"
+        if cp "$A101_SRC/bin/course-smoke-test" "$install_root/bin/course-smoke-test" &&
+           chmod +x "$install_root/bin/course-smoke-test"; then
+            :
+        else
+            warn "  Could not install the course-smoke-test command into $install_root/bin."
+            warn "  Everything else is set up. Tell your facilitator you could not run the check."
+        fi
+    else
+        warn "  Could not create $install_root/bin, so the course-smoke-test command"
+        warn "  is not installed. Everything else is set up — tell your facilitator."
     fi
     cp "$A101_SRC/pins.env" "$install_root/pins.env" 2>/dev/null || true
 fi
@@ -399,6 +416,15 @@ if [ -z "$no_smoke_test" ] && [ -x "$install_root/bin/course-smoke-test" ]; then
         bold "Setup is not finished — see the FAIL message above."
     fi
     exit "$smoke_status"
+fi
+
+if [ ! -x "$install_root/bin/course-smoke-test" ]; then
+    # The step above already explained why. Do not send anyone to a command
+    # that is not there.
+    bold "Done, but the course-smoke-test command could not be installed."
+    say  "Send your facilitator the messages above before the first session."
+    blank
+    exit 1
 fi
 
 bold "Done. Run course-smoke-test to check everything works."

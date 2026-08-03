@@ -159,11 +159,12 @@ the course terminal.
 **On Windows:** click Start, type `Terminal`, press Enter on **Windows
 Terminal**. (Not "Git Bash". Not "Command Prompt".)
 
-Either way you should get a window showing a line that ends with a `$`, with
-the cursor blinking after it — something like:
+Either way you should get a window showing a short line that ends with a
+`$`, with the cursor blinking after it. It looks like this — the `~` (which
+names the folder you're in) appears in blue:
 
 ```
-you@your-computer ~ $
+~ $
 ```
 
 That `$` is the prompt. It means the terminal is ready for you to type. If
@@ -192,12 +193,15 @@ curl -fsSL https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/setup/i
 
 **3b.** Paste it into the course terminal and press Enter.
 
-**3c.** It installs pi (a minute or two of npm output scrolling past — that
-noise is normal), saves your key, makes you a practice folder, and then runs
-the check from Step 4 automatically. You should see:
+**3c.** It installs pi, saves your key, makes you a practice folder, and
+then runs the check from Step 4 automatically. While pi downloads,
+**nothing appears on screen for a minute or two** — the window will look
+frozen. That is normal; don't close it. You should see:
 
 ```
 Setting up pi for the agentic-101 course
+This installs pi 0.83.0, saves the key your facilitator gave you, and
+sets the model everyone on the course uses.
 
 Step 1 of 5 — checking your machine
   course environment 1.0.0 — found
@@ -205,7 +209,9 @@ Step 1 of 5 — checking your machine
   key sk-or-v1-a… — looks right
 
 Step 2 of 5 — installing pi 0.83.0
-  This takes a minute or two. npm prints a lot; that is normal.
+  Downloading pi. This usually takes a minute or two, and
+  nothing at all will appear on screen while it runs.
+  That is normal. Do not close this window.
   pi installed
   pi reports version 0.83.0 — matches the pin
 
@@ -248,8 +254,10 @@ Type this and press Enter:
 course-smoke-test
 ```
 
-This is the only moment in setup where something talks to the model over the
-internet, so give it up to a minute. What you want:
+This is the only moment in setup where something talks to the model over
+the internet. The two model checks can be slow — **give it up to four
+minutes**, and expect quiet pauses after each "asking the model…" line.
+What you want:
 
 ```
 Checking your course setup
@@ -258,7 +266,9 @@ Checking your course setup
   [ok]   pi is installed, version 0.83.0
   [ok]   pi is set to the course model (openrouter, anthropic/claude-sonnet-5)
   [ok]   your key is saved and only readable by you
+  [--]   asking the model a question — this can take up to a minute…
   [ok]   your key works and anthropic/claude-sonnet-5 answered
+  [--]   asking the agent to do a small task — this can take a few minutes…
   [ok]   the agent did a real task: it created a file when asked
 
 PASS — you are ready for the course.
@@ -289,12 +299,17 @@ opened *after* the install.
 
 | What you saw | What to do |
 |---|---|
-| `command not found: course-smoke-test` | Close the window, open the course terminal again (Step 2), and retype it. If it still says that, Step 3 didn't finish — run it again. |
+| `bash: course-smoke-test: command not found` | Close the window, open the course terminal again (Step 2), and retype it. If it still says that, Step 3 didn't finish — run it again. |
 | Nothing happened when I pasted | Press **Enter**. The terminal waits for it. If nothing pasted at all, use the right shortcut: `Command+V` on Mac, `Ctrl+Shift+V` or right-click on Windows. |
+| `unknown option` right after pasting the Step 3 line | Your email program split the long line in two — the second half of your key became a separate command. Ask your facilitator to resend it as a single line (or copy it from the attachment instead), and paste again. |
 | `[no] the course environment has a problem` | Run Step 1 again, then close every terminal window and open a new one. |
 | `[no] pi is not installed` | Close the window, open the course terminal again, and run Step 3 again. |
+| `[no] pi is version …, but this course uses …` | Run Step 3 again — it installs the exact version the course expects. If it comes back, send a screenshot. |
+| `[no] pi is not set to the course model` or `pi's course settings are missing` | Run Step 3 again (it rewrites the settings), then `course-smoke-test`. |
 | `[no] your key is not saved` | Run Step 3 again, using the exact line from your facilitator's email — the whole line, including the key at the end. |
 | `[no] could not reach the model` | Check you're online (load any web page). If you are, your key may not be switched on yet — send your facilitator a screenshot. |
+| `[no] the model did not answer within …` or `the agent did not finish within …` | Usually a slow connection or a busy model. Run `course-smoke-test` once more; if it happens twice, send a screenshot. |
+| `[no] the model replied, but not as expected` | Run `course-smoke-test` once more. If it happens twice, send your facilitator the lines it printed. |
 | `[no] the agent ran but did not create the file` | Run `course-smoke-test` once more. Agents are not perfectly repeatable, and a single retry usually settles it. If it fails twice, send a screenshot. |
 | Step 1 asked for a password | Type the password you use to log in to the computer. It won't show any characters as you type — that's normal, keep typing and press Enter. |
 | macOS says Ghostty "cannot be opened" | Right-click the Ghostty icon in your Applications folder and choose **Open**, then confirm. macOS only asks this the first time. |
@@ -331,11 +346,27 @@ each is reversible.
 
 Nothing runs in the background. Nothing starts when your computer starts.
 
-**To remove all of it later:** run the uninstaller described in
-[../env/README.md](../env/README.md). It removes the course's own files and
-undoes the terminal edits; it deliberately leaves Node, git, and the terminal
-app alone, because those may be things you now use for other reasons and
-removing them isn't ours to decide.
+**To remove all of it later** takes two steps, and it's worth being precise
+about what each one removes:
+
+1. The environment uninstaller described in
+   [../env/README.md](../env/README.md) removes the course commands
+   (`commit`, `revert`, `course-check`) and undoes the terminal edits.
+2. That still leaves the pieces this page installed. To remove those too:
+
+   ```bash
+   npm uninstall -g @earendil-works/pi-coding-agent   # removes pi
+   rm -rf ~/.pi                                       # removes pi's settings AND your saved key
+   rm -rf ~/course-practice                           # removes your practice folder and its contents
+   ```
+
+   The `~/.pi` folder is the important one: **your course key is stored
+   there**, and no uninstaller touches it automatically. If you only do
+   step 1, the key stays on your computer.
+
+Both steps deliberately leave Node, git, and the terminal app alone —
+those may be things you now use for other reasons, and removing them isn't
+ours to decide.
 
 ---
 

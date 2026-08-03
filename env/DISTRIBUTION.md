@@ -34,9 +34,15 @@ Both currently hold the placeholder
 3. Verify the one-liners from `env/README.md` on a machine without a
    checkout.
 
-**The setup guide (docs/chunks/onboarding_setup_guide) must not embed the
-remote one-liner until these steps are done.** Until then it can embed the
-local-checkout form, or ship the environment to participants as a download.
+**Publishing is a hard pre-cohort gate.** The setup guide
+(`setup/README.md`) deliberately embeds the remote one-liner shape with the
+`REPLACE-ME` placeholder visible (DEC-009: the guide is written in its
+final form; the placeholder cannot survive contact with a real cohort
+because the very first participant's Step 1 fails loudly). The gate is
+enforced as item 1 of `setup/PRE_COHORT_CHECKLIST.md` — publish, replace
+`REPLACE-ME` in all four locations (both `env/` installers **and** the two
+URLs in `setup/README.md` / the facilitator email template), and verify on
+a machine without a checkout, before anything is sent to participants.
 
 ## One-liner shapes the setup guide embeds
 

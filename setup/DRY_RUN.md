@@ -51,7 +51,28 @@ What the automated run covers, check by check:
   does not exercise is the *success* path, which needs a funded key.
 
 The sample outputs quoted in `setup/README.md` Steps 3 and 4 are copied
-verbatim from this run, with the temporary paths rewritten to `/Users/you`.
+from this run — including the installer's two-line opening banner — with
+the temporary paths rewritten to `/Users/you`, and the Step 2 and
+model-check lines updated to match the post-review wording (frozen-screen
+notice; "asking the model…" info lines; see the review fixes commit).
+After any change to installer or smoke-test output, re-run and re-compare
+these samples — the guide's method is screen-matching, so a stale sample
+is a defect.
+
+### Post-review fixes verified (2026-08-02)
+
+The chunk review found, and reproduced, a defect in the smoke test's
+timeout wrapper: `sh -c` without `exec` meant the kill hit the wrapper
+shell and the real pi survived as an orphan — still spending the key. The
+fix (`exec` in both payloads; TERM→KILL→`wait` teardown wrapped to discard
+job-control noise) was re-verified directly: a 300-second fake payload
+driven through the fixed `run_with_timeout` with a 2-second limit returned
+124 in ~3s with **zero surviving processes** and no "Terminated" noise.
+The model-answer check was also hardened: it now asks for a computation
+("What is 19 plus 23?") and accepts only a last non-empty line whose
+digits are `42`, so an error path echoing the prompt can no longer pass
+the key check. Both regression suites re-run green after the fixes
+(60/60; with `--with-npm`, 64/64).
 
 ### What this does *not* establish
 

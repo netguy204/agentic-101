@@ -85,6 +85,15 @@ numbers belong here rather than in a participant's head.
 - [ ] Prepare the per-participant Step 3 email: the `curl … --key <their key>`
       line, complete, so nobody assembles it themselves. The guide tells
       participants to use the facilitator's line rather than the placeholder.
+      **Send it as plain text or inside a code block, and check it survives
+      as ONE line** — email clients that soft-wrap the line split the key in
+      two, which is the likeliest single setup failure (the participant sees
+      `unknown option`). Send yourself a test copy first and paste it into a
+      terminal.
+- [ ] Expect repeat smoke-test runs in your consumption estimate: every
+      `course-smoke-test` run makes two paid model calls on that
+      participant's key, and the troubleshooting table tells people to
+      re-run it.
 - [ ] Note the rotation date. Keys are pasted on a command line and land in
       participants' shell history, so treat them as disclosed:
 
@@ -106,6 +115,12 @@ Dry-Runs).
 
 - [ ] macOS: whole guide, clean machine, ends in `PASS`.
 - [ ] Windows: whole guide, clean machine, ends in `PASS`.
+- [ ] Run `course-smoke-test` **at least twice** on each machine
+      (TESTING_PHILOSOPHY.md: agentic steps are sampled more than once,
+      because model behavior varies). Watch check 5 for a reply that passes
+      without the model really answering, and check 6 for flakiness — one
+      retry is tolerated by the guide's troubleshooting table, repeated
+      failure is a defect.
 - [ ] Record both in `setup/DRY_RUN.md` — including anything the runner had
       to work out for themselves.
 

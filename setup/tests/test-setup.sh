@@ -58,9 +58,15 @@ run_smoke() {
 }
 
 # A stub pi. $1 is the directory to create it in, $2 the behaviour:
-#   good  — answers PONG and creates the file it is asked for
+#   good  — answers the arithmetic question and creates the file it is asked for
 #   auth  — fails the way a rejected key fails
 #   lazy  — answers, but never creates the file
+#
+# The model check asks "What is 19 plus 23?" and accepts only a last
+# non-empty line whose digits are exactly 42 (course-smoke-test check 5,
+# post-review: the expected token must not appear in the prompt). The good
+# stub answers the way a chatty model might — prose first, the number last —
+# so the last-line extraction is what's actually exercised.
 make_stub_pi() {
     mkdir -p "$1"
     cat > "$1/pi" <<STUB
@@ -73,7 +79,9 @@ if [ "\$mode" = auth ]; then
     exit 1
 fi
 case "\$prompt" in
-    *PONG*) echo PONG ;;
+    *"19 plus 23"*)
+        echo "Sure — that's easy."
+        echo "42" ;;
     *ready.txt*)
         [ "\$mode" = lazy ] || printf READY > ready.txt
         echo "All done." ;;

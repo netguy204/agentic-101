@@ -480,3 +480,82 @@ could paste (which would make the script's file-writing unnecessary), the
 operator moves to per-participant provisioning that never puts a key on a
 command line, or the two pin files drift often enough that one file with two
 clearly labelled halves proves less error-prone.
+
+---
+
+### DEC-010: Fixed per-session directory convention; the toil inventory is a four-column sheet owned by Session 1
+
+**Date**: 2026-08-02
+
+**Status**: ACCEPTED
+
+**Decision**: Course material lives in `curriculum/session_<NN>_<slug>/`,
+each session carrying the same six filenames (`README.md`, `PREWORK.md`,
+`FACILITATOR_GUIDE.md`, `EXERCISES.md`, `PRACTICE.md`, `CHECKPOINT.md`)
+plus optional `handouts/`, `FLOOR_TEST.md`, and `DRY_RUN.md`. The toil
+inventory is a handout owned by the session that introduces it
+(`curriculum/session_01_mental_models/handouts/toil-inventory.md`) with
+four columns — the task and its frequency, what "done right" looks like,
+in/out/not-sure judgeability, and how the participant would check. Later
+sessions may add columns; they may not rename or renumber these four, and
+they extend the original file rather than forking a copy.
+
+**Context**: SPEC.md's Repository Layout left `curriculum/` DRAFT pending
+the first implemented session. Session 1 forced both halves of it: where
+session material lives, and what shape the artifact that survives all six
+sessions takes. The inventory is the only participant artifact that
+crosses every session boundary — Session 2 picks a first delegation from
+it, Sessions 3–5 use entries as exercise material, and Session 6 gates
+capstone selection on it (DEC-003) — so its format is a contract between
+chunks that do not yet exist.
+
+**Alternatives Considered**:
+- **Free-form per-session structure**, each session chunk choosing its own
+  filenames: less ceremony for the author, but a facilitator would have to
+  re-learn the layout every session, and no chunk could reference another
+  session's material before that session was written. The convention's
+  main value is that `curriculum/session_04_workflow_design/EXERCISES.md`
+  is a correct reference today.
+- **Session-anatomy artifacts as sections of one long per-session
+  document**: fewer files, and the material reads in order. Rejected
+  because the five artifacts have four different audiences and lifetimes —
+  prework is emailed to participants, the facilitator guide is read
+  privately before the room, handouts are printed. A single file gets sent
+  to a participant with the demo reveal in it.
+- **Inventory as a spreadsheet template** (xlsx/Google Sheet): sortable,
+  and Session 6 could filter it. Rejected on the audience floor — the
+  inventory has to be fillable by someone whose setup failed, in a room,
+  with a pen, and the best entries are written in the ten seconds after
+  someone catches themselves doing something. A binary file also can't be
+  versioned or reviewed in this repository.
+- **Recording only the task and a yes/no judgeability flag** (the GOAL's
+  literal minimum): simpler, but a flag with no evidence behind it is
+  unfalsifiable. The "how I'd check" column is what makes the checkpoint
+  observable and what stops "I do it every week" being accepted as an
+  answer to judgeability.
+
+**Rationale**: Fixed names mean the convention is learnable once and
+referenceable before it exists. Keeping the inventory in the introducing
+session's `handouts/` gives it one owner and one location for six
+sessions' worth of references, at the cost of Session 6 reaching back into
+Session 1's directory — which is honest about where the artifact came
+from. Four columns is the smallest set that supports both the Session 1
+checkpoint (judgeability, with evidence) and the Session 6 gate
+(frequency and duration, to reject a well-judged but trivial capstone).
+
+**Consequences**: Every session chunk creates all six files even when one
+is thin; a missing file means "this session has no checkpoint", which is
+never intended. Later sessions that want more from the inventory add
+columns rather than redesigning it, so a sheet filled in during Session 1
+stays valid to the end of the course. `docs/trunk/SPEC.md`'s Repository
+Layout is no longer DRAFT. The four-column bet is unvalidated: Sessions
+2–6 do not exist, and the first real test of the format is Session 6's
+capstone gate.
+
+**Revisit If**: authoring Sessions 2–5 shows the six-file set is wrong for
+a hands-on session (a dry-run record or a demo asset directory may want
+promoting from optional to required), or the inventory's columns prove
+insufficient at the Session 6 gate — most likely by failing to capture
+something about a task's *shape* that decides whether it is automatable at
+all, which is currently discovered in Session 6 rather than recorded in
+Session 1.

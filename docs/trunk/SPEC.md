@@ -69,9 +69,14 @@ Outcome: participants can judge delegability, direct an agent effectively,
 decompose real tasks into workflows, and adapt their harness. Draft session
 progression:
 
-1. **Mental models & toil inventory** — what agents are and aren't; how an
-   agent differs from a chatbot; judgment vs expertise and drawing your own
-   judgment boundary; starting the toil inventory.
+1. **Mental models & toil inventory** (settled —
+   `curriculum/session_01_mental_models/`) — opens with the "why the
+   moment matters" leverage argument (GOAL.md), *then* what agents are and
+   aren't and how an agent differs from a chatbot; judgment vs expertise
+   and drawing your own judgment boundary; starting the toil inventory.
+   Conceptual only: no harness hands-on, so a participant whose pre-cohort
+   setup failed loses nothing (their remediation is routed to before
+   Session 2). 90 minutes.
 2. **Meeting the harness** — terminal survival kit; installing and running
    pi.dev; first delegations; reading what the agent actually did and judging
    whether it was reasonable.
@@ -112,9 +117,18 @@ Every session, when authored, consists of:
 ## Repository Layout (DRAFT)
 
 - `docs/` — VE project documentation (this tree).
-- `curriculum/` — the deliverable material, one directory per session
-  (`curriculum/session_01_mental_models/`, etc.), each containing the
-  artifacts listed in Session Anatomy.
+- `curriculum/` — the deliverable material, one directory per session,
+  named `session_<NN>_<slug>/` so a listing is in teaching order
+  (`curriculum/session_01_mental_models/`). Each session directory
+  contains six fixed filenames — `README.md` (session index), plus
+  `PREWORK.md`, `FACILITATOR_GUIDE.md`, `EXERCISES.md`, `PRACTICE.md`,
+  and `CHECKPOINT.md`, one per Session Anatomy element — and optionally
+  `handouts/` (participant-facing printables, lowercase filenames),
+  `FLOOR_TEST.md` (protocol and results, required before first teach),
+  and `DRY_RUN.md` (for sessions with executable steps).
+  `curriculum/README.md` states the convention; DEC-010 records it.
+  Artifacts that outlive their session — notably the toil inventory —
+  stay in the `handouts/` directory of the session that introduced them.
 - `setup/` — the pre-cohort path (see Prerequisites): the participant guide
   (`setup/README.md`), the scripted pi installer (`setup/install-pi.sh`),
   the participant-runnable smoke test (`setup/bin/course-smoke-test`), the
@@ -126,9 +140,8 @@ Every session, when authored, consists of:
   `course-check` commands, per-cohort version pins (`env/versions.env`),
   smoke tests, and the floor-test protocol.
 
-Layout is draft until the first session chunk is implemented; `env/` is
-settled per DEC-008 and `setup/` is settled per DEC-009. What remains draft
-is `curriculum/`.
+The layout is settled: `env/` per DEC-008, `setup/` per DEC-009, and
+`curriculum/` per DEC-010.
 
 ## Participant Prerequisites
 
@@ -168,7 +181,7 @@ as scoped — capstone selection (Session 6) exists to catch and rescope these.
 ## DRAFT Sections
 
 - [ ] Curriculum Structure: session count, titles, and per-session outcomes
-      solidify as session chunks are planned.
-- [ ] Repository Layout: `env/` (DEC-008) and `setup/` (DEC-009) are
-      settled; `curriculum/` solidifies with the first implemented session
-      chunk.
+      solidify as session chunks are planned. Session 1 is settled (see
+      `curriculum/session_01_mental_models/`); Sessions 2–8 remain draft.
+- [x] Repository Layout: settled — `env/` (DEC-008), `setup/` (DEC-009),
+      `curriculum/` (DEC-010).

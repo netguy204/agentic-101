@@ -1,17 +1,29 @@
 ---
-status: FUTURE
+status: IMPLEMENTING
 ticket: null
 parent_chunk: null
-code_paths: []
+code_paths:
+- curriculum/README.md
+- curriculum/session_01_mental_models/README.md
+- curriculum/session_01_mental_models/PREWORK.md
+- curriculum/session_01_mental_models/FACILITATOR_GUIDE.md
+- curriculum/session_01_mental_models/EXERCISES.md
+- curriculum/session_01_mental_models/PRACTICE.md
+- curriculum/session_01_mental_models/CHECKPOINT.md
+- curriculum/session_01_mental_models/FLOOR_TEST.md
+- curriculum/session_01_mental_models/handouts/toil-inventory.md
+- curriculum/session_01_mental_models/handouts/canned-toil.md
+- docs/trunk/SPEC.md
+- docs/trunk/DECISIONS.md
 code_references: []
 narrative: null
 investigation: null
 subsystems: []
 friction_entries: []
-depends_on: ["onboarding_setup_guide"]
+depends_on:
+- onboarding_setup_guide
 created_after: []
 ---
-
 <!--
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║  DO NOT DELETE THIS COMMENT BLOCK until the chunk complete command is run.   ║

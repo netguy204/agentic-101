@@ -270,4 +270,47 @@ PATH; a real key is required for the genuine article, and the script says so.
 
 ## Deviations
 
-<!-- POPULATE DURING IMPLEMENTATION -->
+- **Step 2 — added an opt-out of the key prompt.** `install-pi.sh` honours
+  `A101_ASSUME_DEFAULTS` (the environment's existing "never prompt"
+  convention from `env/lib/common.sh`) and skips the `/dev/tty` read. Without
+  it, the "no key given" test would block on a terminal that may not exist in
+  CI.
+
+- **Step 2 — the pasted key is stripped of whitespace before use.** Not
+  planned. A key copied out of an email routinely arrives with a trailing
+  space or, on Windows, a carriage return, and the resulting 401 is
+  indistinguishable from a bad key. OpenRouter keys contain no whitespace, so
+  all of it is removed. Two tests cover it.
+
+- **Step 3 — the two model calls run with stdin closed.** Not planned. When
+  the smoke test runs at the end of a `curl | bash` install, the script's own
+  pipe is still the process's stdin, and `pi -p` reads stdin when it is not a
+  terminal. `</dev/null` on both calls removes the hazard.
+
+- **Step 7 — verification went further than planned.** The plan said the
+  live-model checks would be "verified by inspection". In the event:
+  - `setup/tests/test-setup.sh --with-npm` performs a *real*
+    `npm install -g @earendil-works/pi-coding-agent@0.83.0` into a temporary
+    prefix and asserts the resulting binary reports the pinned version.
+  - The `curl … | bash -s -- --key …` form of Step 3 was run end to end
+    against a local HTTP server standing in for the published repository,
+    confirming the download path, that stdin does not hang, and that the
+    installer's own remote-payload failure message is correct when the URL is
+    the unpublished placeholder.
+  - That run's smoke-test check 5 reached the **real** OpenRouter endpoint
+    with a deliberately invalid key and was rejected with a 401, which the
+    check rendered as its readable failure. The whole configuration chain —
+    generated `settings.json`, generated `auth.json`, provider and model
+    resolution inside pi — is therefore verified against the live service.
+    Only the success path still needs a funded key.
+
+  `setup/DRY_RUN.md` records all of this, and what it still does not
+  establish.
+
+- **Step 9 — the independent review did not return.** A reviewing agent was
+  dispatched against the GOAL's success criteria, the audience floor, and the
+  shell scripts; it never reported back. The review was completed by
+  self-review against the success criteria plus the live verifications above,
+  which found and fixed the three defects listed here. An independent read of
+  `setup/README.md` by someone who did not write it remains worth doing, and
+  is subsumed by the human floor test the checklist already requires.

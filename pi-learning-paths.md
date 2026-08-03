@@ -24,12 +24,6 @@ each stage builds on the last.
 > rest of the guide makes sense. If you're already comfortable with `cd`, `ls`,
 > and running a command, skip to [Stage 1](#stage-1--get-started-install--first-session).
 
-> **Doc paths below** are absolute because pi's docs ship inside the installed
-> npm package. They are the source of truth. File paths under `.pi/` and
-> `~/.pi/` are live config locations you'll edit. (The `~` tilde is shorthand
-> for your home folder — so `~/.pi/` means "the `.pi` folder inside your home
-> folder," the same place you'd see your Documents or Desktop.)
-
 ---
 
 ## For leaders and skimmers (if you read nothing else)
@@ -46,10 +40,12 @@ developer; the scarce input shifts from keystrokes to judgment.
   IT for a script becomes a plain-English prompt (see Stage 1.5's messy-CSV
   moment, where inconsistent department tags get standardized by reasoning,
   not find-and-replace).
-- **Rigid automation that breaks → an agent that reasons.** A fixed Zapier
-  pipeline fails on the edge case it wasn't built for; an agent reads each
-  item and decides (the [Zapier comparison](#if-you-already-use-zapier-make-or-chatgpt)
-  spells out the shift).
+- **Rigid automation that breaks → an agent that handles the judgment-shaped
+  sliver.** A fixed Zapier pipeline fails on the edge cases it wasn't built
+  for; an agent reasons about the few items that need a real decision (see
+  the [Zapier comparison](#if-you-already-use-zapier-make-or-chatgpt) — and
+  [Stage 2.5](#stage-25--what-to-point-the-agent-at-and-what-not-to) on why
+  you send it only that sliver, not the whole fire hose).
 - **Judgment-shaped work, not just fixed steps.** Anything that needs a
   decision per item — triage, categorization, drafting — moves from "live
   with it" to "describe it and check the result."
@@ -209,11 +205,24 @@ Zapier version is rigid: you pre-build every branch — "if subject
 contains *refund* → route to billing; if *bug* → route to eng; everything
 else → default queue." It breaks on the edge case, like *"my order is
 wrong and I want my money back,"* which mentions neither keyword cleanly.
-The agent version: you describe what "needs a human decision" looks like
-in plain English; the agent reads each item, decides which bucket it fits,
-drafts a reply, and logs it — handling that edge case by reasoning, not
-by a branch you forgot to build. You supply the judgment (what "needs
-action" means); the agent supplies the flexible execution.
+The agent version sounds like the clear win: you describe what "needs a
+human decision" looks like in plain English; the agent reads each item,
+decides which bucket it fits, drafts a reply, and logs it — handling that
+edge case by reasoning, not by a branch you forgot to build.
+
+**But — and this is the honest part — that agent version, as just
+described, is the expensive shape.** Pointing an agent at a high-volume
+fire hose (every inbox item, every support ticket) is asking for expensive
+**non-determinism** — you can't fully predict what it'll decide, and the
+cost scales with every item it reasons over. It's usually unwise, not
+because the agent can't do it, but because it's economically the wrong
+shape. There's a whole stage on this — [Stage 2.5](#stage-25--what-to-point-the-agent-at-and-what-not-to) —
+but the short version: you don't point the agent at the whole fire hose.
+You filter the obvious majority with a cheap deterministic step (the
+Zapier branch handles the 80% that match obvious rules), and send only
+the judgment-shaped sliver to the agent — the ~few-per-day that need a
+real judgment call. The agent drafts a reply you check before it sends.
+Same goal as the fire-hose version; very different cost and risk.
 
 **Why the terminal, then?** Because it gives the agent **full reach**
 into your real environment — your actual files, any command-line tool,
@@ -224,10 +233,12 @@ because the terminal is the universal interface. Which is why Stage 0 (below) te
 but as the door to that reach.
 
 > You're not replacing your automations; you're adding a tool that handles
-> the judgment-shaped work the fixed-workflow ones can't. Same thesis as
-> the opening: your judgment is the scarce input. Zapier is brilliant at
-> the steps you could spell out in advance; pi is the one for the steps
-> that need a decision per item. They sit side by side.
+> the judgment-shaped work the fixed-workflow ones can't — and that work is
+> usually the sliver, not the whole fire hose. Same thesis as the opening:
+> your judgment is the scarce input, and part of that judgment is knowing
+> where the judgment-shaped work actually lives. Zapier is brilliant at the
+> steps you could spell out in advance; pi is the one for the steps that
+> need a decision per item. They sit side by side.
 
 ---
 
@@ -353,11 +364,13 @@ end in `pi-practice`):
 
 **Outcome: You can start `pi` in a project folder and get a useful answer back.**
 
-**Read:**
-- README "Quick Start" + "Providers & Models" sections:
-  `/Users/btaylor/.nvm/versions/node/v22.20.0/lib/node_modules/@earendil-works/pi-coding-agent/README.md`
-- Quickstart (full): `.../docs/quickstart.md`
-- Providers (skim the auth table): `.../docs/providers.md`
+**Get familiar with** (ask pi to walk you through any of these — you don't
+need to know where the files live):
+- **The README's "Quick Start" + "Providers & Models" sections** — the fast
+  path to installing and authenticating.
+- **The full Quickstart guide** — a deeper walkthrough than the README.
+- **Providers** — the authentication table; skim it to see how each login
+  option works.
 
 **Understand / be able to do:**
 > Before you install: if you haven't run through Stage 0.5 yet, do — it takes
@@ -504,12 +517,14 @@ stage.
 **Outcome: You can hold a multi-turn session with pi, reference a file with
 `@`, and abort or continue it.**
 
-**Read:**
-- Using Pi: `.../docs/usage.md` — the interactive UI, slash commands, message
-  queue, sessions, context files.
-- Sessions: `.../docs/sessions.md` — auto-save, `/tree` branching, `/fork`,
-  `/clone`, `/resume`.
-- Keybindings (skim, bookmark): `.../docs/keybindings.md`
+**Get familiar with** (ask pi to walk you through any of these — you don't
+need to know where the files live):
+- **Using pi** — the interactive UI, slash commands, the message queue,
+  sessions, and context files.
+- **Sessions** — auto-save, `/tree` branching, and `/fork`, `/clone`,
+  `/resume`.
+- **Keybindings** — the full shortcut reference. Skim it now, bookmark it
+  for later; `/hotkeys` also shows it all in-app.
 
 ### First pass — learn these, ignore the rest for now
 
@@ -569,6 +584,80 @@ stage.
 
 ---
 
+## Stage 2.5 — What to point the agent at (and what not to)
+
+**Goal:** Learn which workloads are worth steering the agent at — and which
+are the wrong shape — before you start customizing.
+
+**Outcome: You can look at a task in your own work and tell whether it's an
+economical use of the agent or a fire hose you should filter first.**
+
+You've just learned the daily workflow (Stage 2). Before you start
+customizing (Stage 3), there's one judgment that saves more money and grief
+than any setting: knowing what to point the agent at in the first place.
+
+**The core insight: agents are economical when judgment-per-item is high
+and volume is low.** The agent's value is *reasoning per item*. When each
+item needs a real decision — like the messy `tags.csv` in Stage 1.5, where
+7 rows each needed a human call on the ambiguous ones — the cost is trivial
+and the **non-determinism** (you can't fully predict what it'll decide) is
+contained and easy to check. That's the sweet spot.
+
+**The fire-hose anti-pattern: pointing the agent at high-volume,
+per-item-reasoning work.** "Have the agent triage my entire inbox / every
+support ticket / every Slack message." Here volume is huge, each item still
+needs reasoning (so cost scales with volume), the output is non-deterministic
+(you can't predict what it'll decide), and the cost-of-error per item may
+be high (a wrong triage routes a real customer the wrong way). Multiply
+those together and you've built an expensive, unpredictable, hard-to-check
+pipeline. Usually unwise — not because the agent can't do it, but because
+it's economically the wrong shape.
+
+**The mental model: is this a fire hose?** A workload's risk is roughly
+*volume × per-item cost × non-determinism × cost-of-error*. If that product
+is large, it's a fire hose. You already do this kind of math for your own
+domain — you know which tasks are worth automating and which aren't. The
+new skill is applying it to agentic work specifically.
+
+**The transformation skill: turn a fire hose into something economical.**
+You don't point the agent at the whole thing. You: (a) **filter** — let a
+deterministic tool (a rule, a Zapier step, a spreadsheet formula) handle
+the obvious majority; (b) **batch/route** — send only the judgment-shaped
+sliver (the ambiguous, the high-stakes, the edge cases) to the agent;
+(c) **bound** — cap the volume per run so cost and non-determinism stay
+contained and checkable. The agent handles the part that needed judgment;
+the cheap deterministic tools handle the volume. That's the economical
+shape.
+
+**Before/after (grounded in your world, not a developer task).** The
+[Zapier comparison](#if-you-already-use-zapier-make-or-chatgpt) earlier uses
+inbox triage. The fire-hose version — "have the agent triage my whole
+inbox" — is the expensive shape: every item reasoned over, unpredictable
+output, real cost per wrong route. The transformed version: a Zapier
+filter routes the 80% that match obvious rules; the agent reads only the
+~5/day that need a real judgment call, and drafts a reply you check before
+it sends. Same underlying goal — very different cost and risk.
+
+> The skill that matters now isn't just "what to ask the agent" — it's
+> "what's *worth* asking the agent, and what to handle a cheaper way." Your
+> judgment about where the judgment-shaped work actually lives is itself
+> the scarce input. Pointing the agent at everything that moves is the
+> expensive mistake; filtering the cheap majority and sending only the
+> sliver that needed reasoning is the move that compounds.
+
+### Try it
+
+Think of one high-volume task in your real work — anything where a lot of
+items roll in and each one vaguely wants a decision. Sketch the two shapes:
+the **fire-hose version** (agent on the whole thing — name what makes it
+expensive: the volume, the per-item cost, the non-determinism, the
+error cost) and the **transformed version** (what would you filter or
+route deterministically first? what sliver would you send to the agent?
+how would you bound it?). You don't have to build it — just name the two
+shapes. That exercise is the whole point of this stage.
+
+---
+
 ## Stage 3 — Customize your setup (make pi fit *you*)
 
 **Goal:** Configure pi so it behaves the way you want across projects.
@@ -576,13 +665,17 @@ stage.
 **Outcome: You can put project rules in `AGENTS.md` and confirm pi follows
 them.**
 
-**Read:**
-- Settings: `.../docs/settings.md`
-- Context files + project trust: `.../docs/usage.md` (the "Context Files" and
-  "Project Trust" sections) and `.../docs/security.md`
-- Prompt templates: `.../docs/prompt-templates.md`
-- Terminal setup (if anything looks off): `.../docs/terminal-setup.md`
-- Themes (optional, skim): `.../docs/themes.md`
+**Get familiar with** (ask pi to walk you through any of these — you don't
+need to know where the files live):
+- **Settings** — global vs. project settings, and the `/settings` shortcut
+  for the common ones.
+- **Context files + project trust** — how `AGENTS.md` is loaded, and what the
+  trust prompt does (and doesn't) protect.
+- **Prompt templates** — drop-in reusable prompts you invoke with `/name`.
+- **Terminal setup** — if anything in the terminal looks off (colors, key
+  bindings), pi can walk you through the fix.
+- **Themes** (optional) — colors and styling, if you want to customize the
+  look.
 
 **Understand / be able to do:**
 - **Context files (`AGENTS.md`):** pi loads `AGENTS.md` (or `CLAUDE.md`) from
@@ -609,8 +702,8 @@ them.**
   like code review or PR analysis. Templates can take arguments — for example
   `/review $1` lets you write `review.md` once and reuse it as
   `/review src/app.py`, where `$1` (the first argument) lands wherever you
-  put it in the template, and `$@` means "all the arguments." (See
-  `.../docs/prompt-templates.md` for the full syntax when you need it.)
+  put it in the template, and `$@` means "all the arguments." (Ask pi for the
+  full template syntax when you outgrow this — you don't need to look it up.)
   > A template is a reusable macro — a command you fire with `/name` — as
   > opposed to `AGENTS.md`, which shapes *every* session automatically.
 - **Keybindings:** edit `~/.pi/agent/keybindings.json`, then `/reload`.
@@ -656,8 +749,10 @@ project is skill-heavy, so this stage matters more here than for most users.
 **Outcome: You can invoke a skill by name with `/skill:name` and describe what
 it did.**
 
-**Read:**
-- Skills: `.../docs/skills.md`
+**Get familiar with** (ask pi to walk you through any of these — you don't
+need to know where the files live):
+- **Skills** — what a skill is, how `/skill:name` loads one, and where skills
+  live.
 
 **Understand / be able to do:**
 - A **skill** is a folder with a `SKILL.md` (frontmatter `name` + `description`
@@ -744,14 +839,19 @@ makes you more powerful, which lets you refine it further.
 **Outcome: You can refine your environment to fit your work — add one small
 extension from the examples and see it take effect.**
 
-**Read:**
-- Extensions (the big one): `.../docs/extensions.md`
-- TUI components (if your extension needs UI): `.../docs/tui.md`
-- Custom models / providers: `.../docs/models.md` and `.../docs/custom-provider.md`
-- Pi packages (share your work): `.../docs/packages.md`
-- Programmatic use: `.../docs/sdk.md` (SDK) and `.../docs/rpc.md` (RPC mode)
-- Reference examples: `.../examples/extensions/` (~70 working extensions) and
-  `.../examples/sdk/`
+**Get familiar with** (ask pi to walk you through any of these — you don't
+need to know where the files live):
+- **Extensions** — the big one. What an extension is, how it loads, and what
+  it can register (tools, commands, shortcuts, lifecycle hooks, UI).
+- **TUI components** — if your extension needs a custom UI piece.
+- **Custom models / providers** — adding Ollama, LM Studio, vLLM, proxies,
+  or custom OAuth/API providers.
+- **Packages** — bundling extensions + skills + prompts + themes to share via
+  npm or git.
+- **Programmatic use** — embedding pi in your own app (the SDK) or driving it
+  as a subprocess over JSONL (RPC mode).
+- **Reference examples** — ask pi to show you the ~70 working extensions and
+  the SDK examples; they're the best way to learn a pattern by reading one.
 
 **Understand / be able to do:**
 - An **extension** is a small file you drop in a folder to add a new button or
@@ -804,10 +904,10 @@ extension from the examples and see it take effect.**
   so another program can steer it).
 
 **Try it:**
-1. Copy `.../examples/extensions/hello.ts` into `~/.pi/agent/extensions/`,
-   restart pi, and run `/hello`.
-2. Skim `.../examples/extensions/permission-gate.ts` and
-  `git-checkpoint.ts` — these two patterns (confirm dangerous commands, auto-
+1. Ask pi to find and copy the `hello` extension example into
+   `~/.pi/agent/extensions/`, restart pi, and run `/hello`.
+2. Ask pi to show you the `permission-gate` and `git-checkpoint` example
+  extensions — these two patterns (confirm dangerous commands, auto-
   checkpoint with git) are the highest-value extensions for most people.
 
 ---
@@ -851,9 +951,10 @@ extension from the examples and see it take effect.**
 
 - **In pi:** `/hotkeys` (all shortcuts — your panic button), `/changelog` (what's
   new), `/session` (current session info), `/help`-style commands.
-- **Docs index:** `.../docs/index.md` and `.../docs/docs.json` list every doc.
-- **Examples to learn from:** `.../examples/extensions/` (~70 extensions) and
-  `.../examples/sdk/`.
+- **The full docs index** — ask pi to list every doc; it can pull up any topic by
+  name without you hunting for a file.
+- **Examples to learn from** — ask pi to show you the ~70 working extensions and
+  the SDK examples; they're the best way to learn a pattern by reading one.
 - **Community:** pi Discord — link in the README header.
 - **Philosophy (why pi is minimal):** read the linked blog post at the bottom of
   the README (`https://mariozechner.at/posts/2025-11-30-pi-coding-agent/`).

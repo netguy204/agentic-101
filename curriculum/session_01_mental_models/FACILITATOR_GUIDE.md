@@ -70,7 +70,7 @@ something nothing today depends on.
 | Start | Min | Beat | 60-min variant |
 |---|---|---|---|
 | 0:00 | 5 | Arrival, welcome, setup tally | 5 |
-| 0:05 | 11 | **Cold open — why the moment matters** | 8 |
+| 0:05 | 11 | **Cold open — why the moment matters** | 9 |
 | 0:16 | 8 | Mental models: what an agent is, and how it differs from a chatbot | 5 |
 | 0:24 | 6 | **Demo, beat 1** — the agent does something impressive | 4 |
 | 0:30 | 8 | **Demo, beat 2** — "how would you check this?", then the reveal | 4 |
@@ -174,8 +174,13 @@ Two more terms, said once and left to settle — the exercises are where
 they get real:
 
 > **Judgment** is the ability to discern a reasonable result from an
-> unreasonable one — to *evaluate* work without necessarily being able to
-> produce it. **Expertise** is the ability to produce the work yourself.
+> unreasonable one *in a given domain* — to *evaluate* work without
+> necessarily being able to produce it. **Expertise** is the ability to
+> produce the work yourself.
+
+"In a given domain" is doing real work in that sentence — judgment isn't a
+personality trait you have or lack, it's something you have *here* and
+don't have *there*. Say it; the exercises depend on people believing it.
 
 Then the sentence this whole course hangs on. Put it on a slide, say it
 slowly, and don't explain it yet — the demo is the explanation:

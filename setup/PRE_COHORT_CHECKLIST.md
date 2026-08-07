@@ -83,9 +83,11 @@ numbers belong here rather than in a participant's head.
 
       `PI_MODEL` price at pin time (in/out per 1M tokens): ______________
 
-- [ ] Prepare the per-participant Step 3 email: the `curl … --key <their key>`
-      line, complete, so nobody assembles it themselves. The guide tells
-      participants to use the facilitator's line rather than the placeholder.
+- [ ] Prepare the per-participant Step 3 email from the template in
+      `setup/WELCOME_EMAIL.md`: the `curl … --key <their key>` line,
+      complete, so nobody assembles it themselves. The guide tells
+      participants to use the facilitator's line rather than the
+      placeholder.
       **Send it as plain text or inside a code block, and check it survives
       as ONE line** — email clients that soft-wrap the line split the key in
       two, which is the likeliest single setup failure (the participant sees

@@ -9,6 +9,7 @@ code_paths:
 - setup/bin/course-smoke-test
 - setup/PRE_COHORT_CHECKLIST.md
 - setup/DRY_RUN.md
+- setup/WELCOME_EMAIL.md
 - setup/tests/test-setup.sh
 - docs/trunk/SPEC.md
 - docs/trunk/DECISIONS.md
@@ -35,6 +36,10 @@ code_references:
 - ref: setup/DRY_RUN.md
   implements: 'Dry-run record and its honest limits: what the automated macOS run
     establishes, what Windows and human floor testing still owe'
+- ref: setup/WELCOME_EMAIL.md
+  implements: 'Per-participant welcome email template (checklist section 3): personal
+    Step 3 command, cost message, line-wrap guard, removable alpha section that turns
+    the first participant into the dry-run and floor-test record'
 - ref: setup/tests/test-setup.sh
   implements: Regression tests against a throwaway HOME and npm prefix, including
     stub-pi coverage of both live-model check paths

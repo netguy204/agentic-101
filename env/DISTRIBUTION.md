@@ -2,9 +2,12 @@
 
 <!-- Chunk: docs/chunks/onboarding_terminal_env - Managed participant terminal environment -->
 
-The one open external dependency of the managed environment: **this
-repository has no public remote yet**, so the `curl | bash` one-liner has
-nowhere real to download from.
+Where the `curl | bash` one-liners download from, and every place the
+address lives. **The repository is published at
+https://github.com/netguy204/agentic-101** (since 2026-08-03), and all four
+URL locations point at it. What remains before sending the guide to
+participants is verification from a machine with no checkout
+(`setup/PRE_COHORT_CHECKLIST.md`, item 1).
 
 ## How the installers resolve their payload
 
@@ -23,26 +26,28 @@ The base URL lives in exactly one place per installer:
 - `env/install.ps1` → the mirrored `$BaseUrlDefault`, overridable with the
   same environment variable.
 
-Both currently hold the placeholder
-`https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/env`.
+Both hold
+`https://raw.githubusercontent.com/netguy204/agentic-101/main/env`.
+(`setup/install-pi.sh` carries its own base URL the same way, pointing at
+`…/main/setup`, and `setup/README.md` embeds the full one-liners in Steps
+1 and 3 — four locations total when the address changes.)
 
-## What publishing requires
+## Publishing status
 
-1. Push this repository to a public remote (or any host that serves raw
-   files over HTTPS).
-2. Replace `REPLACE-ME` in both installers with the real path; commit.
-3. Verify the one-liners from `env/README.md` on a machine without a
-   checkout.
+Done 2026-08-03: pushed to `github.com/netguy204/agentic-101` and the real
+path substituted in all four locations (both `env/` installers,
+`setup/install-pi.sh`, and the one-liners in `setup/README.md`). Still
+owed before anything is sent to participants — enforced as item 1 of
+`setup/PRE_COHORT_CHECKLIST.md`:
 
-**Publishing is a hard pre-cohort gate.** The setup guide
-(`setup/README.md`) deliberately embeds the remote one-liner shape with the
-`REPLACE-ME` placeholder visible (DEC-009: the guide is written in its
-final form; the placeholder cannot survive contact with a real cohort
-because the very first participant's Step 1 fails loudly). The gate is
-enforced as item 1 of `setup/PRE_COHORT_CHECKLIST.md` — publish, replace
-`REPLACE-ME` in all four locations (both `env/` installers **and** the two
-URLs in `setup/README.md` / the facilitator email template), and verify on
-a machine without a checkout, before anything is sent to participants.
+- Verify all three one-liners from a machine **without a checkout** of
+  this repository (the remote-download path has only been exercised
+  locally; see the checklist for the per-platform PASS requirement).
+
+If the repository ever moves, repeat the substitution in the same four
+locations and re-verify. (History: until 2026-08-03 the URLs deliberately
+held a `REPLACE-ME` placeholder so a stale guide would fail loudly at
+Step 1 rather than install from the wrong source — DEC-009.)
 
 ## One-liner shapes the setup guide embeds
 

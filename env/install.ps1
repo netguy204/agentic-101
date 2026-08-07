@@ -42,7 +42,7 @@ param(
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
-$BaseUrlDefault = 'https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/env'
+$BaseUrlDefault = 'https://raw.githubusercontent.com/netguy204/agentic-101/main/env'
 $BaseUrl = if ($env:AGENTIC101_ENV_BASE_URL) { $env:AGENTIC101_ENV_BASE_URL } else { $BaseUrlDefault }
 
 function Write-Step { param([string]$Text) Write-Host ''; Write-Host $Text -ForegroundColor Cyan }

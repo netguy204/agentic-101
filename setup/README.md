@@ -70,12 +70,13 @@ Paste the command, then press **Enter**. Nothing runs until you do.
 This installs the terminal app the course uses, plus the handful of things it
 needs underneath. Follow the section for your computer and skip the other one.
 
-> **Facilitator: before you send this page to anyone**, the three install
-> commands on it (two here, one in Step 3) contain `REPLACE-ME` and will not
-> work as written. Publish the repository and substitute the real address
-> first — see item 1 of
-> [PRE_COHORT_CHECKLIST.md](PRE_COHORT_CHECKLIST.md) and
-> [../env/DISTRIBUTION.md](../env/DISTRIBUTION.md).
+> **Facilitator: before you send this page to anyone**, verify the three
+> install commands on it (two here, one in Step 3) on a machine with no
+> checkout of this repository — item 1 of
+> [PRE_COHORT_CHECKLIST.md](PRE_COHORT_CHECKLIST.md). They point at the
+> published repository (`netguy204/agentic-101`); if the course moves, see
+> [../env/DISTRIBUTION.md](../env/DISTRIBUTION.md) for every place the
+> address lives.
 
 ### On a Mac
 
@@ -88,7 +89,7 @@ install the real one.)
 **1b.** Paste this single line and press Enter:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/env/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/netguy204/agentic-101/main/env/install.sh | bash
 ```
 
 **1c.** Wait. It will print a lot, ask once for your login password, and take
@@ -127,7 +128,7 @@ already has.)
 or right-click to paste):
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/env/install.ps1 | iex"
+powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/netguy204/agentic-101/main/env/install.ps1 | iex"
 ```
 
 **1c.** Wait. Windows may show an installer progress bar or two. When it
@@ -188,7 +189,7 @@ retyping the one below.
 It will look like this, with a real key where the placeholder is:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/setup/install-pi.sh | bash -s -- --key PASTE-YOUR-KEY-HERE
+curl -fsSL https://raw.githubusercontent.com/netguy204/agentic-101/main/setup/install-pi.sh | bash -s -- --key PASTE-YOUR-KEY-HERE
 ```
 
 **3b.** Paste it into the course terminal and press Enter.

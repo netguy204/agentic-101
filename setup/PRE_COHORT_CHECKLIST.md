@@ -18,19 +18,20 @@ the bottom.
 
 ## 1. Publish the installers — **BLOCKING**
 
-`setup/README.md` embeds `curl | bash` one-liners containing the token
-`REPLACE-ME`. **As written they do not work.** This is deliberate and
-documented in `env/DISTRIBUTION.md`; it is also the single most likely way to
-ship a broken setup guide, so it is item one.
+`setup/README.md` embeds `curl | bash` one-liners. They must point at the
+published repository and be verified from a machine that has no checkout —
+a broken or unverified one-liner is the single most likely way to ship a
+broken setup guide, so it is item one. (`env/DISTRIBUTION.md` lists every
+place the address lives.)
 
-- [ ] Push this repository to a public remote (or any host serving raw files
-      over HTTPS).
-- [ ] Replace `REPLACE-ME` with the real path in **all four** places:
-      - [ ] `env/install.sh` (`A101_BASE_URL_DEFAULT`)
-      - [ ] `env/install.ps1` (`$BaseUrlDefault`)
-      - [ ] `setup/install-pi.sh` (`A101_BASE_URL_DEFAULT`)
-      - [ ] `setup/README.md` (Steps 1 and 3, three commands)
-- [ ] `grep -rn REPLACE-ME env/ setup/` returns nothing.
+- [x] Push this repository to a public remote (or any host serving raw files
+      over HTTPS). *(Done 2026-08-03: github.com/netguy204/agentic-101.)*
+- [x] Real path in **all four** places *(done 2026-08-03)*:
+      - [x] `env/install.sh` (`A101_BASE_URL_DEFAULT`)
+      - [x] `env/install.ps1` (`$BaseUrlDefault`)
+      - [x] `setup/install-pi.sh` (`A101_BASE_URL_DEFAULT`)
+      - [x] `setup/README.md` (Steps 1 and 3, three commands)
+- [x] `grep -rn REPLACE-ME env/ setup/` finds no URL placeholders.
 - [ ] Run both Step 1 one-liners on a machine with **no checkout** of this
       repository, and confirm each ends in `PASS`.
 - [ ] Run the Step 3 one-liner the same way, with a real key.

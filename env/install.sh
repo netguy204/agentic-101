@@ -17,7 +17,7 @@
 set -u
 
 A101_INSTALL_ROOT_DEFAULT="$HOME/.agentic-101"
-A101_BASE_URL_DEFAULT="https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/env"
+A101_BASE_URL_DEFAULT="https://raw.githubusercontent.com/netguy204/agentic-101/main/env"
 A101_BASE_URL="${AGENTIC101_ENV_BASE_URL:-$A101_BASE_URL_DEFAULT}"
 
 # Files copied to the participant's machine. Paths are relative to env/.

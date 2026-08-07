@@ -19,7 +19,7 @@
 set -u
 
 A101_INSTALL_ROOT_DEFAULT="$HOME/.agentic-101"
-A101_BASE_URL_DEFAULT="https://raw.githubusercontent.com/REPLACE-ME/agentic-101/main/setup"
+A101_BASE_URL_DEFAULT="https://raw.githubusercontent.com/netguy204/agentic-101/main/setup"
 A101_BASE_URL="${AGENTIC101_SETUP_BASE_URL:-$A101_BASE_URL_DEFAULT}"
 
 # Files this script needs beside itself. Paths are relative to setup/.

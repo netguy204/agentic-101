@@ -9,6 +9,7 @@ the curriculum; `curriculum/` holds the curriculum itself.
 | Session | Directory | Arc |
 |---|---|---|
 | 1 | [`session_01_mental_models/`](session_01_mental_models/) | Fluency |
+| 2 | [`session_02_meeting_the_harness/`](session_02_meeting_the_harness/) | Fluency |
 
 Later sessions are added by their own chunks. `docs/trunk/SPEC.md`
 (Curriculum Structure) holds the planned progression.
@@ -55,7 +56,9 @@ and *what they're called*.
 - `DRY_RUN.md` — the record of executing the session's exercises end to end
   from their written instructions, for sessions with steps that can be
   executed. A session with no hands-on tooling (Session 1) has nothing to
-  dry-run and omits the file.
+  dry-run and omits the file; a session whose steps execute (Session 2) must
+  have one, and it is written by running the material rather than by
+  describing it.
 
 ## Rules that cross sessions
 
@@ -67,6 +70,9 @@ and *what they're called*.
   `session_01_mental_models/handouts/toil-inventory.md` and stays there
   even though Sessions 2–6 all use it. A later session that extends it
   edits that file and says so in its own README; it does not fork a copy.
+  Session 2 does exactly this to both of Session 1's handouts — a row in the
+  inventory's usage table, and a "For Session 2" section in
+  `handouts/canned-toil.md`.
 - **Participant-facing text assumes only what has been taught.** No
   terminal knowledge before Session 2, no harness mechanics before Session
   2, no code anywhere (`docs/trunk/DECISIONS.md`, DEC-004). An exercise

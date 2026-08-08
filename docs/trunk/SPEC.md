@@ -77,9 +77,17 @@ progression:
    Conceptual only: no harness hands-on, so a participant whose pre-cohort
    setup failed loses nothing (their remediation is routed to before
    Session 2). 90 minutes.
-2. **Meeting the harness** — terminal survival kit; installing and running
-   pi.dev; first delegations; reading what the agent actually did and judging
-   whether it was reasonable.
+2. **Meeting the harness** (settled —
+   `curriculum/session_02_meeting_the_harness/`) — terminal survival kit
+   (six commands, framed as a map onto the file browser); the `commit`/
+   `revert` safety net, taught *before* the first delegation and proved by
+   hand, because pi has no undo (DEC-006); first delegations in
+   `~/course-practice` on material shaped from the participant's own toil
+   inventory; reading what the agent actually did from its tool calls and
+   the file on disk rather than its prose, and judging whether it was
+   reasonable. Closes by having participants tell the agent to ruin their
+   work and reverting it. The first hands-on session, so it opens with
+   setup triage rather than teaching. 90 minutes.
 3. **Anatomy of a delegation** — decomposing a task; inputs, outputs,
    checkpoints; writing instructions that survive contact with the agent.
 4. **Workflow design** — from one-off delegation to repeatable workflow;
@@ -181,7 +189,9 @@ as scoped — capstone selection (Session 6) exists to catch and rescope these.
 ## DRAFT Sections
 
 - [ ] Curriculum Structure: session count, titles, and per-session outcomes
-      solidify as session chunks are planned. Session 1 is settled (see
-      `curriculum/session_01_mental_models/`); Sessions 2–8 remain draft.
+      solidify as session chunks are planned. Sessions 1 and 2 are settled
+      (see `curriculum/session_01_mental_models/` and
+      `curriculum/session_02_meeting_the_harness/`); Sessions 3–8 remain
+      draft.
 - [x] Repository Layout: settled — `env/` (DEC-008), `setup/` (DEC-009),
       `curriculum/` (DEC-010).

@@ -128,7 +128,7 @@ already has.)
 or right-click to paste):
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/netguy204/agentic-101/main/env/install.ps1 | iex"
+irm https://raw.githubusercontent.com/netguy204/agentic-101/main/env/install.ps1 | iex
 ```
 
 **1c.** Wait. Windows may show an installer progress bar or two. When it

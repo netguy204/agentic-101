@@ -61,8 +61,9 @@ redesign.
 
 **The toil inventory is owned by Session 1 and versioned as a handout.**
 `handouts/toil-inventory.md` is the blank sheet; its four columns (task
-and frequency, what "done right" looks like, could I tell good from bad,
-how I'd check) are the format Sessions 2–6 extend and Session 6 gates on.
+and frequency, what "done right" looks like, in or out of the judgment
+boundary, how I'd check) are the format Sessions 2–6 extend and Session 6
+gates on.
 Later sessions add columns at their own cost; they may not renumber or
 rename these four.
 

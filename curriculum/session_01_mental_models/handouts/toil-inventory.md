@@ -19,7 +19,7 @@ doing something for the fifth time.
 
 Four columns. Copy this table, or rule four columns on paper.
 
-| The task, and how often | What "done right" looks like | Could I tell good from bad? | How I'd check |
+| The task, and how often | What "done right" looks like | In or out of my judgment boundary? | How I'd check |
 |---|---|---|---|
 |  |  | in / out / not sure |  |
 |  |  | in / out / not sure |  |
@@ -32,7 +32,7 @@ Four columns. Copy this table, or rule four columns on paper.
 
 ### A filled-in row
 
-| The task, and how often | What "done right" looks like | Could I tell good from bad? | How I'd check |
+| The task, and how often | What "done right" looks like | In or out of my judgment boundary? | How I'd check |
 |---|---|---|---|
 | Pull the weekly numbers out of four regional spreadsheets into one summary table. Every Monday, ~40 min. | One table, one row per region, the totals matching what each region reported, no region silently missing. | **in** | Add up the four regional totals myself and see whether the summary matches. I'd also notice immediately if a region I know reports late showed a suspiciously round number. |
 
@@ -42,7 +42,7 @@ they know this work. That's the whole test.
 
 ### A second filled-in row, for contrast
 
-| The task, and how often | What "done right" looks like | Could I tell good from bad? | How I'd check |
+| The task, and how often | What "done right" looks like | In or out of my judgment boundary? | How I'd check |
 |---|---|---|---|
 | Check the supplier contract renewals for anything unusual before they go to legal. Quarterly, ~2 hrs. | Anything that's changed from the standard terms is flagged. | **out** | Honestly — I couldn't. I can spot a changed payment term. I could not tell you whether a re-worded liability clause is normal or a problem, and it would read fine to me either way. |
 
@@ -67,13 +67,14 @@ If you can't write this sentence, you have found something more
 interesting than a candidate for automation — you've found a task whose
 definition of done nobody has ever written down.
 
-**3. Could I tell good from bad?** One of three words:
+**3. In or out of my judgment boundary?** The question this column asks
+is: could I tell good from bad? One of three words:
 
 - **in** — I could look at the finished work and tell whether it's right.
 - **out** — I could not. It would look plausible to me either way.
 - **not sure** — I think I could, but I'd be guessing about how.
 
-This is your **judgment boundary**: the edge of the space where you can
+Your **judgment boundary** is the edge of the space where you can
 evaluate a result. Tasks marked **in** are candidates for handing to an
 agent. Tasks marked **out** are not — not because the agent can't do them,
 but because you couldn't catch it when it got them wrong.

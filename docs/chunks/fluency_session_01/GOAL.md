@@ -13,6 +13,8 @@ code_paths:
 - curriculum/session_01_mental_models/FLOOR_TEST.md
 - curriculum/session_01_mental_models/handouts/toil-inventory.md
 - curriculum/session_01_mental_models/handouts/canned-toil.md
+- curriculum/session_01_mental_models/demo/headcount.csv
+- curriculum/session_01_mental_models/demo/start-demo.sh
 - docs/trunk/SPEC.md
 - docs/trunk/DECISIONS.md
 code_references:
@@ -61,6 +63,14 @@ code_references:
   implements: "The no-dead-ends fallback \u2014 a persona with eight recurring tasks\
     \ spanning clearly-judgeable, clearly-not, and underdetermined, with no answer\
     \ key"
+- ref: curriculum/session_01_mental_models/demo/headcount.csv
+  implements: "The Northwind Coffee demo file for Beats 3-4: seven rows of mechanical
+    noise the agent handles well, plus two independent judgment traps (Grace/Brand,
+    Hank+Ivy/Field) that no mechanical check catches"
+- ref: curriculum/session_01_mental_models/demo/start-demo.sh
+  implements: Creates and resets the demo working directory outside the repository
+    and prints the facilitator crib, so the live run never dirties the pristine file
+    and rehearsals can be repeated
 - ref: docs/trunk/DECISIONS.md
   implements: DEC-010, recording the session directory convention and the toil inventory
     format as cross-session contracts, with the rejected alternatives (free-form layout,

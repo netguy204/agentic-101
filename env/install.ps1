@@ -50,6 +50,16 @@ function Write-Ok   { param([string]$Text) Write-Host "  $Text" -ForegroundColor
 function Write-Note { param([string]$Text) Write-Host "  $Text" -ForegroundColor DarkGray }
 function Write-Warn { param([string]$Text) Write-Host "  $Text" -ForegroundColor Yellow }
 
+# The Windows Terminal patch below runs as a .ps1 file, which the default
+# Restricted execution policy blocks even when this script itself arrived
+# via `irm | iex` (piped content is exempt; files are not). Process scope
+# lasts only for this session and needs no admin rights.
+try {
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+} catch {
+    Write-Warn "could not relax the execution policy for this session: $_"
+}
+
 function Get-SourceDir {
     # The directory this script lives in, when it was run as a file. Empty when
     # it arrived through `irm | iex`, in which case we work from the network.

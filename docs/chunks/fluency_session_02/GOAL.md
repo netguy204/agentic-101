@@ -2,7 +2,21 @@
 status: IMPLEMENTING
 ticket: null
 parent_chunk: null
-code_paths: []
+code_paths:
+  - curriculum/session_02_meeting_the_harness/README.md
+  - curriculum/session_02_meeting_the_harness/PREWORK.md
+  - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
+  - curriculum/session_02_meeting_the_harness/EXERCISES.md
+  - curriculum/session_02_meeting_the_harness/PRACTICE.md
+  - curriculum/session_02_meeting_the_harness/CHECKPOINT.md
+  - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
+  - curriculum/session_02_meeting_the_harness/DRY_RUN.md
+  - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+  - curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
+  - curriculum/session_01_mental_models/handouts/canned-toil.md
+  - curriculum/session_01_mental_models/handouts/toil-inventory.md
+  - curriculum/README.md
+  - docs/trunk/SPEC.md
 code_references: []
 narrative: null
 investigation: null

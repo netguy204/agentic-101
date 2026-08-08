@@ -1,179 +1,181 @@
-
-
-<!--
-This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
--->
-
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+Author `curriculum/session_02_meeting_the_harness/` as eight files — the six
+required by `curriculum/README.md` (DEC-010) plus `FLOOR_TEST.md` and
+`DRY_RUN.md` — in the register established by
+`curriculum/session_01_mental_models/`: plain language, second person,
+minute-level timing, tables for anything enumerable, honest about what has
+not been verified.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+The session's design problem is ordering, not content. Four things have to
+happen in 90 minutes, and only one order works:
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+1. **Terminal survival** — the participant must be able to get to
+   `~/course-practice` and know they are there before anything else is
+   possible.
+2. **The safety net** — `commit` and `revert`, proved by hand (the
+   participant deletes a file themselves and gets it back) *before* an agent
+   is allowed near the folder. DEC-006: pi has no undo. Session 1's
+   PRACTICE.md has already promised these arrive here.
+3. **First delegation** — pi in the practice folder, on material derived
+   from the participant's own toil entry.
+4. **Reading and judging what it did** — tool calls, then the file on disk,
+   then the recurring question: *was this reasonable, and how do I know?*
+   (DEC-005.)
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/fluency_session_02/GOAL.md)
-with references to the files that you expect to touch.
--->
+Two design choices carry most of the weight and are worth stating plainly:
 
-## Subsystem Considerations
+**The agent creates its own practice material.** `~/course-practice` is
+empty after setup — `course-smoke-test` deletes its scratch folder on the way
+out. Rather than ask a room of non-programmers to hand-author a file (macOS
+Finder has no "new text file"; teaching `>` redirection is out of scope and
+`pi-learning-paths.md` Stage 0 explicitly flags it as destructive-looking),
+the first delegation is a two-parter: *make me a messy file that looks like
+my real input*, then *clean it up*. This produces exercise material shaped
+like the participant's own toil without any confidential data leaving the
+building, and it gives the room two agent runs instead of one — which is the
+honest way to teach nondeterminism.
 
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
+**The safety net is proved before the agent exists**, using the one
+destructive act every participant already knows how to perform: deleting a
+file in Finder or File Explorer. One `touch` gives the folder something to
+save; the file browser gives them the fear; `revert` removes it. The
+agent-driven mess (exercise 5) then re-uses a muscle they already have rather
+than introducing `revert` at the moment they are most alarmed.
 
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
+Everything happens in `~/course-practice` on the managed environment
+(DEC-007/DEC-008: Ghostty running bash on macOS, Windows Terminal + Git Bash
+on Windows) with the prescribed model (DEC-006/DEC-009). No provider or model
+choice appears anywhere in the material.
 
-If no subsystems are relevant, delete this section.
+### Testing
 
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
+Per `docs/trunk/TESTING_PHILOSOPHY.md`:
 
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+- **Exercise dry-run** (`DRY_RUN.md`) — every runnable step executed from its
+  written instructions on this machine, in a throwaway `HOME` and a throwaway
+  pi config directory. The operator's `~/.pi` and `~/course-practice` are
+  never touched. Agent steps run at least twice. Limits recorded honestly:
+  Windows is untested, and this machine's pi is not the pinned version.
+- **Floor test** (`FLOOR_TEST.md`) — protocol and observer watch-fors
+  authored; the human run is an operator follow-up and does not block
+  completion (the chunk GOAL says so).
+- No automated suite: the deliverable is prose. `ve validate` is the gate.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Plan and checkpoint
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+This file, committed before any authoring, so a dropped connection costs one
+step rather than the session.
 
-Example:
+### Step 2: `EXERCISES.md` — the runnable spine
 
-### Step 1: Define the SegmentHeader struct
+Five exercises with per-exercise fallbacks (SPEC.md, Guarantees: no dead
+ends), written first because the dry run executes them and everything else
+refers to them.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+1. **Where am I?** (12 min) — open the course terminal, `pwd`, `ls`,
+   `cd ~/course-practice`, `pwd`, `ls`; then `open .` / `explorer .` to see
+   the same folder in the file browser. Outcome: the participant can say
+   where they are and point at it in two places.
+2. **The safety net** (15 min) — `touch notes.txt`, edit it in the file
+   browser, `commit`; delete it in the file browser; `revert`; watch it come
+   back. Outcome: every participant has restored a file they deleted on
+   purpose.
+3. **First delegation** (15 min) — `pi`, one plain sentence asking for a
+   messy sample file shaped like their toil entry; watch the tool calls;
+   `/quit`; `commit`. Outcome: a file on disk the agent made, and a
+   checkpoint of it.
+4. **What did it actually do?** (12 min) — second delegation: the real task
+   from their inventory entry. Then the worksheet: which tools, what changed
+   on disk, what did you check, was it reasonable.
+5. **Break it on purpose** (7 min) — a bounded destructive prompt, then
+   `revert`. Outcome: every participant has used `revert` on a mess an agent
+   made.
 
-Location: src/segment/format.rs
+### Step 3: Dry-run the runnable steps
 
-### Step 2: Implement header serialization
+Throwaway `HOME`; `env/install.sh --skip-packages` into it (the pattern
+`env/tests/test-install.sh` already uses); `PI_CODING_AGENT_DIR` pointed at a
+sandbox config carrying only the OpenRouter credential and the prescribed
+model. Record verbatim output for every command in `DRY_RUN.md`, with at
+least two runs of each agent step.
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+### Step 4: Revise `EXERCISES.md` against what actually happened
 
-### Step 3: ...
+The dry run is not a formality. Any place the text made the runner improvise
+is a defect in the text (TESTING_PHILOSOPHY.md).
 
----
+### Step 5: Handouts
 
-**BACKREFERENCE COMMENTS**
+- `handouts/terminal-card.md` — the GUI→terminal concept map (mined from
+  `pi-learning-paths.md` Stage 0), the six commands the course uses, the pi
+  keys, and the recovery moves. One printable card.
+- `handouts/what-did-it-do.md` — the three-box worksheet exercise 4 fills in.
+  This is the session's checkpoint evidence.
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+### Step 6: Extend Session 1's handouts in place
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+Per `curriculum/README.md` (cross-session rules) and the chunk GOAL: no forks.
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
+- `session_01_mental_models/handouts/canned-toil.md` — a "For Session 2"
+  section giving canned-set participants a file-shaped task and the two
+  exact prompts.
+- `session_01_mental_models/handouts/toil-inventory.md` — the usage table
+  gains a Session 2 row.
 
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
+### Step 7: `FACILITATOR_GUIDE.md`
 
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
+Setup-triage opening; minute-level timing table for 90 minutes with a
+60-minute variant and cutting rules; per-beat talking points; the failure
+table (agent surprises the room, a key dies mid-session, a terminal won't
+open, someone's `revert` finds no checkpoints); FAQ; the framing that an
+agent doing something unexpected is a verification lesson, not a broken demo.
 
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+### Step 8: `PREWORK.md`, `PRACTICE.md`, `CHECKPOINT.md`, `README.md`
+
+Prework ≤30 min, completable with a broken setup and no terminal knowledge.
+Practice ≤90 min with a time-budget table and an "if the week gets away from
+you" floor, displacing real toil rather than adding homework. Checkpoint
+states the four observable behaviors from the chunk GOAL.
+
+### Step 9: `FLOOR_TEST.md` and `DRY_RUN.md` finalized
+
+### Step 10: Settle the indexes
+
+`curriculum/README.md`'s session table and SPEC.md's Curriculum Structure
+entry for Session 2, mirroring how Session 1 is recorded.
+
+### Step 11: Review, `ve validate`, complete
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+- `fluency_session_01` (ACTIVE) — the register, the toil inventory, the
+  canned fallback, and the promise that `commit`/`revert` arrive here.
+- `onboarding_terminal_env` (ACTIVE) — `commit`, `revert`, the managed
+  terminal.
+- `onboarding_setup_guide` (ACTIVE) — pi, the pins, `course-smoke-test`,
+  `~/course-practice`.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **The destructive prompt in exercise 5 must not be able to destroy the
+  checkpoints.** An unbounded "delete everything in this folder" could reach
+  `.git` and make `revert` impossible — the exact opposite of the lesson. The
+  prompt is bounded to named files; the dry run verifies `.git` survives.
+- **`revert` after an uncommitted change is a four-answer walkthrough**, not
+  one keystroke. The facilitator guide has to script the exact answers, which
+  means the dry run has to capture them verbatim.
+- **This machine runs pi 0.84.1; the cohort pin is 0.83.0** (`setup/pins.env`)
+  and the course environment is not installed here. Both get recorded as
+  dry-run limits rather than papered over.
+- **Nondeterminism is the subject, not a nuisance.** Exercises are
+  outcome-checked ("a file exists and you verified it"), never
+  output-checked.
+- **Windows is unverifiable here.** No Windows machine; recorded as such,
+  consistent with `env/README.md`.
 
 ## Deviations
-
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->

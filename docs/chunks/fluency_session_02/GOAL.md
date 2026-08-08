@@ -1,23 +1,98 @@
 ---
-status: IMPLEMENTING
+status: ACTIVE
 ticket: null
 parent_chunk: null
 code_paths:
-  - curriculum/session_02_meeting_the_harness/README.md
-  - curriculum/session_02_meeting_the_harness/PREWORK.md
-  - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
-  - curriculum/session_02_meeting_the_harness/EXERCISES.md
-  - curriculum/session_02_meeting_the_harness/PRACTICE.md
-  - curriculum/session_02_meeting_the_harness/CHECKPOINT.md
-  - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
-  - curriculum/session_02_meeting_the_harness/DRY_RUN.md
-  - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-  - curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
-  - curriculum/session_01_mental_models/handouts/canned-toil.md
-  - curriculum/session_01_mental_models/handouts/toil-inventory.md
-  - curriculum/README.md
-  - docs/trunk/SPEC.md
-code_references: []
+- curriculum/README.md
+- curriculum/session_02_meeting_the_harness/README.md
+- curriculum/session_02_meeting_the_harness/PREWORK.md
+- curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
+- curriculum/session_02_meeting_the_harness/EXERCISES.md
+- curriculum/session_02_meeting_the_harness/PRACTICE.md
+- curriculum/session_02_meeting_the_harness/CHECKPOINT.md
+- curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
+- curriculum/session_02_meeting_the_harness/DRY_RUN.md
+- curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+- curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
+- curriculum/session_01_mental_models/handouts/canned-toil.md
+- curriculum/session_01_mental_models/handouts/toil-inventory.md
+- docs/trunk/SPEC.md
+code_references:
+- ref: curriculum/session_02_meeting_the_harness/README.md
+  implements: The session index and the four-step teaching spine stated as
+    load-bearing order, with the constraints an editor must not break — chiefly
+    that the safety net precedes the first delegation and that the destructive
+    prompt stays bounded to a named file
+- ref: curriculum/session_02_meeting_the_harness/PREWORK.md
+  implements: 'Prework in ~25 minutes that assumes no terminal knowledge and
+    survives a broken setup: what a terminal is as a window onto a folder, the
+    blinking-cursor reassurance, the commit/revert promise Session 1 made, the
+    starred inventory entry with its two pre-written sentences, and a
+    course-smoke-test result reported rather than debugged'
+- ref: curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
+  implements: 'The re-teachable hands-on session: the eight-minute setup-triage
+    opening (smoke test, aggregate tally, immediate pairing with the non-owner
+    driving, a prohibition on debugging in the room), an eleven-row minute-level
+    90-minute timing table with a 60-minute variant and ordered cutting rules
+    naming exercise 5 as the sacrifice, per-beat talking points with SPEC
+    terminology quoted verbatim, eleven anticipated failures with recovery moves,
+    the FAQ, and an appendix stating what a normal run looks like'
+- ref: curriculum/session_02_meeting_the_harness/EXERCISES.md
+  implements: The five-exercise block in fixed order with per-exercise fallbacks,
+    observable outputs and misfires — terminal survival, the safety net proved by
+    hand before any agent exists, a first delegation that builds its own practice
+    material from the participant's toil entry, reading the tool calls and the
+    file before judging, and a bounded destructive prompt recovered with revert
+- ref: curriculum/session_02_meeting_the_harness/PRACTICE.md
+  implements: 'The displacement-shaped practice week: a 60-minute budget under the
+    90-minute cap, the solo lap within 48 hours that repeats the
+    commit-delegate-check-commit loop unaided, two delegations on real work the
+    participant was going to do by hand anyway, a worksheet on whichever went
+    worst, and an optional item that deliberately produces an unverifiable result'
+- ref: curriculum/session_02_meeting_the_harness/CHECKPOINT.md
+  implements: The observable checkpoint (a delegation run, the tool calls read
+    rather than the prose, a named check, and revert used at least once), the
+    six-minute round that collects it, the pass/near-miss discrimination guide,
+    four private recovery paths keyed to cause, and the distinction between a
+    failed checkpoint and a run where the model simply behaved
+- ref: curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
+  implements: The floor-test protocol for a hands-on session — nine verbatim tasks
+    against a fully provisioned machine and the real TUI, timing measured against
+    every claimed budget, nine watch-fors centred on whether the safety net
+    actually removes the fear, and a results log recording the human test, the
+    Windows pass and the interactive TUI pass as pending
+- ref: curriculum/session_02_meeting_the_harness/DRY_RUN.md
+  implements: The executed record of every runnable step against the prescribed
+    model, with agent steps sampled two and three times, verbatim transcripts, the
+    four deviations from a true participant environment stated up front, the three
+    defects the run found in the exercise text, and the four things that must
+    happen before first teach
+- ref: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+  implements: The one-page reference that lets participants stop memorising — the
+    GUI-to-terminal concept map, the six commands the course uses, the two safety
+    commands with the read-the-names-not-the-numbers rule, pi's keys, the four
+    tools, and a when-you-feel-lost table whose every answer is safe
+- ref: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
+  implements: 'The worksheet that is the session''s checkpoint evidence: tool calls
+    first, the file on disk second, and the check applied third, with "I couldn''t
+    tell" offered as the most valuable answer on the page'
+- ref: curriculum/session_01_mental_models/handouts/canned-toil.md
+  implements: Session 1's fallback set extended in place with a "For Session 2"
+    section — Priya's file-shaped task, the two ready-made prompts, her concrete
+    check, and the Complete-versus-Done judgment call to watch for
+- ref: curriculum/session_01_mental_models/handouts/toil-inventory.md
+  implements: The cross-session sheet's usage table extended with the Session 2
+    row, recording that column 2 becomes the instruction and column 4 becomes the
+    check
+- ref: curriculum/README.md
+  implements: The session table's Session 2 row, and the cross-session rules
+    extended with what a session whose steps execute owes (a DRY_RUN written by
+    running the material) and with Session 2 as the worked example of extending a
+    prior session's handouts rather than forking them
+- ref: docs/trunk/SPEC.md
+  implements: Session 2 recorded as settled in Curriculum Structure, with its
+    ordering rationale and duration, and the DRAFT checkbox narrowed to Sessions
+    3-8
 narrative: null
 investigation: null
 subsystems: []
@@ -25,208 +100,6 @@ friction_entries: []
 depends_on: ["fluency_session_01"]
 created_after: ["fluency_session_01", "onboarding_setup_guide", "onboarding_terminal_env"]
 ---
-
-<!--
-╔══════════════════════════════════════════════════════════════════════════════╗
-║  DO NOT DELETE THIS COMMENT BLOCK until the chunk complete command is run.   ║
-║                                                                              ║
-║  AGENT INSTRUCTIONS: When editing this file, preserve this entire comment    ║
-║  block. Only modify the frontmatter YAML and the content sections below      ║
-║  (Minor Goal, Success Criteria, Relationship to Parent). Use targeted edits  ║
-║  that replace specific sections rather than rewriting the entire file.       ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-This comment describes schema information that needs to be adhered
-to throughout the process.
-
-STATUS VALUES (status answers: how much of the intent does this chunk own?):
-- FUTURE: Not yet owned. Queued for later.
-- IMPLEMENTING: Being taken into ownership. At most one per worktree.
-- ACTIVE: Fully owns the intent that governs the code.
-- COMPOSITE: Shares ownership with other chunks. Must be read alongside its co-owners.
-- HISTORICAL: No longer owns intent. Kept for archaeological context.
-
-See docs/trunk/CHUNKS.md for the full principle.
-
-FUTURE CHUNK APPROVAL REQUIREMENT:
-ALL FUTURE chunks require operator approval before committing or injecting.
-After refining this GOAL.md, you MUST present it to the operator and wait for
-explicit approval. Do NOT commit or inject until the operator approves.
-This applies whether triggered by "in the background", "create a future chunk",
-or any other mechanism that creates a FUTURE chunk.
-
-COMMIT BOTH FILES: When committing a FUTURE chunk after approval, add the entire
-chunk directory (both GOAL.md and PLAN.md) to the commit, not just GOAL.md. The
-`ve chunk create` command creates both files, and leaving PLAN.md untracked will
-cause merge conflicts when the orchestrator creates a worktree for the PLAN phase.
-
-PARENT_CHUNK:
-- null for new work
-- chunk directory name (e.g., "006-segment-compaction") for corrections or modifications
-
-CODE_PATHS:
-- Populated at planning time
-- List files you expect to create or modify
-- Example: ["src/segment/writer.rs", "src/segment/format.rs"]
-
-CODE_REFERENCES:
-- Populated after implementation, before PR
-- Uses symbolic references to identify code locations
-
-- Format: {file_path}#{symbol_path} where symbol_path uses :: as nesting separator
-- Example:
-  code_references:
-    - ref: src/segment/writer.rs#SegmentWriter
-      implements: "Core write loop and buffer management"
-    - ref: src/segment/writer.rs#SegmentWriter::fsync
-      implements: "Durability guarantees"
-    - ref: src/utils.py#validate_input
-      implements: "Input validation logic"
-
-
-NARRATIVE:
-- If this chunk was derived from a narrative document, reference the narrative directory name.
-- When setting this field during /chunk-create, also update the narrative's OVERVIEW.md
-  frontmatter to add this chunk to its `chunks` array with the prompt and chunk_directory.
-- If this is the final chunk of a narrative, the narrative status should be set to COMPLETED
-  when this chunk is completed.
-
-INVESTIGATION:
-- If this chunk was derived from an investigation's proposed_chunks, reference the investigation
-  directory name (e.g., "memory_leak" for docs/investigations/memory_leak/).
-- This provides traceability from implementation work back to exploratory findings.
-- When implementing, read the referenced investigation's OVERVIEW.md for context on findings,
-  hypotheses tested, and decisions made during exploration.
-- Validated by `ve chunk validate` to ensure referenced investigations exist.
-
-
-SUBSYSTEMS:
-- Optional list of subsystem references that this chunk relates to
-- Format: subsystem_id is the subsystem directory name, relationship is "implements" or "uses"
-- "implements": This chunk directly implements part of the subsystem's functionality
-- "uses": This chunk depends on or uses the subsystem's functionality
-- Example:
-  subsystems:
-    - subsystem_id: "validation"
-      relationship: implements
-    - subsystem_id: "frontmatter"
-      relationship: uses
-- Validated by `ve chunk validate` to ensure referenced subsystems exist
-- When a chunk that implements a subsystem is completed, a reference should be added to
-  that chunk in the subsystems OVERVIEW.md file front matter and relevant section.
-
-FRICTION_ENTRIES:
-- Optional list of friction entries that this chunk addresses
-- Provides "why did we do this work?" traceability from implementation back to accumulated pain points
-- Format: entry_id is the friction entry ID (e.g., "F001"), scope is "full" or "partial"
-  - "full": This chunk fully resolves the friction entry
-  - "partial": This chunk partially addresses the friction entry
-- When to populate: During /chunk-create if this chunk addresses known friction from FRICTION.md
-- Example:
-  friction_entries:
-    - entry_id: F001
-      scope: full
-    - entry_id: F003
-      scope: partial
-- Validated by `ve chunk validate` to ensure referenced friction entries exist in FRICTION.md
-- When a chunk addresses friction entries and is completed, those entries are considered RESOLVED
-
-CHUNK ARTIFACTS:
-- Single-use scripts, migration tools, or one-time utilities created for this chunk
-  should be stored in the chunk directory (e.g., docs/chunks/foo/migrate.py)
-- These artifacts help future archaeologists understand what the chunk did
-- Unlike code in src/, chunk artifacts are not expected to be maintained long-term
-- Examples: data migration scripts, one-time fixups, analysis tools used during implementation
-
-CREATED_AFTER:
-- Auto-populated by `ve chunk create` - DO NOT MODIFY manually
-- Lists the "tips" of the chunk DAG at creation time (chunks with no dependents yet)
-- Tips must be ACTIVE chunks (shipped work that has been merged)
-- Example: created_after: ["auth_refactor", "api_cleanup"]
-
-IMPORTANT - created_after is NOT implementation dependencies:
-- created_after tracks CAUSAL ORDERING (what work existed when this chunk was created)
-- It does NOT mean "chunks that must be implemented before this one can work"
-- FUTURE chunks can NEVER be tips (they haven't shipped yet)
-
-COMMON MISTAKE: Setting created_after to reference FUTURE chunks because they
-represent design dependencies. This is WRONG. If chunk B conceptually depends on
-chunk A's implementation, but A is still FUTURE, B's created_after should still
-reference the current ACTIVE tips, not A.
-
-WHERE TO TRACK IMPLEMENTATION DEPENDENCIES:
-- Investigation proposed_chunks ordering (earlier = implement first)
-- Narrative chunk sequencing in OVERVIEW.md
-- Design documents describing the intended build order
-- The `created_after` field will naturally reflect this once chunks ship
-
-DEPENDS_ON:
-- Declares explicit implementation dependencies that affect orchestrator scheduling
-- Format: list of chunk directory name strings, or null
-- Default: [] (empty list - explicitly no dependencies)
-
-VALUE SEMANTICS (how the orchestrator interprets this field):
-
-| Value             | Meaning                              | Oracle behavior   |
-|-------------------|--------------------------------------|-------------------|
-| `null` or omitted | "I don't know my dependencies"       | Consult oracle    |
-| `[]` (empty list) | "I explicitly have no dependencies"  | Bypass oracle     |
-| `["chunk_a"]`     | "I depend on these specific chunks"  | Bypass oracle     |
-
-CRITICAL: The default `[]` means "I have analyzed this chunk and it has no dependencies."
-This is an explicit assertion, not a placeholder. If you haven't analyzed dependencies yet,
-change the value to `null` (or remove the field entirely) to trigger oracle consultation.
-
-WHEN TO USE EACH VALUE:
-- Use `[]` when you have analyzed the chunk and determined it has no implementation dependencies
-  on other chunks in the same batch. This tells the orchestrator to skip conflict detection.
-- Use `null` when you haven't analyzed dependencies yet and want the orchestrator's conflict
-  oracle to determine if this chunk conflicts with others.
-- Use `["chunk_a", "chunk_b"]` when you know specific chunks must complete before this one.
-
-WHY THIS MATTERS:
-The orchestrator's conflict oracle adds latency and cost to detect potential conflicts.
-When you declare `[]`, you're asserting independence and enabling the orchestrator to
-schedule immediately. When you declare `null`, you're requesting conflict analysis.
-
-PURPOSE AND BEHAVIOR:
-- When a list is provided (empty or not), the orchestrator uses it directly for scheduling
-- When null, the orchestrator consults its conflict oracle to detect dependencies heuristically
-- Dependencies express order within a single injection batch (intra-batch scheduling)
-- The chunks listed in depends_on will be scheduled to complete before this chunk starts
-
-CONTRAST WITH created_after:
-- `created_after` tracks CAUSAL ORDERING (what work existed when this chunk was created)
-- `depends_on` tracks IMPLEMENTATION DEPENDENCIES (what must complete before this chunk runs)
-- `created_after` is auto-populated at creation time and should NOT be modified manually
-- `depends_on` is agent-populated based on design requirements and may be edited
-
-WHEN TO DECLARE EXPLICIT DEPENDENCIES:
-- When you know chunk B requires chunk A's implementation to exist before B can work
-- When the conflict oracle would otherwise miss a subtle dependency
-- When you want to enforce a specific execution order within a batch injection
-- When a narrative or investigation explicitly defines chunk sequencing
-
-EXAMPLE:
-  # Chunk has no dependencies (explicit assertion - bypasses oracle)
-  depends_on: []
-
-  # Chunk dependencies unknown (triggers oracle consultation)
-  depends_on: null
-
-  # Chunk B depends on chunk A completing first
-  depends_on: ["auth_api"]
-
-  # Chunk C depends on both A and B completing first
-  depends_on: ["auth_api", "auth_client"]
-
-VALIDATION:
-- `null` is valid and triggers oracle consultation
-- `[]` is valid and means "explicitly no dependencies" (bypasses oracle)
-- Referenced chunks should exist in docs/chunks/ (warning if not found)
-- Circular dependencies will be detected at injection time
-- Dependencies on ACTIVE chunks are allowed (they've already completed)
--->
 
 # Chunk Goal
 
@@ -248,10 +121,10 @@ session that needs the environment to work. Its teaching spine:
 1. **Terminal survival.** Enough to stop the blinking cursor being scary
    and no more: what a prompt is, where you are (`pwd`), what's here
    (`ls`), moving (`cd`), and that nothing happens until Enter. Framed as
-   a concept map onto the file browser participants already know
-   (`pi-learning-paths.md` Stage 0 is the operator's own worked version of
-   this, including "don't be afraid of the blinking cursor" — mine it for
-   voice and for the GUI→terminal mapping).
+   a concept map onto the file browser participants already know.
+   `pi-learning-paths.md` Stage 0 is the operator's own worked version of
+   this — including "don't be afraid of the blinking cursor" — and is the
+   source of both the voice and the GUI→terminal mapping.
 2. **The safety net, before anything can break.** `commit` and `revert`
    are taught here, and taught *before* the first delegation — Session 1's
    PRACTICE.md promises participants exactly this ("You'll be taught both
@@ -280,12 +153,12 @@ Constraints the implementing agent must honor:
   Windows Terminal + Git Bash profile on Windows) with pi installed and
   pinned by `setup/` (DEC-006/DEC-009: OpenRouter, prescribed model). The
   session teaches *that* environment — never "your terminal", never a
-  model or provider choice. Read `env/README.md`, `setup/README.md`, and
-  `docs/chunks/onboarding_setup_guide/pi-reference.md` before planning;
-  the last is the verified pi reference (four default tools
-  read/write/edit/bash, sessions, `!`/`!!`, Ctrl+O to collapse tool
-  output, Escape to abort) — distill from it rather than re-deriving pi
-  behavior.
+  model or provider choice. `env/README.md` and `setup/README.md` are the
+  authorities on what participants have;
+  `docs/chunks/onboarding_setup_guide/pi-reference.md` is the verified pi
+  reference (four default tools read/write/edit/bash, sessions, `!`/`!!`,
+  Ctrl+O to collapse tool output, Escape to abort) and the source for any
+  claim the material makes about pi's behavior.
 - **All work happens in `~/course-practice`**, the sandbox the setup guide
   creates. Nothing in this session sends a participant outside it.
 - **Setup triage is the facilitator's first job.** Some participants will
@@ -297,8 +170,9 @@ Constraints the implementing agent must honor:
   (`session_01_mental_models/handouts/toil-inventory.md`) and stays there
   (`curriculum/README.md`, cross-session rules). Participants arrive with
   8–10 entries and the check column filled in; Session 2 uses those
-  entries as the source of the first delegation, and may extend the sheet
-  by editing Session 1's handout — not by forking a copy.
+  entries as the source of the first delegation, and extends the sheet and
+  the canned fallback by editing Session 1's handouts — never by forking a
+  copy.
 - **Nondeterminism is taught, not hidden.** The agent will sometimes do
   something unexpected in front of the room. TESTING_PHILOSOPHY.md
   requires exercises be outcome-checked rather than output-checked, and

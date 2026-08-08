@@ -228,37 +228,10 @@ Step 5 of 5 — making your practice folder
   Created /Users/you/course-practice
 ```
 
-and then, without you doing anything, it runs the check described in Step 4
-and finishes with either
-
-```
-That's setup finished. Nothing else to do before the first session.
-```
-
-or a line telling you setup is *not* finished, in which case read Step 4 and
-the troubleshooting section below.
-
-You never have to type or remember that key again. It is saved in a file only
-your account can read.
-
----
-
-## Step 4 — Check that everything works
-
-Step 3 runs this check for you, so you have probably already seen it. Run it
-yourself now anyway — it is the command to reach for any time something seems
-broken, and it costs nothing to run.
-
-Type this and press Enter:
-
-```bash
-course-smoke-test
-```
-
-This is the only moment in setup where something talks to the model over
-the internet. The two model checks can be slow — **give it up to four
-minutes**, and expect quiet pauses after each "asking the model…" line.
-What you want:
+and then, without you doing anything, it runs the course check. This is the
+one moment in setup where something talks to the model over the internet, so
+it can be slow — **give it up to four minutes**, and expect quiet pauses
+after each "asking…" line. What you want to see:
 
 ```
 Checking your course setup
@@ -274,13 +247,44 @@ Checking your course setup
 
 PASS — you are ready for the course.
 Nothing else to do. Your practice folder is /Users/you/course-practice.
+
+That's setup finished. Nothing else to do before the first session.
+```
+
+If the last line instead says setup is *not* finished, read Step 4 and the
+troubleshooting section below.
+
+You never have to type or remember that key again. It is saved in a file only
+your account can read.
+
+---
+
+## Step 4 — Check that everything works
+
+The check that ran by itself at the end of Step 3 is also a command of its
+own, and it is the one to reach for any time something seems broken. Run it
+yourself now so you know where it lives — it costs nothing to run.
+
+Type this and press Enter:
+
+```bash
+course-smoke-test
+```
+
+You should see the same "Checking your course setup" list from the end of
+Step 3 — the `[ok]` lines, the same quiet pauses while it talks to the model
+(**give it up to four minutes**), and then:
+
+```
+PASS — you are ready for the course.
+Nothing else to do. Your practice folder is /Users/you/course-practice.
 ```
 
 **If the last line says PASS, you are finished.** Close the window and come to
 the first session. Nothing else is expected of you.
 
-That fifth and sixth check are worth a moment of your attention, because
-they're the first thing you'll see the agent do: the fifth asks the model a
+The fifth and sixth checks in that list are worth a moment of your
+attention, because they're the first thing you'll see the agent do: the fifth asks the model a
 question and waits for the right answer back, and the sixth asks the agent to
 *create a file* and then goes and looks on your disk to see whether it really
 did. That second one is the course in miniature — the agent did something

@@ -81,6 +81,55 @@ you. There is no answer key: two people can defensibly disagree, and the
 argument they have on the way is the exercise. The one answer that is
 always wrong is "in, because she does it every week."
 
+---
+
+## For Session 2 — using Priya's work when you delegate
+
+<!-- Chunk: docs/chunks/fluency_session_02 - Session 2 fallback delegation -->
+
+Session 2 has you point an agent at one of your own inventory entries. If
+you're working from Priya's sheet instead, use **task 1, the Monday status
+roll-up** — it's the one that comes with a file attached to it, which is what
+the exercises need.
+
+The two sentences below are the same fill-in-the-blank prompts everyone else
+in the room is using, already filled in with Priya's work. Type them exactly
+as they are.
+
+**Exercise 3 — ask for the material:**
+
+> Make a file called `sample.csv` in this folder with about 15 rows of
+> made-up data that looks like items from three team trackers — item name,
+> team, status, last updated. Include the mistakes I usually have to fix: the
+> status column written several different ways for the same thing, and dates
+> in more than one format. Leave the mistakes in — I want the messy version.
+
+**Exercise 4 — ask for the work:**
+
+> Now fix the mistakes in `sample.csv`. Done right looks like: one consistent
+> word for each status, and every date written the same way. Tell me what you
+> changed and why.
+
+**Exercise 4, box 3 — the check.** Priya has read these trackers every week
+for four years, so she has a real one, and it is not "read it over". It's
+this: **does every status now use a word her leadership group would
+recognise, and did the number of rows stay the same?** Fifteen rows went in;
+fifteen rows should come out, and nothing should have been quietly merged or
+dropped.
+
+**Watch for one thing in particular.** Ask yourself whether "Complete" and
+"Done" are the same status. The agent will almost certainly decide they are
+and say so in its explanation. At many organisations that's right. At some,
+"Complete" means signed off and "Done" means the work stopped, and they are
+emphatically not the same. **Priya would know which. The agent cannot.** If
+you spot that in the explanation and flag it, you have just done, on your
+own, the thing Session 1's demo did to you.
+
+**Exercise 5** is the same for everybody — the prompt is in
+[`../../session_02_meeting_the_harness/EXERCISES.md`](../../session_02_meeting_the_harness/EXERCISES.md).
+
+---
+
 ## Transferring it back to your own work
 
 Before Session 2, do the same pass on your real tasks. You don't have to

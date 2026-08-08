@@ -118,7 +118,8 @@ go back and make it concrete, or mark it honestly.
 |---|---|
 | Session 1 | You start it. Three entries with the check column filled in is the bar for leaving the room. |
 | Between sessions 1 and 2 | You grow it to 8–10 entries during a normal working week. |
-| Sessions 2–5 | Individual entries become the raw material for exercises — you'll direct an agent at one, then decompose one into steps. |
+| Session 2 | You pick one entry and point an agent at it. Column 2 becomes the instruction you give it; column 4 becomes the check you apply to what comes back. Put a tick beside the entry you used. |
+| Sessions 3–5 | Individual entries become the raw material for exercises — you'll decompose one into steps and build a workflow around it. |
 | Session 6 | You pick your capstone from this sheet. Entries marked **out** get ruled out on purpose, and entries whose check column is strong get picked first. |
 
 Later sessions may add a column. They will not rename or renumber these

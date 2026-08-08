@@ -158,6 +158,15 @@ if ($SkipPackages) {
     Write-Ok 'applications installed'
 }
 
+# The MSI installers above put git and node on the machine PATH in the
+# registry, but this already-running session (and any Git Bash it spawns)
+# keeps its stale copy — the floor test would report node missing even
+# after a successful install. Rebuild PATH from the registry.
+$env:Path = @(
+    [Environment]::GetEnvironmentVariable('Path', 'Machine'),
+    [Environment]::GetEnvironmentVariable('Path', 'User')
+) -join ';'
+
 # winget updates this session's PATH only sometimes; find bash by path instead.
 $bash = $null
 foreach ($root in @($env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:LOCALAPPDATA)) {

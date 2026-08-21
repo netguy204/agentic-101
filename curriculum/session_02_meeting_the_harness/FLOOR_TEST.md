@@ -128,10 +128,11 @@ the second one.
 
 ## Facilitator dry-run (separate, technical)
 
-See [`DRY_RUN.md`](DRY_RUN.md), which is complete for macOS on an unpinned pi
-and lists four things outstanding before first teach: re-run on the pinned
-version, run once end to end on Windows, run once through the real
-interactive TUI, and this floor test.
+See [`DRY_RUN.md`](DRY_RUN.md), which is complete for macOS on an unpinned pi.
+Before first teach: re-run on the pinned version, run Session 2 exercises
+1–5 on Windows (installation through functional pi is already
+operator-verified), run once through the real interactive TUI, and perform
+this human floor test.
 
 ## Results log
 
@@ -145,10 +146,11 @@ you the commands work. It cannot tell you whether anyone can follow them.
 
 ### Windows pass
 
-**PENDING** — no Windows machine was available. `explorer .`, double-clicking
-a `.txt` to edit it, deleting from File Explorer, and the whole managed
-Windows Terminal path are unverified (`env/README.md` records the installer
-itself as authored-but-untested).
+**PARTIAL.** The operator has verified Windows installation end to end through
+a fully functional pi. The complete Session 2 exercise path is still
+**PENDING**: `explorer .`, editing and deleting through File Explorer, all
+five exercises in order, their timings, and participant interpretation have
+not been verified on Windows. This is not a human floor-test pass.
 
 ### Interactive TUI pass
 

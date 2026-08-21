@@ -114,13 +114,13 @@ mismatch into a failure). pi itself is pinned by the setup guide
 - **macOS path**: exercised end-to-end on macOS by `env/tests/` against
   temporary HOME directories and throwaway repositories — see
   `env/FLOOR_TEST.md` for the current results (98 automated checks).
-- **Windows path (`install.ps1`, `Patch-WindowsTerminal.ps1`): AUTHORED BUT
-  UNTESTED.** No Windows machine or PowerShell was available when this was
-  written. The settings.json transformation logic is verified by proxy
-  (`docs/chunks/onboarding_terminal_env/wt-patch-parity.js` reproduces it in
-  Node against fixtures), but the scripts themselves have never executed on
-  Windows. A Windows dry-run is a pre-cohort requirement — see the
-  operator follow-ups in `env/FLOOR_TEST.md`.
+- **Windows installation path: OPERATOR-VERIFIED END TO END.** The operator
+  ran the Windows installer and reached a fully functional pi on Windows, so
+  the installation scripts are no longer merely proxy-tested. This verifies
+  installation through working pi; it does **not** complete the audience-floor
+  test, the full keybinding audit, or Session 2 exercises 1–5 on Windows. See
+  the separate pending items in `env/FLOOR_TEST.md` and the Session 2 test
+  records.
 - **Human floor test**: pending; protocol and empty results log in
   `env/FLOOR_TEST.md`.
 

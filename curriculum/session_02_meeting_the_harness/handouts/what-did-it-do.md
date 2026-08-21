@@ -8,8 +8,8 @@ because the order is the skill: **what it did**, then **what changed**, then
 
 The agent will also have written you a paragraph explaining itself. Do not
 start there. That paragraph describes what it *intended*; the boxes on your
-screen and the file on your disk are what *happened*, and those are the two
-things you are learning to read.
+screen and the actual file are what *happened*, and those are the two things
+you are learning to read.
 
 ---
 
@@ -50,7 +50,7 @@ didn't mention. Something it did twice.)
 
 ---
 
-## Box 2 — What changed on disk?
+## Box 2 — What changed in the folder?
 
 Open the file. The actual file, in your file browser — not the summary in
 the terminal.

@@ -13,7 +13,7 @@ The observable behavior that tells you Session 2's outcome landed
 **Every participant leaves the room having:**
 
 1. **Run at least one delegation** in `~/course-practice` — an agent changed
-   a real file on a real disk at their instruction. (On a paired laptop
+   a real file on their own machine at their instruction. (On a paired laptop
    counts, as long as they were the one typing.)
 2. **Said what the agent did by reading its tool calls**, not by repeating
    its summary. "It wrote the file" is a pass. "It cleaned up my statuses" is
@@ -21,8 +21,9 @@ The observable behavior that tells you Session 2's outcome landed
 3. **Named what they checked** to decide whether the result was reasonable,
    and what that check told them. Specific. "The row count was still fifteen
    and I read the status column" passes; "it looked fine" does not.
-4. **Used `revert` at least once**, on something they or the agent broke on
-   purpose.
+4. **Used `revert` at least once** to recover an ordinary local file change
+   they or the agent made on purpose. This demonstrates local recovery, not
+   broader safety.
 
 All four. The first and fourth are facts you can see; the second and third
 are the ones you have to hear, and they are the ones the session is for.
@@ -85,7 +86,7 @@ judgment boundary, arriving in their own hands, on their own work. Say so.
 | "I checked it against what it said it did." | Circular — the summary checking the summary. | "So you checked the paragraph against the paragraph. What's in the file?" |
 | "It used all four tools." | Guessing from the handout rather than reading the screen. | "Scroll up. How many boxes are actually there?" Usually one or two. |
 | "I didn't need to revert, mine went fine." | Item 4 missing. | Not a debate — get them to do it, now, in thirty seconds. `commit`, delete a file in the file browser, `revert`. They cannot leave without having done it. |
-| "It only used one tool, so I don't think it really did anything." | Reading a short list as a failure. | "One `write` is a whole file created. Short lists are normal — what changed on disk?" |
+| "It only used one tool, so I don't think it really did anything." | Reading a short list as a failure. | "One `write` is a whole file created. Short lists are normal — what changed in the folder?" |
 
 A near-miss corrected on the spot counts as a pass. The point is the habit,
 not the first attempt.

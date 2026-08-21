@@ -56,29 +56,59 @@ and the order *is* the lesson:
 **Do it within 48 hours.** This is the single highest-value twenty minutes on
 the page and its value halves every day you leave it.
 
-**If you get stuck**, the card has a "when you feel lost" section and every
-answer on it is safe. If you're stuck for more than five minutes, stop and
-email your facilitator — the same rule as before the course: a confused
-participant is a bug in our material, and struggling alone teaches nobody
+**If you get stuck**, the card has a "when you feel lost" section with
+bounded ways to stop, reorient, or recover local files. If you're stuck for
+more than five minutes, stop and email your facilitator — the same rule as
+before the course: a confused participant is a bug in our material, and
+struggling alone teaches nobody
 anything.
 
 ---
 
 ## 2. Two real ones (15 minutes each)
 
-Now the part that replaces work rather than adding it.
+Now the part that replaces work rather than adding it. **Transmission
+reminder:** what you type and the contents of files pi reads are sent to the
+model provider. `commit` and `revert` provide local file recovery only.
 
-**Pick two entries from your toil inventory marked `in`.** Not the starred
-one from the session — two others. Then, when the task next comes round in
-your actual week, do it this way instead of the way you normally would:
+Before using a real task, it must pass **all four questions**:
 
-1. `cd ~/course-practice`, then `commit`.
-2. Ask the agent for what you want, in a plain sentence. Column 2 of your
-   sheet — "what done right looks like" — is your instruction. It was written
-   for a human, and that turns out to be the right register.
-3. **Apply the check in column 4.** The actual check, on the actual output,
-   before you use it for anything.
-4. `commit` if it's good. `revert` if it isn't.
+1. **Evaluable:** Can you tell a reasonable result from an unreasonable one
+   and name the check you will apply? If not, do not delegate it.
+2. **Authorized:** Are you allowed to delegate this task and send its data to
+   the course model provider? If someone else owns the data or process, ask
+   first.
+3. **Appropriate and non-consequential:** Is this suitable draft or
+   preparation work, rather than a consequential decision about a person,
+   money, access, employment, health, legal rights, or another high-stakes
+   outcome? The agent may prepare evidence; a responsible person decides.
+4. **Human-approved before external action:** Can a person review the actual
+   output and explicitly approve it before anything is sent, published,
+   merged, deployed, purchased, scheduled, or otherwise acted on outside the
+   practice folder? If not, keep the task synthetic.
+
+**Professional example:** a human can authorize an engineering agent to
+inspect a repository, make changes, run checks, and open a pull request as a
+specifically approved external action. Creating the pull request is
+substantial delegated work, but it grants no authority to merge: a human
+reviews the diff and test evidence before choosing whether to merge to
+`main`, and deployment remains a separate human-approved action. Approval to
+open the pull request is not approval to merge or deploy.
+
+**Pick two entries from your toil inventory marked `in` that also pass the
+other three questions.** Not the starred one from the session — two others.
+When each task next comes round:
+
+1. At the terminal prompt, `cd ~/course-practice`, then `commit`. This gives
+   local file recovery only.
+2. Type `pi`, wait for the pi screen, and ask for what you want in a plain
+   sentence. Column 2 of your sheet — "what done right looks like" — is your
+   instruction.
+3. **Apply the check in column 4 to the actual output.**
+4. Keep the result as a draft until the required person reviews and approves
+   any external action.
+5. Type `/quit` to return to the terminal. `commit` if the local files are
+   worth keeping; `revert` if they are not.
 
 **About your real data.** You have three honest options and all three are
 fine:
@@ -86,7 +116,7 @@ fine:
 | | When to use it |
 |---|---|
 | **Describe the shape and let it invent the data**, like we did in the room | Anything sensitive, or anything you can't easily get out of the system it lives in |
-| **Copy a small, real, non-sensitive extract into `~/course-practice`** | When the real thing is a spreadsheet export or a list you can save out |
+| **Copy a small, real, non-sensitive extract into `~/course-practice`** | Only when you are authorized to send it to the model provider as well as save it locally |
 | **Use the task but not the data** — a made-up version of a real job | When you want the practice more than the output |
 
 If you're unsure whether something is safe to send, that's a genuine

@@ -6,8 +6,9 @@ Five exercises, 59 minutes of the session, in a fixed order. Each one is a
 prerequisite for the next, so they are not a menu — if you run short, cut
 *within* an exercise rather than dropping one.
 
-Everything happens in **`~/course-practice`**, the folder the setup guide
-made. Nothing in this session sends anyone anywhere else on their machine.
+Every written exercise targets named files in **`~/course-practice`**, the
+folder the setup guide made. This keeps the work visible and locally
+recoverable; it does not make the folder a security boundary.
 
 Participants work from
 [`handouts/terminal-card.md`](handouts/terminal-card.md) (the commands, on
@@ -15,16 +16,16 @@ one printable page) and fill in
 [`handouts/what-did-it-do.md`](handouts/what-did-it-do.md) during exercise 4.
 They also need their toil inventory from Session 1
 ([`../session_01_mental_models/handouts/toil-inventory.md`](../session_01_mental_models/handouts/toil-inventory.md));
-anyone without a usable entry uses Priya's, in
-[`../session_01_mental_models/handouts/canned-toil.md`](../session_01_mental_models/handouts/canned-toil.md),
-which has a section written for today.
+anyone without a usable entry chooses a neutral synthetic task from the
+Session 2 section of
+[`../session_01_mental_models/handouts/canned-toil.md`](../session_01_mental_models/handouts/canned-toil.md).
 
-**Before starting, say this out loud:** everything you type today happens
-inside one folder, and by the end of the second exercise you will be able to
-put that folder back to any earlier moment. Nothing you do this afternoon is
-permanent, including the things that look alarming. That sentence is what
-makes the rest of the session possible — say it before anyone touches a
-keyboard, not after.
+**Before starting, say this out loud:** today's written tasks edit local files
+in one practice folder, and by the end of the second exercise you will know
+how to recover ordinary changes to those files. This is local file recovery,
+not a security boundary or permission to take external actions. Also state
+that what participants type and any file pi reads is sent to the model
+provider. Say both before anyone touches a keyboard.
 
 ---
 
@@ -88,7 +89,8 @@ ready. You never type it."
 
 The most important fourteen minutes of the session. **Nobody runs an agent
 until this exercise is finished by everyone in the room**, including the
-pairs. The agent has no undo button; this is the undo button.
+pairs. pi has no general undo button; this is recovery for ordinary local
+file changes in the checkpointed folder.
 
 **What participants do.** Make a file, save a checkpoint, destroy the file on
 purpose, and get it back.
@@ -122,11 +124,11 @@ purpose, and get it back.
    still in it.
 
 **Say it like this — and say the last two sentences slowly.** "You just
-deleted a file on purpose and got it back. That is the whole safety net, and
-it is why we can spend the rest of today letting an agent loose in this
-folder. `commit` means *save a snapshot of this folder as it is right now*.
-`revert` means *put this folder back to one of those snapshots*. There is no
-third command and there is nothing else to learn about it."
+deleted a local file on purpose and got it back. That lets us recover the
+ordinary file edits in today's bounded exercises. `commit` means *save a
+snapshot of this folder as it is right now*. `revert` means *put this folder
+back to one of those snapshots*. It cannot recall a sent message, undo an
+external action, or protect data sent to the model provider."
 
 **Work the first `commit` on the projector before they start.** Two minutes.
 Run it on your own machine, out loud, so the room has seen the questions
@@ -161,10 +163,12 @@ it happens, because the same shape recurs in exercise 5 with a longer list:
 complete — usually they answered `no` to the first question. Run `commit`
 again, answer `yes`, then carry on. Costs thirty seconds.
 
-**Fallback.** Pairs do this exercise twice, once each, on the same laptop in
-two different folders (`mkdir practice-two && cd practice-two`). It is worth
-the four extra minutes: this is the exercise that has to be in everybody's
-hands, not just in the room.
+**Fallback.** Pairs do this exercise twice in the same practice folder, once
+each: after the first person restores `notes.txt`, the second person changes
+or deletes it in the file browser and then runs `commit` and `revert` using
+the reference card. It is worth the extra minutes: both people need to use
+the recovery move themselves. The facilitator confirms pi is closed before
+they return to the terminal prompt.
 
 ---
 
@@ -193,7 +197,7 @@ to one of their own toil entries.
    *said*. `Ctrl+O` collapses and expands them if the screen gets busy. The
    whole thing usually takes ten to thirty seconds.
 4. When it stops, look at the file browser window. `sample.csv` is there. Open
-   it. **A real file, on your real disk, that you did not type.**
+   it. **A real file, in your own folder, that you did not type.**
 5. Leave pi: type `/quit` and press Enter.
 6. Type `commit`. Name this checkpoint **"the messy sample"**.
 
@@ -203,9 +207,10 @@ wanted in the same words you'd use with a colleague, and something went and
 made it. That's the whole shape of the thing. The rest of this course is
 about pointing it at work that matters and knowing whether it did it right."
 
-**Say this too, before anyone asks:** "Your data never left the building. You
-described the *shape* of your work and it invented plausible rows. That's on
-purpose — everything we do today is on made-up data that looks like yours."
+**Say this too, before anyone asks:** "What you typed was sent to the model
+provider, and pi would also send the contents of any file it reads. We did
+not give it your work data: you described only the general shape and it
+invented plausible rows. Everything in the practice file is made up."
 
 **Observable output.** A file exists in `~/course-practice` that the
 participant did not create by hand, and there is a checkpoint of it.
@@ -225,10 +230,11 @@ and press Enter. Say to the room: "that's a good sign — it knew it didn't
 know. It won't always do that, and Session 2's whole second half is about
 what happens when it doesn't."
 
-**Fallback.** Canned-set participants use Priya's task and the ready-made
-prompt in
+**Fallback.** Participants choose one neutral synthetic option — metadata
+cleanup, meeting follow-up, or onboarding coordination — and use its
+ready-made prompt in
 [`../session_01_mental_models/handouts/canned-toil.md`](../session_01_mental_models/handouts/canned-toil.md)
-(section: "For Session 2"). Same exercise, same timing, same artifact.
+(section: "For Session 2"). Same exercise, timing, and artifact.
 
 **Fallback for a pair.** One laptop, two turns: the person whose laptop it
 isn't goes first and uses their own toil entry.
@@ -237,9 +243,9 @@ isn't goes first and uses their own toil entry.
 
 ## Exercise 4 — What did it actually do? (13 minutes)
 
-**The load-bearing exercise of the session.** Everything before it was
-plumbing. Give it the full thirteen minutes; take them from exercise 3 if you
-have to.
+**The core exercise of the session.** Everything before it prepared the
+room for this. Give it the full thirteen minutes; take them from exercise 3
+if you have to.
 
 **What participants do.** Delegate the real task, then reconstruct what
 happened from the evidence rather than from the agent's summary — and decide
@@ -263,8 +269,8 @@ whether it was reasonable.
      assume: one or two boxes is a normal answer, and noticing that it never
      re-read the file before rewriting it is a *good* observation, not a
      wrong one.
-   - **What changed on disk?** Open `sample.csv` in the file browser and look
-     at the actual file. Not the summary in the terminal. The file.
+   - **What changed in the folder?** Open `sample.csv` in the file browser and
+     look at the actual file. Not the summary in the terminal. The file.
    - **Was it reasonable, and how do I know?** Column 4 of your inventory
      sheet — "how I'd check" — is the answer to the second half. Apply the
      check you wrote in Session 1 and write down what it told you.
@@ -303,8 +309,9 @@ us what it did." Then: what did they look at that told them? That's the
 answer to box 3, and it's a better answer than anyone whose run went
 perfectly. Give it thirty seconds of the room's attention.
 
-**Fallback.** Canned-set participants answer for Priya: what would *she* look
-at? The canned sheet's task 1 has a concrete check written into it.
+**Fallback.** Participants apply the concrete check printed under the
+synthetic task option they chose. They answer from the file evidence, not for
+a fictional person.
 
 **If someone finishes early.** Ask them the harder question: "what would you
 have failed to catch?" That's exercise 4 of Session 3, arriving early, and
@@ -325,9 +332,9 @@ it comply, and put it back.
 
 3. `/quit`. Then `ls` — `sample.csv` is gone and there's a `disaster.csv`
    where your work used to be. Open it in the file browser if you want the
-   full effect. (Two tool calls did that: a `write` and a `bash`. The rename
-   was a shell command, which is the first time today you've seen it use that
-   tool.)
+   full effect. (The work log normally shows one box replacing the file and
+   another renaming it. You do not need to know the command inside the second
+   box.)
 4. Type `revert`. Answer as you did in exercise 2 — Enter, Enter, then the
    number, then `yes`. **The list is longer now**, five or six checkpoints
    deep. Find the line that says **"cleaned up"** and type *that* number. It
@@ -336,11 +343,11 @@ it comply, and put it back.
    cleaned-up data in it. Check the file browser to be sure — the point is
    checking, not being told.
 
-**Say it like this.** "That's the worst thing that can happen to you, and it
-cost you forty seconds. Every one of you now knows, because you've done it
-rather than been promised it, that an agent cannot do anything to this folder
-that you can't undo. That's what makes it safe to be ambitious with it — and
-being ambitious with it is the entire rest of the course."
+**Say it like this.** "You recovered a deliberately damaged local file in
+about forty seconds. You know this recovery move works because you did it.
+It does not undo messages, disclosures, or other external actions, so later
+work still needs authorization, appropriate delegation, and human approval.
+Be ambitious inside those bounds."
 
 **Observable output.** Every participant's `ls` shows `sample.csv` and no
 `disaster.csv`, after having shown the opposite a minute earlier.

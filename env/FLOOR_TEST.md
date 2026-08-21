@@ -78,12 +78,18 @@ the ghostty 1.x binary available on the authoring machine).
 **PENDING** — not yet performed. (Requires a human tester at the audience
 floor; operator follow-up.)
 
+### Windows installation verification
+
+**OPERATOR-VERIFIED** — the operator ran the Windows installation end to end
+and reached a fully functional pi. This establishes the technical install
+path, including execution of the Windows scripts; it is not an audience-floor
+test and does not establish that a participant can follow the instructions
+unaided.
+
 ### Human floor test — Windows
 
-**PENDING** — not yet performed. Note: on Windows this doubles as the
-first-ever execution of `install.ps1` and `Patch-WindowsTerminal.ps1`,
-which are authored but untested (`env/README.md`, Testing status). Do this
-one before the macOS session if only one can be scheduled early.
+**PENDING** — not yet performed with a tester at the audience floor. Keep
+this separate from the completed operator verification above.
 
 ### DEC-007 keybinding audit
 

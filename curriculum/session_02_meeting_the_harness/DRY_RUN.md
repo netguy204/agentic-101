@@ -20,7 +20,7 @@ Read this before trusting anything below it.
 | | |
 |---|---|
 | **Established** | Every command in the exercises runs, in order, and produces the output the text now claims. The `commit`/`revert` walkthroughs were driven end to end with real answers. The agent steps made real calls to the prescribed model over OpenRouter and changed real files. `.git` survives exercise 5, so `revert` works afterwards. |
-| **Not established** | Anything about Windows. Anything about the pi TUI's on-screen rendering. Anything about whether a non-programmer can follow the text — that is the floor test ([`FLOOR_TEST.md`](FLOOR_TEST.md)) and it has not happened. |
+| **Not established** | The Session 2 exercises on Windows (although the operator has separately verified Windows installation through a functional pi). Anything about the pi TUI's on-screen rendering in this dry run. Anything about whether a non-programmer can follow the text — that is the floor test ([`FLOOR_TEST.md`](FLOOR_TEST.md)) and it has not happened. |
 
 ### Deviations from a true participant environment
 
@@ -365,7 +365,8 @@ up" and type *that* number; it is probably 2; do not assume.
 | Exercise 4 — the fix, tool calls, judgment call | **Verified ×2**, one worksheet change |
 | Exercise 5 — destructive prompt and recovery | **Verified ×3**; `.git` survives every time |
 | pi TUI keys (`Ctrl+O`, `Escape`, `/quit`, `pi -c` interactively) | **Not verified** — print mode only; `pi -c` verified non-interactively |
-| Windows, end to end | **Not run** — no Windows machine available |
+| Windows installation through functional pi | **Operator-verified separately**; not part of this 2026-08-07 dry run |
+| Session 2 exercises 1–5 on Windows | **Not run** — full exercise pass remains pending |
 
 ## Before this session is taught
 
@@ -373,9 +374,9 @@ up" and type *that* number; it is probably 2; do not assume.
    0.83.0) rather than on 0.84.1, or re-pin the cohort to the version that
    was actually tested. `setup/PRE_COHORT_CHECKLIST.md` owns this.
 2. **Run exercises 1–5 once on Windows**, in Windows Terminal with the Git
-   Bash profile. `explorer .`, double-clicking a `.txt`, and deleting from
-   File Explorer are all unverified there, and `env/README.md` already
-   records the whole Windows installer path as authored-but-untested.
+   Bash profile. The operator has already verified installation through a
+   functional pi; `explorer .`, editing and deleting through File Explorer,
+   and the complete Session 2 sequence remain unverified there.
 3. **Run the session once through the real TUI**, by hand, confirming
    `Ctrl+O`, `Escape`, `/quit` and `pi -c`. Fifteen minutes.
 4. **Do the floor test** ([`FLOOR_TEST.md`](FLOOR_TEST.md)). Nothing in this

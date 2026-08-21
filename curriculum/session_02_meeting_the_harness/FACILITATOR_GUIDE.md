@@ -15,12 +15,10 @@ something in their hands.
 where a broken laptop costs somebody something. Your first eight minutes are
 about triage, not teaching. Read that section before anything else.
 
-**What this session is not:** a terminal course. Participants learn six
-commands and no more (`pwd`, `ls`, `cd`, `touch`, `commit`, `revert`) plus
-three ways to talk to pi. Everything else is comprehension burden competing
-with the actual subject, and the actual subject is judgment. If somebody
-wants pipes and redirection, that is a lovely conversation to have in the
-bar.
+**What this session is not:** a terminal course or a memory test. Participants
+keep the reference card beside them and use only the few entries needed to
+navigate, recover local files, and move into and out of pi. Extra terminal
+detail is comprehension burden competing with the actual subject: judgment.
 
 ---
 
@@ -160,11 +158,11 @@ did. That's the whole session."
 will actually slow this room down.** People who are nervous about breaking
 something type slowly and stop asking for things.
 
-> "Here's what I want you to believe by twenty past: you cannot break
-> anything today. Everything happens inside one folder, and in about twenty
-> minutes you're going to delete a file on purpose and get it back. Once
-> you've done that yourself — not heard me say it, done it — the rest of
-> today is you being as ambitious as you like."
+> "In about twenty minutes you're going to delete a local practice file on
+> purpose and get it back. Once you've done that yourself — not heard me say
+> it, done it — you can experiment confidently with the bounded file tasks
+> written for today. This recovery move does not cover disclosure, external
+> actions, or work outside the checkpoint."
 
 **Do not demo anything here.** The instinct to open with something impressive
 is wrong for this session: they'll be running it themselves in twenty
@@ -217,10 +215,10 @@ because exercise 5 is the designated sacrifice.
 
 ### The sentence to land before the break
 
-> "`commit` saves a snapshot of this folder. `revert` puts it back. That's
-> the entire safety system, there is no third command, and you have now used
-> both. Everything after the break is you letting something else type in this
-> folder — and you already know how to undo it."
+> "`commit` saves a snapshot of this folder. `revert` puts ordinary local
+> file changes back. You have now used both. Everything after the break is
+> you letting something else edit the practice files — and you know how to
+> recover those edits. They do not undo disclosure or an external action."
 
 ---
 
@@ -242,11 +240,10 @@ words:
 Then the thing that actually matters today, which is what a tool call is. The
 coworker analogy carries it:
 
-> "Think of it as a colleague you're messaging. They can't reach into your
-> computer — but they've got four tools on the desk in front of them: they
-> can **read** a file, **write** a file, **edit** part of a file, or **run a
-> command**. Every box that appears on your screen is them picking one up and
-> telling you what happened. That scroll of boxes is their work log."
+> "Think of it as a colleague you're messaging who can act through four
+> tools: **read** a file, **write** a file, **edit** part of a file, or **run
+> a command**. Every box that appears on your screen shows it using one of
+> those tools. That scroll of boxes is its work log."
 
 Write the four tool names on the board and leave them there — participants
 refer to them in exercise 4.
@@ -279,11 +276,11 @@ different ways". One worked example fixes it for the room.
 **Then say the reassurance about their data before anyone asks it**, because
 somebody in the room is worried and won't say so:
 
-> "Nothing of yours goes anywhere. You're describing the *shape* of your
-> work — 'a list of tickets with inconsistent priorities' — and it invents
-> fifteen plausible rows. Everything we touch today is made up. That's on
-> purpose, and it's also a technique: it's how you experiment with a process
-> without experimenting on the real thing."
+> "What you type and any file pi reads is sent to our model provider so it
+> can respond. Today, do not give it your work data: describe only the general
+> shape — 'a list of tickets with inconsistent priorities' — and let it
+> invent fifteen rows. Synthetic data lets us practise the process without
+> sending the real records."
 
 **While they work**, circulate for the two failure shapes, both in
 [`EXERCISES.md`](EXERCISES.md): a prompt that describes the task instead of
@@ -363,10 +360,10 @@ Run it exactly as written and hold two lines:
 
 **Then the closing frame**, which is the sentence people leave with:
 
-> "That's the worst thing that can happen to you and it cost you forty
-> seconds. You now know that from having done it, not from me saying it. That
-> is the whole reason it's safe to be ambitious with this thing — and being
-> ambitious with it is the rest of the course."
+> "You have now recovered a deliberately damaged local file in about forty
+> seconds. That is strong evidence for this specific recovery move, not a
+> promise about every action an agent could take. Be ambitious within clear
+> bounds, and keep human approval between draft work and external action."
 
 **If the agent refuses.** It happens, and it's a gift: *"It declined to
 destroy my work, which is lovely and which you must not rely on — it is not a
@@ -423,12 +420,12 @@ are in [`CHECKPOINT.md`](CHECKPOINT.md).
 
 ## FAQ — questions you will be asked
 
-**"What if it does something to my other files?"** It can't reach them today
-— everything you run it in is `~/course-practice`, and it only acts in the
-folder you started it in. The honest longer answer, which you'll want before
-you use it on real work: it *can* touch anything you can touch, there are no
-confirmation pop-ups, and the discipline of running it in one folder with a
-checkpoint is what makes that safe. That discipline is most of Session 4.
+**"What if it does something to my other files?"** Today's written prompts
+name files in `~/course-practice`, which keeps the exercise bounded and its
+local changes recoverable. The folder is not a hard security boundary: pi
+may run with the same access you have, and there are no universal confirmation
+pop-ups. Use only the bounded prompts today; Session 4 develops stronger
+scoping and approval habits.
 
 **"Is my work being sent somewhere?"** Yes, and it's worth being precise
 rather than reassuring. What you type and what it reads goes to the model
@@ -453,13 +450,15 @@ terminal is where this particular harness lives; the skill you're learning —
 what to delegate, how to check it — moves to whatever comes next. That's the
 whole reason we spend one session on the terminal and five on judgment.
 
-**"What if I forget the commands?"** Then you look at the card. Nothing on
-[`handouts/terminal-card.md`](handouts/terminal-card.md) is meant to be
-memorised, and the six commands on it are all the course ever asks for.
+**"What if I forget what to type?"** Look at the reference card. Using it is
+the intended workflow and a successful floor-test behaviour; nothing on it
+is meant to be memorised.
 
-**"Can I use this on my actual work tomorrow?"** Yes, with one rule: inside
-your judgment boundary and with a checkpoint. Your practice assignment is
-exactly that, deliberately, and it's two real tasks rather than exercises.
+**"Can I use this on my actual work tomorrow?"** Only after the four-part
+gate in the practice sheet: you can evaluate it, you are authorized to send
+the data and delegate the task, the delegation is appropriate and not a
+consequential decision, and a person reviews it before anything external
+happens. A checkpoint adds local recovery; it does not replace those gates.
 
 ---
 

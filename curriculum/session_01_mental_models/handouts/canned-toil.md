@@ -83,49 +83,74 @@ always wrong is "in, because she does it every week."
 
 ---
 
-## For Session 2 — using Priya's work when you delegate
+## For Session 2 — neutral synthetic task options
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 fallback delegation -->
 
-Session 2 has you point an agent at one of your own inventory entries. If
-you're working from Priya's sheet instead, use **task 1, the Monday status
-roll-up** — it's the one that comes with a file attached to it, which is what
-the exercises need.
+If you cannot use your own inventory entry, choose **one** option below. Each
+is made-up, task-shaped practice. You are not being asked to play a role or
+pretend these records belong to you. Type the two prompts for your option,
+then use its check in exercise 4.
 
-The two sentences below are the same fill-in-the-blank prompts everyone else
-in the room is using, already filled in with Priya's work. Type them exactly
-as they are.
+### Option A — metadata cleanup
 
-**Exercise 3 — ask for the material:**
+**Exercise 3:**
 
-> Make a file called `sample.csv` in this folder with about 15 rows of
-> made-up data that looks like items from three team trackers — item name,
-> team, status, last updated. Include the mistakes I usually have to fix: the
-> status column written several different ways for the same thing, and dates
-> in more than one format. Leave the mistakes in — I want the messy version.
+> Make a file called `sample.csv` with about 15 made-up content records. Use
+> the columns title, owner, status, and review_date. Include inconsistent
+> capitalization, several spellings for the same status, blank owners, and
+> dates in different formats. Leave the mistakes in.
 
-**Exercise 4 — ask for the work:**
+**Exercise 4:**
 
-> Now fix the mistakes in `sample.csv`. Done right looks like: one consistent
-> word for each status, and every date written the same way. Tell me what you
+> Clean the metadata in `sample.csv`. Standardize capitalization, statuses,
+> and date formats. Do not invent missing owners; mark them `REVIEW NEEDED`.
+> Tell me what you changed and why.
+
+**Check:** confirm the row count stayed the same, every original title remains,
+status and date formats are consistent, and blank owners were flagged rather
+than guessed.
+
+### Option B — meeting follow-up
+
+**Exercise 3:**
+
+> Make a file called `sample.csv` with about 15 made-up meeting-note items.
+> Use the columns note, possible_owner, possible_due_date, and category. Mix
+> clear actions with decisions and open questions; leave some owners and dates
+> uncertain. Use several date formats.
+
+**Exercise 4:**
+
+> Organize `sample.csv` into actions, decisions, and open questions.
+> Standardize clear dates, but do not invent an owner, deadline, or decision.
+> Mark uncertainty `REVIEW NEEDED`. Tell me what you changed and why.
+
+**Check:** confirm no note disappeared, decisions were not turned into assigned
+actions, and every uncertain owner or date remains visibly flagged for human
+follow-up.
+
+### Option C — onboarding coordination
+
+**Exercise 3:**
+
+> Make a file called `sample.csv` with about 15 made-up onboarding tasks. Use
+> the columns task, responsible_team, target_day, and status. Include duplicate
+> tasks, inconsistent team and status labels, different day formats, and a few
+> blank assignments. Leave the mistakes in.
+
+**Exercise 4:**
+
+> Clean `sample.csv` for coordination. Standardize team names, statuses, and
+> target-day formats. Flag possible duplicates and blank assignments for
+> review; do not silently delete, combine, or assign them. Tell me what you
 > changed and why.
 
-**Exercise 4, box 3 — the check.** Priya has read these trackers every week
-for four years, so she has a real one, and it is not "read it over". It's
-this: **does every status now use a word her leadership group would
-recognise, and did the number of rows stay the same?** Fifteen rows went in;
-fifteen rows should come out, and nothing should have been quietly merged or
-dropped.
+**Check:** confirm all original rows remain, possible duplicates and blank
+assignments are visible, and the agent did not make staffing or access
+decisions.
 
-**Watch for one thing in particular.** Ask yourself whether "Complete" and
-"Done" are the same status. The agent will almost certainly decide they are
-and say so in its explanation. At many organisations that's right. At some,
-"Complete" means signed off and "Done" means the work stopped, and they are
-emphatically not the same. **Priya would know which. The agent cannot.** If
-you spot that in the explanation and flag it, you have just done, on your
-own, the thing Session 1's demo did to you.
-
-**Exercise 5** is the same for everybody — the prompt is in
+**Exercise 5** is the same for everybody — use the prompt in
 [`../../session_02_meeting_the_harness/EXERCISES.md`](../../session_02_meeting_the_harness/EXERCISES.md).
 
 ---

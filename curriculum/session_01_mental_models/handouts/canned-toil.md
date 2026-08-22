@@ -81,6 +81,9 @@ you. There is no answer key: two people can defensibly disagree, and the
 argument they have on the way is the exercise. The one answer that is
 always wrong is "in, because she does it every week."
 
+Sessions 2 and 3 each add a section below with ready-made material for
+their exercises; use the one for the session you are in.
+
 ---
 
 ## For Session 2 — neutral synthetic task options
@@ -152,6 +155,84 @@ decisions.
 
 **Exercise 5** is the same for everybody — use the prompt in
 [`../../session_02_meeting_the_harness/EXERCISES.md`](../../session_02_meeting_the_harness/EXERCISES.md).
+
+---
+
+## For Session 3 — Priya's briefs
+
+<!-- Chunk: docs/chunks/fluency_session_03 - Session 3 fallback: pre-written delegation briefs, one deliberately under-specified -->
+
+If you cannot use your own inventory entry, choose **one** brief below and
+copy it onto a blank delegation brief
+([`../../session_03_anatomy_of_a_delegation/handouts/delegation-brief.md`](../../session_03_anatomy_of_a_delegation/handouts/delegation-brief.md)).
+Each is made-up, task-shaped practice on Priya's work: you first ask the
+agent to invent the input files, then run the brief exactly as written, read
+what happened, and fix the box that let you down. One of the three is
+missing something. Finding out which, by running it, is the exercise — so
+don't look for it first.
+
+### Brief A — the Monday roll-up (task 1)
+
+**Inputs, step 1 — make them.** In `~/course-practice`, in pi, send:
+
+> Make three files in this folder called `tracker-alpha.csv`, `tracker-beta.csv`
+> and `tracker-gamma.csv`, each with about 10 made-up work items and the columns
+> item, owner, status, last_updated. In each file make about a third of the
+> items have a last_updated date in the past seven days and the rest older.
+> Use one date format throughout. Leave everything else tidy.
+
+Then `/quit`, then `commit` named **before run 1**.
+
+| Box | Write this |
+|---|---|
+| **Inputs** | Files: the three tracker files. Facts: "last week" means the seven days before today; today is the Monday this is being run. |
+| **Instruction** | "Read `tracker-alpha.csv`, `tracker-beta.csv` and `tracker-gamma.csv` in this folder. Write a file called `monday-summary.md` listing every item whose last_updated date is in the seven days before today, grouped by file, one line each with item, owner and status. Don't include anything older. Tell me how many items you listed from each file." |
+| **Outputs** | `monday-summary.md`, in the same folder. |
+| **Checkpoints** | Open `monday-summary.md`. Count the items per group and compare with the dates in each tracker — every recent item present, no old one included. Spot-check two owners' names against the trackers. |
+
+### Brief B — chasing missing updates (task 2)
+
+**Inputs, step 1 — make them.** In pi, send:
+
+> Make a file called `tracker.csv` in this folder with about 15 made-up work
+> items and the columns item, owner, status, last_updated. Find out today's
+> real date first, and spread the last_updated dates over the five weeks
+> before it. Use one date format throughout.
+
+Then `/quit`, then `commit` named **before run 1**.
+
+| Box | Write this |
+|---|---|
+| **Inputs** | Files: `tracker.csv`. |
+| **Instruction** | "Read `tracker.csv` in this folder. For every item that has gone stale, write a short, friendly chase message to its owner asking where it stands, into a file called `chasers.md` — one message per item, with the item name in the first line. Tell me which items you chased and why." |
+| **Outputs** | `chasers.md`, in the same folder. |
+| **Checkpoints** | Open `chasers.md`. Check that every item it chased really is stale, and that no stale item is missing. Read one message and check it names the right owner. |
+
+### Brief C — reconciling the contractor invoices (task 5)
+
+**Inputs, step 1 — make them.** In pi, send:
+
+> Make two files in this folder. `invoices.csv`: about 8 made-up contractor invoices for
+> last month with the columns contractor, hours_billed, rate, total.
+> `timesheets.csv`: the same contractors with the columns contractor,
+> hours_recorded, team_note. Make most hours match between the two files and
+> two or three differ by a few hours. Use the same contractor names in both.
+
+Then `/quit`, then `commit` named **before run 1**.
+
+| Box | Write this |
+|---|---|
+| **Inputs** | Files: `invoices.csv`, `timesheets.csv`. Facts: a difference of up to one hour is normal rounding; more than that needs a question. |
+| **Instruction** | "Compare `invoices.csv` against `timesheets.csv` in this folder, by contractor. Write a file called `invoice-check.md` that lists every contractor, the hours billed and the hours recorded, and flags any whose hours differ by more than one. Don't change either input file. Tell me what you flagged and why." |
+| **Outputs** | `invoice-check.md`, in the same folder. |
+| **Checkpoints** | I'd look it over. |
+
+**In exercise 4**, Brief C is the one to think hardest about.
+
+There is no answer key for which brief is missing what. Two people can run
+the same brief and meet different surprises — the model is not perfectly
+repeatable — and the argument about what the box should have said is the
+exercise.
 
 ---
 

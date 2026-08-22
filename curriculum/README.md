@@ -10,6 +10,7 @@ the curriculum; `curriculum/` holds the curriculum itself.
 |---|---|---|
 | 1 | [`session_01_mental_models/`](session_01_mental_models/) | Fluency |
 | 2 | [`session_02_meeting_the_harness/`](session_02_meeting_the_harness/) | Fluency |
+| 3 | [`session_03_anatomy_of_a_delegation/`](session_03_anatomy_of_a_delegation/) | Fluency |
 
 Later sessions are added by their own chunks. `docs/trunk/SPEC.md`
 (Curriculum Structure) holds the planned progression.

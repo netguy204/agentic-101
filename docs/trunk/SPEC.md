@@ -88,8 +88,18 @@ progression:
    reasonable. Closes by having participants tell the agent to ruin their
    work and reverting it. The first hands-on session, so it opens with
    setup triage rather than teaching. 90 minutes.
-3. **Anatomy of a delegation** — decomposing a task; inputs, outputs,
-   checkpoints; writing instructions that survive contact with the agent.
+3. **Anatomy of a delegation** (settled —
+   `curriculum/session_03_anatomy_of_a_delegation/`) — opens on the
+   practice-week delegations that went badly, one sentence each, sorted
+   live into three reasons (it didn't know something / it decided
+   something / I couldn't tell); names the four parts of a delegation —
+   inputs, instruction, outputs, checkpoints — as the missing structure,
+   quoting the Terminology definition; each participant writes a
+   **delegation brief** (a cross-session handout owned by Session 3) for
+   one real inventory entry, runs it, changes one box for a reason they can
+   name, `revert`s to before and runs it again; closes on "what would I
+   have failed to catch?" — add the checkpoint or rule the task *out*. One
+   delegation, anatomised; workflows are Session 4. 90 minutes.
 4. **Workflow design** — from one-off delegation to repeatable workflow;
    failure modes and verification; concentrating judgment at the checkpoints
    where it buys the most leverage.

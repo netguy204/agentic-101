@@ -1,5 +1,3 @@
-
-
 <!--
 This document captures HOW you'll achieve the chunk's GOAL.
 It should be specific enough that each step is a reasonable unit of work
@@ -10,170 +8,197 @@ to hand to an agent.
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+Split by seam, not by rewrite. Both existing `EXERCISES.md` files already
+mark the facilitator voice with bold lead-ins (**Say it like this.**,
+**Observable output.**, **Most common misfire.**, **If someone stalls.**,
+**Fallback.**, **Work … live before they start.**, **Remote delivery.**,
+**Before starting, say this out loud:**, **Wrapping the block**) and the
+participant voice with numbered steps (Session 2) or a **What participants
+do.** paragraph (Session 1). Every facilitator paragraph moves verbatim into
+`EXERCISE_RUNSHEET.md`; every participant step stays in `EXERCISES.md` and is
+re-addressed to "you". Where Session 1's participant instructions are prose
+inside **What participants do**, they become short numbered steps with the
+same content. Nothing is reworded for style beyond the change of address.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+One source for shared facts: commands, prompts, the `revert` answers table,
+and "what you should see" live only in `EXERCISES.md`; the runsheet says
+"`EXERCISES.md`, exercise 2, step 6" and adds the facilitator's reason to
+care. This is what stops the two files drifting the way the 2026-08-07 dry
+run and the 2026-08-22 Windows run both caught.
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+Convention first, then content, then references — so the new filename has
+a documented home (`curriculum/README.md`, SPEC.md Repository Layout,
+DEC-011 amending DEC-010) before any session uses it, and every link is
+fixed in one sweep at the end with a checker rather than by memory.
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/fluency_exercise_split/GOAL.md)
-with references to the files that you expect to touch.
--->
-
-## Subsystem Considerations
-
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+Testing follows `docs/trunk/TESTING_PHILOSOPHY.md` for documentation
+changes: the participant steps do not change, so no re-dry-run; the checks
+are mechanical — link integrity, "nothing lost" (every old bold lead-in
+appears in a runsheet, every old numbered step in an `EXERCISES.md`), the
+preserved Session 2 corrections, `ve validate`, and `env/tests/test-commands.sh`
+as a no-collateral-damage canary.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Amend the convention
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+- `curriculum/README.md` — "Required files": the table gains a row
+  `EXERCISE_RUNSHEET.md | Per-exercise running order for the facilitator:
+  timing, what to say, observable output, misfires, fallbacks | Facilitator`;
+  `EXERCISES.md`'s audience becomes `Participant` and its description "The
+  in-session steps the participant follows, with the canned fallback";
+  "these six files" → seven; the sentence "The five names other than
+  `README.md` map one-to-one onto the Session Anatomy list" → the Session
+  Anatomy "in-session exercises" element maps to two files, one per reader,
+  and the other four map one-to-one. Add one bullet under "Rules that cross
+  sessions": the runsheet references `EXERCISES.md` by exercise and step and
+  never restates a step — commands and on-screen text have one source.
+- `docs/trunk/SPEC.md` Repository Layout (the `curriculum/` bullet): list
+  seven fixed filenames with `EXERCISE_RUNSHEET.md` after `EXERCISES.md`,
+  and say "one per Session Anatomy element, the exercises element split by
+  reader".
+- `docs/trunk/DECISIONS.md`: add **DEC-011 — In-session exercise material is
+  split by reader** via the `decision-create` skill (decision, context,
+  alternatives = the GOAL's Rejected Ideas, rationale, consequences:
+  seven fixed names; runsheet never restates steps; later sessions author
+  both files). Under DEC-010's `**Status**: ACCEPTED` add a line
+  `**Amended**: DEC-011 (2026-08-22) — the exercise element is two files,
+  `EXERCISES.md` (participant) and `EXERCISE_RUNSHEET.md` (facilitator);
+  seven fixed filenames.` so the six-file statement does not stand
+  uncorrected.
 
-Example:
+### Step 2: Split Session 1
 
-### Step 1: Define the SegmentHeader struct
+Source: `curriculum/session_01_mental_models/EXERCISES.md` (three exercises,
+27 min). Create `EXERCISE_RUNSHEET.md` with: the block overview (first
+paragraph: three exercises, 27 minutes, the checkpoint they produce), the
+handout/canned-toil paragraph's facilitator half (who uses which sheet),
+**Before starting, say this out loud**, then per exercise a heading with the
+minutes, **What participants do** (the one-paragraph summary + "steps:
+`EXERCISES.md`, exercise N"), **Work one live before they start**,
+**Say it like this**, **Observable output**, **If someone stalls**, the
+misfires, **Fallback**, **Remote delivery**, and **Wrapping the block**.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+Rewrite `EXERCISES.md` participant-only: short intro ("Three exercises, one
+after another, on your inventory sheet — or on the canned sheet if you can't
+use your own work"), then per exercise a heading without minutes and the
+numbered steps in "you" voice taken from **What participants do** (e.g.
+exercise 1: "1. Copy the five things from your prework onto the sheet, one
+per row, filling in only the first two columns… 2. Keep going: add anything
+else from the last month that repeats…"), what the sheet should look like
+when done (from **Observable output**, re-addressed: "Every row has in, out
+or not sure"), and the participant side of the fallback ("Using the canned
+set? Answer for Priya; …"). End with one line: "Stuck? Say so — you'll be
+paired."
 
-Location: src/segment/format.rs
+Both files carry the session chunk backreference and
+`<!-- Chunk: docs/chunks/fluency_exercise_split - Exercise material split by reader -->`.
 
-### Step 2: Implement header serialization
+### Step 3: Split Session 2
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+Source: `curriculum/session_02_meeting_the_harness/EXERCISES.md` (five
+exercises, 59 min). Same mechanics. Specifics to get right:
 
-### Step 3: ...
+- The `revert` table (exercise 2, step 6) and its lead-in ("four questions,
+  one at a time — the first offers three numbered choices…") stay in
+  `EXERCISES.md` verbatim. The runsheet's "third misfire — typing `1`" says
+  "the answer is in `EXERCISES.md`, exercise 2, step 6" and keeps the
+  "read the names, not the numbers" rule.
+- Exercise 5's **Why this prompt and not "delete everything"** and the
+  exact prompt: the prompt is a participant step (stays); the rationale
+  is facilitator (runsheet).
+- The intro's "Every written exercise targets named files in
+  `~/course-practice`… not a security boundary" is both readers': the
+  participant version keeps the one-sentence reassurance ("everything
+  today happens in `~/course-practice`, and exercise 2 teaches you how to
+  undo it"); the runsheet keeps the full framing and the **Before starting,
+  say this out loud** preamble.
+- Headings in `EXERCISES.md` drop the "(11 minutes)" suffixes; the runsheet
+  headings keep them.
+- Hand-out references (terminal-card, what-did-it-do, toil inventory,
+  canned-toil) stay in `EXERCISES.md` as the participant's "you'll need";
+  the runsheet's intro lists what to print.
 
----
+### Step 4: Fix every reference
 
-**BACKREFERENCE COMMENTS**
+- Session READMEs: file tables — `EXERCISES.md` → "Participant | The
+  exercise block, step by step"; new row `EXERCISE_RUNSHEET.md` →
+  "Facilitator | Running the exercise block: timing, cues, misfires".
+  Reading-order prose: "runs the five exercises on their own machine from
+  `EXERCISES.md`" stays (that is what they type) and gains "with
+  `EXERCISE_RUNSHEET.md` beside it".
+- `session_01_mental_models/FACILITATOR_GUIDE.md:28` and
+  `session_02_meeting_the_harness/FACILITATOR_GUIDE.md:27` — "Read …
+  `EXERCISES.md`" → both files. `…FACILITATOR_GUIDE.md:176` "Run it from
+  `EXERCISES.md`" → `EXERCISE_RUNSHEET.md`. `…:286` "both in `EXERCISES.md`"
+  (the two failure shapes) → `EXERCISE_RUNSHEET.md`.
+- `session_02_meeting_the_harness/FLOOR_TEST.md:56` ("`EXERCISES.md`,
+  exercise 1, unaided") — participant steps, unchanged target; confirm the
+  exercise numbering still matches.
+- `session_02_meeting_the_harness/DRY_RUN.md:6` — unchanged target; add a
+  fifth item to "Deviations from a true participant environment" (or a
+  line in the 2026-08-22 addendum): "2026-08-22: `EXERCISES.md` was split
+  into participant steps and a facilitator runsheet after this run; the
+  steps themselves are unchanged and were not re-run."
+- `session_01_mental_models/handouts/canned-toil.md:154` — follow the link;
+  if it points at participant material it stays; if at facilitator
+  material, retarget to the runsheet.
+- `docs/chunks/fluency_session_01/GOAL.md` and
+  `docs/chunks/fluency_session_02/GOAL.md`: add `EXERCISE_RUNSHEET.md` to
+  `code_paths`; update the `code_references` `implements:` text for
+  `EXERCISES.md` ("The participant steps for the three-exercise block…" /
+  "…five-exercise block…") and add one for the runsheet carrying the
+  previous description's facilitator half.
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+### Step 5: Verify
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+Run from the repo root; all must pass before completion:
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
-
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
-
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
-
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+1. `uvx --from vibe-engineer ve validate`.
+2. Link integrity — for every `](…)` relative link in `curriculum/**/*.md`,
+   the target file exists (a ten-line shell loop; keep it in the chunk
+   directory as `check_links.sh` if it is worth keeping).
+3. Nothing lost — for each session: every `**…**` lead-in line from
+   `git show HEAD:curriculum/<session>/EXERCISES.md` appears (first 30
+   chars) in the new `EXERCISE_RUNSHEET.md` or, for **What participants
+   do**, in `EXERCISES.md`; the number of numbered steps in Session 2's
+   new `EXERCISES.md` ≥ the old file's.
+4. Audience purity — `grep -c` for "Say it like this|Observable output|
+   misfire|Fallback\.|minutes\)" in each new `EXERCISES.md` is 0; `grep -c
+   '^[0-9]\+\. '` in each runsheet is 0.
+5. Preserved corrections — both exact phrases "Wait — 1 thing in this
+   folder has changed" and "four questions, one at a time" are present in
+   Session 2's `EXERCISES.md`; the CRLF failure-point row is still in the
+   facilitator guide.
+6. `bash env/tests/test-commands.sh` passes (no env/ change expected).
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+None beyond what is in the repository. `fluency_session_01` and
+`fluency_session_02` are ACTIVE; their GOAL.md files are edited in Step 4,
+which is allowed for reference upkeep and does not reopen them.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **Session 1 prose → steps.** Turning **What participants do** prose into
+  numbered "you" steps is the one place the text is restructured, not just
+  moved. Keep each step a sentence from the original; resist improving it.
+- **Participant text that quietly assumed a facilitator reader.** Phrases
+  like "the room", "participants", "pairs do this twice" inside steps must
+  become second person or move to the runsheet. Watch exercise 3 (Session 1,
+  the skeptic pass) and exercise 3's pair fallback (Session 2).
+- **Facilitator-guide cross-references by exercise number.** The guide
+  refers to "exercise 2", "exercise 5" throughout; numbering must not
+  change in either new file.
+- **DRY_RUN quotes.** It quotes the old text in places (e.g. the "Third
+  and most important correction"); those quotes are historical and stay
+  as-is — only the forward links need to resolve.
+- **DEC-011 wording.** DECISIONS.md has no prior amendment; the "Amended"
+  line on DEC-010 is new practice — keep it to one line so it reads as a
+  pointer, not a rewrite.
 
 ## Deviations
 
 <!--
 POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
 -->

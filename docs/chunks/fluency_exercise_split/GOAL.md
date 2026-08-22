@@ -2,7 +2,23 @@
 status: IMPLEMENTING
 ticket: null
 parent_chunk: null
-code_paths: []
+code_paths:
+- curriculum/README.md
+- curriculum/session_01_mental_models/EXERCISES.md
+- curriculum/session_01_mental_models/EXERCISE_RUNSHEET.md
+- curriculum/session_01_mental_models/README.md
+- curriculum/session_01_mental_models/FACILITATOR_GUIDE.md
+- curriculum/session_01_mental_models/handouts/canned-toil.md
+- curriculum/session_02_meeting_the_harness/EXERCISES.md
+- curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
+- curriculum/session_02_meeting_the_harness/README.md
+- curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
+- curriculum/session_02_meeting_the_harness/DRY_RUN.md
+- curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
+- docs/trunk/SPEC.md
+- docs/trunk/DECISIONS.md
+- docs/chunks/fluency_session_01/GOAL.md
+- docs/chunks/fluency_session_02/GOAL.md
 code_references: []
 narrative: null
 investigation: null

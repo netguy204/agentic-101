@@ -55,6 +55,13 @@ model.
       `env/versions.env`; bump `ENV_VERSION`.
 - [ ] Update `setup/pins.env`: `PI_VERSION`, `PI_MODEL`, `COHORT`, and
       `EXPECTED_ENV_VERSION` (must match the `ENV_VERSION` you just set).
+- [ ] **Publishing a fix between sessions** is: bump `ENV_VERSION` in
+      `env/versions.env` (and/or the pins in `setup/pins.env`, keeping
+      `EXPECTED_ENV_VERSION` in step), push to `main`, then run
+      `course-update` on a participant-like machine and confirm it reports
+      the update. Participants pick it up at the start of the next session
+      (`course-update` is the first thing every session from Session 2
+      does); nobody re-runs the setup guide.
 - [ ] **If any pin changed**, update the sample outputs in `setup/README.md`
       Steps 3 and 4 — they quote the version and model as literal text, and a
       participant comparing their screen against a stale sample will

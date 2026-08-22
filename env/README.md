@@ -18,6 +18,7 @@ and pi's keybindings working out of the box (DEC-006, DEC-007 in
 | Runtime | Node.js (Homebrew) | Node.js LTS (winget) |
 | git | Homebrew | supplied by Git for Windows |
 | Course commands | `~/.agentic-101/bin` on PATH | same |
+| Updates | `course-update` — fetches the published `versions.env`/`pins.env` and re-runs the installers only on a difference (DEC-012) | same |
 
 The participant's system login shell is never changed. On macOS, bash runs
 only inside Ghostty; on Windows, Git Bash runs only inside Windows Terminal

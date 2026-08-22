@@ -27,6 +27,11 @@ Today's files are made up, so nothing in them can't leave the building.
 Stuck at any point? Say so — you'll be paired. A pair runs every exercise
 at full value; the person without the laptop holds the keyboard.
 
+**Before exercise 1:** in the course terminal, type `course-update` and
+press Enter. It fetches any course fixes published since you set up — most
+weeks it says *Nothing to do.* If it tells you to close the window and open
+a new one, do that before going on.
+
 ---
 
 ## Exercise 1 — Where am I?

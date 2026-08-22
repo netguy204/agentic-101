@@ -76,6 +76,11 @@ for the facilitator (DEC-011). This directory's convention is only about
   Session 2 does exactly this to both of Session 1's handouts — a row in the
   inventory's usage table, and a "For Session 2" section in
   `handouts/canned-toil.md`.
+- **Every session from Session 2 opens with `course-update`.** The prework's
+  run-the-commands step and the first thing in `EXERCISES.md` both say it,
+  so a fix published between sessions reaches every participant's machine
+  before the room uses it (`docs/trunk/DECISIONS.md`, DEC-012). Session 1 is
+  exempt — no terminal before Session 2.
 - **The runsheet never restates a step.** `EXERCISE_RUNSHEET.md` refers to
   `EXERCISES.md` by exercise and step ("exercise 2, step 6") and adds only
   what the facilitator needs — timing, what to say, what to watch for, what

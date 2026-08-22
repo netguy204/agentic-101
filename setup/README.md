@@ -97,7 +97,7 @@ several minutes the first time. When it finishes you should see something
 very like this at the bottom:
 
 ```
-Course environment 1.0.1
+Course environment 1.1.0
 
   [ok]   commit is ready (/Users/you/.agentic-101/bin/commit)
   [ok]   revert is ready (/Users/you/.agentic-101/bin/revert)
@@ -205,7 +205,7 @@ This installs pi 0.83.0, saves the key your facilitator gave you, and
 sets the model everyone on the course uses.
 
 Step 1 of 5 — checking your machine
-  course environment 1.0.1 — found
+  course environment 1.1.0 — found
   node v22.20.0 — found
   key sk-or-v1-a… — looks right
 
@@ -316,6 +316,7 @@ opened *after* the install.
 | `[no] the model did not answer within …` or `the agent did not finish within …` | Usually a slow connection or a busy model. Run `course-smoke-test` once more; if it happens twice, send a screenshot. |
 | `[no] the model replied, but not as expected` | Run `course-smoke-test` once more. If it happens twice, send your facilitator the lines it printed. |
 | `[no] the agent ran but did not create the file` | Run `course-smoke-test` once more. Agents are not perfectly repeatable, and a single retry usually settles it. If it fails twice, send a screenshot. |
+| `course-update` says it could not reach the course updates | You're offline, or the course site is briefly down. Check you can load a web page, try once more, and otherwise carry on — nothing was changed. Tell your facilitator. |
 | Step 1 asked for a password | Type the password you use to log in to the computer. It won't show any characters as you type — that's normal, keep typing and press Enter. |
 | macOS says Ghostty "cannot be opened" | Right-click the Ghostty icon in your Applications folder and choose **Open**, then confirm. macOS only asks this the first time. |
 | Windows: I opened "Git Bash" from the Start menu | Close it. Open **Windows Terminal** instead (Start → type `Terminal`). They look similar; only one is set up for the course. |
@@ -338,7 +339,7 @@ The honest inventory, because you should know what's on your own machine:
 |---|---|
 | **Ghostty** (Mac) or **Windows Terminal** (Windows) | The terminal app the course uses. On Windows it's usually already there. |
 | **Node.js** and **git** | Two pieces of plumbing pi needs. Widely used, uncontroversial, quiet. |
-| **`~/.agentic-101/`** | A folder holding the course's own commands: `commit`, `revert`, `course-check`, `course-smoke-test`. |
+| **`~/.agentic-101/`** | A folder holding the course's own commands: `commit`, `revert`, `course-check`, `course-update`, `course-smoke-test`. |
 | **pi** (`@earendil-works/pi-coding-agent`) | The agent itself — the subject of the course. |
 | **`~/.pi/agent/`** | pi's own settings folder: the course model configuration, and your key in a file only your account can read. |
 | **`~/course-practice/`** | Your practice folder. A normal folder — you can open it in Finder or File Explorer. Everything you do on the course happens here. |
@@ -375,7 +376,7 @@ ours to decide.
 
 ---
 
-## Two things to know for the first session
+## Three things to know for the first session
 
 **Your practice folder.** To get to it in the terminal, type:
 
@@ -388,6 +389,11 @@ That's why the course lives in one folder and why you have two commands:
 `commit` saves a checkpoint of your practice folder, and `revert` puts it
 back the way it was. You'll be taught both properly in Session 2 — for now,
 just know they exist and that nothing you do is permanent.
+
+**Getting updates.** The course's commands get fixed and improved between
+sessions. From Session 2 on, the first thing you'll do at every session is
+type `course-update` — it fetches anything new in a few seconds and says
+*Nothing to do* when there's nothing. You don't need to run it now.
 
 ---
 

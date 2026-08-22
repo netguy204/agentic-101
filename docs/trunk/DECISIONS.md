@@ -631,3 +631,73 @@ block and at `EXERCISES.md` for what participants follow.
 commentary at all (the runsheet would be empty, which the convention says
 to write anyway), or the one-source rule proves unworkable because a
 participant step genuinely needs different wording for the two readers.
+
+### DEC-012: Course updates are distributed by a deterministic participant-run command at session start
+
+**Date**: 2026-08-22
+
+**Status**: ACCEPTED
+
+**Decision**: Fixes to the course environment (`env/`) and to the pi pins
+(`setup/pins.env`) reach participants through one command, `course-update`,
+installed in `~/.agentic-101/bin/` with `commit` and `revert`. It fetches
+the published `versions.env` and `pins.env`, compares them to what is
+installed, and re-runs the existing installers only on a difference
+(`install.sh --skip-packages`; `install-pi.sh --keep-key --no-smoke-test`).
+It finishes in seconds when nothing changed, needs no key and no model
+call, fetches everything before changing anything (so an offline machine
+never half-updates), and ends with exactly one instruction when one is
+needed. Every session from Session 2 opens with it — in the prework's
+run-the-commands step and as the first line of `EXERCISES.md`. Publishing a
+fix is: bump `ENV_VERSION` (and/or the pins, keeping `EXPECTED_ENV_VERSION`
+in step) and push to `main`.
+
+**Context**: On 2026-08-22 a Windows run of Session 2 found `commit`
+printing a git line-ending warning; the fix shipped as environment 1.0.1
+the same day, but a participant who had already set up could only get it
+by re-running Step 1 of the setup guide — a multi-minute PowerShell
+installer — on the facilitator's say-so. Every future fix to `env/` or the
+pins had the same gap. The operator wanted a standing answer that
+guarantees distribution at the start of each class session.
+
+**Alternatives Considered**:
+- **A "sync up" prompt participants give pi at the start of each exercise
+  set**, letting the agent pull updates. Once pi works, terminal steps are
+  in principle unnecessary. Rejected for now: it lands too late (Session 2
+  uses `commit` before pi is opened); it is a broad, unverifiable
+  delegation made while the course is teaching the judgment boundary (and
+  it models `curl | bash` by an agent); and it is nondeterministic where
+  determinism matters — "pull the latest updates" could become `git pull`
+  in `~/course-practice`, the checkpoint repo. The operator's boundary:
+  pi's advantage would appear only if a long tail of environment
+  divergence made a scripted solution infeasible.
+- **Fold updating into `course-smoke-test`.** Rejected: the smoke test
+  calls the model and takes minutes; the update must take seconds, need no
+  key, and be safe on a flaky connection. Two questions, two one-word
+  answers.
+- **Auto-update inside `commit` / `revert`.** Rejected: a recovery tool
+  must never depend on the network or rewrite itself mid-use.
+- **Tell participants to re-run Step 1 of the setup guide.** The fallback
+  the 2026-08-22 fix used. Rejected as the standing answer: a different
+  shell on Windows, minutes long, needs an announcement, and nobody does it
+  unprompted at the start of a session.
+
+**Rationale**: One word, same register as `commit`/`revert`, deterministic,
+and placed where every participant already is at the start of a session.
+Reusing the installers keeps "how to install" in one place; `course-update`
+only decides whether.
+
+**Consequences**: `env/bin/course-update` ships in the environment payload
+(environment 1.1.0); `install-pi.sh` gained `--keep-key`; the payload is
+replaced copy-then-move so a running `course-update` is never rewritten
+underneath itself. `curriculum/README.md` states the cross-session rule;
+Session 2's prework, `EXERCISES.md`, runsheet and terminal card carry it;
+the setup guide and pre-cohort checklist describe publishing a fix. Windows
+Terminal configuration and OS packages are outside its reach (Step 1 of the
+setup guide). Participants who set up before 1.1.0 need one Step 1 re-run to
+receive the command.
+
+**Revisit If**: environments diverge in ways the two installers cannot
+enumerate (the operator's long-tail condition) — that is when an
+agent-driven repair, scoped and verified, would be worth designing; or if a
+pin change ever requires a new key, which `--keep-key` cannot supply.

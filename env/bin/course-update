@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+# course-update — bring the course environment and pi up to date.
+# Chunk: docs/chunks/onboarding_course_update - Deterministic participant-run updates at session start
+#
+# A thin orchestrator over the two installers, which are idempotent and know
+# how to install. This decides only WHETHER to run them: it fetches the two
+# published pin files (env/versions.env, setup/pins.env) and both installers,
+# compares the pins to what is installed, runs the matching installer on a
+# difference, and says one plain sentence about the result. It finishes in
+# seconds when nothing changed, never calls the model, never needs the key,
+# and never touches the practice folder.
+#
+# Everything is fetched before anything runs, so a machine that is offline
+# never half-updates: one fetch fails → one message, nothing changed, exit 1.
+#
+# Self-update: install.sh overwrites this very file while it is running. The
+# whole script is wrapped in main() and the last line is `main "$@"; exit $?`,
+# so bash has parsed the entire file before anything executes and stops
+# reading at exit; install.sh also replaces payload files by copy-then-move,
+# so this process keeps its old inode regardless.
+
+set -u
+
+A101_BIN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# shellcheck source=../lib/common.sh
+. "$A101_BIN_DIR/../lib/common.sh"
+A101_ROOT=$(CDPATH= cd -- "$A101_BIN_DIR/.." && pwd)
+
+# Same two bases the installers hold (env/DISTRIBUTION.md), same overrides.
+A101_ENV_BASE="${AGENTIC101_ENV_BASE_URL:-https://raw.githubusercontent.com/netguy204/agentic-101/main/env}"
+A101_SETUP_BASE="${AGENTIC101_SETUP_BASE_URL:-https://raw.githubusercontent.com/netguy204/agentic-101/main/setup}"
+
+dry_run=""
+
+usage() {
+    cat <<'EOF'
+course-update — get the latest course fixes.
+
+    course-update
+
+Checks whether the course environment (commit, revert, course-check) or pi
+is out of date, and updates whichever is. Takes a few seconds when there is
+nothing to do. Run it at the start of every session.
+
+It does not update your terminal app's configuration or the applications
+installed in Step 1 of the setup guide; if your facilitator says those
+changed, run Step 1 again.
+
+Options:
+  --dry-run       say what would be updated, change nothing
+  -h, --help      show this
+  -V, --version   show the environment version
+EOF
+}
+
+fetch() { # fetch <url> <dest-file>
+    mkdir -p "$(dirname "$2")" 2>/dev/null
+    curl -fsSL --connect-timeout 5 --max-time 60 "$1" -o "$2" 2>/dev/null
+}
+
+unreachable() {
+    blank
+    warn "Could not reach the course updates (no internet, or the course site is down)."
+    warn "Nothing was changed — carry on with the session and tell your facilitator."
+    exit 1
+}
+
+main() {
+    case "${1:-}" in
+        -h|--help) usage; exit 0 ;;
+        -V|--version)
+            if [ -f "$A101_ROOT/VERSION" ]; then
+                printf 'agentic-101 environment %s\n' "$(cat "$A101_ROOT/VERSION")"
+            else
+                printf 'agentic-101 environment (unreleased)\n'
+            fi
+            exit 0
+            ;;
+        --dry-run) dry_run=1 ;;
+        "") ;;
+        *) fail "course-update: I do not know the option '$1'." ;;
+    esac
+
+    command -v curl >/dev/null 2>&1 || fail "course-update: curl is missing — run Step 1 of the setup guide again."
+
+    tmp=$(mktemp -d "${TMPDIR:-/tmp}/a101-update.XXXXXX") || fail "course-update: could not make a temporary folder."
+    trap 'rm -rf "$tmp"' EXIT INT TERM
+
+    bold "Checking for course updates…"
+    [ -n "$dry_run" ] && dim "  DRY RUN — nothing will be changed"
+
+    # --- fetch everything first ---------------------------------------------
+    # The installers are fetched into directories of their own, with nothing
+    # beside them, so each falls back to downloading its payload from the base
+    # URL exactly as `curl | bash` would.
+    fetch "$A101_ENV_BASE/versions.env"    "$tmp/versions.env"          || unreachable
+    fetch "$A101_SETUP_BASE/pins.env"      "$tmp/pins.env"              || unreachable
+    fetch "$A101_ENV_BASE/install.sh"      "$tmp/env/install.sh"        || unreachable
+    fetch "$A101_SETUP_BASE/install-pi.sh" "$tmp/setup/install-pi.sh"   || unreachable
+
+    published_env=$( . "$tmp/versions.env" 2>/dev/null; printf '%s' "${ENV_VERSION:-}" )
+    published_pi=$(  . "$tmp/pins.env"     2>/dev/null; printf '%s' "${PI_VERSION:-}" )
+    [ -n "$published_env" ] && [ -n "$published_pi" ] || unreachable
+
+    installed_env=$(cat "$A101_ROOT/VERSION" 2>/dev/null | tr -d '\r' || true)
+    [ -n "$installed_env" ] || installed_env="unknown"
+
+    have_pi=""; installed_pi=""; pins_changed=""
+    if command -v pi >/dev/null 2>&1; then
+        have_pi=1
+        installed_pi=$(pi --version 2>/dev/null | head -1 | tr -d '\r')
+        [ "$installed_pi" = "$published_pi" ] || pins_changed=1
+        if [ -f "$A101_ROOT/pins.env" ]; then
+            cmp -s "$tmp/pins.env" "$A101_ROOT/pins.env" || pins_changed=1
+        else
+            pins_changed=1
+        fi
+    fi
+
+    updated=""
+
+    # --- the course environment ---------------------------------------------
+    if [ "$installed_env" != "$published_env" ]; then
+        if [ -n "$dry_run" ]; then
+            dim "  would update the course environment $installed_env → $published_env"
+        else
+            say "Course environment: updating $installed_env → ${published_env}…"
+            if AGENTIC101_ENV_BASE_URL="$A101_ENV_BASE" \
+               bash "$tmp/env/install.sh" --skip-packages --prefix "$A101_ROOT" >"$tmp/env.log" 2>&1; then
+                good "Course environment: updated $installed_env → $published_env"
+                updated=1
+            else
+                tail -n 8 "$tmp/env.log" >&2
+                fail "course-update: the environment update did not finish. Nothing else was changed — tell your facilitator."
+            fi
+        fi
+    else
+        good "Course environment: up to date ($installed_env)"
+    fi
+
+    # --- pi and its course settings -----------------------------------------
+    if [ -z "$have_pi" ]; then
+        dim "  pi is not installed on this machine — skipping it (Step 3 of the setup guide installs it)"
+    elif [ -n "$pins_changed" ]; then
+        pi_args="--keep-key --no-smoke-test --prefix $A101_ROOT"
+        # Only the settings changed, not pi itself: no need to reinstall pi.
+        [ "$installed_pi" = "$published_pi" ] && pi_args="$pi_args --skip-packages"
+        if [ -n "$dry_run" ]; then
+            if [ "$installed_pi" = "$published_pi" ]; then
+                dim "  would update pi's course settings"
+            else
+                dim "  would update pi $installed_pi → $published_pi and its course settings"
+            fi
+        else
+            say "pi: updating…"
+            # shellcheck disable=SC2086
+            if AGENTIC101_SETUP_BASE_URL="$A101_SETUP_BASE" \
+               bash "$tmp/setup/install-pi.sh" $pi_args >"$tmp/pi.log" 2>&1; then
+                if [ "$installed_pi" = "$published_pi" ]; then
+                    good "pi: course settings updated (pi $installed_pi)"
+                else
+                    good "pi: updated $installed_pi → $published_pi"
+                fi
+                updated=1
+            else
+                tail -n 8 "$tmp/pi.log" >&2
+                fail "course-update: the pi update did not finish. The course environment is current — tell your facilitator."
+            fi
+        fi
+    else
+        good "pi: up to date ($installed_pi)"
+    fi
+
+    # --- the one thing to do ------------------------------------------------
+    blank
+    if [ -n "$updated" ]; then
+        bold "Close this window and open a new one before carrying on."
+    elif [ -n "$dry_run" ] && { [ "$installed_env" != "$published_env" ] || [ -n "$pins_changed" ]; }; then
+        bold "Dry run finished. Nothing was changed."
+    else
+        bold "Nothing to do."
+    fi
+    exit 0
+}
+
+main "$@"; exit $?

@@ -43,6 +43,7 @@ there is no cost and no risk.
 |---|---|
 | Save a snapshot of this folder as it is right now | `commit` |
 | Put this folder back to one of those snapshots | `revert` |
+| Get the latest course fixes (start of every session) | `course-update` |
 
 Both walk you through it in plain English. A few things worth knowing:
 

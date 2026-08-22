@@ -28,6 +28,7 @@ A101_PAYLOAD="pins.env bin/course-smoke-test"
 dry_run=""
 skip_packages=""
 no_smoke_test=""
+keep_key=""
 install_root="$A101_INSTALL_ROOT_DEFAULT"
 api_key=""
 
@@ -36,6 +37,7 @@ usage() {
 install-pi.sh — install pi and set it up for the agentic-101 course.
 
   --key KEY           the OpenRouter key your facilitator gave you
+  --keep-key          reuse the key already saved on this machine (updates)
   --dry-run           say what would happen, change nothing
   --skip-packages     configure only; do not install pi from npm
   --no-smoke-test     do not run course-smoke-test at the end
@@ -54,6 +56,7 @@ while [ $# -gt 0 ]; do
         --dry-run) dry_run=1; shift ;;
         --skip-packages) skip_packages=1; shift ;;
         --no-smoke-test) no_smoke_test=1; shift ;;
+        --keep-key) keep_key=1; shift ;;
         --prefix) shift; install_root="${1:?--prefix needs a directory}"; shift ;;
         -h|--help) usage; exit 0 ;;
         *) printf 'install-pi.sh: unknown option %s\n' "$1" >&2; usage >&2; exit 2 ;;
@@ -190,11 +193,21 @@ dim "  node $(node --version 2>/dev/null) — found"
 # Wanted before anything is installed: finding out the key is missing after a
 # two-minute npm install is a worse experience than finding out now.
 
-if [ -z "$api_key" ]; then
+# --keep-key (course-update): the key already on this machine stays as it is.
+# Nothing is asked and nothing is validated; a missing key is the one failure.
+if [ -n "$keep_key" ]; then
+    if [ -s "$pi_config_dir/auth.json" ]; then
+        dim "  keeping the key already saved"
+    else
+        fail "install-pi.sh: no saved key on this machine — run Step 3 of the setup guide first."
+    fi
+fi
+
+if [ -z "$api_key" ] && [ -z "$keep_key" ]; then
     api_key="${OPENROUTER_API_KEY:-}"
 fi
 
-if [ -z "$api_key" ] && [ -z "$dry_run" ]; then
+if [ -z "$api_key" ] && [ -z "$dry_run" ] && [ -z "$keep_key" ]; then
     # A101_ASSUME_DEFAULTS is the environment's convention for "never prompt"
     # (env/lib/common.sh). The tests set it so a missing key fails fast
     # instead of blocking on a terminal that may not exist.
@@ -218,7 +231,7 @@ fi
 # removing all of it is safe and saves a support round trip.
 api_key=$(printf '%s' "$api_key" | tr -d ' \t\r\n')
 
-if [ -z "$dry_run" ]; then
+if [ -z "$dry_run" ] && [ -z "$keep_key" ]; then
     case "$api_key" in
         "")
             fail "install-pi.sh: no key given. Run this again with --key followed by
@@ -331,7 +344,9 @@ step "Step 4 of 5 — saving your key"
 
 auth_file="$pi_config_dir/auth.json"
 
-if [ -n "$dry_run" ]; then
+if [ -n "$keep_key" ]; then
+    dim "  keeping the key already saved in $auth_file"
+elif [ -n "$dry_run" ]; then
     would "write $auth_file (0600)"
 else
     mkdir -p "$pi_config_dir" || fail "install-pi.sh: could not create $pi_config_dir."

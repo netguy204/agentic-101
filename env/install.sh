@@ -21,7 +21,7 @@ A101_BASE_URL_DEFAULT="https://raw.githubusercontent.com/netguy204/agentic-101/m
 A101_BASE_URL="${AGENTIC101_ENV_BASE_URL:-$A101_BASE_URL_DEFAULT}"
 
 # Files copied to the participant's machine. Paths are relative to env/.
-A101_PAYLOAD="lib/common.sh lib/shellrc.sh bin/commit bin/revert bin/course-check versions.env"
+A101_PAYLOAD="lib/common.sh lib/shellrc.sh bin/commit bin/revert bin/course-check bin/course-update versions.env"
 
 dry_run=""
 skip_packages=""
@@ -185,7 +185,11 @@ if [ -n "$dry_run" ]; then
 else
     mkdir -p "$install_root/bin" "$install_root/lib" || fail "install.sh: could not create $install_root."
     for rel in $A101_PAYLOAD; do
-        cp "$A101_SRC/$rel" "$install_root/$rel" || fail "install.sh: could not copy $rel."
+        # Copy beside, then move over: course-update runs this installer, and
+        # a running script must keep its old inode rather than be rewritten
+        # underneath itself (docs/chunks/onboarding_course_update).
+        { cp "$A101_SRC/$rel" "$install_root/$rel.tmp" && mv -f "$install_root/$rel.tmp" "$install_root/$rel"; } \
+            || fail "install.sh: could not copy $rel."
     done
     chmod +x "$install_root"/bin/* || fail "install.sh: could not make the commands runnable."
     printf '%s\n' "$ENV_VERSION" > "$install_root/VERSION"

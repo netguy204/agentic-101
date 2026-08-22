@@ -34,6 +34,13 @@ not a security boundary or permission to take external actions. Also state
 that what participants type and any file pi reads is sent to the model
 provider. Say both before anyone touches a keyboard.
 
+**Before exercise 1 — `course-update`.** Run it on the projector first, then
+have everyone run it. This is where any fix published between sessions
+lands on their machines; most weeks it prints *Nothing to do* in a few
+seconds. If it says to close and reopen the window, wait for the room to do
+that before exercise 1 starts. If the room has no internet it says so in
+one line and changes nothing — carry on; the session does not depend on it.
+
 ---
 
 ## Exercise 1 — Where am I? (11 minutes)

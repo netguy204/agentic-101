@@ -203,4 +203,25 @@ Session 2 `EXERCISES.md`/`EXERCISE_RUNSHEET.md` shape is settled.
 
 ## Deviations
 
-<!-- POPULATE DURING IMPLEMENTATION. -->
+- **`--no-smoke-test` already existed** in `install-pi.sh`; the GOAL's
+  provisional `--no-check` name was corrected before planning. Only
+  `--keep-key` was added.
+- **The self-update hazard was real but had a different mechanism.** The
+  first run of `test-update.sh` failed case 2 with `published_env\xE2:
+  unbound variable`; experiments showed bash handles both copy-then-move and
+  in-place overwrite of a `main; exit`-wrapped script fine. The actual cause
+  was `$published_env…` — a multibyte ellipsis immediately after the
+  variable name is swallowed into the identifier in this locale. Fixed with
+  `${published_env}…`; a grep confirms no other course script has a variable
+  immediately followed by a non-ASCII byte. Both guards (main-then-exit,
+  tmp-then-mv) are kept as cheap insurance.
+- **Settings-only pin changes skip reinstalling pi.** When the published
+  `PI_VERSION` matches the installed pi, `course-update` passes
+  `--skip-packages` to `install-pi.sh` so a model change takes seconds rather
+  than an `npm install`.
+- **`setup/tests/test-setup.sh` has two pre-existing environment-dependent
+  failures on the authoring machine** (the smoke test's "pi is version 0.84.2,
+  but this course uses 0.83.0" — the local pi is newer than the pin) and four
+  when `OPENROUTER_API_KEY` is exported in the shell (the installer correctly
+  picks it up). Verified identical against a `git archive HEAD` baseline; not
+  regressions. The new `--keep-key` cases pass.

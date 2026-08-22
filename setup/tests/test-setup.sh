@@ -264,4 +264,24 @@ if [ "$FAILED" -eq 0 ]; then
     exit 0
 fi
 printf 'FAIL  %s of %s checks failed\n' "$FAILED" "$((PASS + FAILED))"
+echo "== --keep-key reuses the saved key and asks nothing =="
+fresh_home; install_env
+mkdir -p "$FAKE/.pi/agent"
+printf '{\n  "%s": { "type": "api_key", "key": "%s" }\n}\n' "$PI_PROVIDER" "$KEY" > "$FAKE/.pi/agent/auth.json"
+cp "$FAKE/.pi/agent/auth.json" "$SP/auth-keep.json"
+run_setup --skip-packages --no-smoke-test --keep-key
+has "keep-key announces itself" "keeping the key already saved" "$LOG"
+hasnt "keep-key never prompts" "Paste the key" "$LOG"
+cmp -s "$SP/auth-keep.json" "$FAKE/.pi/agent/auth.json" && ok "auth.json is byte-identical" || no "auth.json changed under --keep-key"
+ls "$FAKE/.pi/agent/" | grep -q 'auth.json.agentic-101-backup-' && no "keep-key made a backup" || ok "keep-key made no backup"
+exists "settings still written" "$FAKE/.pi/agent/settings.json"
+exists "pins still copied" "$ROOT/pins.env"
+
+echo "== --keep-key without a saved key fails plainly =="
+fresh_home; install_env
+run_setup --skip-packages --no-smoke-test --keep-key
+has "names Step 3" "run Step 3 of the setup guide" "$LOG"
+absent "wrote no auth" "$FAKE/.pi/agent/auth.json"
+absent "installed nothing else" "$FAKE/.pi/agent/settings.json"
+
 exit 1

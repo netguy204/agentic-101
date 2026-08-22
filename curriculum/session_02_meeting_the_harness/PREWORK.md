@@ -120,14 +120,22 @@ is all the session needs. Bring what you have and tell your facilitator.
 
 ---
 
-## 3. Run one command, and tell your facilitator (5 minutes)
+## 3. Run two commands, and tell your facilitator (5 minutes)
 
-This is the same check you ran at the end of the setup guide. It takes about
-ten seconds.
+The second is the same check you ran at the end of the setup guide. Both
+take seconds.
 
 Open the course terminal — **Mac:** `Command + Space`, type `Ghostty`, Enter.
 **Windows:** Start, type `Terminal`, Enter on **Windows Terminal** (not "Git
 Bash"). Then type this and press Enter:
+
+```
+course-update
+```
+
+It fetches any course fixes published since you set up — most weeks it
+says **Nothing to do.** If it tells you to close the window and open a new
+one, do that. Then type this and press Enter:
 
 ```
 course-smoke-test

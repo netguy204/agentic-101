@@ -30,7 +30,9 @@ Both hold
 `https://raw.githubusercontent.com/netguy204/agentic-101/main/env`.
 (`setup/install-pi.sh` carries its own base URL the same way, pointing at
 `…/main/setup`, and `setup/README.md` embeds the full one-liners in Steps
-1 and 3 — four locations total when the address changes.)
+1 and 3 — four locations total when the address changes — five with
+`env/bin/course-update`, which holds both bases as defaults and honours both
+override variables.)
 
 ## Publishing status
 

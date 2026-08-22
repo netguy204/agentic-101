@@ -159,4 +159,32 @@ and the GOAL's success criteria read back one by one.
 
 ## Deviations
 
-<!-- POPULATE DURING IMPLEMENTATION. -->
+- **Brief B, as first written, stalls rather than guesses.** The dry run's
+  three raw runs of "Read `tracker.csv`. For every item that has gone
+  stale…" each made one tool call — `find / -iname tracker.csv` — and
+  never returned. Every Priya instruction now says "in this folder", the
+  brief handout's Instruction prompt says to name the file and that it's in
+  this folder, and the stall became an expected, scripted case in
+  `EXERCISES.md` (Escape, `/quit`, read the one box), the runsheet, and the
+  facilitator guide. With the folder named, the designed near-miss appeared
+  on cue: it invented a threshold and a reference date, skipped *Done*
+  items, and said so.
+- **Brief B's inputs sentence** now asks the agent to find today's date
+  first; without it the made-up tracker was dated 2024 and everything was
+  stale.
+- **The scripted dry run mis-ran `revert` on its first pass** (the
+  environment's assume-defaults switch, set for `commit`, made `revert`
+  take its default and stop); the revert-to-before sequences were re-done
+  properly and only those results are recorded. Noted in `DRY_RUN.md` as a
+  runner error, with the observation that it is exactly what pressing Enter
+  at "which one?" shows a participant.
+- **Escape was not exercised** (print mode). `DRY_RUN.md` and
+  `FLOOR_TEST.md` assign it to the interactive TUI pass, with Brief B
+  minus "in this folder" as the way to provoke a stall on purpose.
+- **pi 0.84.2, not the pinned 0.83.0**, as in Session 2's dry run; recorded
+  as a deviation and a pre-cohort requirement.
+- **A fourth bucket — "out of bounds" — was added to the exercise-1 sort**
+  (the plan's risk about sentences not sorting cleanly), treated as a pass.
+- **The Step 5 FAQ** gained "my second run was worse" and "why only one box
+  at a time"; the Step 6 PRACTICE gained an explicit "if the second run
+  didn't happen in the room" clause because the cutting rules allow it.

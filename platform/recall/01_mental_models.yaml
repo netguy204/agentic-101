@@ -1,0 +1,54 @@
+# The recall beat that closes each segment of Session 1's concept track.
+# Chunk: docs/chunks/platform_module_contract - Session 1 recall prompts
+#
+# One per segment. The player asks the question, pauses long enough for an
+# answer said out loud, then reads the model answer. The model answers are
+# written to be *said*, not read: a sentence or three, in the course's voice,
+# and short enough that a listener can hold their own answer alongside it.
+
+session: 01_mental_models
+prompts:
+  - id: judgment_is_the_scarce_input
+    prompt: >-
+      The argument was that something used to be scarce and now something else
+      is. What moved, and what is scarce now?
+    model_answer: >-
+      The keystrokes used to be scarce — you needed somebody who could build
+      the thing. Now the building is cheap, and what is scarce is knowing what
+      is worth building and whether the result is right. That is judgment, and
+      you already have it.
+    segment_after: 1
+
+  - id: agent_versus_chatbot
+    prompt: >-
+      A colleague says an agent is just a chatbot with a better memory. In your
+      own words, what have they missed?
+    model_answer: >-
+      A chatbot produces text about the work; an agent does the work. It reads
+      and writes real files, runs commands, and takes several steps without
+      asking you in between. Which is why its own account of what it did is a
+      description of its intentions, and the file is what actually happened.
+    segment_after: 2
+
+  - id: judgment_not_expertise
+    prompt: >-
+      Somebody says a task is outside their judgment boundary because they
+      could not do it themselves. What is wrong with that answer?
+    model_answer: >-
+      Being able to do the work and being able to tell whether it came back
+      right are different questions, and only the second one is the limit. The
+      boundary is about whether you could look at the finished thing and know
+      it was wrong. You delegate work you could not do yourself all the time.
+    segment_after: 3
+
+  - id: what_makes_a_good_entry
+    prompt: >-
+      You are about to write your first entry. What has to be true of it, and
+      which column is the one that decides whether it is any good?
+    model_answer: >-
+      Something you actually did recently, specific enough to picture, and you
+      can say in one sentence what done right looks like. The column that
+      decides it is the last one — how you would check. Name the number you
+      would re-add or the name you would recognise. "I would read it over" is a
+      not sure in disguise.
+    segment_after: 4

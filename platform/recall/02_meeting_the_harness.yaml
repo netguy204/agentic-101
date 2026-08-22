@@ -1,0 +1,59 @@
+# The recall beat that closes each segment of Session 2's concept track.
+# Chunk: docs/chunks/platform_module_contract - Session 2 recall prompts
+#
+# Session 2 is a hands-on session, so these deliberately ask about the *why*
+# rather than about steps. A student who can answer all four has everything
+# they need to make sense of the lab; a student who can only recite the
+# commands has the part the lab card carries for them anyway.
+
+session: 02_meeting_the_harness
+prompts:
+  - id: what_is_a_terminal
+    prompt: >-
+      Somebody who has never opened one asks you what a terminal is. Say it in
+      one sentence — and then tell them the one thing that unsettles people
+      about it.
+    model_answer: >-
+      A terminal is a window onto a folder: the same folders and files you see
+      in your file browser, except you say what you want in words instead of
+      pointing. The thing that unsettles people is that it looks like it is
+      waiting for them to get something right. It is not. Nothing happens
+      until you press enter, and it will sit there as long as you like.
+    segment_after: 1
+
+  - id: why_the_safety_net_comes_first
+    prompt: >-
+      Why does this session teach you to undo things before it lets you run a
+      single delegation? And what does that undo not cover?
+    model_answer: >-
+      Because the agent changes files and has no undo of its own — and because
+      somebody who has only been told the safety net exists does not believe
+      it, and somebody who does not believe it will not experiment. It rolls
+      back ordinary changes to files in the practice folder. It does not
+      unsend an email, does not reach outside that folder, and cannot pull
+      back anything already sent to a model provider.
+    segment_after: 2
+
+  - id: what_tool_calls_are
+    prompt: >-
+      You run your first delegation and only two boxes appear on the screen.
+      What are those boxes, and what does two of them mean?
+    model_answer: >-
+      They are tool calls — one box per thing it actually did, read a file,
+      wrote a file, ran a command. They are the closest thing to a receipt you
+      will get. Two is normal. One write is a whole file created; a short list
+      is what competence looks like from the outside, not a sign that nothing
+      happened.
+    segment_after: 3
+
+  - id: the_three_questions
+    prompt: >-
+      Three questions, in order, after every delegation. What are they — and
+      which one is the session actually for?
+    model_answer: >-
+      What did it do, read off the boxes and not off its paragraph. What
+      changed in the folder, read off the actual file. And then the one the
+      session is for: was that reasonable, and how do I know? The answer to
+      the third is the check you already wrote in column four of your
+      inventory, before you had ever seen this software.
+    segment_after: 4

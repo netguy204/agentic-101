@@ -1,0 +1,26 @@
+# How the voice says this course's words.
+# Chunk: docs/chunks/platform_module_contract - Module pronunciation dictionary
+#
+# Term -> spoken form, handed to the text-to-speech voice at render time.
+# Only the words a voice gets wrong, and one word it gets wrong in a way that
+# matters more than the rest: pi is a harness, not a number, and a concept
+# track that says "three point one four" in the first minute has lost the
+# listener it was written for.
+
+pi: pie
+pi.dev: pie dot dev
+Ghostty: gostee
+OpenRouter: open router
+AGENTS.md: agents dot em dee
+JSONL: jay-son ell
+JSON: jay-son
+CSV: see ess vee
+CLI: see ell eye
+API: ay pee eye
+macOS: mac oh ess
+pwd: pee double-you dee
+ls: ell ess
+cd: see dee
+"~/course-practice": the course-practice folder
+toil inventory: toyl inventory
+toil: toyl

@@ -21,7 +21,8 @@ code_paths:
 code_references:
 - ref: curriculum/README.md
   implements: 'The per-session directory convention: session_<NN>_<slug>/ naming,
-    the six required filenames, handouts/ and FLOOR_TEST.md/DRY_RUN.md as optional,
+    the required filenames (six at the time; seven since the exercise split, DEC-011),
+    handouts/ and FLOOR_TEST.md/DRY_RUN.md as optional,
     and the rule that cross-session artifacts stay in the introducing session''s handouts/'
 - ref: curriculum/session_01_mental_models/README.md
   implements: The session index and the teaching spine stated as load-bearing order,

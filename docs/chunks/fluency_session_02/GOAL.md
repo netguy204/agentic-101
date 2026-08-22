@@ -29,7 +29,7 @@ code_references:
     survives a broken setup: what a terminal is as a window onto a folder, the
     blinking-cursor reassurance, the commit/revert promise Session 1 made, the
     starred inventory entry with its two pre-written sentences, and a
-    course-smoke-test result reported rather than debugged'
+    course-update then course-smoke-test result reported rather than debugged'
 - ref: curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
   implements: 'The re-teachable hands-on session: the eight-minute setup-triage
     opening (smoke test, aggregate tally, immediate pairing with the non-owner
@@ -68,8 +68,9 @@ code_references:
     happen before first teach
 - ref: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
   implements: The one-page reference that lets participants stop memorising — the
-    GUI-to-terminal concept map, the six commands the course uses, the two safety
-    commands with the read-the-names-not-the-numbers rule, pi's keys, the four
+    GUI-to-terminal concept map, the commands the course uses (including
+    course-update), the two safety commands with the read-the-names-not-the-numbers
+    rule, pi's keys, the four
     tools, and a when-you-feel-lost table whose every answer is safe
 - ref: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
   implements: 'The worksheet that is the session''s checkpoint evidence: tool calls

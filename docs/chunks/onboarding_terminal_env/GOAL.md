@@ -20,7 +20,7 @@ code_paths:
   - docs/trunk/DECISIONS.md
 code_references:
   - ref: env/install.sh
-    implements: "macOS installer: Ghostty/node/git via Homebrew, payload to ~/.agentic-101, managed blocks in ~/.bash_profile, ~/.zshrc, and Ghostty config (bash-inside-Ghostty, pi keybinds, option-as-alt)"
+    implements: "macOS installer: Ghostty/node/git via Homebrew, payload to ~/.agentic-101 (copy-then-move; includes course-update, DEC-012), managed blocks in ~/.bash_profile, ~/.zshrc, and Ghostty config (bash-inside-Ghostty, pi keybinds, option-as-alt)"
   - ref: env/install.ps1
     implements: "Windows installer (AUTHORED, UNTESTED on Windows): winget packages, payload, LF bash_profile block, Windows Terminal patch, course-check via Git Bash"
   - ref: env/windows/Patch-WindowsTerminal.ps1
@@ -40,13 +40,13 @@ code_references:
   - ref: env/versions.env
     implements: "Per-cohort version pinning source of truth and pinning procedure (SPEC Versioning)"
   - ref: env/tests/test-commands.sh
-    implements: "commit/revert end-to-end smoke suite in throwaway repos (43 checks)"
+    implements: "commit/revert end-to-end smoke suite in throwaway repos (45 checks)"
   - ref: env/tests/test-install.sh
     implements: "install/uninstall smoke suite against temp HOME (35 checks)"
   - ref: env/README.md
-    implements: "Environment documentation: what installs, what is modified, undo story, option-as-alt tradeoff, untested-Windows notice"
+    implements: "Environment documentation: what installs (including course-update), what is modified, undo story, option-as-alt tradeoff, untested-Windows notice"
   - ref: env/DISTRIBUTION.md
-    implements: "Publishing prerequisite for the curl|bash one-liner; base URL location"
+    implements: "Publishing prerequisite for the curl|bash one-liner; base URL locations, including course-update as a consumer of both bases"
   - ref: env/FLOOR_TEST.md
     implements: "Floor-test protocol, DEC-007 keybinding audit items, automated results log, pending human runs"
 narrative: null

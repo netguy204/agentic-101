@@ -1,0 +1,117 @@
+# agentic-101 as a self-paced module. Module Contract v1.
+# Chunk: docs/chunks/platform_module_contract - The manifest the platform ingests
+#
+# This is the only file the platform knows the name of; everything else in
+# platform/ is found through it. The session mapping below is DEC-010 and
+# DEC-011's seven fixed filenames, divided by audience: PREWORK and README are
+# concept, EXERCISES/PRACTICE/handouts are the lab, and the facilitator's
+# documents are ta_knowledge — which on the platform means the virtual TA may
+# read them and a student may not.
+#
+# CHECKPOINT.md appears nowhere below, on purpose. It is the source the
+# rubrics were written from, and handing it to the TA as well would hand a
+# student the answers to their own checkpoint.
+
+contract: 1
+module: agentic-101
+title: Agentic 101
+audience_floor: non-programmer knowledge worker
+
+# The operator pays for the student's model use (DEC-006), one key per
+# student with a hard limit — setup/PRE_COHORT_CHECKLIST.md § 3 is where a
+# cohort's figure is recorded. These are the whole-course numbers: the
+# student's key, and the platform's own spend on TA, certification and audio
+# for one enrollment.
+student_llm_budget_usd: 25
+platform_llm_budget_usd: 10
+
+pronunciation: platform/pronunciation.yaml
+
+# The gate before session 1: the environment works. In the cohort course this
+# is the pre-course setup guide and the facilitator's setup triage; here the
+# student runs the same smoke test and pastes what it printed.
+setup:
+  guide: setup/README.md
+  smoke_test_artifact: smoke_test
+  artifacts:
+    - id: smoke_test
+      kind: text
+  rubric: platform/rubrics/setup.yaml
+
+sessions:
+  - id: 01_mental_models
+    title: Mental models & the toil inventory
+    concept:
+      sources:
+        - curriculum/session_01_mental_models/PREWORK.md
+        - curriculum/session_01_mental_models/README.md
+      listenable_script: platform/audio/01_mental_models.md
+      recall_prompts: platform/recall/01_mental_models.yaml
+    lab:
+      sources:
+        - curriculum/session_01_mental_models/EXERCISES.md
+        - curriculum/session_01_mental_models/PRACTICE.md
+      handouts:
+        - curriculum/session_01_mental_models/handouts/
+    artifacts:
+      # The sheet that outlives every session (DEC-010). Session 6 gates the
+      # capstone on it, so this is the artifact with the longest life.
+      - id: toil_inventory
+        kind: worksheet
+        template: curriculum/session_01_mental_models/handouts/toil-inventory.md
+      # The checkpoint says "say out loud", and its remote-cohort note already
+      # accepts a written answer. So: spoken on a drive, or typed at the desk.
+      - id: boundary_claim
+        kind: [voice_note, text]
+    rubric: platform/rubrics/01_mental_models.yaml
+    ta_knowledge:
+      - curriculum/session_01_mental_models/FACILITATOR_GUIDE.md#anticipated-failure-points-and-recovery-moves
+      - curriculum/session_01_mental_models/FACILITATOR_GUIDE.md#faq-questions-you-will-be-asked
+      - curriculum/session_01_mental_models/EXERCISE_RUNSHEET.md
+      - curriculum/session_01_mental_models/FLOOR_TEST.md
+    estimated_minutes: { concept: 30, lab: 60 }
+
+  - id: 02_meeting_the_harness
+    title: Meeting the harness
+    concept:
+      sources:
+        - curriculum/session_02_meeting_the_harness/PREWORK.md
+        - curriculum/session_02_meeting_the_harness/README.md
+      listenable_script: platform/audio/02_meeting_the_harness.md
+      recall_prompts: platform/recall/02_meeting_the_harness.yaml
+    lab:
+      sources:
+        - curriculum/session_02_meeting_the_harness/EXERCISES.md
+        - curriculum/session_02_meeting_the_harness/PRACTICE.md
+      handouts:
+        - curriculum/session_02_meeting_the_harness/handouts/
+    artifacts:
+      # pi keeps its sessions as JSONL under ~/.pi/agent/sessions; `pi -r`
+      # finds them. This is the record of what the agent actually did, as
+      # opposed to what it said about itself.
+      - id: session_log
+        kind: harness_log
+        accepts: ["*.jsonl"]
+      - id: what_did_it_do
+        kind: worksheet
+        template: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
+      # `revert` is a course command the participant types (env/bin/revert),
+      # not a tool the agent calls, so it leaves no trace in the session log.
+      # What it does leave is a checkpoint named "Back to: <name>", which
+      # `revert --list` prints. That listing is the evidence.
+      - id: checkpoint_list
+        kind: text
+      # The folder itself. Bar item 1 is "an agent changed a real file on
+      # their own machine", and the file is the plainest form of that.
+      - id: practice_files
+        kind: files
+        accepts: ["*.csv", "*.md", "*.txt"]
+    rubric: platform/rubrics/02_meeting_the_harness.yaml
+    ta_knowledge:
+      - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md#anticipated-failure-points-and-recovery-moves
+      - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md#faq-questions-you-will-be-asked
+      - curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
+      - curriculum/session_02_meeting_the_harness/DRY_RUN.md
+      - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
+      - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+    estimated_minutes: { concept: 25, lab: 90 }

@@ -1,179 +1,162 @@
-
-
-<!--
-This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
--->
+<!-- This document captures HOW you'll achieve the chunk's GOAL. -->
 
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+Copy Session 2's shape file for file and fill it with Session 3's content;
+do not invent a new shape. `curriculum/session_02_meeting_the_harness/` is
+read end to end first and used as the structural template for each
+artifact (README tables, facilitator-guide beats/timing/failures/FAQ,
+participant-only EXERCISES and facilitator-only RUNSHEET, PRACTICE budget
+table, CHECKPOINT round/tally/recovery, FLOOR_TEST protocol, DRY_RUN
+record). Voice comes from the existing sessions and `pi-learning-paths.md`.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+Build inside-out: the handout first (the brief is what every other file
+points at), then the fallback (`canned-toil.md` "For Session 3"), then the
+participant steps (EXERCISES) and the facilitator runsheet against them,
+then the guide, prework, practice, checkpoint, README, then the dry run
+(real pi runs, recorded honestly), then FLOOR_TEST, then the convention
+files (curriculum/README.md session table, SPEC item 3). Every claim about
+pi is checked against `docs/chunks/onboarding_setup_guide/pi-reference.md`.
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
-
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/fluency_session_03/GOAL.md)
-with references to the files that you expect to touch.
--->
-
-## Subsystem Considerations
-
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+Testing per `docs/trunk/TESTING_PHILOSOPHY.md`: the dry run executes the
+written steps literally (deviations recorded, text fixed where the runner
+had to improvise), each agent step at least twice, including the
+under-specified canned brief until it produces a visible near-miss; the
+mechanical checks from `fluency_exercise_split` (audience purity, link
+integrity, `ve validate`) run at the end. The floor test is written as a
+protocol with PENDING results — it cannot be executed by the author.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Read the template
+Read all of `session_02_meeting_the_harness/` (every file, both handouts),
+Session 1's two handouts, `pi-reference.md` §3 (essential workflow,
+sessions: `pi -c`, `pi -r`, `/quit`, `Ctrl+O`, `Escape`), and
+`docs/chunks/fluency_session_02/PLAN.md` and `DRY_RUN.md` for how the dry
+run was driven (print mode, which model, how runs were recorded).
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+### Step 2: `handouts/delegation-brief.md`
+One printable page: title, one-paragraph why ("a colleague who cannot see
+your screen"), the four boxes (Inputs / Instruction / Outputs /
+Checkpoints) each with a one-line prompt and a filled example row drawn from
+Session 2's "messy sample → cleaned up" task, the fifth line "What would I
+have failed to catch?", a note that Instruction = inventory column 2 and
+Checkpoints = column 4, and a "How this sheet is used later" table
+(Session 3 / Practice / Session 4 / Session 6). Backreference to this chunk.
 
-Example:
+### Step 3: Extend Session 1's handouts in place
+- `toil-inventory.md` "How this sheet is used later": add the Session 3 row
+  ("You write a delegation brief for one entry; columns 2 and 4 become its
+  instruction and checkpoints").
+- `canned-toil.md`: add "## For Session 3 — Priya's briefs" after the
+  Session 2 section: three briefs (Monday roll-up fully specified; one with
+  a deliberately missing input — e.g. the regional spreadsheets' sheet names
+  not given — flagged only in the facilitator runsheet, not on the handout;
+  one whose checkpoint is vague so exercise 4 has something to catch). No
+  answer key. A one-line note in "How to use this in the exercises".
 
-### Step 1: Define the SegmentHeader struct
+### Step 4: `EXERCISES.md` (participant) and `EXERCISE_RUNSHEET.md`
+Exercises, 90-min shape (timings only in the runsheet):
+1. *Your worst one* (10) — sentence round; the facilitator's sort into
+   didn't-know / decided / couldn't-tell (runsheet), participant writes
+   which of the three theirs was on the worksheet.
+2. *The brief* (12) — fill in the four boxes for one real `in` entry that
+   passes the four-question gate (or a canned brief), drawing columns 2/4
+   across.
+3. *Run it, read it, fix it* (22) — `commit` → `pi` with the brief's
+   instruction → read tool calls and file → compare each box → revise once
+   for a named reason → `commit` → run again → `commit`. "What you should
+   see": two checkpoints with names in `revert --list`.
+4. *What would I have failed to catch?* (10) — the fifth line; add a second
+   checkpoint or rule the task out.
+5. *Wrapping up* — the checkpoint round question.
+Before exercise 1: `course-update` (copy Session 2's paragraph). Runsheet
+per DEC-011: no restated steps; What participants do / Say it like this /
+Work one live first (the facilitator briefs Priya's roll-up on the board) /
+Observable output / misfires (the agent gets it right despite a bad brief;
+a brief that is column 2 verbatim with no inputs; revising twice; "it
+decided something" read as the agent's fault) / Fallback / Remote.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+### Step 5: FACILITATOR_GUIDE.md
+Before the room (read Session 2's tally; print the brief, one per person
+plus spares, and canned-toil; verify own environment with `course-update`);
+Timing table 90/60 with cutting rules (protect ex 1 and 4; cut inside ex
+3's second run first); Cold open (the near-miss round is the open — script
+the sort, with the three sentences written on the board and an example of
+each); the anatomy beat (the four parts, SPEC's delegation definition
+verbatim, each near-miss reason → the missing part); exercise beats that
+point at the runsheet; the sentence to land before the break ("enough
+structure that it completes without you" — and what "enough" is); the
+checkpoint round; anticipated failures table (from the GOAL); FAQ ("isn't
+this just prompt engineering?", "what if the agent asks me questions?",
+"can I reuse the brief at work?" → PRACTICE's gate).
 
-Location: src/segment/format.rs
+### Step 6: PREWORK.md, PRACTICE.md, CHECKPOINT.md, README.md
+PREWORK (≤30): `course-update`; finish the worst-one worksheet if not done;
+read the brief handout once; pick the entry you'll brief (an `in` that
+passes the gate) and star it; bring the three things. Works after only the
+solo lap. PRACTICE (≤90): run the brief on the real task twice in the week
+(revise between); optional: brief an `out` entry and note the box you can't
+fill; bring the brief + inventory + one sentence to Session 4; "if the week
+gets away from you: run it once, revised or not". CHECKPOINT: the round
+(brief ran twice; the named improvement; the written miss), pass/near-miss
+sounds, private recovery (a participant with no real entry; one whose brief
+never ran; one who can't name a miss — "then it's out, and that's a pass"),
+tally table, what it feeds (Session 4 opens with the briefs; Session 6).
+README: artifact table (nine files + handout), reading order, from/to
+tables (from 1: inventory columns 2/4, judgment boundary; from 2: the loop,
+the worksheet, the near-miss; to 4: the brief becomes step one of a
+workflow; to 6: the capstone design is a brief).
 
-### Step 2: Implement header serialization
+### Step 7: DRY_RUN.md — run it
+In a throwaway practice folder with the course's pinned model over
+OpenRouter (record the pi version actually used, as Session 2 did): run
+exercise 3 with (a) a real-shaped brief, (b) the under-specified Priya
+brief, (c) the vague-checkpoint brief — each at least twice, noting where
+the near-miss appeared and where the model did the right thing anyway.
+Run `commit`/`revert --list` to confirm the "two checkpoints" evidence.
+Record deviations, text corrections made, and limits (Windows, TUI keys,
+pi version).
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+### Step 8: FLOOR_TEST.md
+Mirror Session 2's: preconditions, verbatim tasks (a non-programmer fills
+the brief from the handout alone in ≤12 min; follows exercise 3 unaided),
+timing against every claimed budget, watch-fors (copies column 2 verbatim
+with no inputs; can't separate "it decided" from "it was wrong"; reads the
+agent's paragraph instead of the boxes again), results PENDING.
 
-### Step 3: ...
-
----
-
-**BACKREFERENCE COMMENTS**
-
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
-
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
-
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
-
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
-
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
-
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+### Step 9: Convention files and verification
+`curriculum/README.md` session table row 3; SPEC.md item 3 → settled with
+a summary paragraph; confirm Session 2's README "To later sessions" row 3
+is still true. Checks: audience purity (no facilitator voice in
+EXERCISES.md, no numbered steps in the runsheet), relative links under
+`curriculum/` resolve, `course-update` paragraph present, `ve validate`,
+and the GOAL's success criteria read back one by one.
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+`fluency_session_02` (ACTIVE) — the template and the promises;
+`fluency_exercise_split` (ACTIVE) — the two-file exercise shape;
+`onboarding_course_update` (ACTIVE) — the session-start rule. All shipped.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **The model may do the right thing despite the under-specified brief.**
+  Nondeterminism cuts both ways; the dry run needs enough runs to see the
+  near-miss at least once, and the facilitator guide needs the "it got it
+  right anyway" move scripted.
+- **The authoring machine's pi is newer than the pin** (0.84.x vs 0.83.0),
+  as in Session 2's dry run; record it as a deviation and re-pin or re-run
+  per the pre-cohort checklist.
+- **Participant near-misses may not sort cleanly** into three reasons; the
+  guide should give the facilitator a fourth bucket ("the task was out of
+  bounds") and say it is a pass, not a failure.
+- **Length.** Five files of prose at Session 2's density is a lot; the
+  cutting rules and the runsheet's "Steps: EXERCISES.md" discipline keep
+  it from duplicating.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+<!-- POPULATE DURING IMPLEMENTATION. -->

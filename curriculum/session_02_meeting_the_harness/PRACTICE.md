@@ -84,16 +84,20 @@ Before using a real task, it must pass **all four questions**:
    outcome? The agent may prepare evidence; a responsible person decides.
 4. **Human-approved before external action:** Can a person review the actual
    output and explicitly approve it before anything is sent, published,
-   merged, deployed, purchased, scheduled, or otherwise acted on outside the
-   practice folder? If not, keep the task synthetic.
+   purchased, scheduled, or otherwise acted on outside the practice folder?
+   If not, keep the task synthetic.
 
-**Professional example:** a human can authorize an engineering agent to
-inspect a repository, make changes, run checks, and open a pull request as a
-specifically approved external action. Creating the pull request is
-substantial delegated work, but it grants no authority to merge: a human
-reviews the diff and test evidence before choosing whether to merge to
-`main`, and deployment remains a separate human-approved action. Approval to
-open the pull request is not approval to merge or deploy.
+**What this looks like in practice:** say a supplier emails asking for
+three things. You can hand the agent the thread and the relevant figures and
+ask it to draft the reply — pull out what they asked, look up the numbers,
+lay out the options in plain English. That is real, substantial work, and it
+is exactly the kind of thing to delegate. What the agent does not get is the
+send button. You read the draft, check the figures against what you know, fix
+what's wrong, and decide whether it goes — and if it does, you are the one
+who sends it. Permission to draft is not permission to send. The agent does
+the work; the person with the judgment reviews it and approves it before it
+reaches anyone. That split — it does, you decide — is the shape of every safe
+delegation in this course, whatever the task is.
 
 **Pick two entries from your toil inventory marked `in` that also pass the
 other three questions.** Not the starred one from the session — two others.

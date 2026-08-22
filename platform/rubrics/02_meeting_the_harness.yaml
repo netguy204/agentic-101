@@ -1,0 +1,169 @@
+# Session 2's checkpoint, structured.
+# Chunk: docs/chunks/platform_module_contract - Session 2 rubric
+#
+# Source: curriculum/session_02_meeting_the_harness/CHECKPOINT.md. Four
+# numbered bar items, four criteria, in the checkpoint's order. It splits
+# them itself: "The first and fourth are facts you can see; the second and
+# third are the ones you have to hear, and they are the ones the session is
+# for." So items 1 and 4 are decided by machine and items 2 and 3 are judged,
+# and the split is the checkpoint's, not a convenience.
+#
+# All six rows of the near-miss table appear below with the facilitator's own
+# words.
+
+session: 02_meeting_the_harness
+bar: all
+version: 1
+criteria:
+  # Bar, item 1: "Run at least one delegation in ~/course-practice — an agent
+  # changed a real file on their own machine at their instruction."
+  - id: ran_delegation
+    statement: >-
+      The student ran at least one delegation, and an agent changed a real
+      file at their instruction.
+    check: deterministic
+    evidence:
+      - artifact: session_log
+        expect: at least one write, edit or bash tool call
+      - artifact: practice_files
+        expect: the file the agent made or changed, from the practice folder
+    deterministic:
+      kind: harness_log.tool_calls_at_least
+      artifact: session_log
+      params:
+        count: 1
+        tools: [write, edit, bash]
+
+  # Bar, item 2: "Said what the agent did by reading its tool calls, not by
+  # repeating its summary. 'It wrote the file' is a pass. 'It cleaned up my
+  # statuses' is not — that's the paragraph talking."
+  - id: read_tool_calls
+    statement: >-
+      The student says what the agent did by reading its tool calls, not by
+      repeating its summary.
+    check: judge
+    evidence:
+      - artifact: what_did_it_do
+        expect: >-
+          box 1 lists the tools in order, in the student's own words, and
+          names anything surprising in that list
+      - artifact: session_log
+        expect: the calls they name actually appear, in that order
+    pass_examples:
+      - >-
+        I asked it for a list of purchase orders with the supplier names
+        spelled inconsistently. It used write once. Then I asked it to fix
+        them, and it used write again — it never re-read the file, which I
+        noticed.
+    near_miss_examples:
+      - text: It standardised all my statuses and tidied the dates.
+        why: >-
+          That's the summary, not the tool calls. The most common near-miss by
+          far.
+        corrective: >-
+          That's what it told you. What did the boxes say, and what did you
+          look at?
+      - text: It used all four tools.
+        why: Guessing from the handout rather than reading the screen.
+        corrective: "Scroll up. How many boxes are actually there? Usually one or two."
+      - text: It only used one tool, so I don't think it really did anything.
+        why: Reading a short list as a failure.
+        corrective: >-
+          One write is a whole file created. Short lists are normal — what
+          changed in the folder?
+
+  # Bar, item 3: "Named what they checked to decide whether the result was
+  # reasonable, and what that check told them. Specific. 'The row count was
+  # still fifteen and I read the status column' passes; 'it looked fine' does
+  # not." This is the criterion the session exists for — the checkpoint says
+  # three delegations without it "is a person who has learned to operate
+  # software, which is not what this course is selling".
+  - id: named_check
+    statement: >-
+      The student names the specific thing they checked, and what that check
+      told them.
+    check: judge
+    evidence:
+      - artifact: what_did_it_do
+        expect: >-
+          box 3 names the check applied and what it revealed — and, where they
+          could not tell, says so
+      - artifact: practice_files
+        expect: the file the check was applied to
+    pass_examples:
+      - >-
+        I checked that there were still fifteen rows and that the two
+        suppliers I know by name were still there. They were.
+      # The checkpoint names this the better answer, and says to make that
+      # point out loud if there is time for one piece of commentary in the
+      # whole round: they caught something a row count could not catch, using
+      # knowledge only they had, and they said so.
+      - >-
+        Mine merged two statuses that mean different things where I work. I
+        only caught it because it said so in its explanation, and I know our
+        board. Nothing I checked mechanically would have found it.
+    near_miss_examples:
+      - text: It looked fine.
+        why: No check.
+        corrective: >-
+          Fine how? What's the first thing your eye went to? There is nearly
+          always a real answer one question down.
+      - text: I checked it against what it said it did.
+        why: Circular — the summary checking the summary.
+        corrective: >-
+          So you checked the paragraph against the paragraph. What's in the
+          file?
+
+  # Bar, item 4: "Used `revert` at least once to recover an ordinary local
+  # file change they or the agent made on purpose."
+  #
+  # `revert` is a course command the participant types, not a tool the agent
+  # calls, so the session log will never show it. What it leaves behind is a
+  # checkpoint of its own — env/bin/revert records the restore as
+  # `Back to: <name>` rather than erasing history, precisely so that going
+  # back is itself undoable — and `revert --list` prints it under the header
+  # below. So the student pastes that listing, which is the same move the
+  # setup gate makes with `course-smoke-test`: evidence they can see on their
+  # own screen and recognise. It is also the listing Session 3's exercises
+  # already have participants read, so nothing new is being asked of them
+  # here beyond doing it a session earlier.
+  - id: used_revert
+    statement: The student used `revert` at least once and recovered a change.
+    check: either
+    evidence:
+      - artifact: checkpoint_list
+        expect: >-
+          the pasted output of `revert --list`, showing a checkpoint named
+          "Back to: …" — the record `revert` writes when it puts a folder back
+    pass_examples:
+      - And yes, I reverted — it renamed my file and I put it back.
+      - And I reverted twice — the first time I picked the wrong checkpoint.
+    near_miss_examples:
+      - text: I didn't need to revert, mine went fine.
+        why: Item 4 missing.
+        # The facilitator's line is "Not a debate — get them to do it, now, in
+        # thirty seconds. `commit`, delete a file in the file browser,
+        # `revert`. They cannot leave without having done it." Said to a
+        # student who is not in the room, it has to end with what to send
+        # back; the substance and the refusal to debate it are unchanged.
+        corrective: >-
+          Not a debate — do it now, it takes thirty seconds. `commit`, delete
+          a file in your file browser, `revert`. Then send me `revert --list`
+          again. You cannot finish this session without having done it once.
+    deterministic:
+      kind: text.contains_all
+      artifact: checkpoint_list
+      params:
+        phrases:
+          - "Your checkpoints, newest first:"
+          - "Back to:"
+
+escalate_when:
+  - conversation_rounds_exhausted
+  - integrity_flag
+  - judge_confidence_below_threshold
+# The room gives this round six minutes for twelve people and picks the rest
+# up privately at the end. Two rounds here; past that, the checkpoint's own
+# Recovery section is a list of things that need a person — "sit with them,
+# run one delegation on your laptop with them typing".
+max_conversation_rounds: 2

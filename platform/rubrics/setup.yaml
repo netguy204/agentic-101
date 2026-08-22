@@ -1,0 +1,48 @@
+# The gate before Session 1: the student's environment works.
+# Chunk: docs/chunks/platform_module_contract - Setup gate, structured
+#
+# In the cohort course this gate is a line in the Session 1 prework ("which
+# did you get, PASS or FAIL?") and the facilitator's first eight minutes of
+# Session 2. Here it is the same question asked of the same script: the
+# student runs `course-smoke-test` and pastes the whole window.
+#
+# The phrases below are quoted from setup/bin/course-smoke-test's PASS path,
+# and every one of them is chosen from the part of its line that does NOT
+# interpolate a pin. "pi is installed, version 0.4.1" and "pi is set to the
+# course model (openrouter, <model>)" both move with setup/pins.env; quoting
+# them would fail the whole cohort the morning after a pin bump. The four
+# below do not move.
+#
+# Why four and not one: "PASS" alone is a word a student can type. Four lines
+# from four different checks is output, and the integrity screen has
+# something to work with.
+
+session: setup
+bar: all
+version: 1
+criteria:
+  - id: smoke_test_passed
+    statement: >-
+      The course smoke test ran on the student's own machine and reported
+      every check passing.
+    check: deterministic
+    evidence:
+      - artifact: smoke_test
+        expect: >-
+          the pasted output of `course-smoke-test`, the whole window, ending
+          in its PASS line
+    deterministic:
+      kind: text.contains_all
+      artifact: smoke_test
+      params:
+        phrases:
+          - "the course environment is healthy"
+          - "your key is saved"
+          - "the agent did a real task: it created a file when asked"
+          - "PASS — you are ready for the course."
+escalate_when:
+  # No conversation: this is not a judgment the student can argue their way
+  # through, and a student stuck here needs a person and half an hour, which
+  # is exactly what the cohort course gives them (setup triage, Session 2).
+  - integrity_flag
+max_conversation_rounds: 0

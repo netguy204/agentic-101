@@ -1,0 +1,175 @@
+# Session 1's checkpoint, structured.
+# Chunk: docs/chunks/platform_module_contract - Session 1 rubric
+#
+# Source: curriculum/session_01_mental_models/CHECKPOINT.md. That document
+# stays the source; this file is what a machine can apply, and it is not
+# allowed to say anything the checkpoint does not. Every criterion below
+# names the sentence it comes from. Every row of the checkpoint's near-miss
+# table appears, with the facilitator's words rather than a paraphrase —
+# including the row the checkpoint says to accept.
+#
+# The bar is a pair, and the checkpoint is emphatic about it: "Three filled
+# rows without the spoken articulation is a filled-in form; the articulation
+# without the rows is a nice conversation. The session's outcome is the
+# pair." So: three criteria on the sheet, two on the claim, and bar: all.
+
+session: 01_mental_models
+bar: all
+version: 1
+criteria:
+  # Bar, item 1: "A toil inventory containing at least three entries".
+  - id: three_entries
+    statement: The inventory holds at least three entries.
+    check: deterministic
+    evidence:
+      - artifact: toil_inventory
+        expect: three or more filled rows in the four-column sheet
+    deterministic:
+      kind: worksheet.rows_at_least
+      artifact: toil_inventory
+      params:
+        count: 3
+        # The heading above the blank sheet in handouts/toil-inventory.md.
+        # The two worked examples further down sit under their own headings,
+        # so a student who submits the handout unfilled does not pass on the
+        # strength of the examples printed in it.
+        table: The sheet
+
+  # Bar, item 1, continued: "each annotated with judgeability — in, out, or
+  # not sure".
+  - id: judgeability_marked
+    statement: >-
+      Every entry is marked with whether the student could evaluate the
+      result — in, out, or not sure.
+    check: deterministic
+    evidence:
+      - artifact: toil_inventory
+        expect: column 3 carries in, out or not sure on at least three rows
+    deterministic:
+      kind: worksheet.column_filled
+      artifact: toil_inventory
+      params:
+        # Quoted exactly as handouts/toil-inventory.md prints it. If that
+        # header is ever reworded, this criterion does not error — it fails
+        # every student. See platform/README.md.
+        column: In or out of my judgment boundary?
+        rows_at_least: 3
+        table: The sheet
+
+  # Not a numbered bar item, and deliberately here anyway. The checkpoint's
+  # Recovery section makes it a state a participant does not leave the room
+  # in — "**Entries but no checks.** Ask 'what would you actually look at?'
+  # on one entry until it's concrete" — and DEC-010 says why: the "how I'd
+  # check" column "is what makes the checkpoint observable and what stops 'I
+  # do it every week' being accepted as an answer to judgeability".
+  - id: check_column_filled
+    statement: Every entry names the specific check the student would apply.
+    check: deterministic
+    evidence:
+      - artifact: toil_inventory
+        expect: column 4 is filled on at least three rows
+    deterministic:
+      kind: worksheet.column_filled
+      artifact: toil_inventory
+      params:
+        column: How I'd check
+        rows_at_least: 3
+        table: The sheet
+
+  # Bar, item 2: "the ability to say out loud, for one of their own tasks,
+  # why it sits inside or outside their judgment boundary".
+  - id: boundary_claim
+    statement: >-
+      For one of their own tasks, the student says whether it sits inside or
+      outside their judgment boundary, and why.
+    check: judge
+    evidence:
+      - artifact: boundary_claim
+        expect: >-
+          one task named, "in" or "out" stated, and a reason that is about
+          being able to judge the finished result
+      - artifact: toil_inventory
+        expect: the same task appears as a row on the sheet
+    # Both quoted from the checkpoint's "What a pass sounds like". The
+    # checkpoint calls the second one the better answer and says to make that
+    # point out loud if there is time for one piece of commentary in the whole
+    # round: knowing where your judgment runs out is the skill.
+    pass_examples:
+      - >-
+        The Monday roll-up. It's in — I'd add up the four regional totals
+        myself and check the summary matches, and I'd notice if a region that
+        always reports late had a suspiciously round number.
+      - >-
+        The contract clauses. Out. I can spot a changed payment term but I
+        could not tell you whether a re-worded liability clause is normal, and
+        it'd read fine to me either way.
+    near_miss_examples:
+      - text: It's in because I do it every week.
+        why: Frequency isn't judgeability.
+        corrective: >-
+          How often has nothing to do with it. If I handed you a finished one
+          — how would you know it was wrong?
+      - text: It's out because I couldn't do it myself.
+        why: >-
+          Expertise confused with judgment. The most common near-miss by far.
+        corrective: >-
+          You don't need to be able to do it. Could you tell if it was wrong?
+          … Then it's in.
+      - text: It's in because the agent could definitely do it.
+        why: Judging the agent, not their own judgment.
+        corrective: "That's a question about the tool. Mine's about you: could you tell?"
+
+  # Bar, item 2, continued: "naming the check they would use (or naming why
+  # no check is available to them)".
+  - id: named_check
+    statement: >-
+      The student names the specific thing they would look at — or says
+      plainly that no check is available to them.
+    check: either
+    evidence:
+      - artifact: boundary_claim
+        expect: >-
+          a concrete check — a number re-added, a name recognised, a rule
+          applied, a person who would complain — or an honest account of why
+          there is none
+    pass_examples:
+      - I'd re-add the four regional totals and see whether the summary matches.
+      - >-
+        Honestly, I couldn't check it. I'd know if a payment term changed, but
+        a re-worded liability clause would read fine to me either way. That's
+        why it's out.
+    near_miss_examples:
+      - text: I'd just read it over and I'd know.
+        why: The check isn't concrete.
+        corrective: >-
+          Reading it for what? What's the thing you'd notice? There is almost
+          always a real answer one question down.
+      # The checkpoint prints this row in the near-miss table and then says it
+      # is a fine answer. It is kept here rather than moved, because the
+      # instruction attached to it — accept it, and say why it is interesting
+      # — is worth as much as any correction, and DEC-003's rule (a near-miss
+      # resolved in the exchange counts as a pass) makes that land correctly.
+      - text: It's in, but I'd have to check every line.
+        why: >-
+          Nothing, in fact — that is a genuine check, and an expensive one.
+          The checkpoint says to accept it and flag it as interesting.
+        corrective: >-
+          That's a genuine check, and it's an expensive one. Hold that thought
+          — Session 4 is about exactly that.
+    # The floor under "concrete": "It's in." is nine words short of a claim.
+    # The checkpoint's own pass exemplars run to forty.
+    deterministic:
+      kind: text.min_words
+      artifact: boundary_claim
+      params:
+        count: 25
+
+escalate_when:
+  - conversation_rounds_exhausted
+  - integrity_flag
+  - judge_confidence_below_threshold
+# The room's version of this is one round: "say 'good', note it, and move to
+# the next person… If something is worth picking up, pick it up with that
+# person afterwards." Two rounds here, because the corrective questions above
+# are the pickup, and the third round is what escalation is for.
+max_conversation_rounds: 2

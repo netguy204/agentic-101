@@ -25,8 +25,8 @@ names the subject, not the activity.
 
 ## Required files
 
-Every session directory contains these six files. A session chunk creates
-all six even when one of them is short — a missing file reads as "this
+Every session directory contains these seven files. A session chunk creates
+all seven even when one of them is short — a missing file reads as "this
 session doesn't have one", which is never what we mean.
 
 | File | What it is | Audience |
@@ -34,14 +34,17 @@ session doesn't have one", which is never what we mean.
 | `README.md` | Session index: the outcome, the teaching spine, links to the rest | Anyone opening the directory |
 | `PREWORK.md` | What the participant does before the session, ≤30 min | Participant |
 | `FACILITATOR_GUIDE.md` | Timing, talking points, demo scripts, anticipated failure points, recovery moves | Facilitator |
-| `EXERCISES.md` | The in-session hands-on work, with a fallback per exercise | Facilitator and participant |
+| `EXERCISES.md` | The in-session steps the participant follows, with the canned fallback | Participant |
+| `EXERCISE_RUNSHEET.md` | Per-exercise running order for the facilitator: timing, what to say, observable output, misfires, fallbacks — points at `EXERCISES.md` for the steps | Facilitator |
 | `PRACTICE.md` | Between-session application to the participant's own toil, ≤90 min | Participant |
 | `CHECKPOINT.md` | The observable behavior that says the session's outcome landed | Facilitator |
 
-The five names other than `README.md` map one-to-one onto the Session
-Anatomy list in `docs/trunk/SPEC.md`, which is the authority on what each
-must contain. This directory's convention is only about *where* they live
-and *what they're called*.
+The six names other than `README.md` map onto the Session Anatomy list in
+`docs/trunk/SPEC.md`, which is the authority on what each must contain —
+one-to-one, except that the in-session exercises element is two files, one
+per reader: `EXERCISES.md` for the participant and `EXERCISE_RUNSHEET.md`
+for the facilitator (DEC-011). This directory's convention is only about
+*where* they live and *what they're called*.
 
 ## Optional, by convention
 
@@ -73,6 +76,11 @@ and *what they're called*.
   Session 2 does exactly this to both of Session 1's handouts — a row in the
   inventory's usage table, and a "For Session 2" section in
   `handouts/canned-toil.md`.
+- **The runsheet never restates a step.** `EXERCISE_RUNSHEET.md` refers to
+  `EXERCISES.md` by exercise and step ("exercise 2, step 6") and adds only
+  what the facilitator needs — timing, what to say, what to watch for, what
+  to do when it goes wrong. Commands, prompts, and on-screen text have
+  exactly one source, so the two files cannot drift apart.
 - **Participant-facing text assumes only what has been taught.** No
   terminal knowledge before Session 2, no harness mechanics before Session
   2, no code anywhere (`docs/trunk/DECISIONS.md`, DEC-004). An exercise

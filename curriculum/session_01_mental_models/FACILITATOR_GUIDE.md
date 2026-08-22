@@ -24,8 +24,10 @@ fixed before Session 2, which is the one that needs it.
   `docs/trunk/SPEC.md` (Terminology). The vocabulary in this guide is
   quoted from SPEC.md deliberately; every later session builds on it, so
   use these words rather than synonyms you prefer.
-- **Read** [`handouts/toil-inventory.md`](handouts/toil-inventory.md) and
-  [`EXERCISES.md`](EXERCISES.md) properly. You will be filling in a live
+- **Read** [`handouts/toil-inventory.md`](handouts/toil-inventory.md),
+  [`EXERCISES.md`](EXERCISES.md) (what participants follow) and
+  [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) (what you run the block
+  from) properly. You will be filling in a live
   example on the board and you should not be reading the columns for the
   first time in front of people.
 - **Print** the inventory sheet, one per participant plus spares, and the

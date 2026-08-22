@@ -23,7 +23,8 @@ their judgment boundary.
 |---|---|---|
 | [`PREWORK.md`](PREWORK.md) | Participant | Sent a week before the session |
 | [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md) | Facilitator | **Start here.** Read fully before the first teach |
-| [`EXERCISES.md`](EXERCISES.md) | Facilitator, participant | The 27-minute exercise block |
+| [`EXERCISES.md`](EXERCISES.md) | Participant | The 27-minute exercise block, step by step |
+| [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) | Facilitator | Running the exercise block: timing, cues, misfires, fallbacks |
 | [`PRACTICE.md`](PRACTICE.md) | Participant | Handed out at the close |
 | [`CHECKPOINT.md`](CHECKPOINT.md) | Facilitator | The last ten minutes, and afterwards |
 | [`FLOOR_TEST.md`](FLOOR_TEST.md) | Author | Before the session is taught the first time |
@@ -31,7 +32,9 @@ their judgment boundary.
 | [`handouts/canned-toil.md`](handouts/canned-toil.md) | Participant | Printed, for anyone who can't use their real work |
 
 A facilitator running this for the first time reads the facilitator guide
-end to end, then the inventory sheet, then the exercises. Twenty minutes,
+end to end, then the inventory sheet, then the exercises — both
+[`EXERCISES.md`](EXERCISES.md) and [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md).
+Twenty minutes,
 and it is the difference between running this session and reading it out.
 
 ---

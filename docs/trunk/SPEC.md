@@ -128,13 +128,16 @@ Every session, when authored, consists of:
 - `curriculum/` — the deliverable material, one directory per session,
   named `session_<NN>_<slug>/` so a listing is in teaching order
   (`curriculum/session_01_mental_models/`). Each session directory
-  contains six fixed filenames — `README.md` (session index), plus
-  `PREWORK.md`, `FACILITATOR_GUIDE.md`, `EXERCISES.md`, `PRACTICE.md`,
-  and `CHECKPOINT.md`, one per Session Anatomy element — and optionally
+  contains seven fixed filenames — `README.md` (session index), plus
+  `PREWORK.md`, `FACILITATOR_GUIDE.md`, `EXERCISES.md`,
+  `EXERCISE_RUNSHEET.md`, `PRACTICE.md`, and `CHECKPOINT.md`, one per
+  Session Anatomy element with the in-session exercises element split by
+  reader (participant steps, facilitator runsheet; DEC-011) — and optionally
   `handouts/` (participant-facing printables, lowercase filenames),
   `FLOOR_TEST.md` (protocol and results, required before first teach),
   and `DRY_RUN.md` (for sessions with executable steps).
-  `curriculum/README.md` states the convention; DEC-010 records it.
+  `curriculum/README.md` states the convention; DEC-010 and DEC-011
+  record it.
   Artifacts that outlive their session — notably the toil inventory —
   stay in the `handouts/` directory of the session that introduced them.
 - `setup/` — the pre-cohort path (see Prerequisites): the participant guide

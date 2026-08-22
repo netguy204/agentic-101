@@ -22,7 +22,8 @@ mess on purpose.
 |---|---|---|
 | [`PREWORK.md`](PREWORK.md) | Participant | Sent a week before the session |
 | [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md) | Facilitator | **Start here.** Read fully before the first teach |
-| [`EXERCISES.md`](EXERCISES.md) | Facilitator, participant | The 59-minute exercise block |
+| [`EXERCISES.md`](EXERCISES.md) | Participant | The 59-minute exercise block, step by step |
+| [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) | Facilitator | Running the exercise block: timing, cues, misfires, fallbacks |
 | [`PRACTICE.md`](PRACTICE.md) | Participant | Handed out at the close |
 | [`CHECKPOINT.md`](CHECKPOINT.md) | Facilitator | The last ten minutes, and afterwards |
 | [`DRY_RUN.md`](DRY_RUN.md) | Facilitator, author | Before the first teach — what the commands really print, and what is still untested |
@@ -32,7 +33,8 @@ mess on purpose.
 
 A facilitator running this for the first time reads the facilitator guide end
 to end, then runs the five exercises on their own machine from
-[`EXERCISES.md`](EXERCISES.md), then skims [`DRY_RUN.md`](DRY_RUN.md). About
+[`EXERCISES.md`](EXERCISES.md) with [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md)
+beside it, then skims [`DRY_RUN.md`](DRY_RUN.md). About
 forty minutes, and unlike Session 1 it is not optional — this session has
 commands in it, and a facilitator who has not typed them will be reading
 `revert`'s questions for the first time in front of twelve people.

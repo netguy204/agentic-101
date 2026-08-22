@@ -489,6 +489,10 @@ clearly labelled halves proves less error-prone.
 
 **Status**: ACCEPTED
 
+**Amended**: DEC-011 (2026-08-22) — the in-session exercises element is two
+files, `EXERCISES.md` (participant) and `EXERCISE_RUNSHEET.md`
+(facilitator); seven fixed filenames, not six.
+
 **Decision**: Course material lives in `curriculum/session_<NN>_<slug>/`,
 each session carrying the same six filenames (`README.md`, `PREWORK.md`,
 `FACILITATOR_GUIDE.md`, `EXERCISES.md`, `PRACTICE.md`, `CHECKPOINT.md`)
@@ -559,3 +563,71 @@ insufficient at the Session 6 gate — most likely by failing to capture
 something about a task's *shape* that decides whether it is automatable at
 all, which is currently discovered in Session 6 rather than recorded in
 Session 1.
+
+### DEC-011: In-session exercise material is split by reader
+
+**Date**: 2026-08-22
+
+**Status**: ACCEPTED (amends DEC-010)
+
+**Decision**: Each session directory carries the in-session exercises as
+two files, one per reader. `EXERCISES.md` is participant-only: the
+numbered steps a participant follows, in second person, with what they
+should see and the canned fallback. `EXERCISE_RUNSHEET.md` is
+facilitator-only: the per-exercise running order — time budget, what
+participants are doing, what to say and when, what to work live first,
+observable output, misfires and recoveries, stall triage, pairing and
+remote logistics. The runsheet refers to `EXERCISES.md` by exercise and
+step and never restates a step, so commands, prompts, and on-screen text
+have exactly one source. DEC-010's fixed filename set is therefore seven,
+not six: `README.md`, `PREWORK.md`, `FACILITATOR_GUIDE.md`, `EXERCISES.md`,
+`EXERCISE_RUNSHEET.md`, `PRACTICE.md`, `CHECKPOINT.md`. Everything else in
+DEC-010 stands.
+
+**Context**: Sessions 1 and 2 were authored with a single `EXERCISES.md`
+addressed to "facilitator and participant". In practice it interleaved
+the two readers paragraph by paragraph — numbered participant steps
+wrapped in **Say it like this**, **Observable output**, **Most common
+misfire**, **Fallback** — and the operator found it awkward from either
+seat: a participant reading along hits stage directions about themselves;
+a facilitator scanning for the next cue wades through steps they already
+know. The 2026-08-07 dry run and the 2026-08-22 Windows run both caught
+the same text drifting between a step and the commentary about it, which
+is the cost of stating one fact in two voices in one file.
+
+**Alternatives Considered**:
+- **Fold the facilitator material into `FACILITATOR_GUIDE.md`** and keep
+  six files. Rejected: the guide would grow by ~200 lines per session and
+  become unwieldy mid-session, and the facilitator already runs the block
+  from a dedicated document (the guide says "run it from …"); a separate
+  runsheet keeps that working pattern.
+- **Keep `EXERCISES.md` as the facilitator sheet and put participant steps
+  in `handouts/exercises.md`.** Rejected: participant-facing uppercase
+  documents already exist (`PREWORK.md`, `PRACTICE.md`); the steps are a
+  document in the course's voice, not a printable reference card; and the
+  fixed-name rule wants the participant steps at a fixed uppercase name so
+  later chunks can reference them before they exist.
+- **One file with a section per audience.** Rejected: that is the status
+  quo with headings; each reader still scrolls past the other's material.
+- **Split Session 2 only.** Rejected: the convention has to be true for
+  every existing session or it is not a convention.
+
+**Rationale**: Two readers, two documents, one source of truth for the
+steps. The participant file becomes safe to hand out or put on a screen
+as-is; the runsheet becomes the thing a facilitator actually holds during
+the block. Making the runsheet *refer* rather than *restate* is what stops
+the two files drifting the way the single file already had.
+
+**Consequences**: `curriculum/README.md` and `docs/trunk/SPEC.md` Repository
+Layout list seven fixed files and the "runsheet never restates a step"
+rule. Sessions 1 and 2 are split (chunk `fluency_exercise_split`); the
+steps themselves did not change and Session 2's dry run was not re-run.
+Later session chunks author both files from the start. `DRY_RUN.md` and
+`FLOOR_TEST.md` execute participant steps and keep pointing at
+`EXERCISES.md`; facilitator guides point at the runsheet for running the
+block and at `EXERCISES.md` for what participants follow.
+
+**Revisit If**: a session's exercises turn out to need no facilitator
+commentary at all (the runsheet would be empty, which the convention says
+to write anyway), or the one-source rule proves unworkable because a
+participant step genuinely needs different wording for the two readers.

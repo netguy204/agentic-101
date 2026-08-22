@@ -8,6 +8,7 @@ code_paths:
 - curriculum/session_01_mental_models/PREWORK.md
 - curriculum/session_01_mental_models/FACILITATOR_GUIDE.md
 - curriculum/session_01_mental_models/EXERCISES.md
+- curriculum/session_01_mental_models/EXERCISE_RUNSHEET.md
 - curriculum/session_01_mental_models/PRACTICE.md
 - curriculum/session_01_mental_models/CHECKPOINT.md
 - curriculum/session_01_mental_models/FLOOR_TEST.md
@@ -37,10 +38,9 @@ code_references:
     call and backup row, eleven anticipated failure points with recovery moves, the
     FAQ, and a read-aloud transcript for a demo that cannot run'
 - ref: curriculum/session_01_mental_models/EXERCISES.md
-  implements: "The three-exercise block with per-exercise fallbacks, observable outputs,\
-    \ and the misfires each produces \u2014 brain dump, the check column (the load-bearing\
-    \ one), and the skeptic pass where conceding \"I couldn't tell\" is the success\
-    \ case"
+  implements: "The participant steps for the three-exercise block — brain dump, the check column, and the skeptic pass — in second person, with the canned-sheet fallback per exercise"
+- ref: curriculum/session_01_mental_models/EXERCISE_RUNSHEET.md
+  implements: "The facilitator's running order for the block: timing, say-it-like-this, observable outputs, and the misfires each exercise produces, including the skeptic pass where conceding \"I couldn't tell\" is the success case"
 - ref: curriculum/session_01_mental_models/PRACTICE.md
   implements: 'The observation-shaped practice week: a 55-minute budget under the
     90-minute cap, the daily pass, the check test that resolves "not sure" entries

@@ -24,8 +24,9 @@ detail is comprehension burden competing with the actual subject: judgment.
 
 ## Before the room
 
-- **Read** [`EXERCISES.md`](EXERCISES.md) end to end and
-  [`DRY_RUN.md`](DRY_RUN.md) at least skimmed. The dry run records what the
+- **Read** [`EXERCISES.md`](EXERCISES.md) (what participants follow) and
+  [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) (what you run the block
+  from) end to end, and [`DRY_RUN.md`](DRY_RUN.md) at least skimmed. The dry run records what the
   commands actually print, including the two places where `revert` asks a
   question people get wrong. You should not be meeting those live.
 - **Run the whole session on your own machine**, from the written text, the
@@ -173,7 +174,8 @@ preamble.
 
 ## Beat 2 — Exercise 1: Where am I? (11 min)
 
-Run it from [`EXERCISES.md`](EXERCISES.md). Three things to hold in mind
+Run it from [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md); participants
+follow [`EXERCISES.md`](EXERCISES.md). Three things to hold in mind
 while you circulate:
 
 - **The blank-response problem is real.** When somebody types a command and
@@ -283,7 +285,7 @@ somebody in the room is worried and won't say so:
 > sending the real records."
 
 **While they work**, circulate for the two failure shapes, both in
-[`EXERCISES.md`](EXERCISES.md): a prompt that describes the task instead of
+[`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md): a prompt that describes the task instead of
 the material, and someone sitting silently through a ten-second pause
 convinced it has frozen.
 

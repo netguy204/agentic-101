@@ -420,6 +420,12 @@ exercise table. Three things did not match the text; all three are fixed.
    participants whose environment predates the fix. This never appeared on
    macOS, which is why the 2026-08-07 run did not catch it.
 
+Also on 2026-08-22, after this observation, `EXERCISES.md` was split into
+participant steps (`EXERCISES.md`) and a facilitator runsheet
+(`EXERCISE_RUNSHEET.md`). The steps themselves are unchanged and were not
+re-run; quotations from the pre-split file elsewhere in this record are
+historical and stand as written.
+
 What this observation does **not** establish: exercise 1 (`explorer .`),
 the file-browser edit and delete in exercise 2 (the screenshot starts at
 `commit`), and exercises 3–5 on Windows. Item 2 of "Before this session is

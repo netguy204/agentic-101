@@ -8,6 +8,7 @@ code_paths:
 - curriculum/session_02_meeting_the_harness/PREWORK.md
 - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
 - curriculum/session_02_meeting_the_harness/EXERCISES.md
+- curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
 - curriculum/session_02_meeting_the_harness/PRACTICE.md
 - curriculum/session_02_meeting_the_harness/CHECKPOINT.md
 - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
@@ -38,11 +39,9 @@ code_references:
     terminology quoted verbatim, eleven anticipated failures with recovery moves,
     the FAQ, and an appendix stating what a normal run looks like'
 - ref: curriculum/session_02_meeting_the_harness/EXERCISES.md
-  implements: The five-exercise block in fixed order with per-exercise fallbacks,
-    observable outputs and misfires — terminal survival, the safety net proved by
-    hand before any agent exists, a first delegation that builds its own practice
-    material from the participant's toil entry, reading the tool calls and the
-    file before judging, and a bounded destructive prompt recovered with revert
+  implements: "The participant steps for the five-exercise block — where am I, the safety net (commit/revert with the four-question table), first delegation, what did it actually do (the worksheet), break it on purpose — in second person, with the synthetic-task fallback"
+- ref: curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
+  implements: "The facilitator's running order for the five exercises: timing, say-it-like-this, observable outputs, misfires and recoveries, the projector walkthrough of the first commit, and the exercise-5 prompt rationale"
 - ref: curriculum/session_02_meeting_the_harness/PRACTICE.md
   implements: 'The displacement-shaped practice week: a 60-minute budget under the
     90-minute cap, the solo lap within 48 hours that repeats the

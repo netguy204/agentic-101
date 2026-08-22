@@ -7,6 +7,7 @@ code_paths:
 - curriculum/session_02_meeting_the_harness/PREWORK.md
 - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
 - curriculum/session_02_meeting_the_harness/EXERCISES.md
+- curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
 - curriculum/session_02_meeting_the_harness/PRACTICE.md
 - curriculum/session_02_meeting_the_harness/CHECKPOINT.md
 - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
@@ -24,8 +25,9 @@ code_references:
   implements: Participant-facing provider disclosure, bounded recovery explanation,
     and reference-card framing
 - ref: curriculum/session_02_meeting_the_harness/EXERCISES.md
-  implements: Corrected facilitator scripts, bounded local-file exercises, neutral
-    fallback routing, and jargon reduction
+  implements: "Bounded local-file exercises and jargon reduction in the participant steps, with the local-recovery-not-security-boundary framing and the model-provider disclosure stated to the participant"
+- ref: curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
+  implements: "Corrected facilitator scripts (say-it-like-this, the before-starting statement) and neutral fallback routing"
 - ref: curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
   implements: Accurate privacy and recovery teaching language plus the four-part answer
     for real-work use

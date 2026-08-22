@@ -366,7 +366,7 @@ up" and type *that* number; it is probably 2; do not assume.
 | Exercise 5 — destructive prompt and recovery | **Verified ×3**; `.git` survives every time |
 | pi TUI keys (`Ctrl+O`, `Escape`, `/quit`, `pi -c` interactively) | **Not verified** — print mode only; `pi -c` verified non-interactively |
 | Windows installation through functional pi | **Operator-verified separately**; not part of this 2026-08-07 dry run |
-| Session 2 exercises 1–5 on Windows | **Not run** — full exercise pass remains pending |
+| Session 2 exercises 1–5 on Windows | **Partially observed** — the operator ran exercise 2's `commit`/`revert` on Windows (Git Bash) on 2026-08-22, three defects found and fixed (see the addendum). Exercises 1 and 3–5 remain unrun there |
 
 ## Before this session is taught
 
@@ -374,11 +374,53 @@ up" and type *that* number; it is probably 2; do not assume.
    0.83.0) rather than on 0.84.1, or re-pin the cohort to the version that
    was actually tested. `setup/PRE_COHORT_CHECKLIST.md` owns this.
 2. **Run exercises 1–5 once on Windows**, in Windows Terminal with the Git
-   Bash profile. The operator has already verified installation through a
-   functional pi; `explorer .`, editing and deleting through File Explorer,
-   and the complete Session 2 sequence remain unverified there.
+   Bash profile. The operator has verified installation through a functional
+   pi and, on 2026-08-22, exercise 2's `commit`/`revert` (addendum below);
+   `explorer .`, editing and deleting through File Explorer, and exercises 1
+   and 3–5 remain unverified there.
 3. **Run the session once through the real TUI**, by hand, confirming
    `Ctrl+O`, `Escape`, `/quit` and `pi -c`. Fifteen minutes.
 4. **Do the floor test** ([`FLOOR_TEST.md`](FLOOR_TEST.md)). Nothing in this
    record tells you whether a non-programmer can follow the text — only that
    the text is factually accurate about what the commands do.
+
+---
+
+## Addendum — 2026-08-22, exercise 2 on Windows (operator observation)
+
+The operator ran exercise 2 on a Windows machine in Git Bash, from the
+written instructions, and sent a screenshot of the terminal beside the
+exercise table. Three things did not match the text; all three are fixed.
+
+1. **The first `revert` question says "1 thing", not "2 things".** The
+   table's first row read *"2 things have changed since your last
+   checkpoint…"*. At that point only `notes.txt` has changed (deleted), and
+   `revert` says exactly what the macOS transcript above records: *"Wait — 1
+   thing in this folder has changed since your last checkpoint."* The "2"
+   had leaked in from the `commit` correction earlier in this record (two
+   files are new at the first checkpoint) and was never true of the `revert`
+   step. The row now quotes the real prompt.
+2. **"It asks four things" read as "expect four options".** The text said
+   `revert` asks **four** things, and the first thing on screen is a menu of
+   three numbered choices — so a participant counts three and thinks one is
+   missing. The exercise, the misfire note, and the facilitator guide's
+   warn-line now say *four questions, one at a time; the first offers three
+   numbered choices*.
+3. **A git warning leaks through on Windows.** The first `commit` printed
+   `warning: in the working copy of 'README.txt', LF will be replaced by CRLF
+   the next time Git touches it` between the checkpoint name and the `Saved:`
+   line. Git for Windows defaults `core.autocrlf=true`, and `README.txt` is
+   written with LF endings by the installer, so git warns on every
+   checkpoint. It is harmless, but it is exactly the git voice `commit`
+   exists to hide, and the word *warning* on a first checkpoint stops a new
+   user. `env/bin/commit` now sets `core.autocrlf false` for the practice
+   folder on every run (the folder is never shared, so conversion has no
+   purpose), the environment is bumped to **1.0.1**, the command tests assert
+   the setting, and the facilitator guide carries a failure-point row for
+   participants whose environment predates the fix. This never appeared on
+   macOS, which is why the 2026-08-07 run did not catch it.
+
+What this observation does **not** establish: exercise 1 (`explorer .`),
+the file-browser edit and delete in exercise 2 (the screenshot starts at
+`commit`), and exercises 3–5 on Windows. Item 2 of "Before this session is
+taught" still stands for those.

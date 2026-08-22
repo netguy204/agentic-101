@@ -97,7 +97,7 @@ several minutes the first time. When it finishes you should see something
 very like this at the bottom:
 
 ```
-Course environment 1.0.0
+Course environment 1.0.1
 
   [ok]   commit is ready (/Users/you/.agentic-101/bin/commit)
   [ok]   revert is ready (/Users/you/.agentic-101/bin/revert)
@@ -205,7 +205,7 @@ This installs pi 0.83.0, saves the key your facilitator gave you, and
 sets the model everyone on the course uses.
 
 Step 1 of 5 — checking your machine
-  course environment 1.0.0 — found
+  course environment 1.0.1 — found
   node v22.20.0 — found
   key sk-or-v1-a… — looks right
 

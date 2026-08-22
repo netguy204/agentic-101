@@ -100,6 +100,13 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     start_checkpointing_here
 fi
 
+# This folder is never shared, so git must not convert line endings or warn
+# about them. Git for Windows defaults core.autocrlf=true, which otherwise
+# prints "LF will be replaced by CRLF" on every checkpoint — the kind of
+# git voice these commands exist to hide. Set every run, so folders turned on
+# by an earlier version pick it up too.
+git config core.autocrlf false 2>/dev/null || true
+
 # Whoever git thinks we are. Unset identity is a wall of git error text that
 # teaches nothing, so fill it in quietly and say so once.
 if [ -z "$(git config user.email 2>/dev/null)" ] || [ -z "$(git config user.name 2>/dev/null)" ]; then

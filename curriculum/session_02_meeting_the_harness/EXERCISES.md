@@ -110,12 +110,13 @@ purpose, and get it back.
    Enter.
 5. **Now delete the file.** In the file browser, delete `notes.txt`. Really
    delete it. In the terminal, `ls` — only `README.txt` is left.
-6. Type `revert` and press Enter. It asks **four** things, in this order, and
-   here is exactly what to do with each:
+6. Type `revert` and press Enter. It asks **four questions**, one at a time —
+   the first offers three numbered choices, and it is the only one with a
+   menu. Here is exactly what to do with each:
 
    | It asks | You do | Because |
    |---|---|---|
-   | "2 things have changed since your last checkpoint… 1, 2 or 3?" | Press **Enter** (takes option 1) | It saves your deletion first, so even the deletion is undoable |
+   | "Wait — 1 thing in this folder has changed since your last checkpoint… Type 1, 2 or 3." | Press **Enter** (takes option 1, *save them as a checkpoint now*) | It saves your deletion first, so even the deletion is undoable |
    | "What should we call this checkpoint?" | Press **Enter** (takes the date) | This checkpoint is scaffolding; it doesn't need a name |
    | "Which one should this folder go back to?" | Type **`2`**, Enter | The list is newest first, and it just added one — **"before anything" is number 2** |
    | "Go back to this checkpoint?" | Type **`yes`**, Enter | |
@@ -149,8 +150,9 @@ deletion trusts the net afterwards.
 **The second misfire.** Reading `revert`'s questions as an error message.
 Anything unexpected on a terminal reads as failure to a new user, and the
 first thing `revert` says is the word "Wait —". Say up front: "`revert` is
-going to ask you four things and one of them starts with the word *wait*.
-That's it being careful, not it going wrong."
+going to ask you four questions, one at a time. The first starts with the
+word *wait* and gives you three numbered choices — just press Enter. That's
+it being careful, not it going wrong."
 
 **The third misfire, and it catches nearly everyone: typing `1`.** The
 checkpoint they want is number **2**, because `revert` saved their deletion

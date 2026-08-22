@@ -47,6 +47,7 @@ chk "lists the new file" "notes.txt (new)" "$OUT"
 chk "saves with the typed name" 'Saved: "My first checkpoint"' "$OUT"
 chk "points at revert" "type: revert" "$OUT"
 [ "$(git log --format=%s -1)" = "My first checkpoint" ] && ok "commit landed in git" || no "commit did not land"
+[ "$(git config --local core.autocrlf)" = "false" ] && ok "line-ending conversion is off in the practice folder" || no "core.autocrlf should be false after commit"
 
 echo "== commit: declining the offer changes nothing =="
 mkdir -p ../decline && ( cd ../decline && echo x > a.txt && printf 'no\n' | commit > "$OUT2" 2>&1 )
@@ -59,8 +60,10 @@ chk "reports no changes" "Nothing has changed" "$OUT"
 [ $rc -eq 0 ] && ok "no-change exits 0" || no "no-change should exit 0"
 
 echo "== commit: default name via --yes =="
+git config --unset core.autocrlf   # a folder turned on by an older version
 echo more >> notes.txt
 commit --yes > "$OUT" 2>&1
+[ "$(git config --local core.autocrlf)" = "false" ] && ok "older folders get line-ending conversion turned off on the next commit" || no "core.autocrlf not re-applied on an existing folder"
 chk "edited file described as edited" "notes.txt (edited)" "$OUT"
 git log --format=%s -1 | grep -q "^Checkpoint on" && ok "default name used" || no "default name not used"
 

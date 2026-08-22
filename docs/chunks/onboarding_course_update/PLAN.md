@@ -1,179 +1,206 @@
-
-
 <!--
 This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
 -->
 
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+Build `course-update` as a thin, deterministic orchestrator over the two
+installers that already exist and are already idempotent — it decides
+*whether* to run them, never *how*. Its only logic is: fetch the two
+published pin files, compare to what is installed, run the matching
+installer only on a difference, and say one plain sentence about what
+happened. Everything that knows how to install stays in `env/install.sh`
+and `setup/install-pi.sh`; `course-update` adds one capability to the
+latter (`--keep-key`) and otherwise passes flags that exist.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+Two details are load-bearing and easy to get wrong:
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+- **Self-update safety.** `course-update` triggers `install.sh`, which
+  overwrites `~/.agentic-101/bin/course-update` — the script that is
+  running. Bash reads scripts incrementally, so truncate-and-rewrite of the
+  running file can execute garbage. Two guards: `course-update` wraps its
+  body in `main()` and its last line is `main "$@"; exit $?` (bash has
+  parsed the whole file before anything runs, and `exit` stops it reading
+  further); and `install.sh` installs each payload file by copying to
+  `<dest>.tmp` then `mv -f` over the destination (new inode; the running
+  script's open file descriptor keeps the old content).
+- **Offline behaviour.** Fetches use `curl -fsSL --connect-timeout 5
+  --max-time 20`; a failed fetch short-circuits before any installer runs,
+  with the one-line message and a non-zero exit. Both installers already
+  stage into a temp dir and only copy on success, so a half-download
+  cannot land.
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/onboarding_course_update/GOAL.md)
-with references to the files that you expect to touch.
--->
-
-## Subsystem Considerations
-
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+Tests follow the two existing harnesses exactly (throwaway `HOME`,
+`--prefix`, `NO_COLOR`, stubbed `pi`/`npm` from `setup/tests/test-setup.sh`)
+and point the base URLs at `file://` directories via the existing override
+variables, so the network is never needed. If `curl` on the test machine
+refuses `file://`, fall back to `python3 -m http.server` on a loopback port
+inside the test — decide on first run, record the choice in Deviations.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: `install-pi.sh --keep-key`
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+In `setup/install-pi.sh`: add `keep_key=""` and the `--keep-key` case;
+document it in `usage()` ("reuse the key already saved on this machine;
+for updates"). In the key-resolution block (around lines 195–235): when
+`keep_key` is set, do not prompt and do not validate a typed key; instead
+require `"$pi_config_dir/auth.json"` to exist and be non-empty, else
+`fail "install-pi.sh: no saved key on this machine — run Step 3 of the
+setup guide first."`. In "Step 4 of 5 — saving your key": when `keep_key`
+is set, print `dim "  keeping the key already saved"` and skip the write
+(and the backup). Everything else (pi install at the pin, settings.json,
+practice folder, smoke-test copy, `pins.env` copy) runs as before.
+`--no-smoke-test` already exists. Add to `setup/tests/test-setup.sh`:
+`--keep-key` with a seeded `auth.json` leaves it byte-identical and does
+not prompt; `--keep-key` with no `auth.json` fails with the Step 3
+sentence and writes nothing.
 
-Example:
+### Step 2: `env/bin/course-update`
 
-### Step 1: Define the SegmentHeader struct
+New file, `#!/usr/bin/env bash`, backreference
+`# Chunk: docs/chunks/onboarding_course_update - …`. Locate `A101_ROOT`
+and source `lib/common.sh` the way `env/bin/course-check` does (copy its
+header). Options: `--dry-run` (say what would change, change nothing),
+`-V/--version`, `-h/--help` (help states what it updates and that Windows
+Terminal configuration and OS packages need Step 1 of the setup guide).
+Defaults: `A101_ENV_BASE="${AGENTIC101_ENV_BASE_URL:-https://raw.githubusercontent.com/netguy204/agentic-101/main/env}"`,
+`A101_SETUP_BASE="${AGENTIC101_SETUP_BASE_URL:-…/main/setup}"`.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+`main()`:
+1. `bold "Checking for course updates…"`.
+2. Fetch `$A101_ENV_BASE/versions.env` to a temp file; on failure print the
+   "Could not reach the course updates…" line (GOAL text) and `exit 1`.
+   Source it in a subshell to read `ENV_VERSION`; compare to
+   `$(cat "$A101_ROOT/VERSION")`.
+3. Fetch `$A101_SETUP_BASE/pins.env` the same way; read `PI_VERSION`;
+   compare to `pi --version | head -1 | tr -d '\r'` (as
+   `install-pi.sh:274`), and compare the fetched file to
+   `$A101_ROOT/pins.env` with `cmp -s` so a model change counts too.
+   Only *after both fetches succeed* does anything run — so an offline
+   machine never half-updates.
+4. Environment: if different, `say "Course environment: updating
+   $installed → $published…"`, then
+   `curl -fsSL "$A101_ENV_BASE/install.sh" | AGENTIC101_ENV_BASE_URL="$A101_ENV_BASE" bash -s -- --skip-packages --prefix "$A101_ROOT"`
+   (honour `--dry-run` by passing it through and saying "would"). On
+   failure: `fail "course-update: the environment update did not finish.
+   Nothing else was changed — tell your facilitator."`. Else `good "Course
+   environment: up to date ($installed)"`.
+5. pi: if different, `say "pi: updating …"`, then
+   `curl -fsSL "$A101_SETUP_BASE/install-pi.sh" | AGENTIC101_SETUP_BASE_URL="$A101_SETUP_BASE" bash -s -- --keep-key --no-smoke-test --prefix "$A101_ROOT"`.
+   Else `good "pi: up to date ($installed_pi)"`. If `pi` is not on PATH at
+   all, say so once and skip this half (setup Step 3 owns that).
+6. Closing line: if anything updated, `bold "Close this window and open a
+   new one before carrying on."`; else `bold "Nothing to do."`. `exit 0`.
+Last line of file: `main "$@"; exit $?`.
 
-Location: src/segment/format.rs
+Add `bin/course-update` to `A101_PAYLOAD` in `env/install.sh`, and change
+the payload copy loop (`install.sh:188`) to `cp … "$dest.tmp" && mv -f
+"$dest.tmp" "$dest"`. Check `env/uninstall.sh` removes `bin/*` generically
+(if it lists names, add the new one).
 
-### Step 2: Implement header serialization
+### Step 3: versions and sample output
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+`env/versions.env` `ENV_VERSION=1.1.0`; `setup/pins.env`
+`EXPECTED_ENV_VERSION=1.1.0`; `setup/README.md` sample lines "Course
+environment 1.0.1" and "course environment 1.0.1 — found" → 1.1.0.
 
-### Step 3: ...
+### Step 4: `env/tests/test-update.sh`
 
----
+Harness as `test-install.sh`. Build a "published" tree: `cp -R env/ $PUB/env`
+and `cp -R setup/ $PUB/setup`; install into a fake HOME from the local
+checkout (`install.sh --skip-packages --prefix`); seed `~/.pi/agent/auth.json`
+and a stub `pi` on PATH (reuse the stub shape from `setup/tests/test-setup.sh`)
+printing the pinned version; export `AGENTIC101_ENV_BASE_URL=file://$PUB/env`
+and `AGENTIC101_SETUP_BASE_URL=file://$PUB/setup`. Cases, each `has`/`absent`
+asserted on the log and the filesystem:
+1. **Up to date**: both "up to date" lines, "Nothing to do.", exit 0,
+   `VERSION` unchanged, mtime of `bin/commit` unchanged.
+2. **Environment bump**: `sed` `ENV_VERSION` in `$PUB/env/versions.env` to
+   `9.9.9`; expect "updating", `VERSION` = 9.9.9, `commit --version` says
+   9.9.9, closing "Close this window…", exit 0; and `course-update` itself
+   still runs afterwards (self-update safety).
+3. **pi pins change**: change `PI_MODEL` in `$PUB/setup/pins.env`; with
+   stub `npm` (no-op) and stub `pi`; expect `install-pi.sh` ran with
+   `--keep-key --no-smoke-test` (log has "keeping the key already saved",
+   no "asking the model"), `$ROOT/pins.env` updated, `auth.json` byte-
+   identical, exit 0.
+4. **Unreachable**: `AGENTIC101_ENV_BASE_URL=file:///nonexistent`; expect the
+   one-line message, exit non-zero, nothing changed.
+5. **`--dry-run`** on case 2: "would", nothing changed, exit 0.
+Run `env/tests/test-install.sh`, `env/tests/test-commands.sh`,
+`setup/tests/test-setup.sh` too.
 
-**BACKREFERENCE COMMENTS**
+### Step 5: curriculum, setup guide, checklist, decision
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+- `curriculum/session_02_meeting_the_harness/PREWORK.md` §3: two commands,
+  `course-update` then `course-smoke-test`; reply with the smoke test's word;
+  the "do not try to fix it" rule unchanged. Mention that `course-update`
+  may say to close and reopen the window — do that, then run the smoke test.
+- `…/EXERCISES.md`: after the "Stuck at any point?" line, a **Before
+  exercise 1** paragraph: "In the course terminal, type `course-update` and
+  press Enter. It fetches any course updates since you set up; most weeks
+  it says *Nothing to do*. If it tells you to close the window and open a
+  new one, do that before going on." `…/EXERCISE_RUNSHEET.md`: the
+  facilitator side before exercise 1 — run it on the projector first; this
+  is where a between-session fix lands; no internet → it says so, carry on.
+- `…/handouts/terminal-card.md`: a row "Get the latest course fixes (start
+  of every session) — `course-update`".
+- `curriculum/README.md` "Rules that cross sessions": **Every session from
+  Session 2 opens with `course-update`** — in the prework's run-one-command
+  step and as the first line of `EXERCISES.md`; Session 1 is exempt
+  (no terminal before Session 2, DEC-004).
+- `setup/README.md`: under "Two things to know for the first session" (or a
+  new short "Getting updates later" section) one paragraph; a
+  troubleshooting row for "`course-update` says it could not reach the
+  course updates" (no internet / try again / tell your facilitator); the
+  "What just got installed" list gains the command.
+- `setup/PRE_COHORT_CHECKLIST.md` §2: "publishing a fix = bump
+  `ENV_VERSION` (and/or pins) and push; verify `course-update` picks it up
+  on a participant-like machine". `env/README.md` "What gets installed"
+  lists it; `env/DISTRIBUTION.md` notes it as a URL consumer (both bases).
+- `docs/trunk/DECISIONS.md`: DEC-012 via the `decision-create` skill —
+  decision, context (the 2026-08-22 CRLF fix with no distribution path),
+  alternatives from the GOAL's Rejected Ideas (pi sync-up prompt with the
+  operator's long-tail revisit condition; fold into smoke test; inside
+  commit/revert; re-run Step 1), consequences (publishing = bump + push;
+  sessions open with it), revisit-if.
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+### Step 6: verify
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
-
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
-
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
-
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+`bash env/tests/test-update.sh`, `test-install.sh`, `test-commands.sh`,
+`setup/tests/test-setup.sh` all pass; `bash -n` on every touched script;
+`uvx --from vibe-engineer ve validate`; relative-link check over
+`curriculum/`; `course-update --help` and `--dry-run` run against the real
+GitHub base from this checkout's install (read-only; it will report a
+version difference until the push lands, which is itself a useful check).
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+None beyond the repository. `fluency_exercise_split` is ACTIVE, so the
+Session 2 `EXERCISES.md`/`EXERCISE_RUNSHEET.md` shape is settled.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **`curl` and `file://`**: supported by macOS and Git-for-Windows curl;
+  if a test machine's curl is built without it, use the loopback
+  `http.server` fallback in the tests only.
+- **Overwriting the running script**: covered by `main; exit` plus
+  tmp-then-mv in `install.sh`; the self-update test (case 2 → re-run)
+  is the proof.
+- **`pi --version` output shape** across pi versions: reuse exactly the
+  `install-pi.sh:274` expression; if pi is missing from PATH, skip the pi
+  half with a one-line note rather than failing.
+- **First-time participants** (installed before this chunk) do not have
+  `course-update` yet; their path is still Step 1 of the setup guide once.
+  The facilitator guide's CRLF row already says so; no change needed.
+- **A pins change that also needs a key change** (new provider) cannot be
+  handled by `--keep-key`; `install-pi.sh` will still validate what it has
+  at first use and the smoke test will show it — out of scope, noted in
+  `--help`.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+<!-- POPULATE DURING IMPLEMENTATION. -->

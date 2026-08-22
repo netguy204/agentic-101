@@ -2,7 +2,24 @@
 status: IMPLEMENTING
 ticket: null
 parent_chunk: null
-code_paths: []
+code_paths:
+- env/bin/course-update
+- env/install.sh
+- env/versions.env
+- env/README.md
+- env/DISTRIBUTION.md
+- env/tests/test-update.sh
+- setup/install-pi.sh
+- setup/pins.env
+- setup/README.md
+- setup/PRE_COHORT_CHECKLIST.md
+- setup/tests/test-setup.sh
+- curriculum/README.md
+- curriculum/session_02_meeting_the_harness/PREWORK.md
+- curriculum/session_02_meeting_the_harness/EXERCISES.md
+- curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
+- curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+- docs/trunk/DECISIONS.md
 code_references: []
 narrative: null
 investigation: null
@@ -306,10 +323,10 @@ ships with the environment and updates itself. Behaviour:
    (`pi --version`, as `install-pi.sh:274` reads it) and the pin file to
    the installed `~/.agentic-101/pins.env`. If different, run
    `curl -fsSL <setup base>/install-pi.sh | bash -s -- --keep-key
-   --no-check` — two new `install-pi.sh` flags: `--keep-key` reuses the
-   saved `auth.json` and fails plainly if there is none ("no saved key —
-   run Step 3 of the setup guide"); `--no-check` skips the closing smoke
-   test so an update takes seconds. Report `pi: updated 0.83.0 → 0.84.1`
+   --no-smoke-test` — `--no-smoke-test` already exists and skips the closing smoke test so an
+   update takes seconds; `--keep-key` is new: it reuses the saved
+   `auth.json` and fails plainly if there is none ("no saved key — run
+   Step 3 of the setup guide"). Report `pi: updated 0.83.0 → 0.84.1`
    or `pi: up to date (0.83.0)`.
 3. If anything was updated, end with exactly one instruction: `Close this
    window and open a new one before carrying on.` Otherwise `Nothing to
@@ -365,11 +382,11 @@ Idempotent. Never touches `~/course-practice`. Same output conventions as
   payload, `~/.agentic-101/VERSION` and `commit --version` report the new
   version, and the closing line says to close and reopen the window.
 - When `setup/pins.env` changes (pi version or model), it re-runs the pi
-  installer with `--keep-key --no-check`, the saved key is untouched and
+  installer with `--keep-key --no-smoke-test`, the saved key is untouched and
   still works, `pi --version` matches the pin, and no smoke test ran.
 - `install-pi.sh --keep-key` without a saved key fails in one plain
-  sentence naming Step 3; `--no-check` skips the closing check; both flags
-  are in its `--help`.
+  sentence naming Step 3; the flag is in its `--help`; the existing
+  `--no-smoke-test` is what `course-update` passes.
 - With an unreachable base URL it prints the one-line "could not reach"
   message, changes nothing, and exits non-zero.
 - Tests: a new `env/tests/test-update.sh` drives all of the above against

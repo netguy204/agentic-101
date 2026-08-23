@@ -10,7 +10,8 @@ code_references:
 - ref: platform/module.yaml
   implements: "Sessions 1 and 2 as parts: five and six sittings transcribed from the\
     \ exercises and the practice laps, minutes from the runsheet timings and PRACTICE.md's\
-    \ time budget, sources anchored at the heading each part begins at, and estimated_minutes.lab\
+    \ time budget, sources anchored at the heading each part begins at (Session 2's\
+    \ first sitting excepted: it opens at the top of its document), and estimated_minutes.lab\
     \ as the sum \u2014 the first lab estimate here to count the practice week"
 - ref: platform/README.md
   implements: The rule that a part is a transcription of its exercise, that exercise
@@ -42,7 +43,10 @@ structure of their `EXERCISES.md` and `PRACTICE.md` — one part per exercise or
 per practice lap, grouped where the room's own runsheet groups them — with
 minutes taken from `EXERCISE_RUNSHEET.md`'s timings and PRACTICE.md's stated
 time budget, one outcome each in the participant's language, and `sources`
-anchored at the heading the part begins at. `estimated_minutes.lab` is the sum
+anchored at the heading the part begins at — except where a document opens
+with a step of its own, which is why Session 2's first sitting names
+`EXERCISES.md` unanchored (`docs/chunks/platform_drift_audit`).
+`estimated_minutes.lab` is the sum
 of the parts, which makes it the first honest lab estimate this manifest has
 carried: it now counts the practice week, because a self-paced student has no
 "between sessions" — the practice laps are simply the last sittings of the lab.

@@ -70,6 +70,11 @@ it is worth waiting for.
 > Lab card: the three commands, what each one shows you, and how to get to
 > your practice folder are on the terminal card. Keep it beside the laptop.
 
+> Lab card: one thing to do before the first exercise, and the exercise steps
+> open with it — a single word that fetches any course fixes published since
+> you set up. It takes seconds, most weeks it says there is nothing to do,
+> and it is on the terminal card with the rest.
+
 > Recall: what_is_a_terminal
 
 ## Segment 2 — Why you learn to undo first

@@ -1,179 +1,156 @@
-
-
-<!--
-This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
--->
-
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+This chunk is an audit, so most of the work produces a *record* rather than a
+diff. The deliverable is `FINDINGS.md` in this chunk directory: one row per
+thing a deterministic check quotes, per rubric criterion, per lab part, per
+recall prompt — each with the command that verified it and the verdict. The
+next material change should be able to re-run the table.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+Three rules govern what may be touched, and they come from
+[`platform/README.md`](../../../platform/README.md) rather than from this
+plan:
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+1. `CHECKPOINT.md` is the source; the rubric is a transcription and may not
+   say anything the checkpoint does not.
+2. A lab `part` is a transcription too, and its `#anchor` is load-bearing:
+   the session page opens the part at that heading.
+3. The audio carries the why; anything a listener would have to look at goes
+   out to a `> Lab card:` line. A `$ ` command line, a table or a fence in a
+   script is a validator error.
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/platform_drift_audit/GOAL.md)
-with references to the files that you expect to touch.
--->
+So every fix lands in `platform/` (DEC-010's session files and `env/`,
+`setup/` are the source and are read-only here), and the tool of record is the
+platform's own validator, run from the sibling checkout before and after:
 
-## Subsystem Considerations
+    cd ../learning-platform && pnpm contract:validate <this worktree>
 
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
+Because the validator is the same code the platform runs at ingest, a clean
+run is the answer and not a rehearsal — but it cannot see the drift this
+chunk is about (a rubric quoting a handout header that has since been
+reworded parses perfectly), which is why the grep table is the real output.
 
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
+Testing philosophy: `docs/trunk/TESTING_PHILOSOPHY.md` asks for outcome
+checks over process checks. The outcome here is "the string the machine
+compares against is the string the file prints", so every verification is a
+grep or a scripted substring comparison against the *current* file, recorded
+verbatim in FINDINGS.md — not an assertion that somebody read it.
 
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+Expected code_paths: `platform/module.yaml`, `platform/audio/02_meeting_the_harness.md`
+(plus the chunk's own FINDINGS.md). The rubrics and recall files are expected
+to come out unchanged; if they do, that is a result and it is recorded as one.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Establish the baseline
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+Run the platform validator from `../learning-platform` against this worktree
+and record the output verbatim. Read `platform/README.md` end to end first —
+its rules, not this plan, decide what counts as drift.
 
-Example:
+### Step 2: Reconstruct the timeline
 
-### Step 1: Define the SegmentHeader struct
+`git log` the material (`curriculum/`, `env/`, `setup/`) and the
+transcriptions (`platform/`) with timestamps, and establish which of the
+2026-08-22 changes actually predate which transcription. The narrative's
+premise ("the material changed after the transcriptions were written") is
+itself a claim to verify, and the answer decides how much of the audit is
+looking for damage versus confirming there is none.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+### Step 3: Every quoted string, against the file that prints it
 
-Location: src/segment/format.rs
+For each deterministic check in the three rubrics, grep the file it reads:
 
-### Step 2: Implement header serialization
+- `01_mental_models.yaml`: `column: In or out of my judgment boundary?`,
+  `column: How I'd check`, `table: The sheet` against
+  `handouts/toil-inventory.md`; plus the old header (`Could I tell good from
+  bad?`) repository-wide to prove nothing stale survives.
+- `02_meeting_the_harness.yaml`: `Your checkpoints, newest first:` and
+  `Back to:` against `env/bin/revert`; the tool list `[write, edit, bash]`
+  against the terminal card's four-tool table.
+- `setup.yaml`: all four phrases against `setup/bin/course-smoke-test`'s PASS
+  path *and* the sample output in `setup/README.md`, confirming each is from
+  a part of its line that interpolates no pin (env 1.1.0 moved the version
+  string; a rubric that quoted it would now fail every student).
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+### Step 4: Rubric beside checkpoint, end to end
 
-### Step 3: ...
+Read each rubric next to its `CHECKPOINT.md`. Mechanically confirm every row
+of both near-miss tables is present with the facilitator's words, and every
+numbered bar item has a criterion. Record the two places where a rubric
+deliberately carries something the bar does not state numerically (Session
+1's `check_column_filled`, Session 2's `revert --list` evidence) with the
+justification each already carries in a comment.
 
----
+### Step 5: Every path and anchor in the manifest
 
-**BACKREFERENCE COMMENTS**
+Script the whole of `module.yaml`: every `curriculum/`, `setup/`, `platform/`
+path exists; every `#anchor` (lab parts, `ta_knowledge`) resolves to a real
+heading in the file it names. Confirm each session's part minutes sum to
+`estimated_minutes.lab`, and read each part's `outcome` against the exercise
+it points at.
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+### Step 6: The Session 2 material changes, against script and recall
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+Grep the derivatives for the pre-2026-08-22 revert wording ("four things",
+"2 things have changed") and for the dropped pull-request example. Then
+settle the `course-update` question against the rule — a script is written
+FROM the concept sources, and a recall prompt asks about what its segment
+said — and record the decision with its reason either way.
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
+### Step 7: Fix what the audit found, in `platform/` only
 
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
+Confined to genuine drift: paths, anchors, quoted wording, and a part that
+opens past a step its document requires. No restructuring of parts, no
+re-timing, no touching `concept.sources` (a sibling chunk owns that).
 
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
+### Step 8: Re-run the validator and write the record
 
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+Validator clean, `ve validate` clean, FINDINGS.md complete with every command
+and verdict, and the two fixes explained in Deviations below.
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+None. `../learning-platform` must be checked out as a sibling for the
+validator; the audit is otherwise self-contained in this worktree.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **The audit finds nothing.** Entirely possible, and it is a real result —
+  but only if the record shows what was checked. A findings file that says
+  "verified" without the command is worth nothing to the next audit.
+- **`course-update` is a judgment call.** DEC-012 says every session from
+  Session 2 opens with it; `platform/README.md` says commands live on the lab
+  card, not in the script. The resolution has to satisfy both, and whichever
+  way it goes the reason is recorded.
+- **Three sibling chunks are running concurrently.** `platform_student_index`
+  edits `module.yaml`'s `concept.sources`; `platform_solo_labs` edits the lab
+  text this chunk reads. Edits here stay in the `lab.parts` region and in
+  `platform/audio/`, and anything the siblings need to know goes in the
+  handoff.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+- **Step 7 produced two fixes, not zero and not a list.** The audit found no
+  stale quoted wording anywhere — the transcriptions were written after every
+  2026-08-22 material change (Step 2), which is the opposite of the
+  narrative's premise. What it did find was one structural drift and one
+  omission, both recorded in FINDINGS.md as F-1 and F-2:
+  - `module.yaml`, Session 2 part `where_am_i`: the part opened at
+    `#exercise-1-where-am-i`, which is *below* the "Before exercise 1"
+    paragraph that DEC-012 requires every session from Session 2 to open
+    with. The unanchored document is now the part's first source, so the
+    sitting opens at the top. No part was re-timed, re-split or renamed.
+  - `audio/02_meeting_the_harness.md`, segment 1: a second `> Lab card:`
+    hand-off names the start-of-session update the terminal card carries.
+    The script's speech is unchanged, so no recall prompt changed either —
+    a prompt may only ask about what its segment said.
+- **Three items are recorded as noted-not-fixed** (FINDINGS.md N-1…N-3)
+  rather than changed: Session 2's part minutes run 5 minutes above the
+  runsheet's block timings, `first_delegation`'s comment cites 14 minutes
+  beside a value of 15, and Session 1's `check_column_filled` is stricter
+  than the numbered bar. All three are `platform_lab_parts`' and
+  `platform_module_contract`' documented choices, both ACTIVE, and both
+  postdate the material this chunk audits; changing them would be
+  restructuring rather than drift-fixing.

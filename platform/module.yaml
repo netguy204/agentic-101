@@ -173,7 +173,17 @@ sessions:
             A terminal and a file browser open on the same course-practice
             folder, and a file you deleted on purpose and got back with
             revert.
+          # Chunk: docs/chunks/platform_drift_audit - Where this part opens (F-1)
+          # Unanchored first, which is deliberate and is the one part in
+          # either session that opens at the top of its document. DEC-012
+          # requires every session from Session 2 to open with `course-update`,
+          # and EXERCISES.md carries it as a "Before exercise 1" paragraph
+          # above the first heading — so a part that opened at
+          # #exercise-1-where-am-i would send the student past the step the
+          # session is supposed to start with. The room hears it from the
+          # facilitator; a student alone has only where this part opens.
           sources:
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-1-where-am-i
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-2-the-safety-net
         # Runsheet: 14 minutes.

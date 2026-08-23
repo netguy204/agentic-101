@@ -118,15 +118,14 @@ the sort of thing that survives a commute.
 prompt.** Roughly 450 to 900 words. The validator warns outside that; aim for
 the middle, and read one aloud before you believe it.
 
-**The two files under `audio/` carry no backreference comment, and that is
+**The files under `audio/` carry no backreference comment, and that is
 deliberate.** Everything in a script that is not a `> Recall:` or
-`> Lab card:` line is speech, and that includes an HTML comment: anything
-before the first `## Segment` heading is the track's spoken introduction, so a
-`<!-- Chunk: … -->` line at the top would be read out by the voice. The
-validator does not currently catch this — its unspeakable-content check looks
-for tables, code fences and command lines. Until it does, the rule is manual:
-nothing goes in a script that you would not say to a listener. Their
-attribution is the row in the table above.
+`> Lab card:` line is speech. The platform's audio pipeline now strips HTML
+comments before TTS (verified 2026-08-23), so a stray comment is no longer
+spoken — but the discipline stays, because the validator's
+unspeakable-content check still only looks for tables, code fences and
+command lines: nothing goes in a script that you would not say to a
+listener. The scripts' attribution is the row in the table above.
 
 ## Drafting a session before it is served
 

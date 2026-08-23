@@ -305,6 +305,8 @@ around it:
   the Module Contract has no manifest key for it yet, so the platform never
   fetches it. Friction still reaches the TA the long way: platform-side
   candidates the instructor accepts.
-- HTML comments in a listenable script are spoken by the voice; the
-  validator does not yet catch them. Nothing goes in a script you would not
-  say aloud (`platform/README.md` records the same rule).
+- ~~HTML comments in a listenable script are spoken by the voice~~ —
+  resolved on the platform side (its audio pipeline now strips comments
+  before TTS, verified 2026-08-23). The working rule stands on its own
+  merits: nothing goes in a script you would not say aloud
+  (`platform/README.md` records it).

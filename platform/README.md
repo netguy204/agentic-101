@@ -15,7 +15,10 @@ what the course is. That is the whole interface, and the schema it is written
 against is Module Contract v1, which lives in the platform's own repository.
 
 Nothing here replaces anything. Every file below is a derivative of prose
-that already existed, and the prose is still the source.
+that already existed, and the prose is still the source. This README covers
+the transcription — the mechanics of this directory. How to *write the
+prose itself* so it transcribes well is the trunk's concern:
+[`docs/trunk/PLATFORM_AUTHORING.md`](../docs/trunk/PLATFORM_AUTHORING.md).
 
 ## What is in here
 

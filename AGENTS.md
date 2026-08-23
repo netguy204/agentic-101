@@ -144,6 +144,16 @@ Command documentation and updates travel with the plugin (`/plugin update vibe-e
 
 # Agent Working Tips
 
+## Authoring session material? Read the platform guide first
+
+This course is also delivered by a self-paced platform. Before writing or
+revising a session (checkpoints, exercises, handouts, concept prose), read
+[docs/trunk/PLATFORM_AUTHORING.md](docs/trunk/PLATFORM_AUTHORING.md) — it
+says how each file is consumed downstream and which wording is load-bearing.
+The mechanics of the `platform/` directory itself are in
+[platform/README.md](platform/README.md).
+
+
 ## Search before you ask
 
 Before asking the operator where something is, **search for it**.

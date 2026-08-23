@@ -2,6 +2,7 @@
 
 <!-- Chunk: docs/chunks/platform_authoring_guide - How to write session material that lands well on the self-paced platform -->
 <!-- Chunk: docs/chunks/platform_lab_parts - "A lab is parts" pointed at the manifest key that carries it -->
+<!-- Chunk: docs/chunks/platform_dual_authoring - "A new session, in order" as the dual-authoring flow (DEC-013) -->
 <!-- Chunk: docs/chunks/platform_student_index - The student index a served session owes, and the README the platform stopped serving -->
 
 This course now has two deliveries. The one it was written for is a room:
@@ -35,6 +36,11 @@ the platform directly. The room shows you the near-misses, the misfires,
 the corrective questions, and the recovery moves; those become the rubric
 exemplars, the TA's knowledge, and the checkpoint conversation. A course
 that never met a room has none of that to transcribe.
+
+That belief is recorded as DEC-013, which also settles *when* the platform
+version gets written: alongside the room version, as a draft, and promoted
+to the served manifest only after the room has proven the session. See "A
+new session, in order" below.
 
 What this means in practice:
 
@@ -242,16 +248,53 @@ reaches new students by cutting a new tag. The consequences:
 
 ## A new session, in order
 
-1. Write the session for the room — the seven files of DEC-010/DEC-011 —
-   with this document's rules in mind: binary bar with named evidence,
-   exemplars and corrective questions, submittable residue, separable
-   why/how, student-safe README.
-2. Floor-test and dry-run it as ever. The platform inherits the room's
-   quality bar; it does not replace it.
-3. Transcribe it into `platform/` following
-   [`platform/README.md`](../../platform/README.md), "Adding a session".
-4. Validate, tag, and tell the platform's instructor surface to ingest the
-   new tag.
+Both versions are authored together; only the room's is proven before
+either ships. That is the policy (DEC-013), and these are its four steps.
+
+1. **Write the session for the room** — the seven files of
+   DEC-010/DEC-011 — with this document's rules in mind: a binary bar with
+   named evidence, pass and near-miss exemplars with the corrective
+   question in your words, submittable residue, separable why/how. The
+   `README.md` stays yours and the facilitator's; the student's version of
+   it is the index in step 2.
+
+2. **Author the draft platform version alongside it**, into
+   `platform/drafts/<NN>_<slug>/`: the rubric transcribed from
+   `CHECKPOINT.md`, the listenable script, the recall prompts, the student
+   concept index, and a manifest fragment in the shape of one `module.yaml`
+   `sessions:` entry — Contract v1.1, so `lab.parts` included, and
+   `estimated_minutes.lab` the sum of the parts with the practice week in
+   it. Do this while the material is still warm: you remember which
+   sentence of the bar each criterion came from, which handout header a
+   deterministic check now depends on, and why the exercises fall into the
+   sittings they do. The same transcription six months later is the same
+   work done from cold, from documents you have to re-read to trust. The
+   draft is not served and never appears in `module.yaml` — the mechanics
+   are in [`platform/README.md`](../../platform/README.md), "Drafting a
+   session before it is served".
+
+3. **Floor-test and dry-run the room version, and iterate.** The platform
+   inherits the room's quality bar; it does not replace it, and it does not
+   get to serve a session the room has not survived. What the room changes
+   — a reworded bar item, a re-timed block, a near-miss nobody anticipated
+   — is *re-derived* into the draft, not reconciled with it: the draft is a
+   derivative, never a fork, and re-deriving one that is a week old is
+   cheap. This step is also what earns the draft its exemplars. The
+   near-misses you actually heard beat the ones you imagined, and the
+   corrective questions you actually said beat the ones you drafted.
+
+4. **Promote, once the room has proven it.** Move the draft's files to
+   their served locations, add its manifest fragment to `sessions:` in
+   `module.yaml` in progression order, run the validator, cut a
+   `platform-YYYY-MM` tag, and tell the platform's instructor surface to
+   ingest it. There is no authoring in this step; if you find yourself
+   writing, step 2 was not finished. Note that this validator run is the
+   first one that has ever seen the session — nothing under
+   `platform/drafts/` is checked by anything — so it is where a part
+   `sources` anchor that no longer matches an `## Exercise N` heading, a
+   deterministic check quoting a handout header the floor test reworded, or
+   a table that crept into the script will surface. Expect to fix something
+   here; that is the run doing its job.
 
 ## Known gaps (check before relying on this section)
 

@@ -6,8 +6,9 @@
 
 You left the room with a delegation brief that has run twice on made-up
 material. This week it runs on the real thing — the task it was written for,
-when that task next comes round. That is work you were going to do by hand
-anyway; the point is that some of this hour replaces some of that hour.
+when that task next comes round, or the next time you do that task, whenever
+that is. That is work you were going to do by hand anyway; the point is that
+some of this hour replaces some of that hour.
 
 **Where you're heading:** by Session 4, your brief will have run on the real
 task twice, you'll have changed one box between the runs, and you'll have
@@ -20,7 +21,7 @@ one sentence about what the second run caught that the first didn't. Session
 
 | When | How long | What |
 |---|---|---|
-| When the task next comes round | 20 min | Run the brief on the real task — the loop, once |
+| When the task next comes round (whenever that is) | 20 min | Run the brief on the real task — the loop, once |
 | Later in the week, the next time round (or the next day, on the same material) | 20 min | Change one box, run it again |
 | Once, before Session 4 | 10 min | One sentence: what the second run caught that the first didn't |
 | Optional | 15 min | Brief an `out` entry and find the box you can't fill |
@@ -73,9 +74,10 @@ Then the question from exercise 3: *which box let me down?* Write the
 change on the brief and the reason in one sentence — even if the answer is
 "none, so I'm adding a checkpoint."
 
-**If the real task doesn't come round this week,** run it on the made-up
-material from the session again, or on a made-up version of the real
-input. The loop is the practice; the real data is a bonus.
+**If the real task doesn't come round this week** — or your tasks don't run
+on a weekly rhythm at all — run it on the made-up material from the session
+again, or on a made-up version of the real input. The loop is the practice;
+the real data is a bonus.
 
 ---
 

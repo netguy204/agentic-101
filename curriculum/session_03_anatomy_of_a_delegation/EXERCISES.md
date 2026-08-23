@@ -1,6 +1,12 @@
 # Session 3 exercises
 
 <!-- Chunk: docs/chunks/fluency_session_03 - Session 3 in-session exercises (participant) -->
+<!-- Chunk: docs/chunks/platform_solo_labs - Followable by a student with no room; the contract before the work -->
+
+**What you'll have at the end.** One delegation brief, filled in, that you
+ran twice — with one change to it in between. A sentence at the bottom of
+the brief naming which box let you down and what you changed. And box 5:
+the thing that could go wrong that your checks would not have caught.
 
 Four exercises, in a fixed order — each one sets up the next. You'll spend
 the session on **one** task from your toil inventory: you'll write down, on
@@ -30,8 +36,12 @@ What you type, and any file pi reads, is sent to the model provider. As in
 Session 2, today's files are made up or describe only the shape of your
 work; nothing confidential goes in the folder.
 
-Stuck at any point? Say so — you'll be paired. A pair runs every exercise at
-full value; the person without the laptop holds the keyboard.
+Stuck at any point? If someone is running this session, say so — you'll be
+paired, and a pair runs every exercise at full value with the person
+without the laptop holding the keyboard. On your own: each exercise ends
+with the things that actually go wrong and what to do about them, and if
+your own task is what's stuck, switch to one of Priya's briefs and come
+back to yours.
 
 **Before exercise 1:** in the course terminal, type `course-update` and
 press Enter. It fetches any course fixes published since you set up — most
@@ -42,14 +52,16 @@ a new one, do that before going on.
 
 ## Exercise 1 — Your worst one
 
-Everybody brought a delegation that went badly. The room goes round once,
-one sentence each, and sorts them.
+You brought a delegation that went badly. Before anything else, you're
+going to say what happened in one sentence and sort it into one of three
+kinds.
 
 1. Have your worksheet and your sentence in front of you.
-2. When it's your turn, say the sentence: what you asked for, and what went
-   wrong. One sentence. Don't explain it; don't defend it.
-3. As the others go, listen for which of three things happened. Nearly every
-   bad delegation is one of them:
+2. Say the sentence — out loud, or written at the top of the worksheet:
+   what you asked for, and what went wrong. One sentence. Don't explain it;
+   don't defend it.
+3. Now sort it. One of three things happened; nearly every bad delegation
+   is one of them:
    - **It didn't know something.** It needed a file, a fact, a date, a rule
      — and it wasn't there, so it guessed.
    - **It decided something.** It made a choice you didn't ask it to make —
@@ -57,13 +69,18 @@ one sentence each, and sorts them.
      filled a gap — and only sometimes mentioned it.
    - **I couldn't tell.** It might have been fine. You had no way of
      knowing, because there was nothing you could actually check.
-4. When yours has been said, write which of the three it was at the top of
-   your worksheet. If it was genuinely none of them — the task was outside
-   what you could judge, and you noticed — write **out of bounds**. That is
-   a pass, not a miss.
+4. Write which of the three it was at the top of your worksheet. If it was
+   genuinely none of them — the task was outside what you could judge, and
+   you noticed — write **out of bounds**. That is a pass, not a miss.
 
 **What you should see:** one of the three reasons (or *out of bounds*)
 written at the top of your worksheet, in your handwriting.
+
+**Working with others?** Go round once — one sentence each, sorted out loud
+as you go, a mark against each of the three. There are only three, and
+watching a dozen bad delegations land in them is the fastest way to
+believe it. Say your own sentence when it's your turn, listen for which
+bucket the others fall into, and write yours down when it's been placed.
 
 ---
 
@@ -207,6 +224,6 @@ box 4 or the word **out** beside the task.
 
 ## Wrapping up
 
-One question, hands up: **who has a brief that ran twice, and can say in one
+One question: **do you have a brief that ran twice, and can you say in one
 sentence why the second run was better?** That sentence — the one at the
-bottom of your brief — is what you'll be asked for in the checkpoint round.
+bottom of your brief — is what you'll be asked for at the checkpoint.

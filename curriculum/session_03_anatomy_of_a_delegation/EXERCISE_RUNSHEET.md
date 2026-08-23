@@ -41,9 +41,15 @@ folder and the brief describes its *shape*.
 ## Exercise 1 — Your worst one (12 minutes)
 
 **What participants do.** Each says one sentence about the practice-week
-delegation that went worst; you sort the sentences live into three reasons;
-they write their reason on their worksheet. Steps: `EXERCISES.md`,
-exercise 1.
+delegation that went worst and sorts it into one of three reasons, written
+on their worksheet. Steps: `EXERCISES.md`, exercise 1.
+
+**Run it as a round — that's the room's version of it.** The steps are
+written so one person can do them at a desk; in here the sentences are said
+aloud in turn and *you* place each one, which is what makes the tally
+possible and the tally is what teaches that there are only three. The
+participant text carries the round as an aside — point at it, don't read it
+out.
 
 **Before the round, write the three reasons on the board and leave them
 there all session:**

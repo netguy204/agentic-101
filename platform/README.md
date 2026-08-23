@@ -2,6 +2,7 @@
 
 <!-- Chunk: docs/chunks/platform_module_contract - What this directory is, and the rules for keeping it true -->
 <!-- Chunk: docs/chunks/platform_lab_parts - The lab-as-parts rules: transcription, load-bearing headings, honest minutes -->
+<!-- Chunk: docs/chunks/platform_dual_authoring - The drafts convention: staging a session's platform version until the room has proven it -->
 <!-- Chunk: docs/chunks/platform_student_index - index/, the student's session index that concept.sources serves instead of README.md -->
 
 Everything else in this repository is written for a person: a participant
@@ -33,9 +34,11 @@ prose itself* so it transcribes well is the trunk's concern:
 | `recall/*.yaml` | The question-and-answer beat that closes each audio segment. |
 | `audio/*.md` | The concept tracks, written for the ear. |
 | `pronunciation.yaml` | How the voice says pi, Ghostty, OpenRouter and the rest. |
+| `drafts/<NN>_<slug>/` | A session's platform version, written alongside the session itself and staged until the room has proven it. Nothing in here is served — or read by anything at all — until it is promoted. See "Drafting a session before it is served". |
 
-To check the whole directory before tagging, run the platform's validator
-against this repository from a checkout of the platform:
+To check everything this directory serves before tagging, run the
+platform's validator against this repository from a checkout of the
+platform:
 
     pnpm contract:validate /path/to/agentic-101
 
@@ -125,12 +128,88 @@ for tables, code fences and command lines. Until it does, the rule is manual:
 nothing goes in a script that you would not say to a listener. Their
 attribution is the row in the table above.
 
+## Drafting a session before it is served
+
+A session's platform version is written at the same time as the session
+itself and staged here until the room has proven it — that is DEC-013, and
+`docs/trunk/PLATFORM_AUTHORING.md` § "A new session, in order" is the
+author's four steps. This section is the mechanics of the staging.
+
+A draft lives in `drafts/<NN>_<slug>/`, under the prefix and slug the
+session will be served as, and holds everything the served session needs:
+
+| In the draft | Promoted to |
+|---|---|
+| `rubric.yaml` | `rubrics/<NN>_<slug>.yaml` |
+| `audio.md` | `audio/<NN>_<slug>.md` |
+| `recall.yaml` | `recall/<NN>_<slug>.yaml` |
+| `index.md` | the student-facing concept index, in its served location (`index/<NN>_<slug>.md`) |
+| `session.yaml` | one entry under `sessions:` in `module.yaml` |
+
+`session.yaml` is a manifest fragment: a single `sessions:` entry written in
+the shape `module.yaml` wants it, at the contract's current revision (v1.1,
+the one that added the lab's parts). So: the concept sources and listenable
+script, the lab sources and handouts, `lab.parts` with its two to six
+sittings each anchored at the heading it begins at, the artifacts a student
+submits, `ta_knowledge`, the rubric path the session will have after
+promotion, and `estimated_minutes.lab` equal to the sum of the parts with
+the practice week inside it. Written that way, promotion is a paste rather
+than a translation.
+
+**A drafted session is never listed in `module.yaml`.** The manifest
+describes what the platform serves, so naming a session there before its
+files are in place costs a student a door that does not open and buys the
+author nothing. The listing is the entire difference between a draft and a
+served session; keep it that way and the state is never ambiguous.
+
+**Nothing in a draft is read by anything.** `module.yaml` is the only file
+the platform knows the name of, and everything else in this directory is
+found *through* it — no glob, no convention, no directory scan. A file under
+`platform/` that no manifest entry points at is invisible to the validator
+and to ingest, which is the same code. So `drafts/` needs no exemption and
+no ignore rule on the platform side, and the reason is worth holding on to:
+the manifest is the only thing that makes a file real. (Verified rather than
+assumed — the validator was run against a drafts directory full of
+deliberately invalid files and reported the same clean result as without it:
+`docs/chunks/platform_dual_authoring/PLAN.md` § Step 1.)
+
+The flip side is that a draft is unverified by construction. Its part
+anchors are never matched against the exercises' real headings, its rubric
+is never schema-checked, its script is never read for the tables and code
+blocks a listener cannot hear. All of that happens at promotion, which is
+why promotion is not a formality.
+
+**Promotion**, once the room has run the session:
+
+1. Move the draft's files to their served locations, per the table above,
+   and remove the empty draft directory.
+2. Add `session.yaml`'s entry to `sessions:` in `module.yaml`, in
+   progression order. The numeric prefixes have to agree with the list
+   order.
+3. Run the validator. This is the first time anything has read this
+   session, so read every error and every warning — a part `sources` anchor
+   broken by a heading the floor test reworded surfaces here and nowhere
+   earlier.
+4. Cut the `platform-YYYY-MM` tag and tell the platform's instructor
+   surface to ingest it.
+
+No step in that list is authoring. If promotion turns into writing, the
+draft was not finished; finish it in `drafts/` and promote again, because a
+session that is half-written in `module.yaml` is a session being served.
+
 ## Adding a session
+
+These steps produce a *draft* — `drafts/<NN>_<slug>/`, written alongside the
+session and promoted after the room has run it, per the section above. The
+transcription work is the same either way; only its destination waits.
 
 1. Write the session first, as a session — the seven files of DEC-010 and
    DEC-011. This directory describes a session; it does not define one.
-2. Add it to `sessions:` in `module.yaml`, in progression order. The numeric
-   prefixes have to agree with the list order.
+2. Frame `session.yaml`, the manifest fragment — the entry the session will
+   have under `sessions:` once it is promoted, and not a line in
+   `module.yaml` before then. Which files are concept, which are the lab,
+   which are the facilitator's, what the student submits. Steps 3 to 5 fill
+   in what it points at.
 3. Write the rubric from `CHECKPOINT.md`, working through the bar item by
    item. Ask of each: can a machine see this, or does somebody have to hear
    it? The checkpoints tend to answer that themselves — Session 2's says
@@ -144,12 +223,27 @@ attribution is the row in the table above.
    `estimated_minutes.lab` to the sum.
 5. Write the script, then the recall prompts, in that order. A prompt has to
    ask about what its segment actually said.
-6. Run the validator. Read the warnings; they are not noise.
+6. Write the student's index, from the session's `README.md` and
+   `PREWORK.md` — one page in the course's voice, addressed to the student:
+   the outcome, what they will do, the minutes the fragment now promises,
+   and what they hand in. It goes in `concept.sources` and the `README.md`
+   does not, so this is the step that decides what a student reads first.
+7. Stop there, and wait for the room. Promotion (above) is what runs the
+   validator, and since nothing in a draft is read by anything, that run is
+   the first thing to check this session at all. Read its warnings; they
+   are not noise.
 
 ## What is not here yet
 
 Sessions 3 to 6. Session 3 exists in `curriculum/` with a complete
 checkpoint; the rest are unwritten. The manifest describes what the platform
-serves, so a session appears here when it is ready to be served, not when it
-is planned — a session named without a rubric is a locked door with a sign on
-it.
+serves, so a session appears **in `module.yaml`** when it is ready to be
+served, not when it is planned — a session named without a rubric is a
+locked door with a sign on it.
+
+`drafts/` is outside that rule rather than a hole in it. A draft may be as
+complete as a served session and is still not here in the sense that
+matters, because nothing names it to a student: no manifest entry, no door,
+no sign to read. The one-step-at-a-time framing governs `module.yaml`
+alone. So before concluding that a session has no platform version, look in
+`drafts/` — it may be finished and waiting on a floor test.

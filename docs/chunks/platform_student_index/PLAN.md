@@ -218,20 +218,22 @@ indexes quote come from.
 
 ## Deviations
 
-- **Steps 5 and 6, narrowed on purpose: two checklists that now owe a line
-  were left to their owners.** `platform/README.md` § "Adding a session"
-  and `docs/trunk/PLATFORM_AUTHORING.md` § "A new session, in order" are
-  both being rewritten this wave by `platform_dual_authoring` (the
-  `platform/drafts/` convention), and the second still says a new session
-  needs a "student-safe README", which this chunk makes wrong. Editing
-  either would have collided with that chunk's rewrite in the merge, so
-  neither was touched. **Handoff:** whoever lands the drafts convention
-  should add "write the session's student index (`platform/index/`)" to
-  the transcription checklist and to what a staged draft holds, and
-  replace "student-safe README" with the index. The rule itself is already
-  stated in PLATFORM_AUTHORING § "How the platform consumes a session" and
-  in the `platform/README.md` file table, so the obligation is written
-  down; what is missing is its place in the two step lists.
+- **Steps 5 and 6 were narrowed while `platform_dual_authoring` was still
+  in flight, then finished once it landed.** `platform/README.md` §
+  "Adding a session" and `docs/trunk/PLATFORM_AUTHORING.md` § "A new
+  session, in order" both owe the index a line, and both were being
+  rewritten in the same wave by that chunk (the `platform/drafts/`
+  convention). Editing them concurrently would have collided, so the first
+  commit left them alone and recorded the handoff here. `main` then merged
+  `platform_dual_authoring`; merging it into this branch made the two
+  sections safe to touch, and both were done in the merge commit:
+  "Adding a session" gains a step for writing the student index, and step
+  1 of "A new session, in order" no longer asks for a "student-safe
+  README" — it says the README stays the author's and the facilitator's
+  and points at the index in step 2. `platform_dual_authoring` had already
+  anticipated the index in its drafts table (`index.md` →
+  `index/<NN>_<slug>.md`) and in step 2 of the four-step flow, so those
+  needed nothing.
 - **A stale known gap was found and left alone.** PLATFORM_AUTHORING's
   known-gaps bullet saying HTML comments in a listenable script are spoken
   by the voice is no longer true: `../learning-platform`'s

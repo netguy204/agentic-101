@@ -56,13 +56,16 @@ operator_review: null  # DO NOT SET - reserved for operator curation good | bad 
   obeys the same transcription rule — while keeping the underlying warning
   that everything in `concept.sources` is read by a student alone at 9pm.
   `platform/README.md`'s "What is in here" table gains the `index/` row.
-- **Deliberate omission**: `platform/README.md` § "Adding a session" and
-  PLATFORM_AUTHORING § "A new session, in order" both now owe a line about
-  writing the index (the latter still says "student-safe README"). Both
-  sections are being rewritten in this same wave by `platform_dual_authoring`
-  for the `platform/drafts/` convention, so editing them here would have
-  collided in the merge. Recorded as a handoff in PLAN.md Deviations rather
-  than left silent.
+- **Deferred, then landed**: `platform/README.md` § "Adding a session" and
+  PLATFORM_AUTHORING § "A new session, in order" both owed the index a line,
+  and both were being rewritten in the same wave by `platform_dual_authoring`
+  for the `platform/drafts/` convention. The first commit left them alone and
+  recorded the handoff; once that chunk merged to `main` and `main` was merged
+  into this branch, both were finished — a step for writing the student index
+  in "Adding a session", and step 1 of the four-step flow no longer asking for
+  a "student-safe README". `platform_dual_authoring`'s own drafts table
+  already carried `index.md` → `index/<NN>_<slug>.md`, so the two chunks agree
+  without either having seen the other's work.
 
 ### Criterion 4: `pnpm contract:validate` from ../learning-platform is clean; `uvx --from vibe-engineer ve validate` passes
 

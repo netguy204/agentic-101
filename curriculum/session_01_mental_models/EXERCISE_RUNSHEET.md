@@ -122,16 +122,20 @@ to know whether she's ever been trained on this" in the check column.
 
 ## Exercise 3 — The skeptic pass (8 minutes)
 
-**What participants do.** In pairs. One person names a task from their
-sheet and says whether they marked it in, out, or not sure. Their partner
-plays the skeptic and asks, repeatedly, some version of:
+**What participants do.** Interrogate their own answers with one question,
+asked over and over:
 
 > "How would you know if it was wrong?"
 
-The skeptic keeps going until either the answer is genuinely concrete, or
-the participant says "…actually, I couldn't tell." Then swap. Four minutes
-each way; two or three tasks each is plenty. Steps: `EXERCISES.md`,
-exercise 3.
+They keep asking until the answer is genuinely concrete or they say
+"…actually, I couldn't tell." Two or three tasks each is plenty. Steps:
+`EXERCISES.md`, exercise 3.
+
+**Pair them — that's the room's version of it.** The exercise is written so
+a participant can do it alone, because they will have to in the practice
+week; in here, the partner asks the question, which is harder to duck than
+asking it of yourself. Four minutes each way, then swap. The participant
+text carries the pair form as an aside — point at it, don't read it out.
 
 **Say it like this — and say the last sentence twice.** "Your job as the
 skeptic is not to be nice. It's to keep asking until the answer is

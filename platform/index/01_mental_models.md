@@ -14,7 +14,8 @@ that every later session draws from.
 
 **By the end you will have** a written list of the repeating work in your
 job — at least three entries, each marked with whether you could tell a
-good result from a bad one — and you will be able to say, about one task
+good result from a bad one *and* with the actual check written next to it
+— and you will be able to say, about one task
 on it, why it sits inside or outside what you can judge, naming the check
 you would use to find out.
 
@@ -22,7 +23,7 @@ you would use to find out.
 
 | | |
 |---|---|
-| **The concept track** | About **30 minutes**. Four segments, listened to or read. No screen needed; a commute or a walk is the design case. |
+| **The concept track** | About **15 minutes** of listening — four segments, listened to or read, no screen needed; a commute or a walk is the design case. The rest of the concept time is the prework's doing: your five-task list and the setup check, which the track hands back to you. |
 | **The lab** | About **92 minutes**, and you are not meant to do it in one go. |
 
 The lab figure includes the practice week. There is no cohort waiting for

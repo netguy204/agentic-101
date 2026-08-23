@@ -1,5 +1,5 @@
 ---
-themes: [setup]
+themes: [setup, platform]
 proposed_chunks: []
 ---
 
@@ -38,6 +38,41 @@ Entry status is DERIVED, not stored:
 -->
 
 ## Entries
+
+### 2026-08-23 [platform] Rubric exemplars in spoken register split the judge on worksheet-shaped answers
+
+The platform's staged walkthrough of Session 2 submitted a deliberately
+near-miss worksheet whose Tool column read "it just did it". The rubric's
+near-miss exemplars for `read_tool_calls` were all spoken-round sentences,
+so the judge split five ways and escalated at low confidence instead of
+firing the checkpoint's corrective question. The near-miss was the
+checkpoint's own most-common row — in the register of the artifact the
+platform actually receives. Fixed same day: two worksheet-register
+exemplars added to `platform/rubrics/02_meeting_the_harness.yaml`, same
+row, same corrective. Rule worth carrying forward: exemplars belong in the
+register of the submitted artifact, not only the spoken round.
+
+### 2026-08-23 [platform] Concept-track minutes overstated against the rendered audio
+
+The S1 index and manifest said "about 30 minutes" for a concept track whose
+rendered audio runs ~14; S2 claimed 25 against ~15. The honest-minutes rule
+(PLATFORM_AUTHORING, "Design for the student who is alone") cuts both ways.
+Fixed same day: both index concept rows now state ~15 minutes of listening
+and name what the remaining concept time is (the prework's doing-parts,
+which the track hands back). Manifest totals unchanged — they cover listen
+plus do. Check to add to the drafting habit: word count / 190 ≈ listened
+minutes, compared against whatever number the index prints.
+
+### 2026-08-23 [platform] Part and index lines under-specify the sitting or the bar
+
+Three wording gaps from the same walkthrough, all fixed same day: the S1
+daily-pass part read as one 20-minute sitting (it is five short passes —
+now said in the part title itself, not just the index prose); the S1 index
+undersold the bar by one column (judgeability without the written check —
+now "and with the actual check written next to it"); S2 part 1's outcome
+now names the delete-it-really moment as what makes the rest safe, since
+the runsheet's own finding is that nobody who skipped the deletion trusts
+the net — and it is the likeliest solo stall.
 
 <!--
 ENTRY FORMAT — DO NOT REMOVE THIS COMMENT

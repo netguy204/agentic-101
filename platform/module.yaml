@@ -102,7 +102,7 @@ sessions:
         # 15 once, 20 before session 2. A student with no cohort has no
         # "between sessions" - these are simply the last three sittings.
         - id: daily_pass
-          title: The daily pass
+          title: The daily pass — five short passes spread over the week, not one sitting
           minutes: 20
           outcome: >-
             Four end-of-day passes, each adding whatever you caught yourself
@@ -172,7 +172,8 @@ sessions:
           outcome: >-
             A terminal and a file browser open on the same course-practice
             folder, and a file you deleted on purpose and got back with
-            revert.
+            revert — really delete it; getting it back is what makes the
+            rest of the session safe to try.
           # Chunk: docs/chunks/platform_drift_audit - Where this part opens (F-1)
           # Unanchored first, which is deliberate and is the one part in
           # either session that opens at the top of its document. DEC-012

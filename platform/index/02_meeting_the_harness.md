@@ -17,7 +17,7 @@ used `revert` at least once to undo a mess on purpose.
 
 | | |
 |---|---|
-| **The concept track** | About **25 minutes**. Four segments, listened to or read, with nothing to type. |
+| **The concept track** | About **15 minutes** of listening — four segments, listened to or read, with nothing to type. The rest of the concept time is the prework's doing: starring your entry, writing its two sentences, and running two commands. |
 | **The lab** | About **125 minutes**, across several sittings. |
 
 The lab figure includes the practice week. Working on your own there is no

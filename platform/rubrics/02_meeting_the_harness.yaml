@@ -71,6 +71,26 @@ criteria:
         corrective: >-
           One write is a whole file created. Short lists are normal — what
           changed in the folder?
+      # The two rows below are the checkpoint's first near-miss ("that's the
+      # summary, not the tool calls") in the register the platform actually
+      # receives — the worksheet's three-column table — added after the
+      # 2026-08-23 platform walkthrough, where a worksheet-shaped near-miss
+      # split the judge instead of firing the corrective question. Same row,
+      # same corrective; only the surface differs.
+      - text: "Worksheet box 1, Tool column reads: 'it just did it' (or 'fixed the file')."
+        why: >-
+          The summary, not the tool calls — in worksheet form. A Tool cell
+          holding a description of the outcome instead of a tool name.
+        corrective: >-
+          That's what it told you. What did the boxes say, and what did you
+          look at?
+      - text: "Worksheet box 1 lists 'cleaned up my statuses' as tool 1 and is otherwise empty."
+        why: >-
+          The paragraph copied into the table. A tool name is read, write,
+          edit or bash; anything else in that column came from the summary.
+        corrective: >-
+          That's what it told you. What did the boxes say, and what did you
+          look at?
 
   # Bar, item 3: "Named what they checked to decide whether the result was
   # reasonable, and what that check told them. Specific. 'The row count was

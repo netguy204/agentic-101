@@ -70,3 +70,19 @@ runs. That is normal." — install.sh's brew step needs the same courtesy line,
 and ideally a completion line per app. The interrupted install left no
 partial-state warning; the re-run succeeded because the installer is
 idempotent, which is the only reason this was cheap to recover.
+
+### 2026-08-23 [setup] An already-running Ghostty ignores the course configuration
+
+The operator (as the pilot's first student) had Ghostty running since before
+the installer wrote its config. The running instance keeps the configuration
+it loaded at startup, so every window it spawned — including ones opened
+after install — came up as stock zsh with no course PATH and no pi
+keybindings, and `course-smoke-test` was "command not found" in what looked
+like a fresh course terminal. The Windows path already guards against
+exactly this ("Close every Windows Terminal window, then open Windows
+Terminal again"); the macOS path does not, and the installer's closing
+"Open Ghostty" reads as satisfied by an already-open Ghostty. Fix: the
+installer's closing message and the guide's macOS Step 1 should both say
+"If Ghostty is already open, quit it fully (Cmd+Q) first." Rare at the
+audience floor (they won't have Ghostty), certain for any student who
+already uses it.

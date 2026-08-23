@@ -1,179 +1,175 @@
-
-
-<!--
-This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
--->
-
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+This chunk is documentation only: no code, no manifest change, no new
+served files. It writes down a policy the operator already holds and the
+mechanism that makes it safe, in the three places that govern it:
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+- **`docs/trunk/PLATFORM_AUTHORING.md`** — the upstream half. Its closing
+  section "A new session, in order" currently describes the status quo the
+  policy replaces (write the session, floor-test it, *then* transcribe).
+  It becomes the four-step dual-authoring flow, with the draft written
+  alongside the room version and promotion held until the room has proven
+  the session.
+- **`platform/README.md`** — the downstream half. It gains the mechanics of
+  `platform/drafts/`: what a draft holds, the rule that a drafted session is
+  never listed in `module.yaml`, and the promotion procedure. Its existing
+  "Adding a session" section becomes the drafting procedure plus promotion,
+  and "What is not here yet" is reconciled with the fact that a drafted
+  session's files may exist here while the session is not served.
+- **`docs/trunk/DECISIONS.md`** — DEC-013, following the existing entry
+  format (Date, Status, Decision, Context, Alternatives Considered,
+  Rationale, Consequences, Revisit If).
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+Two existing rules constrain every word written here and must not be
+contradicted:
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/platform_dual_authoring/GOAL.md)
-with references to the files that you expect to touch.
--->
+- **Derivatives, never forks** (PLATFORM_AUTHORING.md, "Two deliveries, one
+  course"). A draft is a derivative written *early*, not a second copy of a
+  session. If the room changes the source, the draft is re-derived, not
+  reconciled.
+- **The transcription rules still bind a draft**: a rubric may not say
+  anything its `CHECKPOINT.md` does not; `CHECKPOINT.md` is never
+  `ta_knowledge`; deterministic checks quote handout wording exactly; a
+  part's `#anchor` is matched against the file's real headings.
 
-## Subsystem Considerations
+The Contract v1.1 shape (`lab.parts[]`, `estimated_minutes.lab` as the sum
+of the parts including the practice week) is what the draft's manifest
+fragment must be written in, and the anchor-matching check is the specific
+thing the promotion step's validator run catches. Both are stated in the
+new text rather than left implicit.
 
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+The trunk GOAL's "Two deliveries, one source" property is referenced, not
+restated.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Verify the validator's behavior with a drafts directory
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+Before writing the convention down, establish that the location is safe.
+Run `pnpm contract:validate <this worktree>` from
+`/Users/btaylor/Projects/learning-platform` to get a baseline, then again
+with a probe `platform/drafts/03_test/` containing files that would be
+*errors* if they were read as module content (a rubric with an unknown key,
+a script with a table and a code fence). If the validator errors, pick a
+location it ignores and record the finding; if it does not, `platform/drafts/`
+stands.
 
-Example:
+**Result (recorded here as the chunk's finding):**
 
-### Step 1: Define the SegmentHeader struct
+Baseline and probe runs are identical — `satisfies Module Contract v1:
+2 sessions, 0 warnings`, exit 0. The validator walks the whole repository
+into a file map but `validateModule` reads only what is reachable from
+`platform/module.yaml` (`MANIFEST_PATH` in the platform's
+`src/contract/types.ts` is the one path it knows by name; nothing globs
+`platform/rubrics/`, `platform/audio/` or `platform/recall/`). A file under
+`platform/` that no manifest entry points at is invisible to validation and
+to ingest, which is the same code.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+So `platform/drafts/` needs no exemption, no ignore-list entry and no
+change on the platform side. The property the convention depends on is
+therefore **not** "the validator tolerates a drafts directory" but the
+stronger and simpler one: *the manifest is the only thing that makes a file
+real.* That is what the README text should say, because it is also the
+reason the "never listed in `module.yaml`" rule is load-bearing rather than
+decorative — the listing is the whole difference between a draft and a
+served session.
 
-Location: src/segment/format.rs
+Probe files are removed before commit.
 
-### Step 2: Implement header serialization
+### Step 2: Rewrite "A new session, in order" in PLATFORM_AUTHORING.md
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+Four steps, in the narrative's order:
 
-### Step 3: ...
+1. Write the session for the room — DEC-010/DEC-011's seven files — with
+   this document's rules in mind (the existing step 1's content survives).
+2. Author the draft platform version alongside it, into
+   `platform/drafts/<NN>_<slug>/`. Written now, while the material is fresh
+   and the author still remembers which sentence of the bar each criterion
+   came from.
+3. Floor-test and dry-run the room version, and iterate. The platform
+   inherits the room's quality bar. What the room changes, the draft
+   re-derives — that is cheap, and it is why the draft is not promoted yet.
+4. Promote once the room has proven it: move the files into their served
+   locations, add the session to `module.yaml`, validate, tag.
 
----
+Also add a sentence to "Two deliveries, one course — and the classroom
+leads" pointing at DEC-013 as the record of the policy, so the operating
+belief paragraph and the decision are linked in both directions.
 
-**BACKREFERENCE COMMENTS**
+### Step 3: Document `platform/drafts/` in platform/README.md
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+Add a section (after "The rules", before "Adding a session") covering:
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+- What a draft directory holds: rubric, audio script, recall prompts,
+  student concept index, and `session.yaml` — a manifest fragment in the
+  shape of one `sessions:` entry, Contract v1.1, `lab.parts[]` included.
+- The rule: a drafted session is **never** listed in `module.yaml`. A
+  session named without being served is a locked door with a sign on it.
+- Why the location is safe: the manifest is the only thing that makes a
+  file real (Step 1's finding), stated so a reader knows the drafts
+  directory is not a special case the validator was taught about.
+- What is *not* checked while a session is in drafts — the fragment's
+  anchors, the rubric's schema, the script's unspeakable content are all
+  unvalidated until promotion, so the first validator run after the move is
+  the real one.
+- The promotion procedure: move, add the fragment to `sessions:` in
+  progression order, validate, tag. No authoring left.
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
+Update "Adding a session" so its steps produce a draft (they are otherwise
+correct as written) and end at promotion rather than at "add it to
+`module.yaml`" in step 2. Update "What is not here yet" so a drafted
+session is described honestly: not served, and exempt from the
+one-step-at-a-time framing because a draft is not a locked door — nothing
+names it to a student.
 
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
+### Step 4: DEC-013
 
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
+Append to `docs/trunk/DECISIONS.md`, matching the existing entries' format.
+Alternatives to cover, per the chunk goal: author for the platform directly;
+transcribe only after the room has run the session (the status quo this
+replaces); maintain a platform fork. Rationale is the operator's operating
+belief, already stated in PLATFORM_AUTHORING.md. Consequences name the
+files this chunk changed, the drafts convention, and what a Session 4
+author now owes. Revisit-if names the condition under which drafting early
+stops paying.
 
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+### Step 5: Populate `code_paths` and validate
+
+Set `code_paths` in the chunk's GOAL.md to the three files. Run
+`uvx --from vibe-engineer ve validate` and the platform validator once more,
+clean.
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+None. The three files exist; the chunk adds no code and no manifest entry.
+`platform/drafts/` itself is created by the first session that drafts into
+it (`platform_session_03_draft`), not by this chunk — an empty directory is
+not a thing git carries, and this chunk owns the convention, not its first
+use.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **Contradicting a sibling chunk.** Three chunks of this narrative run
+  concurrently in other worktrees, one of which (`platform_student_index`)
+  settles where the student-facing concept index lives. This chunk names
+  the index as part of a draft without fixing its served path; the drafts
+  text says "wherever the served index lives" rather than guessing
+  `platform/index/`. Worth a re-read at merge.
+- **The status quo has one data point.** Sessions 1 and 2 were transcribed
+  after the fact and it worked; the claim that drafting early is cheaper is
+  the operator's judgment, not a measurement. DEC-013's revisit-if is where
+  that honesty lands.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+- Step 3 planned to say the drafts directory is "tolerated" by the
+  validator. Step 1's finding made that the wrong framing — the validator
+  does not tolerate the directory, it cannot see it, and for a reason that
+  is worth a reader knowing (the manifest is the only entry point). The
+  README text states the reason instead of the tolerance.
+- The chunk goal describes a draft's manifest fragment without naming the
+  file. Implementation names it `session.yaml`, so a promotion is a
+  mechanical paste rather than a hunt for which file holds the fragment.
+- `platform/drafts/` is documented but not created (see Dependencies).

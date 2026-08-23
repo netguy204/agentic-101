@@ -701,3 +701,103 @@ receive the command.
 enumerate (the operator's long-tail condition) — that is when an
 agent-driven repair, scoped and verified, would be worth designing; or if a
 pin change ever requires a new key, which `--keep-key` cannot supply.
+
+### DEC-013: Each session is authored in both deliveries at once, and the platform version is promoted only after the room has proven it
+
+**Date**: 2026-08-23
+
+**Status**: ACCEPTED
+
+**Decision**: A new session is written twice in one pass. The room version
+is DEC-010/DEC-011's seven files; the platform version is drafted alongside
+it — rubric, listenable script, recall prompts, student concept index, and
+a `session.yaml` manifest fragment in the shape of one `sessions:` entry —
+and staged in `platform/drafts/<NN>_<slug>/`. A drafted session is never
+listed in `platform/module.yaml`. The room version is then floor-tested,
+dry-run and iterated as ever, and whatever the room changes is re-derived
+into the draft rather than reconciled with it. Only once the room has
+proven the session is the draft promoted: move the files to their served
+locations, add the fragment to `sessions:`, run the platform validator, cut
+a `platform-YYYY-MM` tag. `docs/trunk/PLATFORM_AUTHORING.md` § "A new
+session, in order" is the author's four steps; `platform/README.md` §
+"Drafting a session before it is served" is the mechanics.
+
+**Context**: Sessions 1 and 2 were transcribed into `platform/` well after
+they were written, which is the workflow this replaces. It worked, but the
+`platform_compliance` narrative found what it costs: rubrics whose quoted
+handout wording had to be re-verified by grep against material that had
+moved underneath them, labs whose participant steps assumed a room nobody
+had noticed because the room was there when they were written, and session
+READMEs shipped to students with author-facing sections in them. All of it
+was recoverable, and all of it was archaeology — reconstructing, from cold
+documents, decisions the author had made months earlier and not written
+down. Sessions 3 to 6 are still ahead, and the operator wanted the answer
+fixed before Session 4 rather than rediscovered per session. The competing
+pressure is that the platform must not serve a session the room has not
+tested: the floor test is where a bar item turns out to be unaskable and a
+25-minute block turns out to be 40, and a tag is a promise to enrolled
+students that cannot be taken back.
+
+**Alternatives Considered**:
+- **Author for the platform first, and let the room take the derivative.**
+  Rejected on the operating belief this decision rests on: a course
+  iterated in a live classroom has better pedagogical coverage when adapted
+  to the platform than one authored for the platform directly. The room is
+  where the near-misses, the misfires, the corrective questions and the
+  recovery moves are found, and those *are* the rubric's calibration set
+  and the TA's knowledge. A session authored for the platform has none of
+  them to transcribe, and no way to discover them.
+- **Transcribe only after the room has run the session** — the status quo.
+  Rejected for the archaeology above: the transcription is the same work
+  either way, but done cold it costs re-reading the material to recover
+  which sentence of the bar each criterion came from and which handout
+  header a deterministic check now depends on. Delay also lets the source
+  drift before its derivative exists, and a derivative that does not exist
+  yet cannot be noticed as stale.
+- **Draft and serve immediately** — write both and tag as soon as the
+  session is written, skipping the room gate. Rejected: it would put
+  untested material in front of paying students, and every fix would cost a
+  new tag while the students who already enrolled keep the broken one. The
+  room's cost is a delay; the alternative's cost is unrecallable.
+- **Maintain a platform fork of the session material.** Rejected on the
+  rule this repository already holds (PLATFORM_AUTHORING.md, "the platform
+  artifacts are derivatives, never forks"): two copies of a session drift,
+  and the drift is invisible because nothing forces the two files into the
+  same review. A draft is a derivative written early, which is why the room
+  version's changes are *re-derived* into it rather than merged.
+
+**Rationale**: Writing the draft while the material is warm is the cheap
+half; proving it in the room is the honest half; and staging keeps them
+independent, so neither delivery waits on the other. The staging costs
+nothing to build — `module.yaml` is the only file the platform knows the
+name of, so a directory no manifest entry points at is invisible to the
+validator and to ingest alike, and `platform/drafts/` needs no exemption
+and no platform-side change. That also makes the "never listed in
+`module.yaml`" rule load-bearing rather than decorative: the listing is the
+entire difference between a draft and a served session, so the state is
+never ambiguous.
+
+**Consequences**: `docs/trunk/PLATFORM_AUTHORING.md`'s closing section is
+the four-step flow, and `platform/README.md` gains the drafts convention,
+the promotion procedure and a `drafts/` row in its file table. Session
+chunks for Sessions 4 to 6 now carry both versions in their scope and their
+estimates; a session chunk that produces only the room's seven files is
+incomplete. A draft is unverified by construction — its part anchors are
+never matched against the exercises' headings, its rubric is never
+schema-checked, its script is never read for tables — so the validator run
+at promotion is the first thing that has ever read the session, and it is
+expected to find something. Sessions can now sit finished-but-unserved
+between the floor test and the tag, so `platform/README.md`'s "what is not
+here yet" tells a reader to look in `drafts/` before concluding a session
+has no platform version. Session 3 is the first session drafted this way,
+retroactively: its room version already exists, and its draft is authored
+before its floor test rather than after.
+
+**Revisit If**: floor tests routinely change a session's bar or its
+structure wholesale rather than at the margin, which would make re-deriving
+the draft more expensive than the cold transcription it replaced; or drafts
+accumulate unpromoted across more than two tags, which would say the room
+gate rather than the drafting is the bottleneck and that the room and the
+platform have stopped being independent; or the platform grows an authoring
+surface of its own, which would move the question of where a session is
+written out of this repository entirely.

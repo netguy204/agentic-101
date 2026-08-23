@@ -2,6 +2,13 @@
 
 <!-- Chunk: docs/chunks/fluency_session_01 - Session 1 in-session exercises -->
 <!-- Chunk: docs/chunks/fluency_exercise_split - Exercise material split by reader: this file is for the participant -->
+<!-- Chunk: docs/chunks/platform_solo_labs - Followable by a student with no room; the contract before the work -->
+
+**What you'll have at the end.** A list of your own repetitive tasks, with
+at least three of them marked as work you could judge — each with the
+actual check written next to it, not "I'd know". And, for one of those
+tasks, a sentence you can say: why it sits inside or outside what you can
+judge, and how you'd know.
 
 Three exercises, one after another, all on your toil inventory sheet —
 [`handouts/toil-inventory.md`](handouts/toil-inventory.md), printed or
@@ -15,7 +22,10 @@ column in particular is written for yourself — that is what makes an honest
 **out** possible, and honest **out** entries are the point of the whole
 block.
 
-Stuck at any point? Say so — you'll be paired.
+Stuck at any point? If someone is running this session, say so — you'll
+be paired. On your own, borrow the canned sheet for a row or two: filling
+in someone else's example is the quickest way past a blank page, and you
+can come straight back to your own.
 
 ---
 
@@ -81,19 +91,22 @@ ever been trained on this" in the check column.
 
 ## Exercise 3 — The skeptic pass
 
-In pairs. Four minutes each way; two or three tasks each is plenty.
+Eight minutes. Two or three tasks is plenty — you don't need to do the
+whole sheet.
 
-1. One of you names a task from your sheet and says whether you marked it
-   in, out, or not sure.
-2. Your partner plays the skeptic and asks, repeatedly, some version of:
+1. Pick a task from your sheet and say, out loud or under your breath,
+   whether you marked it in, out, or not sure.
+2. Now be your own skeptic. Ask yourself, in these words:
 
    > "How would you know if it was wrong?"
 
-3. The skeptic keeps going until either the answer is genuinely concrete,
-   or you say "…actually, I couldn't tell." If you're the skeptic, your job
-   is not to be nice — keep asking until the answer is specific enough that
-   you'd bet on it.
-4. Swap.
+3. Answer it — then ask it again, of the answer you just gave. And again.
+   Your job as the skeptic is not to be nice to yourself: keep asking until
+   the answer is specific enough that you'd bet on it, or until you say
+   "…actually, I couldn't tell." The first answer is nearly always the easy
+   one.
+4. Change the row if the pass changed your mind, then move to the next
+   task.
 
 If you end up saying "actually, I couldn't tell" — that is the exercise
 working, not failing. Getting to a confident "I couldn't check this" is the
@@ -101,12 +114,12 @@ single most valuable sentence you'll say today. Expect to change at least
 one row after this pass — an **in** demoted to **not sure**, a vague check
 made specific, an honest **out**. Changing an answer is success.
 
-**No pair, or you'd rather not talk about your work aloud?** The
-facilitator is your skeptic — and you don't have to say what the task is.
-Tell them how you'd check it, and they'll tell you whether they believe you.
-
-**Remote?** You'll be put in a breakout room of two; the swap will be
-announced.
+**Working with someone?** Do it as a pair instead, four minutes each way:
+one of you names a task and how you marked it, the other asks the question
+above and keeps asking until the answer is specific enough that *they'd*
+bet on it. Then swap. A skeptic who accepts the first answer isn't helping.
+And you don't have to say what the task is if you'd rather not — tell them
+only how you'd check it, and let them tell you whether they believe you.
 
 ---
 

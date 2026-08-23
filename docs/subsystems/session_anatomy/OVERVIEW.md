@@ -246,6 +246,7 @@ will not catch; check `curriculum/README.md` first.
   within the pattern's audience-purity invariants; the pattern itself is
   unchanged.
 
+
 ## Consolidation Chunks
 
 No consolidation needed — no NON_COMPLIANT references.

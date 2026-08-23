@@ -74,9 +74,9 @@ sessions:
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-1-brain-dump
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-2-the-check-column
-        # Runsheet: 8 minutes in pairs, 2 to wrap. Alone, the skeptic is the
-        # question rather than a partner, which is what the exercise's own
-        # no-pair note already says.
+        # Runsheet: 8 minutes in pairs, 2 to wrap. The exercise is now written
+        # solo-first - the skeptic is the question, asked of your own answer -
+        # with the pair form as an aside, so the minutes hold either way.
         - id: skeptic_pass
           title: The skeptic pass
           minutes: 12

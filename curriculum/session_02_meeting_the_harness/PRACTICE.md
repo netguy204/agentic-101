@@ -101,7 +101,8 @@ delegation in this course, whatever the task is.
 
 **Pick two entries from your toil inventory marked `in` that also pass the
 other three questions.** Not the starred one from the session — two others.
-When each task next comes round:
+When each task next comes round — or the next time you do that task,
+whenever that is:
 
 1. At the terminal prompt, `cd ~/course-practice`, then `commit`. This gives
    local file recovery only.

@@ -86,3 +86,18 @@ installer's closing message and the guide's macOS Step 1 should both say
 "If Ghostty is already open, quit it fully (Cmd+Q) first." Rare at the
 audience floor (they won't have Ghostty), certain for any student who
 already uses it.
+
+### 2026-08-23 [setup] install-pi.sh installs pi into whichever npm is active in the shell that ran it
+
+On a machine with nvm, the operator ran the Step 3 installer from a personal
+zsh terminal (nvm active), so `npm install -g` put pi into nvm's prefix
+(~/.nvm/.../bin) — visible to personal shells, invisible to the course
+terminal, whose bash PATH carries Homebrew's prefix. The smoke test then
+showed the confusing split: environment healthy, model configured, key
+saved, but "pi is not installed, or not on your PATH". Re-running the
+installer inside the course terminal fixed it. Two candidate fixes: the
+installer verifies `npm prefix -g` is the expected Homebrew prefix and
+warns (or re-execs) when another node manager is shadowing it; and/or the
+setup guide's Step 3 says explicitly to paste the command into the course
+terminal opened in Step 2, not any terminal. Rare at the audience floor
+(no nvm), near-certain for technical students.

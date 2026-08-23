@@ -2,6 +2,13 @@
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 in-session exercises -->
 <!-- Chunk: docs/chunks/fluency_exercise_split - Exercise material split by reader: this file is for the participant -->
+<!-- Chunk: docs/chunks/platform_solo_labs - Followable by a student with no room; the contract before the work -->
+
+**What you'll have at the end.** A `sample.csv` in `~/course-practice` that
+an agent made and then cleaned up for you, and that you checked yourself.
+A filled-in `what-did-it-do.md` answering what it did from the evidence
+rather than from what it told you. And `revert` used at least once, by you,
+to bring back work that was deliberately destroyed.
 
 Five exercises, in a fixed order — each one sets up the next. Everything
 you do today happens in **`~/course-practice`**, the folder your setup
@@ -24,8 +31,11 @@ You'll need:
 What you type, and any file pi reads, is sent to the model provider.
 Today's files are made up, so nothing in them can't leave the building.
 
-Stuck at any point? Say so — you'll be paired. A pair runs every exercise
-at full value; the person without the laptop holds the keyboard.
+Stuck at any point? If someone is running this session, say so — you'll be
+paired, and a pair runs every exercise at full value with the person
+without the laptop holding the keyboard. On your own: each exercise ends
+with the things that actually go wrong and what to do about them, so read
+those before you assume you've broken something.
 
 **Before exercise 1:** in the course terminal, type `course-update` and
 press Enter. It fetches any course fixes published since you set up — most
@@ -76,16 +86,16 @@ terminal saying it's ready. You never type it.
 | What you see | What to do |
 |---|---|
 | Nothing happened when you typed | Press Enter. |
-| `bash: cd: /Users/…/course-practice: No such file or directory` | Your setup didn't finish. Put your hand up — you'll be paired; it isn't fixed live. |
+| `bash: cd: /Users/…/course-practice: No such file or directory` | Your setup didn't finish. Don't try to fix it here — run `course-smoke-test` and send the result on, exactly as the prework says. If someone is running this session, say so; you'll be paired. |
 | A wall of red text | Almost always a typo. Type `cd ~` to get home, then retype the command. Don't try to fix the typo — retype it. |
 
 ---
 
 ## Exercise 2 — The safety net
 
-Nobody runs an agent until everyone in the room has finished this
-exercise, pairs included. pi has no general undo button; this is how you
-recover ordinary changes to the files in this folder.
+Do this one before you run an agent at all — no exceptions, and don't skip
+ahead. pi has no general undo button; this is how you recover ordinary
+changes to the files in this folder.
 
 Make a file, save a checkpoint, destroy the file on purpose, and get it
 back.
@@ -262,8 +272,8 @@ Two things that catch people:
   tool call. Scroll up — the boxes on screen are labelled.
 
 **If it did something you didn't want** — good. That's the most useful run
-in the room. What did you look at that told you? That's your box 3, and
-it's a better answer than anyone whose run went perfectly.
+there is. What did you look at that told you? That's your box 3, and it's a
+better answer than a run that went perfectly.
 
 **Synthetic task?** Apply the concrete check printed under the option you
 chose, answering from the file evidence — not for a fictional person.
@@ -319,6 +329,6 @@ Two things that catch people:
 
 ## Wrapping up
 
-One question, hands up: do you have a `sample.csv` in your folder right
-now with sensible data in it? That is the session's outcome in one show of
-hands.
+One question: do you have a `sample.csv` in your folder right now with
+sensible data in it, that you did not type? That is the session's outcome
+in one look at the folder.

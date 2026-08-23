@@ -49,6 +49,8 @@ chunks:
   relationship: uses
 - chunk_id: onboarding_course_update
   relationship: uses
+- chunk_id: platform_solo_labs
+  relationship: uses
 created_after: []
 ---
 <!--
@@ -240,6 +242,13 @@ will not catch; check `curriculum/README.md` first.
 - **onboarding_course_update** — inserted the `course-update` opening into
   the anatomy (the cross-session rule in `curriculum/README.md`, DEC-012);
   the command itself is out of scope.
+- **platform_solo_labs** — made the participant text of Sessions 1–3
+  followable by a student with no room, working *with* the audience split
+  rather than against it: room mechanics were deleted from the steps and
+  left where the runsheet already owned them, and the room's form of an
+  exercise is now stated in the runsheet as something run *over* the
+  individual steps. It also added the "what you'll have at the end"
+  contract to each `EXERCISES.md`.
 
 ## Consolidation Chunks
 

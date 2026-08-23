@@ -3,6 +3,7 @@
 <!-- Chunk: docs/chunks/platform_module_contract - What this directory is, and the rules for keeping it true -->
 <!-- Chunk: docs/chunks/platform_lab_parts - The lab-as-parts rules: transcription, load-bearing headings, honest minutes -->
 <!-- Chunk: docs/chunks/platform_dual_authoring - The drafts convention: staging a session's platform version until the room has proven it -->
+<!-- Chunk: docs/chunks/platform_student_index - index/, the student's session index that concept.sources serves instead of README.md -->
 
 Everything else in this repository is written for a person: a participant
 reading prework on the train, a facilitator holding a runsheet in front of
@@ -27,6 +28,7 @@ prose itself* so it transcribes well is the trunk's concern:
 | File | What it is |
 |---|---|
 | `module.yaml` | The manifest. The only file the platform knows the name of; everything else is found through it. Module identity, budgets, the setup gate, and per session: which files are concept, which are lab, which are the facilitator's, what a student submits, how long it takes, and the lab's **parts** — the sittings a student stops and resumes between. |
+| `index/01_mental_models.md`, `index/02_meeting_the_harness.md` | Each session's index, for the student. What the session is for, what it costs in honest minutes, what they will do and what they hand in — written from the session's `README.md` and `PREWORK.md`. This is what `concept.sources` lists in place of `README.md`, which is a session's index for its author and its facilitator and is not served at all. |
 | `rubrics/setup.yaml` | The gate before Session 1: `course-smoke-test` reported PASS. |
 | `rubrics/01_mental_models.yaml`, `rubrics/02_meeting_the_harness.yaml` | Each session's `CHECKPOINT.md`, structured. Criteria, the evidence that satisfies each, pass exemplars, near-miss exemplars with the facilitator's corrective question, and — where the checkpoint names a fact a machine can see — a deterministic check. |
 | `recall/*.yaml` | The question-and-answer beat that closes each audio segment. |
@@ -221,7 +223,12 @@ transcription work is the same either way; only its destination waits.
    `estimated_minutes.lab` to the sum.
 5. Write the script, then the recall prompts, in that order. A prompt has to
    ask about what its segment actually said.
-6. Stop there, and wait for the room. Promotion (above) is what runs the
+6. Write the student's index, from the session's `README.md` and
+   `PREWORK.md` — one page in the course's voice, addressed to the student:
+   the outcome, what they will do, the minutes the fragment now promises,
+   and what they hand in. It goes in `concept.sources` and the `README.md`
+   does not, so this is the step that decides what a student reads first.
+7. Stop there, and wait for the room. Promotion (above) is what runs the
    validator, and since nothing in a draft is read by anything, that run is
    the first thing to check this session at all. Read its warnings; they
    are not noise.

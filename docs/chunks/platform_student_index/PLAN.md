@@ -10,170 +10,241 @@ to hand to an agent.
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+Two new files under `platform/index/`, a surgical manifest edit, and two
+documentation edits. Nothing in `curriculum/` is touched: the session
+READMEs keep doing the job they were written for (an author's and a
+facilitator's index — artifact table, teaching spine, constraints on
+edits, the from/to-session tables), and the platform stops handing them to
+students.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+The index is a **derivative**, in the sense `platform/README.md` already
+uses: a file written *from* `README.md` and `PREWORK.md`, in the course's
+voice, addressed to the student. It is the same relationship the audio
+script has to the concept prose, and it lives in the same place — under
+`platform/`, not in the session directory. That location was decided at
+narrative time (GOAL, "Location decision"): an eighth fixed file in
+`curriculum/session_NN_*/` would amend DEC-010/DEC-011's fixed set for a
+concern only one delivery has, and would leave every future session owing
+a file the room never reads.
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+What goes in each index, and where it comes from:
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/platform_student_index/GOAL.md)
-with references to the files that you expect to touch.
--->
+| Section | Source |
+|---|---|
+| What the session is for, and its outcome | `README.md`'s **Outcome** line and opening paragraph, re-addressed to "you" |
+| What you will do | `README.md`'s teaching spine (the *why*) plus `EXERCISES.md`/`PRACTICE.md`'s arc (the *what*), in prose rather than a mirrored list |
+| What it costs | `module.yaml`'s `estimated_minutes` — Contract v1.1 figures: S1 concept 30 / lab 92, S2 concept 25 / lab 125, both lab figures including the practice week |
+| What you need first | `PREWORK.md` parts 2–3 and the setup gate, reconciled for a student with no facilitator to email |
+| What you hand in | `module.yaml`'s `artifacts` for the session, described in the student's words |
+
+What is deliberately absent: the artifact table (it links
+`FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`,
+`DRY_RUN.md` — documents the platform withholds), "Constraints on edits"
+(addressed to an author), the teaching-spine numbering as such (an
+argument about session design, not something a student needs), and the
+"What downstream sessions take from here" / "What this session takes"
+tables (course-architecture bookkeeping).
+
+**The transcription rule applies.** The index may not say anything its
+sources do not — the same rule `platform/README.md` states for rubrics
+("a change to a session's bar or its near-miss table is not finished until
+the rubric has been re-read") and for lab parts. Two consequences for how
+this is written: the minutes are quoted from the manifest rather than
+recomputed, and the index does **not** enumerate lab parts or exercise
+numbers, because every enumerated fact is a fact that can drift silently.
+It describes the arc; the platform presents the parts from `lab.parts`,
+which is where that structure already lives.
+
+**Backreference comments are safe here, and this was verified rather than
+assumed** (GOAL success criterion 1). The platform strips HTML comments in
+both consumption paths before anything reaches a student:
+`src/markdown/render.ts#stripHtmlComments` runs before parsing on the
+rendered-text path (its comment names agentic-101's `README.md`
+backreferences as the reason it exists), and `src/audio/normalize.ts`
+strips them too, inside `speakable()`. So the index files carry a normal
+`<!-- Chunk: … -->` line; the audio scripts' "attribution goes in the
+table instead" workaround is not needed.
+
+**Path acceptance was verified before writing anything** (GOAL, "Location
+decision"): `src/contract/manifest.ts` reads `concept.sources` as plain
+strings and `src/contract/validate.ts` only requires each one to exist in
+the module's file map. There is no path prefix rule, so
+`platform/index/…` under `concept.sources` is legal. The GOAL's fallback
+(a student-safe rewrite of the READMEs) is therefore not needed.
+
+### Ordering in `concept.sources`
+
+The index goes **first**, before `PREWORK.md`. The platform renders concept
+sources in manifest order, and a student alone at 9pm meets the question
+"what is this and what will it cost me?" before the reading. In the room
+the README is the facilitator's entry point and the prework is what goes
+out first; on the platform there is no facilitator, so the index leads. A
+comment in the manifest records that.
+
+### Concurrency
+
+`docs/trunk/PLATFORM_AUTHORING.md` and `platform/README.md` are being
+edited by sibling chunks of the same narrative in the same wave. Edits
+here stay inside the sections this chunk owns:
+
+- PLATFORM_AUTHORING: the "How the platform consumes a session" table, the
+  consequence paragraph that follows it, and the known-gaps bullet about
+  session READMEs. **Not** "A new session, in order" (that section belongs
+  to `platform_dual_authoring` this wave) and **not** "Design for the
+  student who is alone" (`platform_solo_labs`).
+- platform/README.md: the "What is in here" file table, and the
+  backreference comment block at the top.
+- module.yaml: `concept.sources` for both sessions, plus the header
+  comment sentence that says README is concept material — which this
+  chunk makes false and therefore owes.
 
 ## Subsystem Considerations
 
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+- **docs/subsystems/session_anatomy** (DOCUMENTED): this chunk USES the
+  pattern and deliberately does not extend it. The subsystem's hard
+  invariant is the fixed seven-file set whose names never vary by session;
+  the student index is a `platform/` derivative precisely so that
+  invariant is left alone. No deviation to record, and no entry in the
+  subsystem's `chunks` — the anatomy is unchanged.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Verify the contract accepts `platform/index/` (done at planning time)
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+Read `src/contract/manifest.ts` and `src/contract/validate.ts` in
+`../learning-platform`; confirm `concept.sources` entries are validated for
+existence only. Record the finding in this plan. **Result: accepted, no
+path restriction.** The baseline validator run over this worktree before
+any edit is clean (2 sessions, 0 warnings), so anything it reports later
+is this chunk's.
 
-Example:
+### Step 2: `platform/index/01_mental_models.md`
 
-### Step 1: Define the SegmentHeader struct
+One page, student voice, second person, no links to withheld documents and
+no author-facing sections. Opens with a `<!-- Chunk: … -->` backreference.
+Sections: what this session is (and that it needs no software), the
+outcome as the student's own; what it costs (concept 30, lab 92 including
+the practice week, said plainly); what you will do, concept then lab; what
+you need before you start, including the note that the prework's "reply to
+your facilitator" has no self-paced equivalent — the smoke test is the
+setup answer and the material choice is simply yours; what you hand in
+(the inventory sheet, annotated, with real checks on the `in` rows; and
+the spoken-or-written boundary claim about one task); what happens next.
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+### Step 3: `platform/index/02_meeting_the_harness.md`
 
-Location: src/segment/format.rs
+Same shape, from Session 2's README and PREWORK. Extra content this
+session's index owes: that this is the session the working environment is
+actually needed for and how the student confirms it (`course-update`, then
+`course-smoke-test` printing PASS); the model-provider note the prework
+carries (invented data only); what the four things to hand in are (the pi
+session log, the what-did-it-do worksheet, the `revert --list` output, and
+the practice folder's files) and why the `revert --list` output is asked
+for at all — a course command leaves no trace in the session log. Costs:
+concept 25, lab 125 including the practice week.
 
-### Step 2: Implement header serialization
+### Step 4: `platform/module.yaml`
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+For session `01_mental_models` and session `02_meeting_the_harness` only:
+replace the `curriculum/…/README.md` line in `concept.sources` with the
+session's index path, placed first, and add a short comment saying what
+the index is and why README is no longer there. Update the header
+comment's audience sentence ("PREWORK and README are concept") to the
+truth, and add this chunk's backreference to the header block. Touch
+nothing else — `lab`, `parts`, `artifacts`, `ta_knowledge` and the
+estimates are other chunks' this wave.
 
-### Step 3: ...
+### Step 5: `docs/trunk/PLATFORM_AUTHORING.md`
 
----
+- Split the first row of "How the platform consumes a session": `PREWORK.md`
+  keeps the concept-track cell; `README.md` gets a row saying the platform
+  does not serve it and names `platform/index/<NN>_<slug>.md` as what it
+  serves instead; the index gets its own row as a thing the author writes.
+- Replace the "**Session `README.md` files are student-visible**"
+  consequence with the rule this chunk establishes: **a served session owes
+  a student index**, it is part of the session's platform version alongside
+  the rubric, recall prompts and script, and the README stays the author's
+  and facilitator's. Keep the underlying warning that anything listed in
+  `concept.sources` is read by a student alone at 9pm.
+- Delete the known-gaps bullet about session READMEs reaching students
+  unedited; it is what this chunk closes. Leave the other two bullets
+  alone.
 
-**BACKREFERENCE COMMENTS**
+### Step 6: `platform/README.md`
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+Add an `index/*.md` row to the "What is in here" table, describing it as
+each session's student-facing index and saying that it is what
+`concept.sources` lists in place of the session's `README.md`. Add this
+chunk's backreference comment to the block under the title.
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+### Step 7: Validate
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
+- `pnpm contract:validate <this worktree>` from
+  `/Users/btaylor/Projects/learning-platform` — must be clean, same as the
+  baseline.
+- `uvx --from vibe-engineer ve validate` — must pass with no new warnings
+  (baseline: one pre-existing `platform_solo_labs` ↔ `session_anatomy`
+  warning, another chunk's).
+- Read both index files start to finish as a student would, checking for
+  the failure this chunk exists to prevent: a sentence addressed to
+  somebody other than the student.
+- `grep` the two index files for `FACILITATOR`, `RUNSHEET`, `FLOOR_TEST`,
+  `DRY_RUN`, `CHECKPOINT` — none should appear.
 
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
-
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
-
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+### Step 8: Update `code_paths` in GOAL.md and commit
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+None that block. Contract v1.1 (`platform_lab_parts`, commit f29a15b) has
+already landed on this branch, which is where the `estimated_minutes` the
+indexes quote come from.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **Drift.** The index is now a fourth derivative per session, and every
+  number in it (30/92, 25/125) restates the manifest. Mitigated by keeping
+  quantities to the two the manifest owns, naming no exercise numbers or
+  part titles, and stating the transcription rule in PLATFORM_AUTHORING so
+  the obligation is written down rather than remembered.
+- **Merge conflicts** with the two sibling chunks editing the same two
+  documents. Mitigated by section discipline (see Approach) and by
+  reporting, rather than fixing, the stale sentences that live in their
+  sections.
+- **`PREWORK.md` is still facilitator-shaped in places.** Session 1's part
+  3 and Session 2's part 3 both say "reply to your facilitator", and
+  PREWORK stays in `concept.sources` — this chunk's scope is the README
+  swap. The index absorbs the worst of it with an explicit note; the
+  residue is a handoff, not a silent gap.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+- **Steps 5 and 6 were narrowed while `platform_dual_authoring` was still
+  in flight, then finished once it landed.** `platform/README.md` §
+  "Adding a session" and `docs/trunk/PLATFORM_AUTHORING.md` § "A new
+  session, in order" both owe the index a line, and both were being
+  rewritten in the same wave by that chunk (the `platform/drafts/`
+  convention). Editing them concurrently would have collided, so the first
+  commit left them alone and recorded the handoff here. `main` then merged
+  `platform_dual_authoring`; merging it into this branch made the two
+  sections safe to touch, and both were done in the merge commit:
+  "Adding a session" gains a step for writing the student index, and step
+  1 of "A new session, in order" no longer asks for a "student-safe
+  README" — it says the README stays the author's and the facilitator's
+  and points at the index in step 2. `platform_dual_authoring` had already
+  anticipated the index in its drafts table (`index.md` →
+  `index/<NN>_<slug>.md`) and in step 2 of the four-step flow, so those
+  needed nothing.
+- **A stale known gap was found and left alone.** PLATFORM_AUTHORING's
+  known-gaps bullet saying HTML comments in a listenable script are spoken
+  by the voice is no longer true: `../learning-platform`'s
+  `src/audio/normalize.ts#speakable` strips them before anything reaches
+  TTS (committed 2026-08-22, after the gap was written). The same function
+  is what makes this chunk's backreference comments safe. It is not this
+  chunk's bullet to edit — `platform/README.md` states the same rule in a
+  paragraph another chunk owns — so it is reported rather than fixed.
+- **Two sentences in the Session 1 index were rewritten after a first
+  draft transcribed the room's assumption.** The room's README and prework
+  both reassure a participant whose setup failed that Session 1 costs them
+  nothing; on the platform the setup rubric gates Session 1, so a student
+  reading the index has already passed the smoke test. The index now says
+  so instead.

@@ -87,6 +87,13 @@ fit — to non-developers, delivered as a multi-session cohort course.
 - **Durable against tool churn.** Concepts and exercise designs must survive
   model and tool version changes with only mechanical updates (version pins,
   screenshots, command syntax).
+- **Two deliveries, one source.** The course is taught live in cohorts and
+  served asynchronously by a self-paced learning platform (the peer
+  repository `../learning-platform`). Both deliveries read the same session
+  material: the platform consumes derivatives (`platform/`), never forks.
+  The classroom is the proving ground — material is iterated in the room and
+  promoted to the platform by git tag
+  (`docs/trunk/PLATFORM_AUTHORING.md`).
 
 ## Constraints
 

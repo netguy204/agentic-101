@@ -1,5 +1,5 @@
 ---
-status: DRAFTING
+status: ACTIVE
 advances_trunk_goal: "Required Properties: Two deliveries, one source — the platform consumes derivatives, never forks; material is iterated in the room and promoted by tag"
 proposed_chunks:
 - prompt: >-
@@ -16,7 +16,7 @@ proposed_chunks:
     classroom has better pedagogical coverage when adapted to the platform
     than one authored for the platform directly.
   depends_on: []
-  chunk_directory: null
+  chunk_directory: platform_dual_authoring
 - prompt: >-
     Audit the existing Session 1 and 2 transcriptions against the material as
     it stands after the 2026-08-22 changes (inventory column-3 header rename,
@@ -30,7 +30,7 @@ proposed_chunks:
     (pnpm contract:validate from a learning-platform checkout) and fix what
     it reports. Fix drift in the transcription, not the source.
   depends_on: []
-  chunk_directory: null
+  chunk_directory: platform_drift_audit
 - prompt: >-
     Make the shared lab sources followable by a student who is alone, without
     changing what the room does: Session 1 exercise 3 (the skeptic pass)
@@ -47,7 +47,7 @@ proposed_chunks:
     task, whenever that is"). Grep platform/ afterward for any frozen wording
     these edits touch.
   depends_on: []
-  chunk_directory: null
+  chunk_directory: platform_solo_labs
 - prompt: >-
     Close the student-visible README gap: create a student-facing concept
     index per session as a platform derivative (platform/index/<session>.md
@@ -60,7 +60,7 @@ proposed_chunks:
     in its draft), update PLATFORM_AUTHORING.md's known-gaps section, and
     validate.
   depends_on: []
-  chunk_directory: null
+  chunk_directory: platform_student_index
 - prompt: >-
     Author Session 3's draft platform version under the drafts convention:
     rubric from CHECKPOINT.md (four criteria in the checkpoint's own
@@ -79,7 +79,7 @@ proposed_chunks:
     anchors. The draft is NOT added to module.yaml; promotion happens after
     the Session 3 floor test, outside this narrative.
   depends_on: [0, 2, 3]
-  chunk_directory: null
+  chunk_directory: platform_session_03_draft
 created_after: []
 ---
 

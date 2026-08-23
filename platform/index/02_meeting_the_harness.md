@@ -128,5 +128,7 @@ software, which is not what this course is selling.
 ## What comes next
 
 Session 3 takes it as given that you can run a delegation unaided and read
-what it did, and teaches you to break bigger work into pieces on top of
-that. The worksheet from your practice laps is what opens it.
+what it did, and teaches you to write down, on one page, exactly what an
+agent needs to do one of your own tasks — and to find the missing piece
+when a delegation goes wrong. The worksheet from your practice laps is
+what opens it.

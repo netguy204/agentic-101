@@ -49,6 +49,8 @@ chunks:
   relationship: uses
 - chunk_id: onboarding_course_update
   relationship: uses
+- chunk_id: platform_solo_labs
+  relationship: uses
 created_after: []
 ---
 <!--
@@ -240,6 +242,9 @@ will not catch; check `curriculum/README.md` first.
 - **onboarding_course_update** — inserted the `course-update` opening into
   the anatomy (the cross-session rule in `curriculum/README.md`, DEC-012);
   the command itself is out of scope.
+- **platform_solo_labs** — makes the participant lab text followable alone
+  within the pattern's audience-purity invariants; the pattern itself is
+  unchanged.
 
 ## Consolidation Chunks
 

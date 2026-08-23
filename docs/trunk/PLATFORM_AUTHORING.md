@@ -1,6 +1,7 @@
 # Authoring for the platform
 
 <!-- Chunk: docs/chunks/platform_authoring_guide - How to write session material that lands well on the self-paced platform -->
+<!-- Chunk: docs/chunks/platform_lab_parts - "A lab is parts" pointed at the manifest key that carries it -->
 
 This course now has two deliveries. The one it was written for is a room:
 a facilitator, twelve people, a checkpoint round in the last ten minutes.
@@ -179,11 +180,16 @@ When writing session material, give it this structure:
   whether to start based on what it costs; "about 20 minutes" they can
   trust is an affordance, "an exercise" is a wall. The manifest's
   `estimated_minutes` is a promise — dry-run it.
-- **A lab is parts, not a document.** Three to five parts, each 10–25
-  minutes, each with one outcome and a visible residue (a filled row, a
-  pasted output, a file that exists). Parts are where a student stops and
-  resumes: assume every session is consumed in two to four sittings and
-  never let a part's meaning depend on the sitting before it being fresh.
+- **A lab is parts, not a document.** Three to six parts (the manifest
+  allows two to six), each around 10–25 minutes, each with one outcome and a
+  visible residue (a filled row, a pasted output, a file that exists). Parts
+  are where a student stops and resumes: assume every session is consumed in
+  two to four sittings and never let a part's meaning depend on the sitting
+  before it being fresh. The manifest carries them — `lab.parts` in
+  `platform/module.yaml`, one per exercise or practice lap, anchored at the
+  heading the part begins at; see `platform/README.md` § The rules. The
+  practice week is part of the lab, not something after it: a self-paced
+  student has no "between sessions".
 - **The contract comes before the work.** State what the student will hand
   in and what "done" looks like at the top of the exercises, in their
   language, so an evening's work has a visible destination. (The platform

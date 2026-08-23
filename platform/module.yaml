@@ -1,5 +1,6 @@
 # agentic-101 as a self-paced module. Module Contract v1.
 # Chunk: docs/chunks/platform_module_contract - The manifest the platform ingests
+# Chunk: docs/chunks/platform_lab_parts - Each session's lab as the sittings it is consumed in
 #
 # This is the only file the platform knows the name of; everything else in
 # platform/ is found through it. The session mapping below is DEC-010 and
@@ -53,6 +54,66 @@ sessions:
         - curriculum/session_01_mental_models/PRACTICE.md
       handouts:
         - curriculum/session_01_mental_models/handouts/
+      # The lab as a self-paced student lives it: the exercise block, then the
+      # practice week, in the sittings they actually happen in. Grouped the way
+      # EXERCISE_RUNSHEET.md groups them and timed from its block headings and
+      # PRACTICE.md's own time budget. Like the rubrics, this is transcription:
+      # a part may not say anything its exercises do not, so re-timing or
+      # re-splitting an exercise is not finished until its part is re-read.
+      parts:
+        # Runsheet: brain dump 7 minutes, the check column 12. One sitting in
+        # the room, one sitting alone - with a few more minutes for the second
+        # half, which has no facilitator watching the clock.
+        - id: the_sheet
+          title: Fill the sheet, then fill the check column
+          minutes: 25
+          outcome: >-
+            At least four rows with the task and how often; every row marked
+            in, out or not sure; and the rows marked in have something concrete
+            in the check column.
+          sources:
+            - curriculum/session_01_mental_models/EXERCISES.md#exercise-1-brain-dump
+            - curriculum/session_01_mental_models/EXERCISES.md#exercise-2-the-check-column
+        # Runsheet: 8 minutes in pairs, 2 to wrap. Alone, the skeptic is the
+        # question rather than a partner, which is what the exercise's own
+        # no-pair note already says.
+        - id: skeptic_pass
+          title: The skeptic pass
+          minutes: 12
+          outcome: >-
+            At least one row changed after asking "how would I know if it was
+            wrong?", and a line under the last row with the count of in rows
+            that have a filled check column.
+          sources:
+            - curriculum/session_01_mental_models/EXERCISES.md#exercise-3-the-skeptic-pass
+            - curriculum/session_01_mental_models/EXERCISES.md#wrapping-up
+        # The practice week, as PRACTICE.md's time budget states it: 5 x 4,
+        # 15 once, 20 before session 2. A student with no cohort has no
+        # "between sessions" - these are simply the last three sittings.
+        - id: daily_pass
+          title: The daily pass
+          minutes: 20
+          outcome: >-
+            Four end-of-day passes, each adding whatever you caught yourself
+            doing again - first two columns only, or "nothing new".
+          sources:
+            - curriculum/session_01_mental_models/PRACTICE.md#1-the-daily-pass-5-minutes-4
+        - id: check_test
+          title: The check test
+          minutes: 15
+          outcome: >-
+            Two entries that were not sure resolved to in or out, with what you
+            actually looked at written in the check column.
+          sources:
+            - curriculum/session_01_mental_models/PRACTICE.md#2-the-check-test-15-minutes-once
+        - id: consolidation
+          title: The consolidation pass
+          minutes: 20
+          outcome: >-
+            The whole sheet gone over once: checks filled, big rows split,
+            time added, and your three most annoying entries starred.
+          sources:
+            - curriculum/session_01_mental_models/PRACTICE.md#3-the-consolidation-pass-20-minutes-before-session-2
     artifacts:
       # The sheet that outlives every session (DEC-010). Session 6 gates the
       # capstone on it, so this is the artifact with the longest life.
@@ -69,7 +130,10 @@ sessions:
       - curriculum/session_01_mental_models/FACILITATOR_GUIDE.md#faq-questions-you-will-be-asked
       - curriculum/session_01_mental_models/EXERCISE_RUNSHEET.md
       - curriculum/session_01_mental_models/FLOOR_TEST.md
-    estimated_minutes: { concept: 30, lab: 60 }
+    # The lab is the sum of its parts, which is the first estimate here to
+    # count the practice week. It was in lab.sources all along and in nobody's
+    # number; a student with no cohort does it as part of the lab.
+    estimated_minutes: { concept: 30, lab: 92 }
 
   - id: 02_meeting_the_harness
     title: Meeting the harness
@@ -85,6 +149,72 @@ sessions:
         - curriculum/session_02_meeting_the_harness/PRACTICE.md
       handouts:
         - curriculum/session_02_meeting_the_harness/handouts/
+      # Five exercises and three practice laps is eight sittings, which is past
+      # the contract's ceiling of six and past what a student can hold. The two
+      # pairs the runsheet already runs back to back are one part each.
+      parts:
+        # Runsheet: where am I? 11 minutes, the safety net 14. Nobody delegates
+        # anything until the safety net works, so the two are one sitting.
+        - id: where_am_i
+          title: Find your way, then build the safety net
+          minutes: 25
+          outcome: >-
+            A terminal and a file browser open on the same course-practice
+            folder, and a file you deleted on purpose and got back with
+            revert.
+          sources:
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-1-where-am-i
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-2-the-safety-net
+        # Runsheet: 14 minutes.
+        - id: first_delegation
+          title: Your first delegation
+          minutes: 15
+          outcome: >-
+            A sample.csv in the practice folder that an agent made, shaped like
+            the input to one of your own toil entries, mistakes and all.
+          sources:
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-3-your-first-delegation
+        # Runsheet: what did it actually do? 13 minutes, break it on purpose 7,
+        # wrap 1. Reading the evidence and then destroying the work to prove
+        # the net holds is one arc, and the second half is short.
+        - id: read_and_break
+          title: Read what it did, then break it on purpose
+          minutes: 25
+          outcome: >-
+            A filled what-did-it-do worksheet naming the check you applied, and
+            a sample.csv you deliberately ruined and reverted to the version
+            you had cleaned up.
+          sources:
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-4-what-did-it-actually-do
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-5-break-it-on-purpose
+            - curriculum/session_02_meeting_the_harness/EXERCISES.md#wrapping-up
+        # The practice week, from PRACTICE.md's time budget.
+        - id: solo_lap
+          title: The solo lap
+          minutes: 20
+          outcome: >-
+            The whole loop once with nobody watching - commit, delegate, check,
+            commit - within 48 hours of the session.
+          sources:
+            - curriculum/session_02_meeting_the_harness/PRACTICE.md#1-the-solo-lap-20-minutes-within-48-hours
+        # Two 15-minute laps, and the page says so; they are one part because
+        # they are the same task twice on different work.
+        - id: two_real_ones
+          title: Two real ones
+          minutes: 30
+          outcome: >-
+            Two real tasks delegated, each one that passed all four questions
+            first, with the check you named applied to what came back.
+          sources:
+            - curriculum/session_02_meeting_the_harness/PRACTICE.md#2-two-real-ones-15-minutes-each
+        - id: worst_one_worksheet
+          title: One worksheet, on the worst one
+          minutes: 10
+          outcome: >-
+            A what-did-it-do worksheet filled properly on the delegation that
+            went least well, including what you would have failed to catch.
+          sources:
+            - curriculum/session_02_meeting_the_harness/PRACTICE.md#3-one-worksheet-on-the-worst-one-10-minutes-before-session-3
     artifacts:
       # pi keeps its sessions as JSONL under ~/.pi/agent/sessions; `pi -r`
       # finds them. This is the record of what the agent actually did, as
@@ -114,4 +244,4 @@ sessions:
       - curriculum/session_02_meeting_the_harness/DRY_RUN.md
       - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
       - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-    estimated_minutes: { concept: 25, lab: 90 }
+    estimated_minutes: { concept: 25, lab: 125 }

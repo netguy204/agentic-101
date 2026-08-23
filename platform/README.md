@@ -1,6 +1,7 @@
 # `platform/` — this course, for a machine
 
 <!-- Chunk: docs/chunks/platform_module_contract - What this directory is, and the rules for keeping it true -->
+<!-- Chunk: docs/chunks/platform_lab_parts - The lab-as-parts rules: transcription, load-bearing headings, honest minutes -->
 
 Everything else in this repository is written for a person: a participant
 reading prework on the train, a facilitator holding a runsheet in front of
@@ -24,7 +25,7 @@ prose itself* so it transcribes well is the trunk's concern:
 
 | File | What it is |
 |---|---|
-| `module.yaml` | The manifest. The only file the platform knows the name of; everything else is found through it. Module identity, budgets, the setup gate, and per session: which files are concept, which are lab, which are the facilitator's, what a student submits, and how long it takes. |
+| `module.yaml` | The manifest. The only file the platform knows the name of; everything else is found through it. Module identity, budgets, the setup gate, and per session: which files are concept, which are lab, which are the facilitator's, what a student submits, how long it takes, and the lab's **parts** — the sittings a student stops and resumes between. |
 | `rubrics/setup.yaml` | The gate before Session 1: `course-smoke-test` reported PASS. |
 | `rubrics/01_mental_models.yaml`, `rubrics/02_meeting_the_harness.yaml` | Each session's `CHECKPOINT.md`, structured. Criteria, the evidence that satisfies each, pass exemplars, near-miss exemplars with the facilitator's corrective question, and — where the checkpoint names a fact a machine can see — a deterministic check. |
 | `recall/*.yaml` | The question-and-answer beat that closes each audio segment. |
@@ -56,6 +57,31 @@ is the reason this directory lives in this repository rather than in the
 platform's — the two files land in the same review, and a rubric that has
 quietly drifted from its checkpoint is a thing nobody would ever go looking
 for.
+
+**A lab is parts, and the parts are a transcription too.** Each session's
+`lab.parts` in `module.yaml` names the sittings the lab is actually consumed
+in: an id, a title, honest minutes, the one outcome the student has at the end
+of it, and the `sources` — a lab document, usually narrowed to the heading the
+part begins at. The room has a facilitator saying "ten more minutes, then
+we'll swap"; a student alone at 9pm has this list instead, which is why
+`docs/trunk/PLATFORM_AUTHORING.md` § "Design for the student who is alone"
+asks for the structure and this is where it lands.
+
+Two consequences worth knowing before you edit an exercise. First, the same
+rule as the rubrics: **a part may not say anything its exercise does not**, so
+re-timing or re-splitting an exercise is not finished until its part has been
+re-read. Second, **the headings are load-bearing**: a part's `#anchor` is
+matched against the real headings of the file, so renaming
+`## Exercise 2 — The check column` breaks it. Unlike a reworded handout
+header, this one fails loudly at validation rather than silently in front of a
+student.
+
+The minutes are the promise. Every session's `estimated_minutes.lab` is the
+sum of its parts and includes the practice week, because a student with no
+cohort has no "between sessions" — the practice laps are simply the last
+sittings of the lab. Parts are pacing and never a gate: the platform certifies
+against what the student submits, so somebody who ignores the parts entirely
+is signed off exactly the same way.
 
 **Deterministic checks quote handout text, exactly.** Three of Session 1's
 criteria are decided by reading the participant's inventory sheet, and they
@@ -108,9 +134,15 @@ attribution is the row in the table above.
    it? The checkpoints tend to answer that themselves — Session 2's says
    outright which of its four items are facts you can see and which are the
    ones you have to hear.
-4. Write the script, then the recall prompts, in that order. A prompt has to
+4. Split the lab into `parts`, from the structure the exercises already
+   have — one per exercise, or per practice lap, grouping the ones the
+   runsheet runs back to back. Two to six of them; minutes from the
+   runsheet's block timings and `PRACTICE.md`'s time budget; each with the
+   one outcome the student has at the end of it. Set
+   `estimated_minutes.lab` to the sum.
+5. Write the script, then the recall prompts, in that order. A prompt has to
    ask about what its segment actually said.
-5. Run the validator. Read the warnings; they are not noise.
+6. Run the validator. Read the warnings; they are not noise.
 
 ## What is not here yet
 

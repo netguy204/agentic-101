@@ -269,6 +269,21 @@ handout text, exactly"). The corresponding session chunks
 (`fluency_session_01/02/03`) stay ACTIVE; update their `code_references`
 descriptions only if a file's role changed, which it should not.
 
+**Contract v1.1 note (2026-08-23, commit f29a15b).** Module Contract v1.1
+landed before this chunk ran: each served session's `lab` now declares
+`parts[]` — 2–6 ordered sittings of `{id, title, minutes, outcome,
+sources[]}`, whose sources anchor into the lab documents' `## Exercise N`
+headings — and `estimated_minutes.lab` is the sum of the parts and includes
+the practice week (S1 92, S2 125). The rules are in `platform/README.md`
+("A lab is parts…"). Read them before touching anything they govern.
+
+Consequence here: **the `## Exercise N` headings in Sessions 1 and 2
+EXERCISES.md are load-bearing** — parts anchor into them and renaming one
+fails contract validation loudly. This chunk's edits keep every existing
+exercise heading byte-identical (Session 3's are not yet anchored, but keep
+them stable anyway — its draft will anchor them). Run
+`pnpm contract:validate` from `../learning-platform` after the edits.
+
 ## Success Criteria
 
 - S1 exercise 3 and S3 exercise 1 are followable alone from the participant

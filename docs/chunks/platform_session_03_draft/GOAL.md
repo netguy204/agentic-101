@@ -281,6 +281,22 @@ validator's treatment of the drafts directory matches what
 wording the rubric quotes, the draft is updated then — that is the point
 of drafting before serving.
 
+**Contract v1.1 note (2026-08-23, commit f29a15b).** Module Contract v1.1
+landed before this chunk ran: each served session's `lab` now declares
+`parts[]` — 2–6 ordered sittings of `{id, title, minutes, outcome,
+sources[]}`, whose sources anchor into the lab documents' `## Exercise N`
+headings — and `estimated_minutes.lab` is the sum of the parts and includes
+the practice week (S1 92, S2 125). The rules are in `platform/README.md`
+("A lab is parts…"). Read them before touching anything they govern.
+
+Consequence here: the draft's manifest fragment is Contract v1.1 —
+`lab.parts[]` with 2–6 sittings anchored into Session 3's `## Exercise N`
+headings (natural cut: the sentence-and-sort + the brief / the two runs /
+box 5 + practice), part minutes from the runsheet's timing table plus the
+practice budget, and `estimated_minutes.lab` as their sum including the
+practice week (~58 in-session + ~55 practice). Follow S1/S2's parts blocks
+in `module.yaml` as the worked examples.
+
 ## Success Criteria
 
 - The draft directory contains rubric, audio script, recall prompts,

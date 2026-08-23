@@ -250,6 +250,18 @@ files under `platform/index/` (run `pnpm contract:validate` from
 to certain paths, record the finding and adapt (the fallback is a
 student-safe rewrite of the READMEs, which this chunk otherwise avoids).
 
+**Contract v1.1 note (2026-08-23, commit f29a15b).** Module Contract v1.1
+landed before this chunk ran: each served session's `lab` now declares
+`parts[]` — 2–6 ordered sittings of `{id, title, minutes, outcome,
+sources[]}`, whose sources anchor into the lab documents' `## Exercise N`
+headings — and `estimated_minutes.lab` is the sum of the parts and includes
+the practice week (S1 92, S2 125). The rules are in `platform/README.md`
+("A lab is parts…"). Read them before touching anything they govern.
+
+Consequence here: the index's time expectations quote the v1.1
+`estimated_minutes` (S1 concept 30 / lab 92, S2 concept 25 / lab 125) and
+say plainly that the lab figure includes the practice week.
+
 ## Success Criteria
 
 - `platform/index/01_mental_models.md` and

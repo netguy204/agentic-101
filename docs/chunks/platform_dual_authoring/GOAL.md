@@ -251,6 +251,18 @@ choose a location it ignores (still under `platform/`). Use the
 `decision-create` skill for DEC-013. Trunk GOAL.md already carries the
 "Two deliveries, one source" property; do not restate it, reference it.
 
+**Contract v1.1 note (2026-08-23, commit f29a15b).** Module Contract v1.1
+landed before this chunk ran: each served session's `lab` now declares
+`parts[]` — 2–6 ordered sittings of `{id, title, minutes, outcome,
+sources[]}`, whose sources anchor into the lab documents' `## Exercise N`
+headings — and `estimated_minutes.lab` is the sum of the parts and includes
+the practice week (S1 92, S2 125). The rules are in `platform/README.md`
+("A lab is parts…"). Read them before touching anything they govern.
+
+Consequence here: the drafts convention's manifest fragment is a Contract
+v1.1 `sessions:` entry — `lab.parts[]` included — and the promotion
+procedure names the validator run that checks part anchors.
+
 ## Success Criteria
 
 - PLATFORM_AUTHORING.md's "A new session, in order" describes the four-step

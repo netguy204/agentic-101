@@ -259,6 +259,21 @@ every fix in the chunk (a table in the PLAN's Deviations or a findings
 file in the chunk directory), so the next material change has a model for
 what this audit looks like.
 
+**Contract v1.1 note (2026-08-23, commit f29a15b).** Module Contract v1.1
+landed before this chunk ran: each served session's `lab` now declares
+`parts[]` — 2–6 ordered sittings of `{id, title, minutes, outcome,
+sources[]}`, whose sources anchor into the lab documents' `## Exercise N`
+headings — and `estimated_minutes.lab` is the sum of the parts and includes
+the practice week (S1 92, S2 125). The rules are in `platform/README.md`
+("A lab is parts…"). Read them before touching anything they govern.
+
+Consequence here: the audit's scope includes the new `parts[]` blocks —
+verify each part's `sources` anchor resolves against the current
+`## Exercise N` headings, that part minutes still sum to
+`estimated_minutes.lab`, and note that f29a15b postdates the 2026-08-22
+material changes (its transcription choices are current; the audit's
+subject is the older rubric/audio/recall files).
+
 ## Success Criteria
 
 - Every string a deterministic check quotes has been grep-verified against

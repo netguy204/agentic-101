@@ -1,179 +1,170 @@
-
-
-<!--
-This document captures HOW you'll achieve the chunk's GOAL.
-It should be specific enough that each step is a reasonable unit of work
-to hand to an agent.
--->
-
 # Implementation Plan
 
 ## Approach
 
-<!--
-How will you build this? Describe the strategy at a high level.
-What patterns or techniques will you use?
-What existing code will you build on?
+Session 3's platform version is a **transcription**, not new material. Every
+file below is derived from documents that already exist in
+`curriculum/session_03_anatomy_of_a_delegation/`, and the rule that governs
+each one is already written down: `platform/README.md` § "The rules" for the
+rubric, the parts and the script; `docs/trunk/PLATFORM_AUTHORING.md` §
+"A new session, in order" step 2 for the order of the work; and
+`platform/README.md` § "Drafting a session before it is served" for where it
+lands and what promotion will be.
 
-Reference docs/trunk/DECISIONS.md entries where relevant.
-If this approach represents a new significant decision, ask the user
-if we should add it to DECISIONS.md and reference it here.
+Two things make this chunk different from Sessions 1 and 2's transcriptions:
 
-Always include tests in your implementation plan and adhere to
-docs/trunk/TESTING_PHILOSOPHY.md in your planning.
+1. **Nothing here is validated.** `module.yaml` is the only file the platform
+   knows the name of, so a file under `platform/drafts/` is invisible to
+   `pnpm contract:validate` and to ingest — probe-verified in
+   `docs/chunks/platform_dual_authoring/PLAN.md` § Step 1 and re-verified
+   here. Every check the validator would have run is therefore run by hand
+   and its result recorded in a comment beside the thing it checked: part
+   anchors slugged and matched against the real headings, deterministic
+   phrases grepped against the files that print them, segment word counts
+   measured.
+2. **The manifest fragment is Contract v1.1.** `lab.parts[]` did not exist
+   when Sessions 1 and 2 were first transcribed; it does now, so the fragment
+   is written with parts from the start and `estimated_minutes.lab` is their
+   sum with the practice week inside it.
 
-Remember to update code_paths in the chunk's GOAL.md (e.g., docs/chunks/platform_session_03_draft/GOAL.md)
-with references to the files that you expect to touch.
--->
+The worked examples followed throughout are Session 2's, because Session 3 is
+the same shape of session: `platform/rubrics/02_meeting_the_harness.yaml`
+(criterion comments naming the sentence of the bar, near-miss rows verbatim,
+`text.contains_all` on pasted `revert --list` output),
+`platform/audio/02_meeting_the_harness.md` (why in the script, how on the lab
+card), `platform/index/02_meeting_the_harness.md`, and Session 2's
+`sessions:` entry in `module.yaml` for the fragment and its parts.
 
-## Subsystem Considerations
-
-<!--
-Before designing your implementation, check docs/subsystems/ for relevant
-cross-cutting patterns.
-
-QUESTIONS TO CONSIDER:
-- Does this chunk touch any existing subsystem's scope?
-- Will this chunk implement part of a subsystem (contribute code) or use it
-  (depend on it)?
-- Did you discover code during exploration that should be part of a subsystem
-  but doesn't follow its patterns?
-
-If no subsystems are relevant, delete this section.
-
-WHEN SUBSYSTEMS ARE RELEVANT:
-List each relevant subsystem with its status and your relationship:
-- **docs/subsystems/validation** (DOCUMENTED): This chunk USES the validation
-  subsystem to check input
-- **docs/subsystems/error_handling** (REFACTORING): This chunk IMPLEMENTS a
-  new error type following the subsystem's patterns
-
-HOW SUBSYSTEM STATUS AFFECTS YOUR WORK:
-
-DOCUMENTED subsystems: The subsystem's patterns are captured but deviations are not
-being actively fixed. If you discover code that deviates from the subsystem's
-patterns, add it to the subsystem's Known Deviations section. Do NOT prioritize
-fixing those deviations—your chunk has its own goals.
-
-REFACTORING subsystems: The subsystem is being actively consolidated. If your chunk
-work touches code that deviates from the subsystem's patterns, attempt to bring it
-into compliance as part of your work. This is "opportunistic improvement"—improve
-what you touch, but don't expand scope to fix unrelated deviations.
-
-WHEN YOU DISCOVER DEVIATING CODE:
-- Add it to the subsystem's Known Deviations section
-- Note whether you will address it (REFACTORING status + relevant to your work)
-  or leave it for future work (DOCUMENTED status or outside your chunk's scope)
-
-Example:
-- **Discovered deviation**: src/legacy/parser.py#validate_input does its own
-  validation instead of using the validation subsystem
-  - Added to docs/subsystems/validation Known Deviations
-  - Action: Will not address (subsystem is DOCUMENTED; deviation outside chunk scope)
--->
+**Testing.** `docs/trunk/TESTING_PHILOSOPHY.md` puts this material under
+documentation review rather than automated test; the executable checks
+available are `uvx --from vibe-engineer ve validate` (reference integrity)
+and `pnpm contract:validate` from `../learning-platform`, which must stay at
+two sessions and zero warnings — a clean run *with* the draft present being
+the evidence that the draft is invisible and `module.yaml` untouched. The
+per-artifact checks the validator cannot reach are run by hand (below) and
+their commands recorded in this plan so a later reader can re-run them.
 
 ## Sequence
 
-<!--
-Ordered steps to implement this chunk. Each step should be:
-- Small enough to reason about in isolation
-- Large enough to be meaningful
-- Clear about its inputs and outputs
+### Step 1: Re-verify that the drafts directory is invisible
 
-This sequence is your contract with yourself (and with agents).
-Work through it in order. Don't skip ahead.
+Run `pnpm contract:validate /Users/btaylor/Projects/agentic-101` from
+`../learning-platform` before creating anything, and again at the end. Both
+runs must report two sessions and zero warnings.
 
-Example:
+### Step 2: Freeze the strings the rubric will quote
 
-### Step 1: Define the SegmentHeader struct
+Grep, and record the line numbers in rubric comments:
 
-Create the struct that represents a segment's header with fields for:
-- magic number (4 bytes)
-- version (2 bytes)
-- segment_id (8 bytes)
-- message_count (4 bytes)
-- checksum (4 bytes)
+- the four box headings in
+  `curriculum/session_03_anatomy_of_a_delegation/handouts/delegation-brief.md`
+- the checkpoint names `before run 1`, `after run 1`, `after run 2` in
+  `EXERCISES.md` (steps 3, 6, 11) and the *Back to* line in its
+  "What you should see"
+- `Back to: $target_name` and `Your checkpoints, newest first:` in
+  `env/bin/revert`
 
-Location: src/segment/format.rs
+### Step 3: Slug every heading a part will anchor at
 
-### Step 2: Implement header serialization
+Reimplement the platform's `slugify` (`src/contract/validate.ts`) and run it
+over `EXERCISES.md`, `PRACTICE.md` and `FACILITATOR_GUIDE.md`, so the
+anchors in `session.yaml` are matched against real headings the way the
+validator will match them at promotion.
 
-Add `to_bytes()` and `from_bytes()` methods to SegmentHeader.
-Use little-endian encoding per SPEC.md Section 3.1.
+### Step 4: `session.yaml` — the manifest fragment
 
-### Step 3: ...
+One `sessions:` entry, Contract v1.1. Concept sources are the student index
+then `PREWORK.md`; lab sources are `EXERCISES.md` and `PRACTICE.md` with
+`handouts/`; six parts (three in-session, three practice) with minutes from
+`EXERCISE_RUNSHEET.md`'s block headings and `PRACTICE.md`'s time budget;
+four artifacts including the carry-forward `worst_delegation`;
+`ta_knowledge` per the README's rule, with `CHECKPOINT.md` absent.
 
----
+### Step 5: `rubric.yaml` — transcribed from `CHECKPOINT.md`
 
-**BACKREFERENCE COMMENTS**
+Four criteria in the checkpoint's order, split its way ("the first and
+second are facts you can see; the third and fourth are the ones you have to
+hear"). All six near-miss rows verbatim with their corrective questions. The
+both-runs-required decision recorded in a comment sourced to the
+second-run-deferred clause.
 
-When implementing code, add backreference comments to help future agents trace
-code back to its governing documentation.
+### Step 6: `audio.md`, then `recall.yaml`
 
-**Valid backreference types:**
-- `# Subsystem: docs/subsystems/<name>` - For architectural patterns
-- `# Chunk: docs/chunks/<name>` - For implementation work
+Four segments — the three reasons; the four boxes and the colleague who
+cannot see your screen; find the box, change it once, run again; the
+boundary found by experiment. Mechanics to `> Lab card:` lines. Each segment
+450–900 words, measured with the platform's own word count, and closing with
+its `> Recall:` id.
 
-Place comments at the appropriate level:
-- **Module-level**: If this code implements the subsystem/chunk's core functionality
-- **Class-level**: If this class is part of the pattern
-- **Method-level**: If this method implements a specific behavior
+### Step 7: `index.md` — the student's index
 
-Format (place immediately before the symbol):
-```
-# Subsystem: docs/subsystems/workflow_artifacts - Workflow artifact manager pattern
-# Chunk: docs/chunks/auth_refactor - Authentication system redesign
-```
+The shape `platform_student_index` set: outcome → what it costs → what you
+will do → before you start → what you hand in → what comes next, with the
+minutes quoted from `session.yaml`.
 
-Do NOT add narrative backreferences. Narratives decompose into chunks; reference
-the implementing chunk instead.
+### Step 8: `README.md` — the promotion note
 
-**Task context note**: In multi-project tasks, always use local paths (e.g.,
-`docs/chunks/chunk_name`) for chunk backreferences, not paths to the external
-artifact repo. Each project has `external.yaml` pointers that resolve to the
-actual chunk content.
--->
+What promotion is, that it waits on `FLOOR_TEST.md` (results PENDING), and
+what a promoter should expect the first validator run to catch.
+
+### Step 9: Verify
+
+Word counts, anchors and quoted strings re-checked; `ve validate`;
+`pnpm contract:validate` again; a dry read of the promotion note against the
+draft's contents.
 
 ## Dependencies
 
-<!--
-What must exist before this chunk can be implemented?
-- Other chunks that must be complete
-- External libraries to add
-- Infrastructure or configuration
-
-If there are no dependencies, delete this section.
--->
+`platform_dual_authoring` (the drafts convention and DEC-013),
+`platform_solo_labs` (the exercise text this is written against),
+`platform_student_index` (the index shape). All three are ACTIVE.
 
 ## Risks and Open Questions
 
-<!--
-What might go wrong? What are you unsure about?
-Being explicit about uncertainty helps you (and agents) know where to
-be careful and when to stop and ask questions.
-
-Example:
-- fsync behavior may differ across filesystems; need to verify on ext4 and APFS
-- Unclear whether concurrent reads during write are safe; may need mutex
-- Performance target is aggressive; may need to iterate on buffer sizes
--->
+- **The draft is unverified by construction.** Anything the by-hand checks
+  miss surfaces at promotion. Mitigated by reimplementing the validator's own
+  slug and word-count functions rather than eyeballing.
+- **The floor test has not run.** If it rewords a bar item, a handout heading
+  or an exercise heading, the rubric and the parts are re-derived then. That
+  is the point of drafting rather than serving, and the promotion note says
+  so.
 
 ## Deviations
 
-<!--
-POPULATE DURING IMPLEMENTATION, not at planning time.
-
-When reality diverges from the plan, document it here:
-- What changed?
-- Why?
-- What was the impact?
-
-Minor deviations (renamed a function, used a different helper) don't need
-documentation. Significant deviations (changed the approach, skipped a step,
-added steps) do.
-
-Example:
-- Step 4: Originally planned to use std::fs::rename for atomic swap.
-  Testing revealed this isn't atomic across filesystems. Changed to
-  write-fsync-rename-fsync sequence per platform best practices.
--->
+- **Step 4, `estimated_minutes.lab` is 110, not the "~113" the goal
+  estimated.** The number is the sum of the parts, and the parts are sourced:
+  58 minutes of exercises plus the runsheet's 2-minute wrap is 60, and
+  `PRACTICE.md`'s time budget is 20 + 20 + 10 = 50 required minutes. Its
+  fourth row (15 minutes, brief an `out` entry) is marked *Optional* on the
+  page, so counting it would put a number in front of a student that the
+  student's own practice sheet calls optional. 60 + 50 = 110.
+- **Step 4, six parts rather than the goal's three-way cut.** The goal's
+  "sentence-and-sort + the brief / the two runs / box 5 + practice" is the
+  in-session cut and is followed exactly for the first three parts. The
+  practice week cannot ride along inside part three: `PRACTICE.md` is a lab
+  source, and the validator warns when a lab source no part names, so the
+  practice week is three parts of its own — one per numbered item of its time
+  budget, which is what Sessions 1 and 2 both do.
+- **Step 9 gained a dry promotion.** Verifying a draft that nothing reads by
+  reimplementing the validator's checks in Python proves only that the
+  reimplementation agrees with itself. So the whole promotion was rehearsed
+  in a scratch copy of the repository (`git ls-files` into `/tmp`, the five
+  moves, the fragment pasted under `sessions:`, the draft directory removed)
+  and the *real* validator run against it: three sessions, zero warnings.
+  That is the success criterion "promotion would require no authoring",
+  executed rather than read. It does not make the draft verified — the copy
+  is a rehearsal and the run that counts is the one after the floor test's
+  changes land — and the draft's own `README.md` says so.
+- **Step 8 gained a promotion handoff.** Session 2's `where_am_i` part in
+  `module.yaml` carries a comment calling itself "the one part in either
+  session that opens at the top of its document". Session 3's first part
+  opens the same way for the same DEC-012 reason, so at promotion that
+  comment needs a word changed. `module.yaml` is not this chunk's to touch,
+  so the promotion note flags it under step 2 rather than leaving it to be
+  found cold.
+- **`platform/README.md` § "What is not here yet" was edited.** Not in the
+  original file list. That section said Session 3 "exists in `curriculum/`
+  with a complete checkpoint" and then advised the reader to look in
+  `drafts/` before concluding a session has no platform version — advice
+  that this chunk made answerable. Leaving it would have made the
+  directory's own map the last place to learn the draft exists.

@@ -4,6 +4,7 @@
 <!-- Chunk: docs/chunks/platform_lab_parts - The lab-as-parts rules: transcription, load-bearing headings, honest minutes -->
 <!-- Chunk: docs/chunks/platform_dual_authoring - The drafts convention: staging a session's platform version until the room has proven it -->
 <!-- Chunk: docs/chunks/platform_student_index - index/, the student's session index that concept.sources serves instead of README.md -->
+<!-- Chunk: docs/chunks/platform_session_03_draft - Session 3's draft, the first session staged under the drafts convention -->
 
 Everything else in this repository is written for a person: a participant
 reading prework on the train, a facilitator holding a runsheet in front of
@@ -234,11 +235,13 @@ transcription work is the same either way; only its destination waits.
 
 ## What is not here yet
 
-Sessions 3 to 6. Session 3 exists in `curriculum/` with a complete
-checkpoint; the rest are unwritten. The manifest describes what the platform
-serves, so a session appears **in `module.yaml`** when it is ready to be
-served, not when it is planned — a session named without a rubric is a
-locked door with a sign on it.
+Sessions 4 to 6, which are unwritten. Session 3 exists in `curriculum/`
+with a complete checkpoint **and a complete draft platform version** —
+`drafts/03_anatomy_of_a_delegation/`, waiting on its floor test; that
+directory's own `README.md` is the promotion note. The manifest describes
+what the platform serves, so a session appears **in `module.yaml`** when it
+is ready to be served, not when it is planned — a session named without a
+rubric is a locked door with a sign on it.
 
 `drafts/` is outside that rule rather than a hole in it. A draft may be as
 complete as a served session and is still not here in the sense that

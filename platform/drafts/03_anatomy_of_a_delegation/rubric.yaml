@@ -1,0 +1,296 @@
+# Session 3's checkpoint, structured.
+# Chunk: docs/chunks/platform_session_03_draft - Session 3's draft platform version
+#
+# Source: curriculum/session_03_anatomy_of_a_delegation/CHECKPOINT.md. That
+# document stays the source; this file is what a machine can apply, and it is
+# not allowed to say anything the checkpoint does not. Every criterion below
+# names the sentence of the bar it comes from. All six rows of the
+# checkpoint's near-miss table appear, with the facilitator's words rather
+# than a paraphrase, each with the corrective question it prints.
+#
+# Four numbered bar items, four criteria, in the checkpoint's order. It
+# splits them itself: "All four. The first and second are facts you can see;
+# the third and fourth are the ones you have to hear, and they are what the
+# session is for." So items 1 and 2 are decided by machine and items 3 and 4
+# are judged, and the split is the checkpoint's, not a convenience.
+#
+# TRANSCRIPTION DECISION — BOTH RUNS ARE REQUIRED. The checkpoint carries a
+# clause this rubric does not implement:
+#
+#   "**If the second run had to be left for the practice week** (the cutting
+#   rules allow it), items 3 and 4 still apply to the brief *as revised*, and
+#   the tally notes it. Item 2 is then checked on Wednesday by email."
+#
+# That clause is an accommodation for a room that ran out of clock — the
+# cutting rules are the facilitator's, EXERCISE_RUNSHEET.md's "cut *within*
+# exercise 3 if you run short" — and both halves of it are room machinery: a
+# facilitator deciding to cut, a tally, a Wednesday email. A self-paced
+# student has none of the three. What they have instead is PRACTICE.md's own
+# instruction for exactly this case ("If the second run didn't happen in the
+# room ... it is the first twenty minutes here, with the change you already
+# wrote"), and on the platform the practice week is inside the lab: the
+# parts named `real_run_1` and `real_run_2` in the manifest are lab
+# sittings, not homework after it. So a deferred second run is not deferred
+# past submission; it is simply done later in the lab. Item 2 is therefore
+# checked, in full, when the student submits — which is what the clause's own
+# "checked on Wednesday" means once there is no Wednesday.
+#
+# WORDING FROZEN BY THIS RUBRIC. Two deterministic checks quote text that is
+# printed elsewhere, so a reword there fails every student silently rather
+# than erroring (platform/README.md, "The rules"). Grepped 2026-08-23:
+#
+#   - the four box headings of handouts/delegation-brief.md (lines 29, 46,
+#     61, 71)
+#   - the checkpoint names typed in EXERCISES.md exercise 3 — "before run 1"
+#     (step 3, line 142), "after run 1" (step 6, line 152), "after run 2"
+#     (step 11, lines 170-171)
+#   - "Back to: " and "Your checkpoints, newest first:", printed by
+#     env/bin/revert (lines 227 and 174)
+#
+# If you edit any of those, grep platform/ for the old wording — including
+# this file, which no validator will check while it sits under drafts/.
+
+session: 03_anatomy_of_a_delegation
+bar: all
+version: 1
+criteria:
+  # Bar, item 1: "Written a delegation brief for one of their own inventory
+  # entries (or a Priya brief) — all four boxes filled: inputs, instruction,
+  # outputs, checkpoints."
+  #
+  # Deterministic because the checkpoint says so ("the first and second are
+  # facts you can see"), and the fact it can see is that the submitted brief
+  # is the brief: the four named boxes, in the handout's own words. What the
+  # check cannot see is whether they are filled — a blank printed handout
+  # contains all four headings. That is deliberate and it costs nothing,
+  # because the bar is `all` and the two judged criteria below read the
+  # bottom sentence and box 5 of this same document: a brief nobody wrote
+  # fails on 3 and 4 in the student's own words rather than on a heading
+  # count.
+  - id: brief_written
+    statement: >-
+      The student wrote a delegation brief — all four boxes filled: inputs,
+      instruction, outputs, checkpoints.
+    check: deterministic
+    evidence:
+      - artifact: delegation_brief
+        expect: >-
+          the four boxes filled in, none of them saying "see above", and an
+          instruction you could read aloud in one breath
+      # The checkpoint's tally records "Brief written: yes / Priya / no", so
+      # whose task the brief is for is part of item 1. EXERCISES.md exercise
+      # 2 step 1 says the entry to choose is "the entry your worst delegation
+      # came from, if it's marked in and passes Session 2's four questions",
+      # falling back to another in entry and then to a Priya brief — so the
+      # worksheet the student brought is what says which of the three this
+      # is.
+      - artifact: worst_delegation
+        expect: >-
+          the worst-delegation worksheet the brief's entry was chosen from,
+          with one of the three reasons — or "out of bounds" — written at the
+          top of it
+    deterministic:
+      kind: text.contains_all
+      artifact: delegation_brief
+      params:
+        # The four box headings, exactly as handouts/delegation-brief.md
+        # prints them. The handout says the boxes "are not renamed or
+        # renumbered" by later sessions, and this is one of the things that
+        # depends on that: reword a heading here and the criterion does not
+        # error, it fails every student.
+        phrases:
+          - "1. Inputs — what must it be able to see?"
+          - "2. Instruction — what does done right look like?"
+          - "3. Outputs — what does done produce, and where?"
+          - "4. Checkpoints — where will I look, and what for?"
+
+  # Bar, item 2: "Run it twice, with one change to the brief between the
+  # runs. On disk this is `revert --list` showing *before run 1*, *after run
+  # 1*, the *Back to* line, and *after run 2*."
+  #
+  # The checkpoint names the artifact and the four names itself, which is as
+  # close to a written deterministic check as a checkpoint gets. The pasted
+  # listing is the same move Session 2 makes with `revert --list`, and
+  # EXERCISES.md exercise 3's "What you should see" already tells this
+  # session's students the four names to expect — so nothing new is being
+  # asked of them here.
+  - id: ran_twice_with_one_change
+    statement: >-
+      The brief ran twice, with one change to it between the runs, from the
+      same starting point.
+    check: deterministic
+    evidence:
+      - artifact: checkpoint_list
+        expect: >-
+          the pasted output of `revert --list`, showing newest first "after
+          run 2", the "Back to:" line, "after run 1" and "before run 1"
+      - artifact: session_log
+        expect: >-
+          two runs in the log — the instruction sent, the tool calls, and
+          then the revised instruction sent again
+    deterministic:
+      kind: text.contains_all
+      artifact: checkpoint_list
+      params:
+        # Listed newest first, the order `revert --list` prints them and the
+        # order EXERCISES.md's "What you should see" reads them out.
+        #
+        # "Back to: before run 1" is the one string that proves the second
+        # run started where the first did rather than on top of it. It is
+        # written by env/bin/revert as `Back to: $target_name`, where the
+        # name is the one the student typed at step 3 — so the whole phrase
+        # is frozen jointly by that script and by EXERCISES.md's step 9
+        # ("go back to **before run 1** — read the names, not the numbers").
+        #
+        # The header line is what makes this a paste of the tool's output
+        # rather than four names typed from memory; Session 2's rubric
+        # requires it for the same reason.
+        phrases:
+          - "Your checkpoints, newest first:"
+          - "after run 2"
+          - "Back to: before run 1"
+          - "after run 1"
+          - "before run 1"
+
+  # Bar, item 3: "Named the box they changed and why — in one sentence,
+  # written at the bottom of the brief. 'I added the fact that stale means
+  # ten days, because it guessed' passes; 'I made it clearer' does not."
+  #
+  # Judged, because the checkpoint says so. It is also the item the session
+  # is for, in the checkpoint's own words: "A brief that ran twice without a
+  # named change is a person who has learned to operate the loop, which is
+  # the means and not the end."
+  - id: named_the_box_and_the_reason
+    statement: >-
+      The student names which box they changed and why, in one sentence.
+    check: judge
+    evidence:
+      - artifact: delegation_brief
+        expect: >-
+          the sentence under "Which box let me down, and what I changed" —
+          one of the four boxes by name, and the reason the first run gave
+          them for changing it
+    # Both of the checkpoint's pass exemplars, verbatim. Each one answers
+    # items 3 and 4 in a single breath, which is what the round asks for
+    # ("Which box you changed, and why. What your check would still miss."),
+    # so both appear here and again under item 4. The half that answers this
+    # item is the first: the box named, and what the run did that named it.
+    pass_examples:
+      - >-
+        Inputs. I'd told it to chase the stale items and never said what
+        stale meant, so it picked ten days and chased four people who were
+        fine. I added 'stale means no update in fourteen days' and it chased
+        the right two. What it still wouldn't catch: an item whose owner has
+        left — it would chase a name that isn't here any more. I added a
+        check: read the owner column against the team list.
+      - >-
+        Checkpoints, actually — the run was fine both times. My check was
+        'count the rows', and I realised that would never catch it swapping
+        two people's figures. I can't think of a check for that I could
+        actually do on a Monday without redoing the whole thing, so I've
+        written *out*. It was a forty-minute job; I'll keep doing it by hand.
+    # Rows 1-3 of the checkpoint's near-miss table: the three that are about
+    # the change and the reason. Rows 4-6 are about box 5 and are under item
+    # 4.
+    near_miss_examples:
+      - text: I made the instruction clearer.
+        why: Not a box, not a reason. **The most common near-miss.**
+        corrective: >-
+          Clearer how? What did the first run do that the second didn't?
+      - text: I changed the inputs and the instruction and the checks.
+        why: Three changes; no way to know which mattered.
+        corrective: >-
+          Which one mattered most? That's your sentence. The other two go on
+          the practice sheet, one at a time.
+      - text: Nothing let me down — it was fine both times.
+        why: No change named.
+        # The facilitator's line is: "Then what did you add to your
+        # checkpoints? … Would you have *known* if it hadn't been fine?" If
+        # they didn't add a check, they do it now, at the table. The
+        # questions are unchanged; "at the table" is a room the student is
+        # not in, so the instruction ends by naming what to send back — the
+        # same adaptation Session 2's rubric makes to its one room-shaped
+        # corrective. EXERCISES.md says the same thing to a student working
+        # alone ("If the first run was perfect — it happens — your change in
+        # step 8 is to the Checkpoints box anyway").
+        corrective: >-
+          Then what did you add to your checkpoints? … Would you have *known*
+          if it hadn't been fine? If you didn't add a check, add it now — the
+          check that would have caught the thing you most expected to go
+          wrong — and that is your change. Then run it again and send me the
+          sentence.
+
+  # Bar, item 4: "Written what their checkpoints would have failed to catch —
+  # box 5 — and either added a checkpoint that would catch it or written
+  # **out** beside the task."
+  #
+  # Judged, and it is the payload: the session's README calls exercise 4 the
+  # payload and says it is never cut, and the checkpoint's commentary on the
+  # second pass exemplar is the whole point of the session — "a task they
+  # could run twice, cleanly, and still correctly decided not to delegate —
+  # because they named the failure no check of theirs would catch. That is
+  # Session 1's judgment boundary, found by experiment, on their own work."
+  #
+  # "out" is a pass. DEC-005, and the checkpoint says it twice: in that
+  # commentary, and in Recovery — "if there is something and they can't think
+  # of a check, *out* is the honest answer and a pass". So is the rarer case
+  # in the same list: "If there is genuinely nothing — rare — their
+  # checkpoints are complete and that is a pass; write 'none found' in box 5
+  # and move on."
+  - id: named_the_miss
+    statement: >-
+      The student names something their checkpoints would not catch, and
+      either adds a checkpoint that would or writes "out" beside the task.
+    check: judge
+    evidence:
+      - artifact: delegation_brief
+        expect: >-
+          box 5 filled in, and either a second line in box 4 as concrete as
+          the first — "I will open ___ and look at ___" — or the word "out"
+          beside the task
+    # The same two exemplars, verbatim; here the half that answers this item
+    # is the second. The checkpoint names the second quote the better answer
+    # and says that if there is time for one piece of commentary in the whole
+    # round, make it that one.
+    pass_examples:
+      - >-
+        Inputs. I'd told it to chase the stale items and never said what
+        stale meant, so it picked ten days and chased four people who were
+        fine. I added 'stale means no update in fourteen days' and it chased
+        the right two. What it still wouldn't catch: an item whose owner has
+        left — it would chase a name that isn't here any more. I added a
+        check: read the owner column against the team list.
+      - >-
+        Checkpoints, actually — the run was fine both times. My check was
+        'count the rows', and I realised that would never catch it swapping
+        two people's figures. I can't think of a check for that I could
+        actually do on a Monday without redoing the whole thing, so I've
+        written *out*. It was a forty-minute job; I'll keep doing it by hand.
+    # Rows 4-6 of the checkpoint's near-miss table.
+    near_miss_examples:
+      - text: It would fail if it lost a row. (and their checkpoint counts rows)
+        why: Box 5 names something the checks already catch.
+        corrective: >-
+          Your check counts rows. What's wrong that keeps the count the same?
+      - text: I wrote *out* because it's too hard.
+        why: '*Out* as an exit, not a finding.'
+        corrective: >-
+          Could anyone in your role check it? If yes, what would they look at
+          — that's your second checkpoint, not an out.
+      - text: I don't think it needs a second check.
+        why: Box 5 empty.
+        corrective: >-
+          Name the one thing you'd be most embarrassed to have missed. That's
+          the box. There is always one.
+
+escalate_when:
+  - conversation_rounds_exhausted
+  - integrity_flag
+  - judge_confidence_below_threshold
+# The room runs this round in eight minutes for twelve people — "three short
+# sentences each ... Do not discuss, do not improve their answer, do not let
+# it become a conversation" — and picks the rest up privately at the end. Two
+# rounds here; past that, the checkpoint's Recovery section is a list of four
+# causes that each need a person ("sit with them, do the `revert` together"),
+# and routing them is what escalation is for.
+max_conversation_rounds: 2

@@ -1,0 +1,217 @@
+# Session 3's entry under `sessions:` in platform/module.yaml — the manifest
+# fragment, ready to paste. Module Contract v1.1.
+# Chunk: docs/chunks/platform_session_03_draft - Session 3's draft platform version
+#
+# NOT IN module.yaml, and that is the whole difference between this session
+# and a served one (platform/README.md, "Drafting a session before it is
+# served"). Nothing under platform/drafts/ is read by anything: the manifest
+# is the only file the platform knows the name of, so a file no manifest
+# entry points at is invisible to the validator and to ingest alike. The
+# consequence is that everything below is unverified by construction, and
+# every check the validator would have run has been run by hand instead and
+# recorded in the comment beside it.
+#
+# At promotion this whole block moves into `sessions:` after
+# 02_meeting_the_harness, and the paths below need no editing: `rubric:`
+# already names the served location the draft's rubric.yaml is moved to.
+
+- id: 03_anatomy_of_a_delegation
+  title: Anatomy of a delegation
+  concept:
+    # Index first, then the prework — the order platform/index/ established:
+    # a student alone gets "what is this and what will it cost me" before the
+    # reading.
+    sources:
+      - platform/index/03_anatomy_of_a_delegation.md
+      - curriculum/session_03_anatomy_of_a_delegation/PREWORK.md
+    listenable_script: platform/audio/03_anatomy_of_a_delegation.md
+    recall_prompts: platform/recall/03_anatomy_of_a_delegation.yaml
+  lab:
+    sources:
+      - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md
+      - curriculum/session_03_anatomy_of_a_delegation/PRACTICE.md
+    handouts:
+      - curriculum/session_03_anatomy_of_a_delegation/handouts/
+    #
+    # Two documents this lab depends on and does not list, because both are
+    # already served by an earlier session and a handout served twice is a
+    # second copy waiting to drift:
+    #
+    #   - Session 1's handouts/canned-toil.md, "For Session 3" — Priya's
+    #     briefs, the fallback for a student with no usable entry of their
+    #     own. Served under 01_mental_models' handouts/ directory.
+    #   - Session 2's handouts/terminal-card.md — the commands this session
+    #     assumes at the desk. Served under 02_meeting_the_harness, and also
+    #     in its ta_knowledge.
+    #
+    # EXERCISES.md links both by relative path, and both files are inside
+    # the module because an earlier session's handouts entry names the
+    # directory they sit in — so neither link points at something the
+    # platform does not have.
+    #
+    # The lab as a self-paced student lives it. Minutes come from
+    # EXERCISE_RUNSHEET.md's block headings (12 + 12 + 24 + 10, and "Wrapping
+    # the block (2 minutes)") and PRACTICE.md's own time budget table. Like
+    # the rubric, this is transcription: a part may not say anything its
+    # exercises do not, so re-timing or re-splitting an exercise is not
+    # finished until its part is re-read.
+    #
+    # ANCHORS VERIFIED BY HAND. Nothing under drafts/ is checked, and a part
+    # anchor that matches no heading is an error at promotion, so every
+    # anchor below was slugged with the platform's own rule
+    # (src/contract/validate.ts, `slugify`) and matched against the real
+    # headings of EXERCISES.md and PRACTICE.md on 2026-08-23.
+    parts:
+      # Runsheet: exercise 1 is 12 minutes and exercise 2 is 12. One sitting:
+      # the sort is what tells you which box to write hardest, so the brief
+      # is written while the reason is still in front of you.
+      #
+      # In the room most of exercise 1's twelve minutes is the round — twelve
+      # people, a sentence each. A student alone spends them on the worksheet
+      # and the sort instead, and gets the difference back in exercise 2,
+      # where there is no facilitator calling time on a page of four boxes.
+      # The pair is honest at 24; the halves are not honest separately.
+      - id: worst_one_and_brief
+        title: Your worst one, then the brief
+        minutes: 24
+        outcome: >-
+          One of the three reasons — or "out of bounds" — written at the top
+          of your worst-delegation worksheet, and a delegation brief with all
+          four boxes filled, none of them saying "see above".
+        # Unanchored first, deliberately, and for the reason
+        # platform_drift_audit recorded for Session 2's opening part: DEC-012
+        # requires every session from Session 2 on to open with
+        # `course-update`, and EXERCISES.md carries it as a "Before exercise
+        # 1" paragraph above the first heading. A part that opened at
+        # #exercise-1-your-worst-one would send the student past the step the
+        # session is supposed to start with. The room hears it from the
+        # facilitator; a student alone has only where this part opens.
+        sources:
+          - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md
+          - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md#exercise-1-your-worst-one
+          - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md#exercise-2-write-the-brief
+      # Runsheet: 24 minutes, and the dry run says why it is that long —
+      # "twenty to forty seconds per run", so the time is reading, comparing
+      # and writing the one-change sentence, not waiting.
+      - id: the_two_runs
+        title: Run it, change one box, run it again
+        minutes: 24
+        outcome: >-
+          A brief that has run twice from the same starting point, with one
+          box changed between the runs and a sentence at the bottom naming
+          which box and why.
+        sources:
+          - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md#exercise-3-run-it-read-it-fix-it-run-it-again
+      # Runsheet: exercise 4 is 10 minutes and "Wrapping the block" is 2.
+      # Exercise 4 is the payload and is never cut (README, "Constraints on
+      # edits"), which is why it is its own sitting rather than the tail of
+      # the runs.
+      - id: box_five
+        title: What would I have failed to catch?
+        minutes: 12
+        outcome: >-
+          Box 5 filled in, and either a second checkpoint in box 4 or the
+          word "out" beside the task.
+        sources:
+          - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md#exercise-4-what-would-i-have-failed-to-catch
+          - curriculum/session_03_anatomy_of_a_delegation/EXERCISES.md#wrapping-up
+      # The practice week, one part per numbered item of PRACTICE.md's time
+      # budget, with that table's own minutes. A student with no cohort has
+      # no "between sessions", so these are simply the last three sittings of
+      # the lab.
+      #
+      # The table's fourth row — 15 minutes, brief an entry marked "out" — is
+      # printed under "Optional, if you want more" and is not a part. A part
+      # is a promise about how long the lab takes, and promising a student
+      # fifteen minutes their own practice sheet calls optional is a number
+      # that is not true.
+      - id: real_run_1
+        title: The brief on the real task
+        minutes: 20
+        outcome: >-
+          The loop run once on the task the brief was written for, kept as a
+          draft until whoever has to approve it has, and the change you would
+          make written on the brief.
+        sources:
+          - curriculum/session_03_anatomy_of_a_delegation/PRACTICE.md#1-run-it-on-the-real-task-20-minutes-when-it-comes-round
+      - id: real_run_2
+        title: Change one box, run it again
+        minutes: 20
+        outcome: >-
+          The one change made and the brief run a second time on the real
+          material, compared against the first run.
+        sources:
+          - curriculum/session_03_anatomy_of_a_delegation/PRACTICE.md#2-change-one-box-run-it-again-20-minutes
+      - id: the_second_sentence
+        title: One sentence, before Session 4
+        minutes: 10
+        outcome: >-
+          A second sentence at the bottom of the brief: what the second run
+          caught that the first didn't, or what the real task taught you that
+          the made-up material couldn't.
+        sources:
+          - curriculum/session_03_anatomy_of_a_delegation/PRACTICE.md#3-one-sentence-10-minutes-before-session-4
+  artifacts:
+    # The sheet this session is built around, and the one Sessions 4 and 6
+    # extend in place. Its four boxes are frozen — the handout says so — and
+    # criterion "brief_written" quotes their headings.
+    - id: delegation_brief
+      kind: worksheet
+      template: curriculum/session_03_anatomy_of_a_delegation/handouts/delegation-brief.md
+    # CARRY-FORWARD. This is Session 2's practice-week output — the
+    # what-did-it-do worksheet on the delegation that went worst, plus the
+    # one sentence PREWORK part 2 asks for underneath it — and Session 3
+    # collects it again at the start of its own lab.
+    #
+    # The decision, and why it is not a duplicate: in the room the worksheet
+    # is in the participant's hand and the sentence is said out loud in the
+    # first ten minutes; a self-paced student's Session 3 lab opens on
+    # exercise 1, which needs that worksheet in front of them and asks them
+    # to write one of three reasons at the top of it. The platform has only
+    # what a student uploads, so the artifact Session 2 collected as
+    # `what_did_it_do` is submitted again here, sorted, as the input exercise
+    # 1 consumes. Session 2's copy stays Session 2's evidence; this one
+    # carries exercise 1's mark.
+    #
+    # Two kinds because the sentence may be written at the top of the
+    # worksheet or kept beside it — EXERCISES.md exercise 1 step 2 says "out
+    # loud, or written at the top of the worksheet", and a student alone has
+    # only the written form.
+    - id: worst_delegation
+      kind: [worksheet, text]
+    # Bar item 2 is "Run it twice, with one change to the brief between the
+    # runs", and the checkpoint says where that lands: "On disk this is
+    # `revert --list`". `commit` and `revert` are course commands the
+    # participant types (env/bin/revert), not tools the agent calls, so they
+    # leave no trace in the session log — the same finding Session 2 hit and
+    # answered the same way. The pasted listing is the evidence.
+    - id: checkpoint_list
+      kind: text
+    # The two runs themselves. pi keeps its sessions as JSONL under
+    # ~/.pi/agent/sessions; `pi -r` finds them.
+    - id: session_log
+      kind: harness_log
+      accepts: ["*.jsonl"]
+  # The path the draft's rubric.yaml has AFTER promotion. Written this way on
+  # purpose: promotion is a move and a paste, not a translation.
+  rubric: platform/rubrics/03_anatomy_of_a_delegation.yaml
+  # The facilitator's documents, which on the platform means the virtual TA
+  # may read and cite them and a student never sees them. CHECKPOINT.md is
+  # deliberately absent: it is the source rubric.yaml was transcribed from,
+  # and handing it to the TA would hand a student the answers to their own
+  # checkpoint.
+  #
+  # ANCHORS VERIFIED BY HAND, as above: both slug from real headings of
+  # FACILITATOR_GUIDE.md (lines 293 and 312).
+  ta_knowledge:
+    - curriculum/session_03_anatomy_of_a_delegation/FACILITATOR_GUIDE.md#anticipated-failure-points-and-recovery-moves
+    - curriculum/session_03_anatomy_of_a_delegation/FACILITATOR_GUIDE.md#faq-questions-you-will-be-asked
+    - curriculum/session_03_anatomy_of_a_delegation/EXERCISE_RUNSHEET.md
+    - curriculum/session_03_anatomy_of_a_delegation/DRY_RUN.md
+    - curriculum/session_03_anatomy_of_a_delegation/FLOOR_TEST.md
+  # Concept: PREWORK.md's own header, "About 25 minutes."
+  # Lab: the sum of the parts, which is the contract's rule and includes the
+  # practice week — 24 + 24 + 12 in-session (the runsheet's 58 minutes of
+  # exercises plus its 2-minute wrap), 20 + 20 + 10 in the week after
+  # (PRACTICE.md's time budget, required rows only).
+  estimated_minutes: { concept: 25, lab: 110 }

@@ -1,0 +1,70 @@
+# The recall beat that closes each segment of Session 3's concept track.
+# Chunk: docs/chunks/platform_session_03_draft - Session 3's draft platform version
+#
+# Written after the script, and each prompt asks about what its segment
+# actually said — PLATFORM_AUTHORING.md's test for whether a section carried
+# a concept or was exposition. Session 3's four are the ones the lab depends
+# on: a student who can answer all four can write a brief and find the box
+# that failed. A student who can only recite the four box names has the part
+# the printed sheet carries for them anyway.
+
+session: 03_anatomy_of_a_delegation
+prompts:
+  - id: the_three_reasons
+    prompt: >-
+      A delegation of yours went badly. According to this session there are
+      only three things that can have happened — what are they? And what is
+      the fourth answer that is not one of the three?
+    model_answer: >-
+      It didn't know something — it needed a file, a fact, a date or a rule,
+      it wasn't there, and it guessed, politely and often silently. It
+      decided something — it made a choice you hadn't asked it to make, like
+      merging two labels that mean different things where you work. Or: I
+      couldn't tell — it might have been fine, and there was nothing you
+      could actually look at to know. The fourth answer is out of bounds: the
+      task was outside what you could judge and you noticed, which counts as
+      a pass.
+    segment_after: 1
+
+  - id: the_four_boxes
+    prompt: >-
+      You are briefing a capable colleague who cannot see your screen,
+      doesn't know your company, and will not ask. What four things do you
+      owe them — and which two of the four have you already written down?
+    model_answer: >-
+      What they must be able to see: the files, and the facts that aren't
+      written anywhere. What done right looks like, as one sentence they can
+      act on. What done produces, and where — a file, a place, a shape. And
+      where you'll look to check, and what for. The second and fourth you
+      wrote weeks ago, in columns two and four of your toil inventory, before
+      you had ever run any of this software.
+    segment_after: 2
+
+  - id: one_box_one_change
+    prompt: >-
+      Your first run came back and something was wrong. What is the move —
+      and why only one change between the two runs?
+    model_answer: >-
+      Ask the four questions, one per box, until you find the box with the
+      bad answer; change that box, write in one sentence why, put the folder
+      back to where it was before the first run, and run it again. One change
+      because if you change three things and the run improves you have
+      learned nothing you can use — you don't know which of the three
+      mattered. A change and a run costs two minutes; three changes and a
+      guess costs a week of not knowing.
+    segment_after: 3
+
+  - id: out_is_a_result
+    prompt: >-
+      Box five asks what could go wrong that your checkpoints would not
+      catch. You cannot think of a check you could actually do. What do you
+      write, and why is it not a failure?
+    model_answer: >-
+      You write "out" beside the task. It isn't a failure because you have
+      just established, with evidence and on your own work, that the task
+      sits outside what you can currently judge — the judgment boundary from
+      Session 1, found by experiment instead of guessed at, for the price of
+      two runs in a practice folder rather than a weekly job going wrong
+      unnoticed. The one test it has to pass: out means nobody with your
+      knowledge could check it. "It's too hard" is an exit, not a finding.
+    segment_after: 4

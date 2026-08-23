@@ -1,5 +1,5 @@
 ---
-status: ACTIVE
+status: COMPLETED
 advances_trunk_goal: "Required Properties: Two deliveries, one source — the platform consumes derivatives, never forks; material is iterated in the room and promoted by tag"
 proposed_chunks:
 - prompt: >-

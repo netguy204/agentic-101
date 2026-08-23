@@ -22,6 +22,33 @@ possible, faithful, and cheap.** Author for the room first — that rule
 stands — but an author who knows how each file is consumed writes material
 that needs no reshaping later.
 
+## Two deliveries, one course — and the classroom leads
+
+The classroom version is not a legacy artifact the platform tolerates; it
+is the course's proving ground, and module authors are free — encouraged —
+to keep teaching and iterating it alongside the platform version. The
+operating belief: **a course iterated in a live classroom has better
+pedagogical coverage when adapted to the platform** than one authored for
+the platform directly. The room shows you the near-misses, the misfires,
+the corrective questions, and the recovery moves; those become the rubric
+exemplars, the TA's knowledge, and the checkpoint conversation. A course
+that never met a room has none of that to transcribe.
+
+What this means in practice:
+
+- **Iterate in the room; release to the platform by tag.** Session material
+  changes freely on `main` for the next cohort; the platform sees a new
+  version only when you cut a tag. The two deliveries never block each
+  other.
+- **The platform artifacts are derivatives, never forks.** One
+  `CHECKPOINT.md`, one set of exercises, one facilitator guide — the
+  `platform/` directory transcribes them. If platform students need
+  different wording, fix the shared source or the transcription; never
+  maintain a second copy of a session.
+- **Friction flows both ways.** What platform students hit (via the
+  platform's friction triage) lands in this repo's `FRICTION.md` beside
+  what the room surfaced, and the next cohort — either delivery — benefits.
+
 ## How the platform consumes a session
 
 | You write | The room uses it as | The platform uses it as |
@@ -134,6 +161,49 @@ Those become the recall prompts that close each audio segment and get
 replayed, spaced, in later sessions. If you cannot write a one-sentence
 question with a one-sentence model answer for a section, it is exposition,
 not a concept — fine, but know it.
+
+## Design for the student who is alone
+
+In the room a facilitator absorbs confusion in real time: reads the
+stalled face, re-times the block, says the corrective sentence. The
+platform student has none of that — and the first pilot's finding is
+blunt: session material rendered as-is becomes a 15,000-pixel wall of
+text, and the student's commonest question is "what do I do next?" (the
+platform's jobs-to-be-done analysis:
+`../learning-platform/docs/design/student-experience-brief.md`, a
+cross-repository reference). The platform's interface work carries most of
+the load, but it can only present the structure the material gives it.
+When writing session material, give it this structure:
+
+- **Everything is sized in honest minutes.** A self-paced student decides
+  whether to start based on what it costs; "about 20 minutes" they can
+  trust is an affordance, "an exercise" is a wall. The manifest's
+  `estimated_minutes` is a promise — dry-run it.
+- **A lab is parts, not a document.** Three to five parts, each 10–25
+  minutes, each with one outcome and a visible residue (a filled row, a
+  pasted output, a file that exists). Parts are where a student stops and
+  resumes: assume every session is consumed in two to four sittings and
+  never let a part's meaning depend on the sitting before it being fresh.
+- **The contract comes before the work.** State what the student will hand
+  in and what "done" looks like at the top of the exercises, in their
+  language, so an evening's work has a visible destination. (The platform
+  surfaces this from the rubric; exercises that bury or contradict it
+  fight their own certification.)
+- **Every stopping point answers "what do I do next?"** End each part by
+  naming the next one. Never end material on background reading.
+- **Say "not yet", never "failed."** The checkpoint conversation exists so
+  a near-miss gets the facilitator's question instead of a grade; write
+  corrective questions the way you would say them to a person's face.
+- **Do not compensate for the missing facilitator with more prose.** The
+  instinct is to write everything the facilitator would have said; the
+  result overwhelms. The facilitator's commentary belongs in
+  `ta_knowledge` files where the TA retrieves the right sentence at the
+  right moment — not in the student's reading.
+- **One document per reader, still.** DEC-011's split (participant steps
+  vs facilitator runsheet) is what makes self-paced delivery possible at
+  all; anything author- or facilitator-facing that leaks into a concept
+  source is read by a student alone at 9pm, with nobody to tell them to
+  skip it.
 
 ## Publishing, and what a tag means
 

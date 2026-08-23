@@ -48,7 +48,9 @@ code_references:
   implements: "Curriculum Structure item 3 marked settled with its summary"
 narrative: null
 investigation: null
-subsystems: []
+subsystems:
+- subsystem_id: session_anatomy
+  relationship: implements
 friction_entries: []
 depends_on: []
 created_after: ["onboarding_course_update"]

@@ -46,7 +46,9 @@ code_references:
   implements: "Records that the split happened after the 2026-08-07 run without re-running the unchanged steps"
 narrative: null
 investigation: null
-subsystems: []
+subsystems:
+- subsystem_id: session_anatomy
+  relationship: implements
 friction_entries: []
 depends_on: []
 created_after: ["fluency_safety_relevance"]

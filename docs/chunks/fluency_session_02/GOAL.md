@@ -95,7 +95,9 @@ code_references:
     3-8
 narrative: null
 investigation: null
-subsystems: []
+subsystems:
+- subsystem_id: session_anatomy
+  relationship: implements
 friction_entries: []
 depends_on: ["fluency_session_01"]
 created_after: ["fluency_session_01", "onboarding_setup_guide", "onboarding_terminal_env"]

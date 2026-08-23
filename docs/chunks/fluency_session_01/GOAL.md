@@ -82,7 +82,9 @@ code_references:
     constraint
 narrative: null
 investigation: null
-subsystems: []
+subsystems:
+- subsystem_id: session_anatomy
+  relationship: implements
 friction_entries: []
 depends_on:
 - onboarding_setup_guide

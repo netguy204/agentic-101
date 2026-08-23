@@ -57,7 +57,9 @@ code_references:
   implements: "DEC-012 — deterministic participant-run updates at session start, and the rejected pi sync-up prompt with its revisit condition"
 narrative: null
 investigation: null
-subsystems: []
+subsystems:
+- subsystem_id: session_anatomy
+  relationship: uses
 friction_entries: []
 depends_on: []
 created_after: ["fluency_exercise_split"]

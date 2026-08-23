@@ -2,6 +2,7 @@
 
 <!-- Chunk: docs/chunks/platform_authoring_guide - How to write session material that lands well on the self-paced platform -->
 <!-- Chunk: docs/chunks/platform_lab_parts - "A lab is parts" pointed at the manifest key that carries it -->
+<!-- Chunk: docs/chunks/platform_student_index - The student index a served session owes, and the README the platform stopped serving -->
 
 This course now has two deliveries. The one it was written for is a room:
 a facilitator, twelve people, a checkpoint round in the last ten minutes.
@@ -54,7 +55,9 @@ What this means in practice:
 
 | You write | The room uses it as | The platform uses it as |
 |---|---|---|
-| `PREWORK.md`, `README.md` | Reading before the session | The **concept track** — rendered as text and read aloud as audio. **Students see every file listed as a concept source.** |
+| `PREWORK.md` | Reading before the session | The **concept track** — rendered as text and read aloud as audio. **Students see every file listed as a concept source.** |
+| `README.md` | The session's index for you and a facilitator | Nothing. The platform does not serve it; its student-facing counterpart does that job instead. |
+| `platform/index/<NN>_<slug>.md` | — (a platform derivative; the room has the README) | The **student's index** for the session, listed first in `concept.sources`: the outcome, what they will do, honest minutes, what they hand in |
 | `EXERCISES.md`, `PRACTICE.md`, `handouts/` | The in-room steps and the week's practice | The **lab** — desk material, unlocked when the previous session certifies |
 | `CHECKPOINT.md` | The bar the facilitator applies in the round | The **rubric** (via `platform/rubrics/`) that an automated certifier applies, near-miss corrections included |
 | `FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`, `DRY_RUN.md` | Your side of the room | The **TA's knowledge** — the virtual TA reads and cites them; students never see them |
@@ -62,14 +65,25 @@ What this means in practice:
 
 Two consequences an author must hold in mind:
 
-**Session `README.md` files are student-visible.** The manifest lists them
-as concept sources, so a self-paced student reads them — including, today,
-the artifact tables that link to `FACILITATOR_GUIDE.md` and the
-"Constraints on edits" sections addressed to authors. The platform
-neutralizes the links and strips HTML comments, but the prose remains. When
-writing or revising a session README, either keep it in the course's voice
-(a student may read this) or move author-facing material into the
-facilitator documents, which the platform correctly withholds.
+**A served session owes a student index.** The session `README.md` is
+written for you and for a facilitator — artifact tables that link the
+facilitator's documents, "Constraints on edits", the from/to-session
+tables — so the platform does not serve it. Each served session instead
+has `platform/index/<NN>_<slug>.md`: a one-page derivative of `README.md`
+and `PREWORK.md`, in the course's voice and addressed to the student,
+carrying the outcome, what they will do, honest minutes that match
+`estimated_minutes`, and what they hand in. It is part of a session's
+platform version exactly as the rubric, the recall prompts and the script
+are, and it obeys the same transcription rule: it may not say anything its
+sources do not, so a change to a session's outcome, shape or timings is
+not finished until its index has been re-read.
+
+The rule underneath is the one to hold on to: **everything listed in
+`concept.sources` is read by a student alone at 9pm.** The platform
+neutralizes links it will not serve and strips HTML comments, but prose
+addressed to somebody other than the student survives — so it belongs in
+the facilitator documents, which the platform correctly withholds, or in
+the README, which it no longer serves at all.
 
 **`CHECKPOINT.md` is never TA knowledge.** It is the source the rubric is
 transcribed from; giving it to the TA would hand students the answers to
@@ -241,7 +255,7 @@ reaches new students by cutting a new tag. The consequences:
 
 ## Known gaps (check before relying on this section)
 
-Current as of 2026-08-22; each should disappear, so verify before working
+Current as of 2026-08-23; each should disappear, so verify before working
 around it:
 
 - `docs/trunk/FRICTION.md` is intended to feed the TA's friction corpus but
@@ -251,6 +265,3 @@ around it:
 - HTML comments in a listenable script are spoken by the voice; the
   validator does not yet catch them. Nothing goes in a script you would not
   say aloud (`platform/README.md` records the same rule).
-- Session README files reach students unedited (see above); a
-  student-facing session index that replaces `README.md` in
-  `concept.sources` is the likely eventual fix.

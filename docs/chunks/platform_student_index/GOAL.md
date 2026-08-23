@@ -1,219 +1,42 @@
 ---
-status: FUTURE
+status: ACTIVE
 ticket: null
 parent_chunk: null
-code_paths: []
-code_references: []
+code_paths:
+- platform/index/01_mental_models.md
+- platform/index/02_meeting_the_harness.md
+- platform/module.yaml
+- platform/README.md
+- docs/trunk/PLATFORM_AUTHORING.md
+code_references:
+- ref: platform/index/01_mental_models.md
+  implements: "Session 1's index for the student: the outcome as their own, concept
+    30 / lab 92 with the practice week named as part of the lab, the arc of the sheet,
+    the prework's facilitator email reconciled for somebody working alone, and the
+    two things they hand in"
+- ref: platform/index/02_meeting_the_harness.md
+  implements: "Session 2's index for the student: the outcome as their own, concept
+    25 / lab 125 with the practice laps named as the last sittings, the safety-net-first
+    ordering, the setup check and the model-provider warning, and the four things
+    they hand in — including why `revert --list` is one of them"
+- ref: platform/module.yaml
+  implements: "concept.sources for both served sessions: the student index first,
+    then PREWORK.md; the session README no longer served, with the header comment
+    saying why"
+- ref: docs/trunk/PLATFORM_AUTHORING.md
+  implements: "The authoring rule — a served session owes a student index, bound to
+    the same transcription discipline as the rubric — the consumption table that
+    separates README from index, and the known gap this closes"
+- ref: platform/README.md
+  implements: "The index/ row in the directory's file table"
 narrative: platform_compliance
 investigation: null
 subsystems: []
 friction_entries: []
 depends_on: []
-created_after: ["platform_authoring_guide"]
+created_after:
+- platform_authoring_guide
 ---
-
-<!--
-╔══════════════════════════════════════════════════════════════════════════════╗
-║  DO NOT DELETE THIS COMMENT BLOCK until the chunk complete command is run.   ║
-║                                                                              ║
-║  AGENT INSTRUCTIONS: When editing this file, preserve this entire comment    ║
-║  block. Only modify the frontmatter YAML and the content sections below      ║
-║  (Minor Goal, Success Criteria, Relationship to Parent). Use targeted edits  ║
-║  that replace specific sections rather than rewriting the entire file.       ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-This comment describes schema information that needs to be adhered
-to throughout the process.
-
-STATUS VALUES (status answers: how much of the intent does this chunk own?):
-- FUTURE: Not yet owned. Queued for later.
-- IMPLEMENTING: Being taken into ownership. At most one per worktree.
-- ACTIVE: Fully owns the intent that governs the code.
-- COMPOSITE: Shares ownership with other chunks. Must be read alongside its co-owners.
-- HISTORICAL: No longer owns intent. Kept for archaeological context.
-
-See docs/trunk/CHUNKS.md for the full principle.
-
-FUTURE CHUNK APPROVAL REQUIREMENT:
-ALL FUTURE chunks require operator approval before committing or injecting.
-After refining this GOAL.md, you MUST present it to the operator and wait for
-explicit approval. Do NOT commit or inject until the operator approves.
-This applies whether triggered by "in the background", "create a future chunk",
-or any other mechanism that creates a FUTURE chunk.
-
-COMMIT BOTH FILES: When committing a FUTURE chunk after approval, add the entire
-chunk directory (both GOAL.md and PLAN.md) to the commit, not just GOAL.md. The
-`ve chunk create` command creates both files, and leaving PLAN.md untracked will
-cause merge conflicts when the orchestrator creates a worktree for the PLAN phase.
-
-PARENT_CHUNK:
-- null for new work
-- chunk directory name (e.g., "006-segment-compaction") for corrections or modifications
-
-CODE_PATHS:
-- Populated at planning time
-- List files you expect to create or modify
-- Example: ["src/segment/writer.rs", "src/segment/format.rs"]
-
-CODE_REFERENCES:
-- Populated after implementation, before PR
-- Uses symbolic references to identify code locations
-
-- Format: {file_path}#{symbol_path} where symbol_path uses :: as nesting separator
-- Example:
-  code_references:
-    - ref: src/segment/writer.rs#SegmentWriter
-      implements: "Core write loop and buffer management"
-    - ref: src/segment/writer.rs#SegmentWriter::fsync
-      implements: "Durability guarantees"
-    - ref: src/utils.py#validate_input
-      implements: "Input validation logic"
-
-
-NARRATIVE:
-- If this chunk was derived from a narrative document, reference the narrative directory name.
-- When setting this field during /chunk-create, also update the narrative's OVERVIEW.md
-  frontmatter to add this chunk to its `chunks` array with the prompt and chunk_directory.
-- If this is the final chunk of a narrative, the narrative status should be set to COMPLETED
-  when this chunk is completed.
-
-INVESTIGATION:
-- If this chunk was derived from an investigation's proposed_chunks, reference the investigation
-  directory name (e.g., "memory_leak" for docs/investigations/memory_leak/).
-- This provides traceability from implementation work back to exploratory findings.
-- When implementing, read the referenced investigation's OVERVIEW.md for context on findings,
-  hypotheses tested, and decisions made during exploration.
-- Validated by `ve chunk validate` to ensure referenced investigations exist.
-
-
-SUBSYSTEMS:
-- Optional list of subsystem references that this chunk relates to
-- Format: subsystem_id is the subsystem directory name, relationship is "implements" or "uses"
-- "implements": This chunk directly implements part of the subsystem's functionality
-- "uses": This chunk depends on or uses the subsystem's functionality
-- Example:
-  subsystems:
-    - subsystem_id: "validation"
-      relationship: implements
-    - subsystem_id: "frontmatter"
-      relationship: uses
-- Validated by `ve chunk validate` to ensure referenced subsystems exist
-- When a chunk that implements a subsystem is completed, a reference should be added to
-  that chunk in the subsystems OVERVIEW.md file front matter and relevant section.
-
-FRICTION_ENTRIES:
-- Optional list of friction entries that this chunk addresses
-- Provides "why did we do this work?" traceability from implementation back to accumulated pain points
-- Format: entry_id is the friction entry ID (e.g., "F001"), scope is "full" or "partial"
-  - "full": This chunk fully resolves the friction entry
-  - "partial": This chunk partially addresses the friction entry
-- When to populate: During /chunk-create if this chunk addresses known friction from FRICTION.md
-- Example:
-  friction_entries:
-    - entry_id: F001
-      scope: full
-    - entry_id: F003
-      scope: partial
-- Validated by `ve chunk validate` to ensure referenced friction entries exist in FRICTION.md
-- When a chunk addresses friction entries and is completed, those entries are considered RESOLVED
-
-CHUNK ARTIFACTS:
-- Single-use scripts, migration tools, or one-time utilities created for this chunk
-  should be stored in the chunk directory (e.g., docs/chunks/foo/migrate.py)
-- These artifacts help future archaeologists understand what the chunk did
-- Unlike code in src/, chunk artifacts are not expected to be maintained long-term
-- Examples: data migration scripts, one-time fixups, analysis tools used during implementation
-
-CREATED_AFTER:
-- Auto-populated by `ve chunk create` - DO NOT MODIFY manually
-- Lists the "tips" of the chunk DAG at creation time (chunks with no dependents yet)
-- Tips must be ACTIVE chunks (shipped work that has been merged)
-- Example: created_after: ["auth_refactor", "api_cleanup"]
-
-IMPORTANT - created_after is NOT implementation dependencies:
-- created_after tracks CAUSAL ORDERING (what work existed when this chunk was created)
-- It does NOT mean "chunks that must be implemented before this one can work"
-- FUTURE chunks can NEVER be tips (they haven't shipped yet)
-
-COMMON MISTAKE: Setting created_after to reference FUTURE chunks because they
-represent design dependencies. This is WRONG. If chunk B conceptually depends on
-chunk A's implementation, but A is still FUTURE, B's created_after should still
-reference the current ACTIVE tips, not A.
-
-WHERE TO TRACK IMPLEMENTATION DEPENDENCIES:
-- Investigation proposed_chunks ordering (earlier = implement first)
-- Narrative chunk sequencing in OVERVIEW.md
-- Design documents describing the intended build order
-- The `created_after` field will naturally reflect this once chunks ship
-
-DEPENDS_ON:
-- Declares explicit implementation dependencies that affect orchestrator scheduling
-- Format: list of chunk directory name strings, or null
-- Default: [] (empty list - explicitly no dependencies)
-
-VALUE SEMANTICS (how the orchestrator interprets this field):
-
-| Value             | Meaning                              | Oracle behavior   |
-|-------------------|--------------------------------------|-------------------|
-| `null` or omitted | "I don't know my dependencies"       | Consult oracle    |
-| `[]` (empty list) | "I explicitly have no dependencies"  | Bypass oracle     |
-| `["chunk_a"]`     | "I depend on these specific chunks"  | Bypass oracle     |
-
-CRITICAL: The default `[]` means "I have analyzed this chunk and it has no dependencies."
-This is an explicit assertion, not a placeholder. If you haven't analyzed dependencies yet,
-change the value to `null` (or remove the field entirely) to trigger oracle consultation.
-
-WHEN TO USE EACH VALUE:
-- Use `[]` when you have analyzed the chunk and determined it has no implementation dependencies
-  on other chunks in the same batch. This tells the orchestrator to skip conflict detection.
-- Use `null` when you haven't analyzed dependencies yet and want the orchestrator's conflict
-  oracle to determine if this chunk conflicts with others.
-- Use `["chunk_a", "chunk_b"]` when you know specific chunks must complete before this one.
-
-WHY THIS MATTERS:
-The orchestrator's conflict oracle adds latency and cost to detect potential conflicts.
-When you declare `[]`, you're asserting independence and enabling the orchestrator to
-schedule immediately. When you declare `null`, you're requesting conflict analysis.
-
-PURPOSE AND BEHAVIOR:
-- When a list is provided (empty or not), the orchestrator uses it directly for scheduling
-- When null, the orchestrator consults its conflict oracle to detect dependencies heuristically
-- Dependencies express order within a single injection batch (intra-batch scheduling)
-- The chunks listed in depends_on will be scheduled to complete before this chunk starts
-
-CONTRAST WITH created_after:
-- `created_after` tracks CAUSAL ORDERING (what work existed when this chunk was created)
-- `depends_on` tracks IMPLEMENTATION DEPENDENCIES (what must complete before this chunk runs)
-- `created_after` is auto-populated at creation time and should NOT be modified manually
-- `depends_on` is agent-populated based on design requirements and may be edited
-
-WHEN TO DECLARE EXPLICIT DEPENDENCIES:
-- When you know chunk B requires chunk A's implementation to exist before B can work
-- When the conflict oracle would otherwise miss a subtle dependency
-- When you want to enforce a specific execution order within a batch injection
-- When a narrative or investigation explicitly defines chunk sequencing
-
-EXAMPLE:
-  # Chunk has no dependencies (explicit assertion - bypasses oracle)
-  depends_on: []
-
-  # Chunk dependencies unknown (triggers oracle consultation)
-  depends_on: null
-
-  # Chunk B depends on chunk A completing first
-  depends_on: ["auth_api"]
-
-  # Chunk C depends on both A and B completing first
-  depends_on: ["auth_api", "auth_client"]
-
-VALIDATION:
-- `null` is valid and triggers oracle consultation
-- `[]` is valid and means "explicitly no dependencies" (bypasses oracle)
-- Referenced chunks should exist in docs/chunks/ (warning if not found)
-- Circular dependencies will be detected at injection time
-- Dependencies on ACTIVE chunks are allowed (they've already completed)
--->
-
 # Chunk Goal
 
 ## Minor Goal
@@ -227,49 +50,46 @@ and PREWORK in the course's voice, addressed to the student: the session's
 outcome, what they will do, honest time expectations (matching
 `estimated_minutes`), and what they will hand in — without the artifact
 table that links `FACILITATOR_GUIDE.md`, without "Constraints on edits",
-and without the from/to-later-sessions tables. One page each. This chunk
-authors the Session 1 and Session 2 indexes and updates the manifest;
-Session 3's index is authored inside its draft (chunk
-`platform_session_03_draft`), following the shape this chunk sets.
+and without the from/to-later-sessions tables. One page each. Sessions 1
+and 2 have their indexes; Session 3's is authored inside its draft (chunk
+`platform_session_03_draft`), following the shape set here.
 
-Also: update `docs/trunk/PLATFORM_AUTHORING.md` — the "Known gaps" entry
-about student-visible READMEs is resolved by this chunk (remove it; add the
-index to the "How the platform consumes a session" table and a line to the
-authoring rules: the index is part of a session's platform version);
-`platform/README.md`'s file table gains the `index/` row. The session
-READMEs themselves are NOT edited — they remain the author/facilitator
-index, which is what they were for.
+`docs/trunk/PLATFORM_AUTHORING.md` carries the rule rather than the gap:
+its "How the platform consumes a session" table gives `README.md`,
+`PREWORK.md` and the index a row each, the consequence beneath it says a
+served session owes a student index and binds it to the same transcription
+rule the rubric obeys, and the known-gaps entry about student-visible
+READMEs is gone because it is closed. `platform/README.md`'s file table
+carries the `index/` row. The session READMEs themselves are not edited —
+they remain the author/facilitator index, which is what they were for.
 
-Location decision (made at narrative time, recorded here): the index lives
-under `platform/`, not in the session directory — adding an eighth fixed
-file to the session set would amend DEC-010/011 for a platform concern, and
-the index is a derivative of README/PREWORK exactly as the audio script is
-a derivative of the concept prose. Verify the platform validator accepts
-files under `platform/index/` (run `pnpm contract:validate` from
-`../learning-platform`); if the Module Contract restricts concept.sources
-to certain paths, record the finding and adapt (the fallback is a
-student-safe rewrite of the READMEs, which this chunk otherwise avoids).
+Location decision (made at narrative time): the index lives under
+`platform/`, not in the session directory — adding an eighth fixed file to
+the session set would amend DEC-010/011 for a platform concern, and the
+index is a derivative of README/PREWORK exactly as the audio script is a
+derivative of the concept prose. The Module Contract places no restriction
+on `concept.sources` paths (`src/contract/validate.ts` requires only that
+each source exist in the module's file map), so `platform/index/` needs no
+fallback; `pnpm contract:validate` accepts it, and refuses a path that does
+not exist, which is how that was confirmed rather than assumed.
 
-**Contract v1.1 note (2026-08-23, commit f29a15b).** Module Contract v1.1
-landed before this chunk ran: each served session's `lab` now declares
-`parts[]` — 2–6 ordered sittings of `{id, title, minutes, outcome,
-sources[]}`, whose sources anchor into the lab documents' `## Exercise N`
-headings — and `estimated_minutes.lab` is the sum of the parts and includes
-the practice week (S1 92, S2 125). The rules are in `platform/README.md`
-("A lab is parts…"). Read them before touching anything they govern.
-
-Consequence here: the index's time expectations quote the v1.1
-`estimated_minutes` (S1 concept 30 / lab 92, S2 concept 25 / lab 125) and
-say plainly that the lab figure includes the practice week.
+The index's time expectations quote Module Contract v1.1's
+`estimated_minutes` — S1 concept 30 / lab 92, S2 concept 25 / lab 125 —
+and say plainly that the lab figure includes the practice week, because
+under v1.1 `estimated_minutes.lab` is the sum of the session's `lab.parts`
+and a student with no cohort has no "between sessions" to do practice in.
 
 ## Success Criteria
 
 - `platform/index/01_mental_models.md` and
   `platform/index/02_meeting_the_harness.md` exist, one page each, student
   voice, no facilitator links or author-facing sections, with backreference
-  comments (HTML comments are stripped for rendered text — verify that
-  claim from platform/README.md/the validator rather than assuming; if
-  comments leak, use the audio-script rule: put attribution elsewhere).
+  comments. The comments are safe on both paths a student can reach, which
+  was checked in the platform's source rather than assumed:
+  `src/markdown/render.ts` strips HTML comments before parsing and
+  `src/audio/normalize.ts` strips them inside `speakable()`, so the
+  audio-script workaround (attribution kept outside the file) is not
+  needed here.
 - module.yaml concept.sources for both sessions list the index instead of
   README.md; PREWORK.md remains listed.
 - PLATFORM_AUTHORING.md's known-gaps entry is resolved and its consumption

@@ -1,13 +1,20 @@
 # agentic-101 as a self-paced module. Module Contract v1.
 # Chunk: docs/chunks/platform_module_contract - The manifest the platform ingests
 # Chunk: docs/chunks/platform_lab_parts - Each session's lab as the sittings it is consumed in
+# Chunk: docs/chunks/platform_student_index - concept.sources serves the student index, not the session README
 #
 # This is the only file the platform knows the name of; everything else in
 # platform/ is found through it. The session mapping below is DEC-010 and
-# DEC-011's seven fixed filenames, divided by audience: PREWORK and README are
-# concept, EXERCISES/PRACTICE/handouts are the lab, and the facilitator's
-# documents are ta_knowledge — which on the platform means the virtual TA may
-# read them and a student may not.
+# DEC-011's seven fixed filenames, divided by audience: PREWORK is concept,
+# EXERCISES/PRACTICE/handouts are the lab, and the facilitator's documents
+# are ta_knowledge — which on the platform means the virtual TA may read them
+# and a student may not.
+#
+# README.md is the exception, and it is deliberate. It is a session's index
+# for its author and its facilitator — the artifact table, the teaching
+# spine, the constraints on edits — so the platform does not serve it. What
+# concept.sources lists instead is platform/index/<NN>_<slug>.md: the same
+# orientation written for the student, in the course's voice.
 #
 # CHECKPOINT.md appears nowhere below, on purpose. It is the source the
 # rubrics were written from, and handing it to the TA as well would hand a
@@ -43,9 +50,13 @@ sessions:
   - id: 01_mental_models
     title: Mental models & the toil inventory
     concept:
+      # The index first, then the prework: a student alone gets "what is this
+      # and what will it cost me" before the reading. In the room that order
+      # is reversed, because the prework is what goes out and the README is
+      # the facilitator's entry point.
       sources:
+        - platform/index/01_mental_models.md
         - curriculum/session_01_mental_models/PREWORK.md
-        - curriculum/session_01_mental_models/README.md
       listenable_script: platform/audio/01_mental_models.md
       recall_prompts: platform/recall/01_mental_models.yaml
     lab:
@@ -139,8 +150,8 @@ sessions:
     title: Meeting the harness
     concept:
       sources:
+        - platform/index/02_meeting_the_harness.md
         - curriculum/session_02_meeting_the_harness/PREWORK.md
-        - curriculum/session_02_meeting_the_harness/README.md
       listenable_script: platform/audio/02_meeting_the_harness.md
       recall_prompts: platform/recall/02_meeting_the_harness.yaml
     lab:

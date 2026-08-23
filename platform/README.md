@@ -2,6 +2,7 @@
 
 <!-- Chunk: docs/chunks/platform_module_contract - What this directory is, and the rules for keeping it true -->
 <!-- Chunk: docs/chunks/platform_lab_parts - The lab-as-parts rules: transcription, load-bearing headings, honest minutes -->
+<!-- Chunk: docs/chunks/platform_student_index - index/, the student's session index that concept.sources serves instead of README.md -->
 
 Everything else in this repository is written for a person: a participant
 reading prework on the train, a facilitator holding a runsheet in front of
@@ -26,6 +27,7 @@ prose itself* so it transcribes well is the trunk's concern:
 | File | What it is |
 |---|---|
 | `module.yaml` | The manifest. The only file the platform knows the name of; everything else is found through it. Module identity, budgets, the setup gate, and per session: which files are concept, which are lab, which are the facilitator's, what a student submits, how long it takes, and the lab's **parts** — the sittings a student stops and resumes between. |
+| `index/01_mental_models.md`, `index/02_meeting_the_harness.md` | Each session's index, for the student. What the session is for, what it costs in honest minutes, what they will do and what they hand in — written from the session's `README.md` and `PREWORK.md`. This is what `concept.sources` lists in place of `README.md`, which is a session's index for its author and its facilitator and is not served at all. |
 | `rubrics/setup.yaml` | The gate before Session 1: `course-smoke-test` reported PASS. |
 | `rubrics/01_mental_models.yaml`, `rubrics/02_meeting_the_harness.yaml` | Each session's `CHECKPOINT.md`, structured. Criteria, the evidence that satisfies each, pass exemplars, near-miss exemplars with the facilitator's corrective question, and — where the checkpoint names a fact a machine can see — a deterministic check. |
 | `recall/*.yaml` | The question-and-answer beat that closes each audio segment. |

@@ -1,5 +1,5 @@
 ---
-themes: []
+themes: [setup]
 proposed_chunks: []
 ---
 
@@ -58,3 +58,15 @@ Where:
 
 New entries are appended below this comment.
 -->
+
+### 2026-08-22 [setup] env/install.sh looks frozen during the silent node/git step
+
+A real setup run (the operator, as the platform pilot's first student) closed
+the terminal during Step 1 of 4: `brew install node git` runs with all output
+silenced and, when Homebrew decides to auto-update or upgrade, sits for
+several minutes with the last visible line being "Installing node and git…".
+install-pi.sh already warns "nothing at all will appear on screen while it
+runs. That is normal." — install.sh's brew step needs the same courtesy line,
+and ideally a completion line per app. The interrupted install left no
+partial-state warning; the re-run succeeded because the installer is
+idempotent, which is the only reason this was cheap to recover.

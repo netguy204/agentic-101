@@ -493,6 +493,9 @@ clearly labelled halves proves less error-prone.
 files, `EXERCISES.md` (participant) and `EXERCISE_RUNSHEET.md`
 (facilitator); seven fixed filenames, not six.
 
+**Amended**: DEC-014 (2026-10-10) — `PREWORK.md` is being retired in favour
+of `platform/prework/<NN>_<slug>.md`; Session 1 no longer has one.
+
 **Decision**: Course material lives in `curriculum/session_<NN>_<slug>/`,
 each session carrying the same six filenames (`README.md`, `PREWORK.md`,
 `FACILITATOR_GUIDE.md`, `EXERCISES.md`, `PRACTICE.md`, `CHECKPOINT.md`)
@@ -706,7 +709,7 @@ pin change ever requires a new key, which `--keep-key` cannot supply.
 
 **Date**: 2026-08-23
 
-**Status**: ACCEPTED
+**Status**: SUPERSEDED by DEC-014 (2026-10-10)
 
 **Decision**: A new session is written twice in one pass. The room version
 is DEC-010/DEC-011's seven files; the platform version is drafted alongside
@@ -801,3 +804,56 @@ gate rather than the drafting is the bottleneck and that the room and the
 platform have stopped being independent; or the platform grows an authoring
 surface of its own, which would move the question of where a session is
 written out of this repository entirely.
+
+### DEC-014: The course is delivered self-paced with a human facilitator; test students replace the room as the proving ground
+
+**Date**: 2026-10-10
+
+**Status**: ACCEPTED (supersedes DEC-013; amends DEC-010)
+
+**Decision**: The course is delivered on the self-paced platform, combined
+with one-on-one or one-on-many virtual sessions with a human facilitator.
+It is not expected to be taught to a room. Every student has access to a
+facilitator; automated help (the material itself, the virtual TA, the
+checkpoint conversation) comes first and is described to the student as
+automated. Session material in `curriculum/` is written for a student
+working alone, with a facilitator reachable at any time. A session is
+proven by a test student working through it, self-paced and with
+facilitator sessions, in place of a floor-tested room. The platform
+version is still drafted alongside the session and promoted only after
+that test. `PREWORK.md` is retired as each session's platform prework
+becomes its only prework; Session 1's was deleted on this date.
+
+**Context**: DEC-013 made the classroom the proving ground on the belief
+that a room surfaces the near-misses, corrective questions and recovery
+moves the platform needs. The operator does not expect to teach the course
+to a room. The first test student went through it with the operator one
+to one, which produced the outcome the course is built for, and showed
+that the self-paced material was too verbose and not actionable enough for
+someone working alone. Material written for a room (pairing, "leaving the
+room", emailed prework, facilitator remediation slots) was reaching
+self-paced students.
+
+**Alternatives Considered**:
+- **Keep DEC-013 and keep a room version alive.** Rejected: maintaining a
+  delivery that will not run costs every edit twice and keeps room
+  assumptions in the shared files.
+- **Fully automated delivery, no facilitator.** Rejected by the operator:
+  every student has a person available, and the automated layers sit in
+  front of that person.
+
+**Rationale**: Near-misses and corrective questions still come from real
+students; they now come from test students and facilitator sessions in
+place of a room. Writing for the student alone removes the need to strip
+room material out of every derivative.
+
+**Consequences**: `docs/trunk/PLATFORM_AUTHORING.md` describes one delivery
+and the test-student flow. Each served session index ends with a "Getting
+help" section; Session 1's lists the layers in order. `FACILITATOR_GUIDE.md`
+and `EXERCISE_RUNSHEET.md` are still written for a room; they remain TA
+knowledge and need rewriting for live one-on-one and small-group sessions.
+Sessions 2 and 3 still have a `PREWORK.md` until their voice passes.
+
+**Revisit If**: the course is booked for a room again, or test students
+consistently need the facilitator for something the automated layers were
+meant to handle.

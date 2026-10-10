@@ -1,274 +1,189 @@
 # Session 1 — Mental models and the toil inventory
 
-Welcome to Agentic 101. This is the concept track for session one, and it is
-meant to be listened to. You do not need a screen, a keyboard, or a free
-hand. There are four segments, each about four or five minutes, and each one
-ends with a question you answer out loud before I give you my version of the
-answer. Nothing in this session asks you to install anything or type
-anything — session one is a conversation, and if the software you were sent
-before the course did not work, you will not miss a minute of this. When
-something does need your hands, I will say so, and it will be waiting for you
-on your lab card.
+This is the concept track for Session 1 of Agentic 101. It has four
+segments. Each one ends with a question: answer it yourself, out loud if
+you can, before the model answer. Nothing in this session needs a keyboard.
 
 ## Segment 1 — Why now, and why you
 
-I want to start with an argument rather than a definition, because if the
-argument does not land, the definitions will not be worth having.
+You know your job in detail: the edge cases, the workarounds in your
+spreadsheets, the reason one column is always wrong in March. Most of that
+is written down nowhere. It lives in you.
 
-Start with something true about you. You know your job deeply. You know the
-edge cases. You know the tedious reports, and the workarounds you have built
-in spreadsheets over the years, and the reason the numbers in that one column
-are always wrong in March. Nobody wrote that down anywhere. It is not in a
-process document. It lives in you, and until quite recently there was no way
-for it to be anywhere else. That knowledge is about to become a new kind of
-leverage, and the rest of this segment is the argument for why.
+For about forty years, software engineers have had an advantage that had
+nothing to do with being smarter. An engineer could take a decision – when
+this happens, do that; this input is suspicious; this case needs a human –
+write it down once, and have it apply to thousands of cases without them in
+the room. Their judgment compounded.
 
-For about forty years, one profession has had a structural advantage that
-had nothing to do with being smarter than anybody else. A software engineer
-could take a decision — when this happens, do that; this input is suspicious;
-this case needs a human — write it down once, and have it govern thousands of
-executions afterwards, without them in the room. Their judgment compounded.
+Everyone else's judgment ran live: one meeting, one review, one document at
+a time. You have made thousands of good calls, and each one applied once.
+There were two ways to make it go further. You could learn to program,
+which is a career. Or you could become a manager and delegate to people.
 
-Everybody else's judgment ran live. Yours has run one meeting at a time, one
-review at a time, one document at a time. You have made thousands of good
-calls, and each of them applied exactly once. Not because your judgment was
-worth less. Because there was no way to encode it that did not require
-learning to program, and learning to program was a career, not an afternoon.
+Agentic tools add a third way. They let judgment written in plain language
+govern automated work. Take an instruction like: flag anything from a
+customer who has mentioned cancelling, because retention is our priority
+this quarter. You could say that to a new colleague. Now you can also write
+it down once and have it applied every time, by software that does the
+typing. No code, and no ticket to the technology team.
 
-That is what has changed. Agentic tools let judgment expressed in plain
-language govern automated work. Take an instruction like: flag anything from
-a customer who has mentioned cancelling, because retention is what we are
-protecting this quarter. That is not a program. That is a sentence you could
-say to a new colleague. It is now also a thing you can write down once and
-have applied every time, by something that does the typing for you. No code,
-no ticket to the technology team, no waiting.
+So the bottleneck has moved. Automating something used to mean getting an
+engineer's time, explaining what you wanted, and iterating until they got
+it right. Now the bottleneck is knowing what is worth automating and what a
+good result looks like. You have that. The tools do not. This course is
+about spending your judgment where it pays off most. You will not write
+code.
 
-Which means the scarce input has moved. It used to be the keystrokes —
-somebody who could build the thing. Now the keystrokes are cheap, and the
-scarce input is knowing what is worth building, and whether the result is
-right. That is exactly what you have, and exactly what these tools do not.
+There is a limit. You can safely hand over work you could not do yourself;
+you do it whenever you hire a contractor or brief a designer. You cannot
+safely hand over work whose result you could not evaluate. An agent will
+produce a confident, fluent, professional answer to almost anything. If you
+cannot tell a good answer from a bad one, you will not find out it was
+wrong until someone else finds out for you, later, at a cost.
 
-So this course is not about catching up to programmers. You will not write
-any code on it. It is about the thing that is now in short supply: your
-judgment, and how to spend it where it buys the most.
+Think of the boss in Dilbert. He fails because he cannot tell good work
+from bad, and his team knows it. Delegating is not his problem. Delegate
+work you cannot judge, and you are in his position.
 
-Now the hard edge, stated honestly, because you will meet it either way and I
-would rather you met it here.
-
-You can safely hand over work you could not do yourself. That is normal. You
-do it every time you hire a contractor or brief a designer, and nobody thinks
-twice about it. What you cannot safely hand over is work whose result you
-could not evaluate. An agent will produce a confident, fluent,
-professional-looking answer to almost anything you ask it. If you are not
-able to tell a good one from a bad one, you will not find out that it was
-wrong. You will find out later, from somebody else, expensively.
-
-Being able to do the work, and being able to judge the work, are two
-different abilities. Only one of them is the limit. This session is about
-finding where yours runs out — and that turns out to be a genuinely useful
-thing to know about yourself, quite apart from any of this.
-
-Hold on to that distinction. Everything in the next three segments is built
-on it, and if you take one idea away from the whole course, this is the one I
-would pick.
+Doing the work and judging the work are different abilities, and only
+judging limits what you can delegate. This session finds where your
+ability to judge runs out. The rest of the course builds on that.
 
 > Recall: judgment_is_the_scarce_input
 
 ## Segment 2 — What an agent actually is
 
-Now some furniture. Two words, and the difference between them.
+You have probably used a chatbot. You type a question, it types an answer,
+and whatever happens next, you do: copy it into a document, fix the tone,
+paste it into an email. Moving the answer into the world is your job, and
+it is often most of the work.
 
-You have almost certainly used a chatbot. You type a question, it types an
-answer, and the answer arrives as text in the window. Whatever you do with
-that text afterwards, you do. You copy it into a document. You retype the
-useful half. You paste it into an email and fix the tone. The work of moving
-the answer into the world is yours, every time, and it is often most of the
-work.
+An agent is the same kind of model with two additions. It can take
+actions, and it can take several in a row without asking you in between. It
+can read a file on your computer, write one, run a command, look at the
+result and decide what to do next. Ask an agent to tidy a list of supplier
+names and it opens the file, changes it and saves it. The file is different
+afterwards. A chatbot produces text about the work. An agent does the work.
 
-An agent is the same underlying model with two things added: it can take
-actions, and it can take a sequence of them without asking you between each
-one. It can read a file on your computer. It can write one. It can run a
-command. It can look at what came back and decide what to do next. So when
-you ask an agent to tidy up a list of supplier names, it does not describe
-how you might tidy them. It opens the file, changes it, and saves it. The
-file on your computer is different afterwards.
+Two consequences follow.
 
-That is the whole distinction, and it is bigger than it sounds. A chatbot
-produces text about the work. An agent does the work. One leaves you with
-something to read; the other leaves you with something that has happened.
+First, an agent works somewhere: on real files, in a real folder, on your
+machine. In this course everything happens in one practice folder made for
+you, so changes are easy to see and easy to undo. The folder keeps things
+tidy. It is not a security boundary.
 
-Two consequences follow, and they set up everything you will do next week.
+Second, because the agent acts, its own account of what it did is not
+evidence. It will write a confident paragraph explaining what it did and
+why. That paragraph describes what it meant to do. The file shows what
+happened. Usually the two agree. When they disagree, the paragraph is
+wrong, and the paragraph is what you were most likely to read. In Session 2
+you will see this on your own machine.
 
-The first is that an agent has to work somewhere. It acts on real files in a
-real folder on your own machine, which means the question of which folder is
-suddenly a question worth asking. In this course everything happens in one
-practice folder that was made for you, so that the changes are easy to see
-and easy to undo. That folder is not a security wall. It is a tidy desk.
+An agent is also not a colleague. It has no stake in the outcome, does not
+know your company, and will not tell you that a request seemed odd. Treat it
+as a very fast, very literal contractor who has never worked in your
+industry and cannot ask around.
 
-The second consequence is the one this whole course turns on. Because the
-agent acts rather than describes, its own account of what it did is not
-evidence. It will write you a paragraph — a nice paragraph, in confident
-prose, explaining what it has done and why. That paragraph is a description
-of its intentions. The file is what happened. Those two things usually agree,
-and when they do not, it is the paragraph that is wrong, and the paragraph is
-the thing you were most likely to have read.
-
-I am not asking you to distrust it. I am asking you to notice that there are
-two different objects here, and that only one of them is the work. Next
-session you will watch this happen on your own machine, in your own folder,
-and it is a great deal more vivid when the file is yours.
-
-One more thing, briefly, because people ask. An agent is not a person, and it
-is not a colleague. It has no stake in the outcome, it does not know what
-your company is like, and it will not come and tell you that the request
-seemed odd. It is closer to an extremely fast, extremely literal contractor
-who has never worked in your industry and has no way of asking around.
-
-Which is worth holding on to, because it makes the failure mode predictable
-rather than mysterious. A contractor like that does not fail by producing
-obvious rubbish. They fail by producing something entirely reasonable that is
-wrong in the one place only somebody from inside your organisation would
-know to look. That is not a flaw to be fixed in a later version. It is a
-straightforward consequence of the thing not being you, and it is the reason
-that a rule runs through this whole course: every time you see what one of
-these tools can do, the very next question is how you would check it. Not
-eventually. Immediately, in the same breath, every time.
+That makes its failures predictable. A contractor like that rarely produces
+obvious rubbish. They produce something reasonable that is wrong in the one
+place only someone inside your organisation would know to check. So the
+course has one rule: whenever you see what one of these tools can do, the
+next question is how you would check it.
 
 > Recall: agent_versus_chatbot
 
 ## Segment 3 — Judgment, expertise, and the boundary between them
 
-Here is the part that makes this course different from every other course
-about these tools.
+Take a piece of work you do regularly and ask: if someone handed me this
+finished, could I tell whether it was right?
 
-Take a piece of work you do regularly and ask a question that has nothing at
-all to do with software. If somebody handed me this work finished, could I
-tell whether it was right?
+That question is about whether you could tell. Whether you could do the
+work is a separate question, and most people merge the two the first time
+they are asked.
 
-Not: could I do it. Could I tell. Those are different questions, and almost
-everybody runs them together the first time they are asked.
+You do not need to be an auditor to notice that a total is missing the
+region that always reports late. You do not need to draft contracts to spot
+a changed payment term. Your judgment regularly reaches past your
+expertise.
 
-You do not need to be able to audit a set of accounts to notice that a total
-is missing a region you know always reports late. You do not need to write
-contracts to spot that a payment term has changed. That is judgment operating
-well beyond your expertise, and it is the ordinary case, not the clever one.
+It works the other way too. You may be able to do a task and still be
+unable to check it quickly. If checking takes as long as doing, delegating
+the task adds a step and saves nothing.
 
-And the reverse is true, and more uncomfortable. You might be perfectly able
-to do a piece of work and still be unable to check it quickly enough for
-checking to mean anything. If verifying the result takes as long as doing it
-yourself, you have not delegated anything. You have just added a step.
+The set of tasks where you can evaluate the result is your judgment
+boundary. Tasks inside it are candidates for handing over. Tasks outside it
+are not, even though the tool can often do them. It will produce something
+fluent and plausible, and you would not catch it when it was wrong. A
+confident review of contract clauses you cannot evaluate is worse than no
+review, because it looks like diligence.
 
-The space where you can evaluate a result is your judgment boundary. Tasks
-inside it are candidates for handing over. Tasks outside it are not — and I
-want to be careful about why, because the reason is not the obvious one. It
-is not that the tool cannot do them. Very often it can, and it will produce
-something fluent and confident and entirely plausible. The reason is that you
-could not catch it when it got them wrong. A confident, well-written review
-of clauses you cannot evaluate is worse than no review at all, because now
-there is a document that looks like diligence.
+So the dangerous task is the one where a wrong result looks right to you.
 
-Say that back to yourself, because it inverts the way most people think about
-risk. The dangerous task is not the hard one. The dangerous task is the one
-where wrong looks exactly like right, to you.
+Here is how that plays out. A piece of work comes back well formatted. The
+totals add up. Every mechanical check passes. It is still wrong, in one
+place, because of something about your organisation that was never written
+down: a region that always reports late, a customer who is really two
+customers, a status that means something different on your team. Only
+someone who knows the place catches it. If that person is in the loop, it
+gets caught. If not, the document goes out.
 
-Here is the shape of it, and it is worth picturing, because it is going to
-happen to you at some point. A piece of work comes back. It is well
-formatted. The totals add up. Every mechanical check you could think of
-passes. And it is still wrong, in one specific place, for a reason that
-depends on something about your organisation that was never written down
-anywhere the tool could have read it — a region that always reports late, a
-customer who is technically two customers, a status that means something
-different on your team than it does anywhere else. Only somebody who knows
-the place catches it. If that somebody is you, this is a good day. If nobody
-in the loop is that person, the document goes out.
+There is a third answer besides in and out: not sure. It means you think you
+could tell, but you would be guessing about how. To resolve it, try to name
+the check. That usually settles it one way or the other.
 
-There is a third answer, by the way, and you are allowed to use it. Not sure.
-That means: I think I could tell, but I would be guessing about how. Not sure
-is an honest answer and a useful one. What it is not is a place to park
-everything uncomfortable — the way out of it is to try to name the check, and
-the attempt usually resolves it in one direction or the other.
-
-Now, here is the thing nobody expects when they start this course. The tasks
-you rule out are the most valuable findings you will produce. They are the
-ones that would have hurt. Later in this course, ruling a task out because
-you could not check it counts as demonstrated skill, not as a gap. Knowing
-where your judgment runs out, and saying it out loud, is worth more than any
-confident yes.
-
-You will hear me come back to this in every session. Session two asks you
-what you checked. Session three asks what your checks would still have
-missed. The last session decides what you build on the strength of it. It is
-the spine of the whole thing, and it is why the first thing I am going to ask
-you to make is a list.
+The tasks you rule out are useful findings, because they are the ones that
+would have caused damage. In this course, ruling a task out because you
+could not check it counts as skill. Session 2 asks what you checked.
+Session 3 asks what your checks would have missed. The final session picks
+what you build based on it. That is why the first thing you make is a list.
 
 > Recall: judgment_not_expertise
 
 ## Segment 4 — The list you are going to keep
 
-Somewhere in your week there is work you do again and again. Not the
-interesting part of your job — the part around it. Pulling four regional
-numbers into one summary every Monday morning. Reading a folder of supplier
-renewals looking for anything that changed. Rewriting the same update for
-three different audiences. Chasing people for the thing they promised on
-Thursday. You know exactly which ones I mean, because you thought of two of
-them before I finished the sentence.
+Somewhere in your week is work you do again and again, around the
+interesting part of your job. Pulling four regional numbers into one
+summary every Monday. Reading supplier renewals for anything that changed.
+Rewriting one update for three audiences. Chasing people for what they
+promised on Thursday.
 
-Write them down. We call the list a toil inventory, and it is the single most
-useful thing you will make on this course. Everything later points back at
-it: the task you hand to an agent next session comes off this list, and so
-does the project you finish the course with.
+Write these down. The list is your toil inventory. The task you hand to an
+agent in Session 2 comes from it, and so does your final project.
 
-Three things make an entry worth writing. The first is that you actually did
-it, recently. Not something you think you ought to automate one day — the
-list is a record, not a wish. The second is that it is specific enough to
-picture. Reporting is not an entry. Pasting last week's ticket counts into
-the operations deck is an entry, because I can see it happening. The third is
-that you can say what done right looks like, in one sentence, before anybody
-mentions software. One table, one row per region, the totals matching what
-each region reported, and no region silently missing. If you cannot write
-that sentence, you have found something more interesting than a candidate for
-automation. You have found a piece of work whose definition of done nobody
-has ever written down.
+A good entry has three things. First, you actually did it recently; the
+list records your real work, and it is no place for wishes. Second, it is
+specific enough to picture. "Reporting" is too vague. "Paste last week's
+ticket counts into the operations deck" is an entry. Third, you can say in
+one sentence what done right looks like. For example: one table, one row
+per region, totals matching what each region reported, and no region
+missing. If you cannot write that sentence, nobody has defined done for
+this task yet, and that is worth knowing.
 
-Then two more things about each entry, and these are the ones that make the
-list worth keeping rather than just worth writing.
+Then mark each entry in, out or not sure. In means you could look at the
+finished work and tell whether it is right. Out means it would look fine to
+you either way. Not sure means you think you could tell, but you would be
+guessing how.
 
-For each entry, mark whether you could evaluate the result. In, out, or not
-sure. In means I could look at the finished work and tell whether it is
-right. Out means I could not; it would look fine to me either way. Not sure
-means I think I could, but I would be guessing about how.
+Then write how you would check. This backs up the mark. Name the specific
+thing you would look at: a number you would re-add, a name you would
+recognise, a rule you would apply, a person who would complain. "I'd read
+it over" means not sure. Make it concrete, or mark it not sure.
 
-And then the one that does the real work: how you would check. This is the
-proof of the mark you just made. Name the specific thing you would look at. A
-number you would re-add. A name you would recognise. A rule you would apply.
-A person who would complain. If you can write that sentence, the entry really
-is in. If what you write is that you would just read it over and see, then
-that is a not sure wearing a disguise. Go back and make it concrete, or mark
-it honestly and move on.
+Leave two kinds of entry off. Work you have never done and could not
+describe does not belong, because you cannot judge it.
 
-Two things do not belong on the list, and both of them are tempting. The
-first is work you have never actually done and could not describe — you
-cannot judge it, so it cannot be evaluated for delegation, and putting it
-down just makes the list longer. The second is frequency used as a substitute
-for judgeability. It is in because I do it every week. That is not an answer
-to the question, and it is the single most common wrong answer there is. How
-often you do something has nothing at all to do with whether you could tell
-it had been done wrong. Those are the two most common ways a sheet ends up
-full and useless.
+When you mark a task in, give a check as your reason. "I do it every week"
+is a reason to think you could check it. It becomes a check once you can
+name what you would look at.
 
-And one thing that does belong, which people leave off out of a kind of
-embarrassment: the uncomfortable entries. The ones you would have to mark
-out. Those teach you more than the confident ones, and by the end of this
-course an entry you ruled out because you could not check it is treated as a
-demonstration of skill rather than a shortfall. Put them on the list.
+Do include the tasks you would mark out. They teach you more than the
+confident ones.
 
-Two entries with a real check on them are worth more than ten with vague
-ones. Three is the floor, not the goal, and the floor is what you need before
-the next session. Keep the list somewhere you will actually keep it — printed
-on your desk, a note on your phone, a document, the back of a notebook. Paper
-is genuinely fine. What matters is that it is within reach during your
-working week, because the best entries get written down in the ten seconds
-after you catch yourself doing something for the fifth time.
+Three entries is the minimum to submit. Two entries with real checks are
+worth more than ten with vague ones. Keep the list within reach during your
+week, on paper, your phone or a document. The best entries get written in
+the moment you notice yourself doing something for the fifth time.
 
 > Lab card: the four-column sheet is on your lab card, with two filled-in
 > rows to copy the shape from, and a set of prepared example tasks if your

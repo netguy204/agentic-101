@@ -69,7 +69,7 @@ of the cohort is worth more than any confident **in**.
 
 | They say | What's missing | Say this |
 |---|---|---|
-| "It's in because I do it every week." | Frequency isn't judgeability. | "How often has nothing to do with it. If I handed you a finished one — how would you know it was wrong?" |
+| "It's in because I do it every week." | Frequency isn't judgeability. | "Doing it often helps. If I handed you a finished one, how would you know it was wrong?" |
 | "It's out because I couldn't do it myself." | Expertise confused with judgment. **The most common near-miss by far.** | "You don't need to be able to do it. Could you tell if it was wrong? … Then it's in." |
 | "I'd just read it over and I'd know." | The check isn't concrete. | "Reading it for *what*? What's the thing you'd notice?" There is almost always a real answer one question down. |
 | "It's in because the agent could definitely do it." | Judging the agent, not their own judgment. | "That's a question about the tool. Mine's about you: could *you* tell?" |

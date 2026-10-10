@@ -5,7 +5,6 @@ parent_chunk: null
 code_paths:
 - curriculum/README.md
 - curriculum/session_01_mental_models/README.md
-- curriculum/session_01_mental_models/PREWORK.md
 - curriculum/session_01_mental_models/FACILITATOR_GUIDE.md
 - curriculum/session_01_mental_models/EXERCISES.md
 - curriculum/session_01_mental_models/EXERCISE_RUNSHEET.md
@@ -27,10 +26,6 @@ code_references:
 - ref: curriculum/session_01_mental_models/README.md
   implements: The session index and the teaching spine stated as load-bearing order,
     with the constraints an editor must not break
-- ref: curriculum/session_01_mental_models/PREWORK.md
-  implements: 'Prework in ~22 minutes: the leverage argument in the operator''s voice,
-    the five-recurring-tasks list, and the setup-status reply that routes a failed
-    setup to remediation instead of to a lost evening'
 - ref: curriculum/session_01_mental_models/FACILITATOR_GUIDE.md
   implements: 'The re-teachable session: pre-session prep, setup-status collection
     and the remediation route, a 90-minute timing table with a 60-minute variant and

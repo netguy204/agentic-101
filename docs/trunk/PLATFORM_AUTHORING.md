@@ -2,18 +2,17 @@
 
 <!-- Chunk: docs/chunks/platform_authoring_guide - How to write session material that lands well on the self-paced platform -->
 <!-- Chunk: docs/chunks/platform_lab_parts - "A lab is parts" pointed at the manifest key that carries it -->
-<!-- Chunk: docs/chunks/platform_dual_authoring - "A new session, in order" as the dual-authoring flow (DEC-013) -->
+<!-- Chunk: docs/chunks/platform_dual_authoring - "A new session, in order" as the dual-authoring flow (DEC-013, superseded by DEC-014) -->
 <!-- Chunk: docs/chunks/platform_student_index - The student index a served session owes, and the README the platform stopped serving -->
 
-This course now has two deliveries. The one it was written for is a room:
-a facilitator, twelve people, a checkpoint round in the last ten minutes.
-The second is a self-paced platform (the peer repository
-`../learning-platform`) that serves the same sessions to students who never
-sit in the room: it reads the concept material aloud on a commute, hands
-out the lab for the desk, collects what the student made, applies the
-checkpoint as an automated rubric — including the corrective question a
-facilitator would ask on a near-miss — and grounds a virtual TA in the
-facilitator's own documents.
+The course is delivered on a self-paced platform (the peer repository
+`../learning-platform`), combined with one-on-one or one-on-many virtual
+sessions with a human facilitator (DEC-014). The platform reads the concept
+material aloud or shows it as a page, hands out the lab for the desk,
+collects what the student made, applies the checkpoint as an automated
+rubric — including the corrective question a facilitator would ask on a
+near-miss — and grounds a virtual TA in the facilitator's own documents.
+Every student can reach a facilitator; the automated help comes first.
 
 The platform owns no content. It fetches this repository at a git tag and
 reads it through the `platform/` directory, whose mechanics are documented
@@ -21,53 +20,44 @@ in [`platform/README.md`](../../platform/README.md). That README is the
 downstream half: how to transcribe a finished session into manifest,
 rubric, recall prompts, and audio script. **This document is the upstream
 half: how to write the session in the first place so the transcription is
-possible, faithful, and cheap.** Author for the room first — that rule
-stands — but an author who knows how each file is consumed writes material
-that needs no reshaping later.
+possible, faithful, and cheap.** Write every session for a student working
+alone, with a facilitator reachable when they need one.
 
-## Two deliveries, one course — and the classroom leads
+## One delivery, proven with test students
 
-The classroom version is not a legacy artifact the platform tolerates; it
-is the course's proving ground, and module authors are free — encouraged —
-to keep teaching and iterating it alongside the platform version. The
-operating belief: **a course iterated in a live classroom has better
-pedagogical coverage when adapted to the platform** than one authored for
-the platform directly. The room shows you the near-misses, the misfires,
-the corrective questions, and the recovery moves; those become the rubric
-exemplars, the TA's knowledge, and the checkpoint conversation. A course
-that never met a room has none of that to transcribe.
-
-That belief is recorded as DEC-013, which also settles *when* the platform
-version gets written: alongside the room version, as a draft, and promoted
-to the served manifest only after the room has proven the session. See "A
-new session, in order" below.
+Each session is proven by a test student working through it — self-paced,
+with facilitator sessions — before the platform serves it (DEC-014, which
+replaced the classroom-first DEC-013). The test student and the facilitator
+sessions are where the near-misses, the misfires, the corrective questions
+and the recovery moves are found; those become the rubric exemplars, the
+TA's knowledge, and the checkpoint conversation.
 
 What this means in practice:
 
-- **Iterate in the room; release to the platform by tag.** Session material
-  changes freely on `main` for the next cohort; the platform sees a new
-  version only when you cut a tag. The two deliveries never block each
-  other.
+- **Iterate on `main`; release to the platform by tag.** Session material
+  changes freely on `main`; the platform sees a new version only when you
+  cut a tag.
 - **The platform artifacts are derivatives, never forks.** One
   `CHECKPOINT.md`, one set of exercises, one facilitator guide — the
-  `platform/` directory transcribes them. If platform students need
-  different wording, fix the shared source or the transcription; never
-  maintain a second copy of a session.
-- **Friction flows both ways.** What platform students hit (via the
-  platform's friction triage) lands in this repo's `FRICTION.md` beside
-  what the room surfaced, and the next cohort — either delivery — benefits.
+  `platform/` directory transcribes them. If students need different
+  wording, fix the shared source or the transcription; never maintain a
+  second copy of a session.
+- **Friction is one loop.** What students hit (via the platform's friction
+  triage) and what the facilitator sees in live sessions both land in this
+  repo's `FRICTION.md`.
 
 ## How the platform consumes a session
 
-| You write | The room uses it as | The platform uses it as |
+| You write | A facilitator uses it as | The platform uses it as |
 |---|---|---|
-| `PREWORK.md` | Reading before the session | The **concept track** — rendered as text and read aloud as audio. **Students see every file listed as a concept source.** |
+| `PREWORK.md` | Being retired (DEC-014). Session 1 has none | Nothing directly. Where one remains, the platform serves its derivative (next row) instead. |
+| `platform/prework/<NN>_<slug>.md` | The prework to point a student at | Part of the **concept track**, written for the student working alone. For Session 1 it is the only prework. **Students see every file listed as a concept source.** |
 | `README.md` | The session's index for you and a facilitator | Nothing. The platform does not serve it; its student-facing counterpart does that job instead. |
-| `platform/index/<NN>_<slug>.md` | — (a platform derivative; the room has the README) | The **student's index** for the session, listed first in `concept.sources`: the outcome, what they will do, honest minutes, what they hand in |
-| `EXERCISES.md`, `PRACTICE.md`, `handouts/` | The in-room steps and the week's practice | The **lab** — desk material, unlocked when the previous session certifies |
-| `CHECKPOINT.md` | The bar the facilitator applies in the round | The **rubric** (via `platform/rubrics/`) that an automated certifier applies, near-miss corrections included |
-| `FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`, `DRY_RUN.md` | Your side of the room | The **TA's knowledge** — the virtual TA reads and cites them; students never see them |
-| `docs/trunk/FRICTION.md` | The between-cohort revision loop | The TA's friction corpus (intended; not yet wired — see "Known gaps") |
+| `platform/index/<NN>_<slug>.md` | What the student sees first | The **student's index** for the session, listed first in `concept.sources`: the outcome, what they will do, honest minutes, what they submit |
+| `EXERCISES.md`, `PRACTICE.md`, `handouts/` | The steps, when working through them live with a student | The **lab** — desk material, unlocked when the previous session certifies |
+| `CHECKPOINT.md` | The bar the facilitator applies in a live session | The **rubric** (via `platform/rubrics/`) that an automated certifier applies, near-miss corrections included |
+| `FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`, `DRY_RUN.md` | Preparation for live sessions (still written for a room; see DEC-014) | The **TA's knowledge** — the virtual TA reads and cites them; students never see them |
+| `docs/trunk/FRICTION.md` | The revision loop | The TA's friction corpus (intended; not yet wired — see "Known gaps") |
 
 Two consequences an author must hold in mind:
 
@@ -78,11 +68,19 @@ tables — so the platform does not serve it. Each served session instead
 has `platform/index/<NN>_<slug>.md`: a one-page derivative of `README.md`
 and `PREWORK.md`, in the course's voice and addressed to the student,
 carrying the outcome, what they will do, honest minutes that match
-`estimated_minutes`, and what they hand in. It is part of a session's
+`estimated_minutes`, and what they submit. It is part of a session's
 platform version exactly as the rubric, the recall prompts and the script
 are, and it obeys the same transcription rule: it may not say anything its
 sources do not, so a change to a session's outcome, shape or timings is
 not finished until its index has been re-read.
+
+**And a student prework.** `platform/prework/<NN>_<slug>.md` is the
+prework the student is served, written for the student working alone.
+Session 1 has no `PREWORK.md`; Sessions 2 and 3 still derive theirs from
+one until their voice passes retire it (DEC-014). Whichever applies, the
+rule from chunk platform_cohort_prework holds: **no served document may
+tell the student to skip classroom instructions.** Cut room-facing
+material out of what the student is served.
 
 The rule underneath is the one to hold on to: **everything listed in
 `concept.sources` is read by a student alone at 9pm.** The platform
@@ -116,9 +114,9 @@ is worth stating as rules:
 4. **Every near-miss row carries the corrective question, in your words.**
    On a near-miss the platform opens a bounded "checkpoint conversation":
    it asks your corrective question, and a corrected answer passes — a
-   near-miss corrected on the spot counts as a pass, exactly as in the
-   room. A near-miss without a corrective question can only fail, which is
-   not the room's behavior.
+   near-miss corrected on the spot counts as a pass, as it would in a
+   live session. A near-miss without a corrective question can only fail,
+   which is not what a facilitator would do.
 5. **The recovery section is the escalation map.** Causes a facilitator
    handles privately at the end become the cases the platform routes to
    the instructor. Name them, with what you'd do — that text becomes the
@@ -126,8 +124,8 @@ is worth stating as rules:
 
 ## Choose evidence a self-paced student can submit
 
-In the room the evidence is in the air — you hear the answer, you glance at
-the screen. The platform only has what a student uploads: a worksheet, free
+In a live session the evidence is in the air — you hear the answer, you
+glance at the screen. The platform only has what a student uploads: a worksheet, free
 text, files from the practice folder, a pi session log, a short voice note.
 When designing an exercise, ask early: **where does the evidence of the
 outcome land, and can a student hand it to us?**
@@ -167,6 +165,16 @@ is a car. The evidence behind this delivery (see the platform repository's
 carries conceptual material as well as text, and loses badly on procedures,
 tables, and anything the listener must look at.
 
+The script is also read. As of 2026-08-25 the platform renders each
+listenable script twice from the same source — spoken audio and a
+per-segment reading view sharing one position — so **write every segment
+to survive silent reading**: no "as I said a moment ago", no "you are
+hearing this on a drive", no reference to the medium at all. Segment
+titles and recall questions render as page headings and disclosure text,
+so write them to stand alone on a page as well as in the ear. (Forward
+guidance from the platform, not a retag: existing S1/S2 scripts mostly
+read fine; fix medium references when a script is next edited anyway.)
+
 So when writing prework and concept material, keep the *why* and the *how*
 separable at the paragraph level. The listenable script will carry the why
 and hand everything else off with a "this is on your lab card" line; prose
@@ -185,7 +193,7 @@ not a concept — fine, but know it.
 
 ## Design for the student who is alone
 
-In the room a facilitator absorbs confusion in real time: reads the
+In a live session a facilitator absorbs confusion in real time: reads the
 stalled face, re-times the block, says the corrective sentence. The
 platform student has none of that — and the first pilot's finding is
 blunt: session material rendered as-is becomes a 15,000-pixel wall of
@@ -225,11 +233,39 @@ When writing session material, give it this structure:
   result overwhelms. The facilitator's commentary belongs in
   `ta_knowledge` files where the TA retrieves the right sentence at the
   right moment — not in the student's reading.
+- **Every session index ends with "Getting help".** Session 1's lists the
+  layers in order: the material, the automated course assistant, the
+  checkpoint conversation, and the facilitator, a person who sees what the
+  assistant can't resolve and can be contacted directly at any time. Say
+  plainly which help is automated. Later sessions point back to it in two
+  or three lines. Setup failures and "may I use this real task from my
+  job?" go straight to the facilitator.
 - **One document per reader, still.** DEC-011's split (participant steps
   vs facilitator runsheet) is what makes self-paced delivery possible at
   all; anything author- or facilitator-facing that leaks into a concept
   source is read by a student alone at 9pm, with nobody to tell them to
   skip it.
+
+## Voice
+
+Session 1's student index, prework, concept script and lab are the model
+(revised 2026-10-10). The rules they follow:
+
+- **Lead with what the student does.** Step tables with honest minutes;
+  "Done when:" lines; "Next:" at the end of each part.
+- **Make each argument once.** The concept track carries the why. The
+  prework and the lab do not repeat it.
+- **Define each thing in one place.** The toil inventory handout defines
+  its columns; the exercises point to it.
+- **No commentary on the material.** Cut lines that rate a step ("the
+  load-bearing exercise", "the highest-value fifteen minutes"), praise the
+  student, or announce what is coming.
+- **Do not overstate.** "Frequency has nothing to do with judgeability"
+  is false; "I do it every week is a reason to think you could check it,
+  and it becomes a check once you can name what you'd look at" is the
+  claim the course needs.
+- **Write for the medium-free reader.** Scripts are also read as pages:
+  no "you are listening", no "as I said a moment ago".
 
 ## Publishing, and what a tag means
 
@@ -248,53 +284,42 @@ reaches new students by cutting a new tag. The consequences:
 
 ## A new session, in order
 
-Both versions are authored together; only the room's is proven before
-either ships. That is the policy (DEC-013), and these are its four steps.
+Both versions are authored together, and a test student proves the session
+before the platform serves it (DEC-014).
 
-1. **Write the session for the room** — the seven files of
-   DEC-010/DEC-011 — with this document's rules in mind: a binary bar with
-   named evidence, pass and near-miss exemplars with the corrective
-   question in your words, submittable residue, separable why/how. The
-   `README.md` stays yours and the facilitator's; the student's version of
-   it is the index in step 2.
+1. **Write the session** — the `curriculum/` files of DEC-010/DEC-011,
+   minus `PREWORK.md` — for a student working alone, with this document's
+   rules in mind: a binary bar with named evidence, pass and near-miss
+   exemplars with the corrective question in your words, submittable
+   residue, separable why/how, and the voice above. The `README.md` stays
+   yours and the facilitator's; the student's version of it is the index
+   in step 2.
 
 2. **Author the draft platform version alongside it**, into
    `platform/drafts/<NN>_<slug>/`: the rubric transcribed from
    `CHECKPOINT.md`, the listenable script, the recall prompts, the student
-   concept index, and a manifest fragment in the shape of one `module.yaml`
-   `sessions:` entry — Contract v1.1, so `lab.parts` included, and
-   `estimated_minutes.lab` the sum of the parts with the practice week in
-   it. Do this while the material is still warm: you remember which
-   sentence of the bar each criterion came from, which handout header a
-   deterministic check now depends on, and why the exercises fall into the
-   sittings they do. The same transcription six months later is the same
-   work done from cold, from documents you have to re-read to trust. The
+   index, the student prework, and a manifest fragment in the shape of one
+   `module.yaml` `sessions:` entry — Contract v1.1, so `lab.parts`
+   included, and `estimated_minutes.lab` the sum of the parts with the
+   practice week in it. Do this while the material is still warm. The
    draft is not served and never appears in `module.yaml` — the mechanics
    are in [`platform/README.md`](../../platform/README.md), "Drafting a
    session before it is served".
 
-3. **Floor-test and dry-run the room version, and iterate.** The platform
-   inherits the room's quality bar; it does not replace it, and it does not
-   get to serve a session the room has not survived. What the room changes
-   — a reworded bar item, a re-timed block, a near-miss nobody anticipated
-   — is *re-derived* into the draft, not reconciled with it: the draft is a
-   derivative, never a fork, and re-deriving one that is a week old is
-   cheap. This step is also what earns the draft its exemplars. The
-   near-misses you actually heard beat the ones you imagined, and the
-   corrective questions you actually said beat the ones you drafted.
+3. **Have a test student work through it, and iterate.** Self-paced, with
+   facilitator sessions as they need them. What the test changes — a
+   reworded bar item, a re-timed part, a near-miss nobody anticipated — is
+   re-derived into the draft. This step is also what earns the draft its
+   exemplars: the near-misses you actually heard beat the ones you
+   imagined.
 
-4. **Promote, once the room has proven it.** Move the draft's files to
-   their served locations, add its manifest fragment to `sessions:` in
-   `module.yaml` in progression order, run the validator, cut a
-   `platform-YYYY-MM` tag, and tell the platform's instructor surface to
-   ingest it. There is no authoring in this step; if you find yourself
-   writing, step 2 was not finished. Note that this validator run is the
-   first one that has ever seen the session — nothing under
-   `platform/drafts/` is checked by anything — so it is where a part
-   `sources` anchor that no longer matches an `## Exercise N` heading, a
-   deterministic check quoting a handout header the floor test reworded, or
-   a table that crept into the script will surface. Expect to fix something
-   here; that is the run doing its job.
+4. **Promote, once a test student has completed it.** Move the draft's
+   files to their served locations, add its manifest fragment to
+   `sessions:` in `module.yaml` in progression order, run the validator,
+   cut a `platform-YYYY-MM` tag, and tell the platform's instructor surface
+   to ingest it. This validator run is the first that has seen the session
+   — nothing under `platform/drafts/` is checked — so expect it to find a
+   stale part anchor or a reworded handout header.
 
 ## Known gaps (check before relying on this section)
 

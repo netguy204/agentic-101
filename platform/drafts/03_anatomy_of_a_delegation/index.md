@@ -112,7 +112,7 @@ When you get to the practice laps and start using the real task, the same
 four questions from Session 2's practice sheet decide whether it's allowed.
 They haven't moved, and the lab has the full wording.
 
-## What you hand in
+## What you submit
 
 Four things, and each is a by-product of the lab rather than homework on
 top of it.

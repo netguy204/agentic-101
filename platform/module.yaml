@@ -5,7 +5,11 @@
 #
 # This is the only file the platform knows the name of; everything else in
 # platform/ is found through it. The session mapping below is DEC-010 and
-# DEC-011's seven fixed filenames, divided by audience: PREWORK is concept,
+# DEC-011's seven fixed filenames, divided by audience: PREWORK is concept
+# (served from platform/prework/. Session 1 has no curriculum PREWORK.md;
+# platform/prework/ is its only prework (DEC-014). Session 2's
+# platform/prework/ is still derived from its PREWORK.md;
+# chunk: platform_cohort_prework),
 # EXERCISES/PRACTICE/handouts are the lab, and the facilitator's documents
 # are ta_knowledge — which on the platform means the virtual TA may read them
 # and a student may not.
@@ -56,7 +60,7 @@ sessions:
       # the facilitator's entry point.
       sources:
         - platform/index/01_mental_models.md
-        - curriculum/session_01_mental_models/PREWORK.md
+        - platform/prework/01_mental_models.md
       listenable_script: platform/audio/01_mental_models.md
       recall_prompts: platform/recall/01_mental_models.yaml
     lab:
@@ -93,8 +97,8 @@ sessions:
           minutes: 12
           outcome: >-
             At least one row changed after asking "how would I know if it was
-            wrong?", and a line under the last row with the count of in rows
-            that have a filled check column.
+            wrong?", and a line under the last row with the count of rows
+            that have columns 3 and 4 filled.
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-3-the-skeptic-pass
             - curriculum/session_01_mental_models/EXERCISES.md#wrapping-up
@@ -144,14 +148,14 @@ sessions:
     # The lab is the sum of its parts, which is the first estimate here to
     # count the practice week. It was in lab.sources all along and in nobody's
     # number; a student with no cohort does it as part of the lab.
-    estimated_minutes: { concept: 30, lab: 92 }
+    estimated_minutes: { concept: 25, lab: 92 }
 
   - id: 02_meeting_the_harness
     title: Meeting the harness
     concept:
       sources:
         - platform/index/02_meeting_the_harness.md
-        - curriculum/session_02_meeting_the_harness/PREWORK.md
+        - platform/prework/02_meeting_the_harness.md
       listenable_script: platform/audio/02_meeting_the_harness.md
       recall_prompts: platform/recall/02_meeting_the_harness.yaml
     lab:

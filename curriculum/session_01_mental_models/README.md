@@ -21,7 +21,7 @@ their judgment boundary.
 
 | File | For | Read it when |
 |---|---|---|
-| [`PREWORK.md`](PREWORK.md) | Participant | Sent a week before the session |
+| [`platform/prework/01_mental_models.md`](../../platform/prework/01_mental_models.md) | Participant | Before the session. This session has no `PREWORK.md`; the platform prework is the only version (DEC-014) |
 | [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md) | Facilitator | **Start here.** Read fully before the first teach |
 | [`EXERCISES.md`](EXERCISES.md) | Participant | The 27-minute exercise block, step by step |
 | [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) | Facilitator | Running the exercise block: timing, cues, misfires, fallbacks |

@@ -7,11 +7,11 @@
 <!-- Chunk: docs/chunks/platform_session_03_draft - Session 3's draft, the first session staged under the drafts convention -->
 
 Everything else in this repository is written for a person: a participant
-reading prework on the train, a facilitator holding a runsheet in front of
-twelve people. This directory is written for a program.
+reading prework on the train, a facilitator preparing a live session. This
+directory is written for a program.
 
-A self-paced delivery platform serves these sessions to students who never
-sit in the room. It reads the concept material aloud, hands out the lab,
+A self-paced delivery platform serves these sessions, with a human
+facilitator available to every student (DEC-014). It reads the concept material aloud, hands out the lab,
 collects what the student made, and runs the checkpoint conversation a
 facilitator runs in the last ten minutes. **It owns no course content.** It
 fetches this repository at a git tag and reads the files below to find out
@@ -29,13 +29,13 @@ prose itself* so it transcribes well is the trunk's concern:
 | File | What it is |
 |---|---|
 | `module.yaml` | The manifest. The only file the platform knows the name of; everything else is found through it. Module identity, budgets, the setup gate, and per session: which files are concept, which are lab, which are the facilitator's, what a student submits, how long it takes, and the lab's **parts** — the sittings a student stops and resumes between. |
-| `index/01_mental_models.md`, `index/02_meeting_the_harness.md` | Each session's index, for the student. What the session is for, what it costs in honest minutes, what they will do and what they hand in — written from the session's `README.md` and `PREWORK.md`. This is what `concept.sources` lists in place of `README.md`, which is a session's index for its author and its facilitator and is not served at all. |
+| `index/01_mental_models.md`, `index/02_meeting_the_harness.md` | Each session's index, for the student. What the session is for, what it costs in honest minutes, what they will do and what they submit — written from the session's `README.md` and `PREWORK.md`. This is what `concept.sources` lists in place of `README.md`, which is a session's index for its author and its facilitator and is not served at all. |
 | `rubrics/setup.yaml` | The gate before Session 1: `course-smoke-test` reported PASS. |
 | `rubrics/01_mental_models.yaml`, `rubrics/02_meeting_the_harness.yaml` | Each session's `CHECKPOINT.md`, structured. Criteria, the evidence that satisfies each, pass exemplars, near-miss exemplars with the facilitator's corrective question, and — where the checkpoint names a fact a machine can see — a deterministic check. |
 | `recall/*.yaml` | The question-and-answer beat that closes each audio segment. |
 | `audio/*.md` | The concept tracks, written for the ear. |
 | `pronunciation.yaml` | How the voice says pi, Ghostty, OpenRouter and the rest. |
-| `drafts/<NN>_<slug>/` | A session's platform version, written alongside the session itself and staged until the room has proven it. Nothing in here is served — or read by anything at all — until it is promoted. See "Drafting a session before it is served". |
+| `drafts/<NN>_<slug>/` | A session's platform version, written alongside the session itself and staged until a test student has proven it. Nothing in here is served — or read by anything at all — until it is promoted. See "Drafting a session before it is served". |
 
 To check everything this directory serves before tagging, run the
 platform's validator against this repository from a checkout of the
@@ -131,7 +131,7 @@ listener. The scripts' attribution is the row in the table above.
 ## Drafting a session before it is served
 
 A session's platform version is written at the same time as the session
-itself and staged here until the room has proven it — that is DEC-013, and
+itself and staged here until a test student has proven it — that is DEC-014, and
 `docs/trunk/PLATFORM_AUTHORING.md` § "A new session, in order" is the
 author's four steps. This section is the mechanics of the staging.
 
@@ -179,7 +179,7 @@ is never schema-checked, its script is never read for the tables and code
 blocks a listener cannot hear. All of that happens at promotion, which is
 why promotion is not a formality.
 
-**Promotion**, once the room has run the session:
+**Promotion**, once a test student has completed the session:
 
 1. Move the draft's files to their served locations, per the table above,
    and remove the empty draft directory.
@@ -200,7 +200,7 @@ session that is half-written in `module.yaml` is a session being served.
 ## Adding a session
 
 These steps produce a *draft* — `drafts/<NN>_<slug>/`, written alongside the
-session and promoted after the room has run it, per the section above. The
+session and promoted after a test student has completed it, per the section above. The
 transcription work is the same either way; only its destination waits.
 
 1. Write the session first, as a session — the seven files of DEC-010 and
@@ -226,9 +226,9 @@ transcription work is the same either way; only its destination waits.
 6. Write the student's index, from the session's `README.md` and
    `PREWORK.md` — one page in the course's voice, addressed to the student:
    the outcome, what they will do, the minutes the fragment now promises,
-   and what they hand in. It goes in `concept.sources` and the `README.md`
+   and what they submit. It goes in `concept.sources` and the `README.md`
    does not, so this is the step that decides what a student reads first.
-7. Stop there, and wait for the room. Promotion (above) is what runs the
+7. Stop there, and wait for the test student. Promotion (above) is what runs the
    validator, and since nothing in a draft is read by anything, that run is
    the first thing to check this session at all. Read its warnings; they
    are not noise.

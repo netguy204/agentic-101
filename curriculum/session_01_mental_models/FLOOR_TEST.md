@@ -30,9 +30,8 @@ thinking in someone who has never encountered any of these ideas.
 ## Tasks (read to the tester verbatim)
 
 1. "Here's an email you'd have got before the course. Do what it asks."
-   (`PREWORK.md`, cold, timed, including the five-task list. Watch for:
-   do they read the argument or skim it? Does the five-task list produce
-   real tasks or job-description phrases?)
+   (`platform/prework/01_mental_models.md`, cold, timed. Watch for: does
+   the five-task list produce real tasks or job-description phrases?)
 2. "Read this sheet and tell me, in your own words, what the four columns
    want from you." (`handouts/toil-inventory.md`, no facilitator
    explanation. This is the hardest test in the protocol — the sheet has

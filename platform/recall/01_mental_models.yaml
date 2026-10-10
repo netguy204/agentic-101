@@ -10,13 +10,13 @@ session: 01_mental_models
 prompts:
   - id: judgment_is_the_scarce_input
     prompt: >-
-      The argument was that something used to be scarce and now something else
-      is. What moved, and what is scarce now?
+      The argument was that the bottleneck to automating something has moved.
+      Where was it before, and where is it now?
     model_answer: >-
-      The keystrokes used to be scarce — you needed somebody who could build
-      the thing. Now the building is cheap, and what is scarce is knowing what
-      is worth building and whether the result is right. That is judgment, and
-      you already have it.
+      It used to be finding a software engineer's time and iterating until
+      they got it right. Now the bottleneck is knowing what is worth
+      automating and what good looks like. That is judgment, you already have
+      it — and it makes you the scarce resource.
     segment_after: 1
 
   - id: agent_versus_chatbot

@@ -102,7 +102,11 @@ progression:
    delegation, anatomised; workflows are Session 4. 90 minutes.
 4. **Workflow design** — from one-off delegation to repeatable workflow;
    failure modes and verification; concentrating judgment at the checkpoints
-   where it buys the most leverage.
+   where it buys the most leverage. Also owed here (operator note,
+   2026-08-23): reduced coordination cost is a structural advantage of this
+   tooling over delegating to people — dig into it, with tips for
+   recognizing coordination cost when it creeps into a new workflow and
+   eliminating it.
 5. **Adapting the harness** — configuration, prompt templates, skills, and
    extensions; making pi.dev fit your work instead of the reverse.
 

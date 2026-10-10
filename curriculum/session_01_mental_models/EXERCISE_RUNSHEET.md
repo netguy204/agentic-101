@@ -109,8 +109,8 @@ session is teaching, so treat it as a gift rather than a mistake:
 there and the total matches"), and that answer is the check.
 
 **The third misfire:** frequency in the judgeability column — "it's in
-because I do it every week." How often you do something has nothing to do
-with whether you'd catch it being wrong. Correct this one every time you
+because I do it every week." Doing a task often suggests they could check
+it; ask them to name what they'd look at. Correct this one every time you
 see it; it survives into Session 6 otherwise.
 
 **Fallback.** Canned-set participants answer for Priya. For some of her

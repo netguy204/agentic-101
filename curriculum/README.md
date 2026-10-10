@@ -28,7 +28,9 @@ names the subject, not the activity.
 
 Every session directory contains these seven files. A session chunk creates
 all seven even when one of them is short — a missing file reads as "this
-session doesn't have one", which is never what we mean.
+session doesn't have one", which is never what we mean. The exception is
+`PREWORK.md`, which is being retired in favour of
+`platform/prework/<NN>_<slug>.md` (DEC-014); Session 1 no longer has one.
 
 | File | What it is | Audience |
 |---|---|---|

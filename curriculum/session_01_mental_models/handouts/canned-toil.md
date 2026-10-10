@@ -2,11 +2,10 @@
 
 <!-- Chunk: docs/chunks/fluency_session_01 - Fallback material for the Session 1 exercises -->
 
-Use this sheet if you can't use your own work in today's exercises — your
-work is confidential, you don't have your notes with you, or the blank page
-just isn't cooperating. It costs you nothing: you'll do the same thinking
-on someone else's tasks, and you can transfer the skill to your own list
-during the week.
+Use this sheet if you can't use your own work for the exercises: your
+tasks are confidential, your notes aren't with you, or the page stays
+blank. You do the same thinking on someone else's tasks, then apply it to
+your own list during the practice week.
 
 Priya is a **programme manager** at a company of about 600 people. She sits
 between three delivery teams and the leadership group. She has been there
@@ -28,7 +27,7 @@ where it stands. Two minutes each, but they're scattered through the week
 and they break her concentration.
 
 **3. Reformatting the delivery deck.** The leadership deck has a fixed
-template — logo, heading style, a red/amber/green table. She rebuilds it
+template – logo, heading style, a red/amber/green table. She rebuilds it
 monthly from whatever the teams sent her, which is never in the template.
 About 90 minutes a month, almost all of it clicking.
 
@@ -51,38 +50,35 @@ never been trained on this; she was given the job because she's organised.
 **7. Answering "when will X ship?"** Several times a week, someone asks
 for a date on something. She checks the tracker, thinks about what she
 knows about the team's current load, and gives an answer. Five minutes
-each — but the thinking is the part she'd struggle to write down.
+each – but the thinking is the part she'd struggle to write down.
 
 **8. Translating the engineering risk notes for leadership.** The teams
 write technical risk notes; leadership wants them in business terms.
 Monthly, 45 minutes. She can tell when a note has been mangled in
-translation *if* the topic is one she's picked up over four years — which
+translation *if* the topic is one she's picked up over four years – which
 covers most, but not all, of them.
 
 ---
 
 ## How to use this in the exercises
 
-Work through Priya's eight tasks exactly as you would your own.
+Work through Priya's eight tasks as you would your own.
 
-- **Brain dump** — the list is already made. Skip straight to copying them
-  onto the inventory sheet.
-- **The check column** — for each task, decide: could *Priya* tell whether
-  the finished work was right, and how? You know as much about her job as
-  the sheet says, and that's deliberate: for some entries the sheet
-  genuinely doesn't tell you enough, and noticing that is the point.
-- **The skeptic pass** — your partner asks "how would Priya know if it was
-  wrong?" and you answer for her. If you can't, mark it **out** and say
-  what she'd need to know to move it inside.
+- **Brain dump:** copy the eight tasks onto the inventory sheet.
+- **The check column:** for each task, decide whether *Priya* could tell
+  the finished work was right, and how. Use only what her description
+  says. If it doesn't tell you enough, mark the row **not sure** and write
+  what you would need to know.
+- **The skeptic pass:** ask "how would Priya know if it was wrong?" and
+  answer for her.
 
-Three of these tasks are comfortably inside Priya's judgment boundary,
-two are outside it, and the rest depend on things the sheet doesn't tell
-you. There is no answer key: two people can defensibly disagree, and the
-argument they have on the way is the exercise. The one answer that is
-always wrong is "in, because she does it every week."
+Three tasks are inside Priya's judgment boundary, two are outside it, and
+the rest depend on things her descriptions don't say. There is no answer
+key; two people can reasonably disagree. "In, because she does it every
+week" always needs a check added.
 
-Sessions 2 and 3 each add a section below with ready-made material for
-their exercises; use the one for the session you are in.
+Sessions 2 and 3 each add a section below with material for their
+exercises. Use the one for the session you are in.
 
 ---
 
@@ -153,7 +149,7 @@ follow-up.
 assignments are visible, and the agent did not make staffing or access
 decisions.
 
-**Exercise 5** is the same for everybody — use the prompt in
+**Exercise 5** is the same for everybody – use the prompt in
 [`../../session_02_meeting_the_harness/EXERCISES.md`](../../session_02_meeting_the_harness/EXERCISES.md).
 
 ---
@@ -168,12 +164,12 @@ copy it onto a blank delegation brief
 Each is made-up, task-shaped practice on Priya's work: you first ask the
 agent to invent the input files, then run the brief exactly as written, read
 what happened, and fix the box that let you down. One of the three is
-missing something. Finding out which, by running it, is the exercise — so
+missing something. Finding out which, by running it, is the exercise – so
 don't look for it first.
 
 ### Brief A — the Monday roll-up (task 1)
 
-**Inputs, step 1 — make them.** In `~/course-practice`, in pi, send:
+**Inputs, step 1 – make them.** In `~/course-practice`, in pi, send:
 
 > Make three files in this folder called `tracker-alpha.csv`, `tracker-beta.csv`
 > and `tracker-gamma.csv`, each with about 10 made-up work items and the columns
@@ -192,7 +188,7 @@ Then `/quit`, then `commit` named **before run 1**.
 
 ### Brief B — chasing missing updates (task 2)
 
-**Inputs, step 1 — make them.** In pi, send:
+**Inputs, step 1 – make them.** In pi, send:
 
 > Make a file called `tracker.csv` in this folder with about 15 made-up work
 > items and the columns item, owner, status, last_updated. Find out today's
@@ -210,7 +206,7 @@ Then `/quit`, then `commit` named **before run 1**.
 
 ### Brief C — reconciling the contractor invoices (task 5)
 
-**Inputs, step 1 — make them.** In pi, send:
+**Inputs, step 1 – make them.** In pi, send:
 
 > Make two files in this folder. `invoices.csv`: about 8 made-up contractor invoices for
 > last month with the columns contractor, hours_billed, rate, total.
@@ -230,18 +226,15 @@ Then `/quit`, then `commit` named **before run 1**.
 **In exercise 4**, Brief C is the one to think hardest about.
 
 There is no answer key for which brief is missing what. Two people can run
-the same brief and meet different surprises — the model is not perfectly
-repeatable — and the argument about what the box should have said is the
+the same brief and meet different surprises – the model is not perfectly
+repeatable – and the argument about what the box should have said is the
 exercise.
 
 ---
 
 ## Transferring it back to your own work
 
-Before Session 2, do the same pass on your real tasks. You don't have to
-show the sheet to anyone — the check column is written for you, not for
-the room, and a private inventory is a perfectly good inventory. If your
-work genuinely can't be discussed even in outline, tell your facilitator
-early; the capstone in Session 6 needs *something* real to point at, and
-finding a shareable-enough corner of your work is easier with six weeks'
-notice than with one.
+During the practice week, do the same passes on your real tasks. Your
+sheet can stay private. If you can't discuss your work even in outline,
+tell your facilitator early: your Session 6 project needs a real task to point
+at, and finding one you can share takes time.

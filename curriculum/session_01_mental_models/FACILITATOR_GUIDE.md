@@ -34,18 +34,17 @@ fixed before Session 2, which is the one that needs it.
   canned-toil sheet for anyone who asked for it in prework. Print them
   even for a remote cohort — say "print this or copy the four columns
   onto anything" in the joining email.
-- **Send the prework a week ahead** — [`PREWORK.md`](PREWORK.md), by email,
-  with no verbal preamble beyond "this is the prework". Part 3 asks people
-  to reply with their setup status and whether they want the canned task
-  set, so you need the replies in hand before the room; chase the
-  non-repliers two days out, because a non-reply usually means a failed
-  setup rather than a busy week.
+- **The prework** is
+  [`platform/prework/01_mental_models.md`](../../platform/prework/01_mental_models.md),
+  served by the platform. It no longer asks for a setup-status reply; the
+  platform's setup gate covers that. Ask each participant directly whether
+  their setup works and whether they want the canned task set.
 - **Test the demo** (see Demo, below) on your own machine the day before,
   on the pinned model. It needs a working pi install on the *facilitator's*
   machine — not on anyone else's. If you don't have one, you install it the
   same way the participants did: follow `setup/README.md` end to end,
   including its smoke test. Do this a week out, not the night before.
-- **Tally the prework replies**: who reported `PASS`, who reported `FAIL`,
+- **Tally the answers**: who reported `PASS`, who reported `FAIL`,
   who didn't reply, who asked for the canned set.
 
 ### Setup status: collect it, don't solve it
@@ -129,9 +128,10 @@ plain language. "Flag anything from a customer who's mentioned cancelling,
 because retention is what we're protecting this quarter" is now a thing
 you write down once and have applied every time.
 
-**3. So the scarce input has moved, and you already own it.** It used to
-be the keystrokes. Now the keystrokes are cheap, and what's scarce is
-knowing what's worth doing and whether the result is right. That is
+**3. So the bottleneck has moved, and you already own the new one.** It
+used to be finding an engineer's time and iterating until they got it
+right. Now the bottleneck is knowing what's worth automating and what
+good looks like — which makes the room the scarce resource. That is
 exactly the thing you have and exactly the thing the tool doesn't. *"The
 agent does the typing; you supply the judgment."*
 

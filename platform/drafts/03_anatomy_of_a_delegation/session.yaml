@@ -23,6 +23,11 @@
     # reading.
     sources:
       - platform/index/03_anatomy_of_a_delegation.md
+      # GAP (chunk: platform_cohort_prework): the platform no longer serves
+      # the room's PREWORK.md — before promotion this must become
+      # platform/prework/03_anatomy_of_a_delegation.md, the prework
+      # re-addressed to the self-paced student (facilitator steps and room
+      # logistics out; see PLATFORM_AUTHORING.md "And a student prework").
       - curriculum/session_03_anatomy_of_a_delegation/PREWORK.md
     listenable_script: platform/audio/03_anatomy_of_a_delegation.md
     recall_prompts: platform/recall/03_anatomy_of_a_delegation.yaml

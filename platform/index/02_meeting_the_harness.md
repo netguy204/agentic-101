@@ -17,16 +17,11 @@ used `revert` at least once to undo a mess on purpose.
 
 | | |
 |---|---|
-| **The concept track** | About **15 minutes** of listening — four segments, listened to or read, with nothing to type. The rest of the concept time is the prework's doing: starring your entry, writing its two sentences, and running two commands. |
+| **The concept track** | About **15 minutes** of listening — four segments, listened to or read, with nothing to type. |
 | **The lab** | About **125 minutes**, across several sittings. |
 
-The lab figure includes the practice week. Working on your own there is no
-"between sessions" to do practice in, so the laps that follow the main
-block are simply the last sittings of the lab and are counted in the 125
-minutes rather than added on top. Each sitting comes with its own honest
-number and the one thing you should have at the end of it. The safety net
-comes before the first delegation, and that order is not decoration —
-nothing gets delegated until you have proved you can undo it.
+The safety net comes before the first delegation, and that order is not
+decoration — nothing gets delegated until you have proved you can undo it.
 
 ## What you will do
 
@@ -70,7 +65,7 @@ The two commands are in the course terminal. `course-update` fetches any
 course fixes published since you set up — most weeks it says *Nothing to
 do*; if it tells you to close the window and open a new one, do that.
 Then `course-smoke-test`, which prints a short list and ends in one word:
-**PASS** or **FAIL**.
+**PASS** or **FAIL**. PASS means go ahead.
 
 If it says FAIL, or something else happens: **stop there, and do not try
 to fix it.** Do not reinstall anything and do not follow instructions from
@@ -78,10 +73,6 @@ elsewhere on the internet, and above all do not lose an evening to it. Keep
 what the window printed, all of it, and take it to the course's TA — a
 setup problem is quick to diagnose from what it printed, and it is a bug in
 our instructions rather than in you.
-
-The prework was written for a room, so it also asks you to email a
-facilitator that word. On your own there is nobody to send it to: the check
-is for you, and PASS means go ahead.
 
 > **The exercises use invented data, but the agent still talks to a model
 > provider.** What you type, and any file the agent reads, is sent to that
@@ -100,7 +91,7 @@ that folder can be rolled back. They do not un-send an email, recall
 anything given to a model provider, or make everything an agent might do
 safe.
 
-## What you hand in
+## What you submit
 
 Four things, and each of them is a by-product of the lab rather than
 homework on top of it.
@@ -124,6 +115,12 @@ one where you say what happened in your own words — what the agent did,
 and what you checked — and it is the one the session is really for.
 Delegating plenty and never naming what you checked is learning to operate
 software, which is not what this course is selling.
+
+## Getting help
+
+The same as Session 1: the material, then the automated course assistant,
+then the checkpoint conversation, and your facilitator at any point. Go
+straight to your facilitator if the course software won't work.
 
 ## What comes next
 

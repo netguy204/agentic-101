@@ -43,13 +43,17 @@ Use whichever you need, in roughly this order:
 1. **The material.** Each handout explains its columns and terms, and most
    steps have a "Stuck?" line.
 2. **The course assistant.** It is automated, and it knows every exercise
-   in the course.
+   in the course. Open it with "Stuck on this session?" on any session
+   page.
 3. **The checkpoint conversation.** If your answer is close, you get a
    follow-up question and a second try.
-4. **Your facilitator,** a person. They see anything the assistant can't
-   resolve, and you can contact them directly at any time.
+4. **Your instructor,** a person. They see anything the assistant can't
+   resolve. To reach them directly, use "Stuck on this session?" on any
+   session page and choose "Send to your instructor". Replies come in the
+   same thread, with a first response within a day. If a call would help,
+   your instructor will offer one there.
 
-Go straight to your facilitator if the course software won't work, or if
+Go straight to your instructor if the course software won't work, or if
 you are unsure whether you may use a real task from your job.
 
 ## Next

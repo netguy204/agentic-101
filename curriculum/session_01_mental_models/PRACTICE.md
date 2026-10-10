@@ -81,7 +81,8 @@ much the same page to tell an agent what you expect.
 ## Before Session 2
 
 Session 2 needs the software you installed. If it isn't working, contact
-your facilitator before you start Session 2.
+your instructor ("Stuck on this session?", then "Send to your instructor")
+before you start Session 2.
 
 ## If the week gets away from you
 

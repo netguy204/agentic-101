@@ -235,11 +235,16 @@ When writing session material, give it this structure:
   right moment — not in the student's reading.
 - **Every session index ends with "Getting help".** Session 1's lists the
   layers in order: the material, the automated course assistant, the
-  checkpoint conversation, and the facilitator, a person who sees what the
-  assistant can't resolve and can be contacted directly at any time. Say
-  plainly which help is automated. Later sessions point back to it in two
-  or three lines. Setup failures and "may I use this real task from my
-  job?" go straight to the facilitator.
+  checkpoint conversation, and the instructor, a person who sees what the
+  assistant can't resolve. Say plainly which help is automated. Later
+  sessions point back to it in two or three lines. Setup failures and
+  "may I use this real task from my job?" go straight to the instructor.
+- **Student-facing text says "instructor".** That is the platform's name
+  for the human facilitator, and the route to them is the platform's own:
+  "Stuck on this session?" on any session page, then "Send to your
+  instructor" (first response within a day; calls are offered by the
+  instructor from that thread, not booked by the student). Name that
+  feature, not an email address. Facilitator documents keep "facilitator".
 - **One document per reader, still.** DEC-011's split (participant steps
   vs facilitator runsheet) is what makes self-paced delivery possible at
   all; anything author- or facilitator-facing that leaks into a concept

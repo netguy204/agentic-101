@@ -236,5 +236,5 @@ exercise.
 
 During the practice week, do the same passes on your real tasks. Your
 sheet can stay private. If you can't discuss your work even in outline,
-tell your facilitator early: your Session 6 project needs a real task to point
+tell your instructor early: your Session 6 project needs a real task to point
 at, and finding one you can share takes time.

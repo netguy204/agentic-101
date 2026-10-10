@@ -72,7 +72,7 @@ Pick two or three rows marked *in*. For each one:
 
 Expect to change at least one row.
 
-**Working with your facilitator or a partner?** Have them ask the question
+**Working with your instructor or a partner?** Have them ask the question
 and keep asking until they believe your answer. You can keep the task
 itself private and tell them only how you would check it.
 

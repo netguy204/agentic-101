@@ -119,8 +119,10 @@ software, which is not what this course is selling.
 ## Getting help
 
 The same as Session 1: the material, then the automated course assistant,
-then the checkpoint conversation, and your facilitator at any point. Go
-straight to your facilitator if the course software won't work.
+then the checkpoint conversation, and your instructor at any point. To
+reach your instructor, use "Stuck on this session?" on this page and
+choose "Send to your instructor". Go straight to your instructor if the
+course software won't work.
 
 ## What comes next
 

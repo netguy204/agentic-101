@@ -80,7 +80,7 @@ it is worth waiting for.
 ## Segment 2 — Why you learn to undo first
 
 Now the part of the session's design I actually want to argue for, because if
-you understand why it is ordered this way you will get considerably more out
+you understand why it is ordered this way you will get much more out
 of it.
 
 You may remember somebody in session one asking what happens if it deletes my

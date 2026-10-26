@@ -1,10 +1,8 @@
 # The gate before Session 1: the student's environment works.
 # Chunk: docs/chunks/platform_module_contract - Setup gate, structured
 #
-# In the cohort course this gate is a line in the Session 1 prework ("which
-# did you get, PASS or FAIL?") and the facilitator's first eight minutes of
-# Session 2. Here it is the same question asked of the same script: the
-# student runs `course-smoke-test` and pastes the whole window.
+# The student runs `course-smoke-test` and pastes the whole window. A FAIL
+# goes to the instructor, who may offer a setup call.
 #
 # The phrases below are quoted from setup/bin/course-smoke-test's PASS path,
 # and every one of them is chosen from the part of its line that does NOT

@@ -56,7 +56,7 @@ What this means in practice:
 | `platform/index/<NN>_<slug>.md` | What the student sees first | The **student's index** for the session, listed first in `concept.sources`: the outcome, what they will do, honest minutes, what they submit |
 | `EXERCISES.md`, `PRACTICE.md`, `handouts/` | The steps, when working through them live with a student | The **lab** — desk material, unlocked when the previous session certifies |
 | `CHECKPOINT.md` | The bar the facilitator applies in a live session | The **rubric** (via `platform/rubrics/`) that an automated certifier applies, near-miss corrections included |
-| `FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`, `DRY_RUN.md` | Preparation for live sessions (still written for a room; see DEC-014) | The **TA's knowledge** — the virtual TA reads and cites them; students never see them |
+| `FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`, `DRY_RUN.md` | Threads, live one-to-one and small-group sessions, and the test-student protocol (Sessions 1 and 2 rewritten for this; Session 3 still written for a room) | The **TA's knowledge** — the virtual TA reads and cites them; students never see them |
 | `docs/trunk/FRICTION.md` | The revision loop | The TA's friction corpus (intended; not yet wired — see "Known gaps") |
 
 Two consequences an author must hold in mind:
@@ -76,8 +76,8 @@ not finished until its index has been re-read.
 
 **And a student prework.** `platform/prework/<NN>_<slug>.md` is the
 prework the student is served, written for the student working alone.
-Session 1 has no `PREWORK.md`; Sessions 2 and 3 still derive theirs from
-one until their voice passes retire it (DEC-014). Whichever applies, the
+Sessions 1 and 2 have no `PREWORK.md`; Session 3 still derives its prework
+from one until its voice pass retires it (DEC-014). Whichever applies, the
 rule from chunk platform_cohort_prework holds: **no served document may
 tell the student to skip classroom instructions.** Cut room-facing
 material out of what the student is served.
@@ -254,7 +254,8 @@ When writing session material, give it this structure:
 ## Voice
 
 Session 1's student index, prework, concept script and lab are the model
-(revised 2026-10-10). The rules they follow:
+(revised 2026-10-10). The full procedure, with examples and checks, is the
+`course-voice` skill (`.claude/skills/course-voice/SKILL.md`). The rules:
 
 - **Lead with what the student does.** Step tables with honest minutes;
   "Done when:" lines; "Next:" at the end of each part.

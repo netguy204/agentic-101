@@ -10,11 +10,10 @@ The observable behavior that tells you Session 2's outcome landed
 
 ## The bar
 
-**Every participant leaves the room having:**
+**Every student submits evidence of having:**
 
 1. **Run at least one delegation** in `~/course-practice` — an agent changed
-   a real file on their own machine at their instruction. (On a paired laptop
-   counts, as long as they were the one typing.)
+   a real file on their own machine at their instruction.
 2. **Said what the agent did by reading its tool calls**, not by repeating
    its summary. "It wrote the file" is a pass. "It cleaned up my statuses" is
    not — that's the paragraph talking.
@@ -26,34 +25,37 @@ The observable behavior that tells you Session 2's outcome landed
    broader safety.
 
 All four. The first and fourth are facts you can see; the second and third
-are the ones you have to hear, and they are the ones the session is for.
+are the ones you have to hear or read, and they are the ones the session is
+for.
 Three delegations without item 3 is a person who has learned to operate
 software, which is not what this course is selling.
 
 ---
 
-## How to observe it (6 minutes)
+## How it is observed
 
-Run a round in the last ten minutes. Four short sentences each, going round
-the room or down the participant list. Give them the frame and hold it:
+**On the platform.** The student submits four things: the pi session log
+(item 1), the what-did-it-do worksheet (box 1 is item 2, box 3 is item 3),
+the output of `revert --list` (item 4), and the files from the practice
+folder. Items 1 and 4 are checked mechanically; items 2 and 3 are judged
+against the examples below. A near-miss gets the corrective question from
+the table below and a second try. After two rounds, or when the judge
+isn't confident, the case goes to the instructor.
+
+**In a live session.** Ask for it at the end, in one frame:
 
 > "What you asked for. What tools it used. What you checked. And say the
 > words 'I used revert' if you did."
 
-Twelve people, six minutes. Do not discuss, do not improve their answer, do
-not let it become a conversation — say "good", note it, move on. If something
-is worth picking up, pick it up with that person at the end.
+Don't improve their answer before they give it. If it's a near-miss, ask
+the corrective question once. With a small group, take one answer from
+each person, or have them submit on the platform.
 
-**For a large or remote cohort:** take six spoken answers and collect the
-rest as photographs of the worksheet, posted in chat. The worksheet is built
-to be the written form of this round — box 1 is item 2, box 3 is item 3 — so
-a filled-in sheet is genuine evidence. What doesn't count is assuming.
+**Record it.** Session 3 starts from this:
 
-**Record as you go.** Session 3's opening is planned from this table:
-
-| Participant | Ran a delegation | Read the tool calls | Named a real check | Used revert | Note |
+| Student | Ran a delegation | Read the tool calls | Named a real check | Used revert | Note |
 |---|---|---|---|---|---|
-| | yes / paired / no | yes / no | yes / vague / no | yes / no | |
+| | yes / no | yes / no | yes / vague / no | yes / no | |
 
 ---
 
@@ -71,11 +73,10 @@ a filled-in sheet is genuine evidence. What doesn't count is assuming.
 > Nothing I checked mechanically would have found it. And I reverted twice —
 > the first time I picked the wrong checkpoint."
 
-**The second one is the better answer**, and if you have time for one piece
-of commentary in the whole round, make it that one: they caught something a
-row count couldn't catch, using knowledge only they had, and they said out
-loud that their mechanical checks wouldn't have found it. That is Session 1's
-judgment boundary, arriving in their own hands, on their own work. Say so.
+**The second one is the better answer.** If you comment on one thing,
+comment on that: they caught something a row count couldn't, using
+knowledge only they had, and said that their mechanical checks wouldn't
+have found it. That is Session 1's judgment boundary, on their own work.
 
 ## What a near-miss sounds like, and what to say
 
@@ -85,7 +86,7 @@ judgment boundary, arriving in their own hands, on their own work. Say so.
 | "It looked fine." | No check. | "Fine how? What's the first thing your eye went to?" There is nearly always a real answer one question down. |
 | "I checked it against what it said it did." | Circular — the summary checking the summary. | "So you checked the paragraph against the paragraph. What's in the file?" |
 | "It used all four tools." | Guessing from the handout rather than reading the screen. | "Scroll up. How many boxes are actually there?" Usually one or two. |
-| "I didn't need to revert, mine went fine." | Item 4 missing. | Not a debate — get them to do it, now, in thirty seconds. `commit`, delete a file in the file browser, `revert`. They cannot leave without having done it. |
+| "I didn't need to revert, mine went fine." | Item 4 missing. | "Not a debate — do it now, it takes thirty seconds. `commit`, delete a file in your file browser, `revert`. Then send me `revert --list` again. You cannot finish this session without having done it once." |
 | "It only used one tool, so I don't think it really did anything." | Reading a short list as a failure. | "One `write` is a whole file created. Short lists are normal — what changed in the folder?" |
 
 A near-miss corrected on the spot counts as a pass. The point is the habit,
@@ -95,63 +96,60 @@ not the first attempt.
 
 ## Recovery: someone who can't produce one
 
-Do this **privately, at the end**. There are only four causes and each has a
-two-minute fix:
+These are the cases the platform sends to the instructor. Handle them in
+the thread, or offer a call. There are four usual causes:
 
-- **Never got a delegation to run** (setup failed and pairing didn't happen,
-  or they got stuck in exercise 1). Sit with them, run one delegation on your
-  laptop with them typing, and book the setup slot. Do not let them leave
-  without having done it once — Session 3 assumes it.
-- **Ran it but read only the summary.** Scroll back through their own session
-  with them and point at the boxes. One walk-through fixes this permanently;
-  it is a perceptual problem, not a conceptual one.
-- **No check, because the task was outside their judgment boundary** — they
-  picked an entry marked `out`, or one whose column 4 was always vague. This
-  is a *good* diagnosis and should be named as one. Pick a different entry
-  with them for the practice week.
-- **Didn't use `revert`.** Thirty seconds, right there. This is the one with
-  no substitute and no excuse; a participant who hasn't felt it will not
-  experiment during the practice week, and the practice week is where the
-  habit forms.
+- **Never got a delegation to run** (setup failed, or they got stuck in
+  exercise 1). Offer a setup call, then run one delegation with them
+  typing and sharing their screen. Session 3 assumes they have done it.
+- **Ran it but read only the summary.** Go back through their session
+  with them (`pi -r` finds it) and point at the boxes. One walk-through
+  usually fixes this; they haven't yet seen the boxes as separate from the
+  prose.
+- **No check, because the task was outside their judgment boundary.** They
+  picked a row marked `out`, or one whose column 4 was always vague. Say
+  that this is a good diagnosis, and pick a different row with them for
+  the practice week.
+- **Didn't use `revert`.** Thirty seconds: `commit`, delete a file in the
+  file browser, `revert`, then send `revert --list`. A student who hasn't
+  done it won't experiment during the practice week.
 
-Note who needed which. Two people with the same cause is a defect in the
+Note who needed which. Two students with the same cause is a defect in the
 material.
 
 ---
 
-## If the checkpoint fails across the room
+## If test students keep failing it
 
-If more than about a third of the cohort can't name a real check, the session
-didn't land, and that is a curriculum defect rather than a cohort problem
-(`docs/trunk/TESTING_PHILOSOPHY.md`: a confused participant is a bug report).
-Two obligations:
+If a test student can't name a real check without a person, or several
+students escalate for the same reason, the session didn't land. That's a
+curriculum defect (`docs/trunk/TESTING_PHILOSOPHY.md`: a confused
+participant is a bug report). Two obligations:
 
-1. **Adjust Session 3.** Open it with the worksheets rather than with new
-   material — fifteen minutes on "what did yours actually do", using the
-   sessions still sitting on people's laptops (`pi -r` finds them). Session 3
-   is about writing instructions that survive contact with an agent, and it
-   is worthless to someone who can't yet tell what the agent did.
-2. **Log it.** Record what the answers sounded like in
-   `docs/trunk/FRICTION.md` and in this session's
-   [`FLOOR_TEST.md`](FLOOR_TEST.md). The likely causes, in order: triage ran
-   long and ate exercise 4; the "boxes versus paragraph" sentence was said
-   once instead of three times; or exercise 3's prompts produced material so
-   trivial that there was nothing to check.
+1. **Help the student before Session 3.** On a call, go back through
+   their session (`pi -r`) and their worksheet: "what did yours actually
+   do?" Session 3 is about writing instructions an agent can follow, and
+   it's no use to someone who can't yet tell what the agent did.
+2. **Log it** in `docs/trunk/FRICTION.md` and in this session's
+   [`FLOOR_TEST.md`](FLOOR_TEST.md), with what their answers said. Likely
+   causes: setup problems ate the time for exercise 4; the "boxes versus
+   paragraph" point didn't come through in the concept track or the
+   exercise text; or exercise 3's file was too trivial to have anything to
+   check.
 
-A different failure shape, worth separating: if most people *did* check but
-nobody found anything wrong, that is not a failed checkpoint — it is a run
-where the model behaved. Interrogate one agent explanation out loud instead,
-and note it in the floor-test log, because a cohort that never sees a wrong
-answer arrives at Session 6 over-trusting.
+If the student *did* check and found nothing wrong, the checkpoint hasn't
+failed; the model behaved. Question one of the agent's judgment calls with
+them, and note it in the floor-test log: a student who never sees a wrong
+answer reaches Session 6 trusting the agent too much.
 
 ## What this checkpoint feeds
 
-- **Session 3** assumes every participant can run a delegation unaided and
+- **Session 3** assumes every student can run a delegation unaided and
   read what it did. It teaches decomposition on top of that; someone who
   can't yet see the tool calls has nothing to decompose *against*.
-- **The practice week** is where the checkpoint's habit either sets or
-  doesn't. The table above tells you who to email on Wednesday.
-- **Session 6** gates capstones on the participant's judgment boundary. The
+- **The practice week** is where the habit sets. The table above tells you
+  whom to check in with mid-week.
+- **Session 6** gates capstones on the student's judgment boundary. The
   people who said "I couldn't check that one" today are, as in Session 1,
   demonstrating the skill rather than falling short of it
   (`docs/trunk/DECISIONS.md`, DEC-005).

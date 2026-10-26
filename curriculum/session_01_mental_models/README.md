@@ -2,18 +2,21 @@
 
 <!-- Chunk: docs/chunks/fluency_session_01 - Session 1 index -->
 
-**Arc 1 — Fluency, session 1 of 5. 90 minutes live.**
+**Arc 1 — Fluency, session 1 of 5.** About an hour of prework, concept and lab,
+then a practice week (`platform/index/01_mental_models.md` has the steps).
+Delivered self-paced on the platform, with an instructor reachable and
+optional live sessions (DEC-014).
 
-The opening session of the course. No software, no terminal, no harness —
-Session 2 owns all of that. This session recruits the audience, gives them
-the two distinctions the rest of the course depends on, and gets them
-started on the list of their own work that everything downstream is built
-from.
+The opening session of the course. No software, no terminal, no harness;
+Session 2 owns all of that. This session makes the case that the course is
+for the student, gives them the two distinctions the rest of the course
+depends on, and starts the list of their own work that everything
+downstream is built from.
 
-**Outcome:** every participant leaves with a toil inventory of at least
-three entries, each marked with whether they could evaluate the output,
-and can say out loud why one of their own tasks sits inside or outside
-their judgment boundary.
+**Outcome:** every student submits a toil inventory of at least three
+entries, each marked with whether they could evaluate the output, and
+explains why one of their own tasks sits inside or outside their judgment
+boundary.
 
 ---
 
@@ -21,21 +24,20 @@ their judgment boundary.
 
 | File | For | Read it when |
 |---|---|---|
-| [`platform/prework/01_mental_models.md`](../../platform/prework/01_mental_models.md) | Participant | Before the session. This session has no `PREWORK.md`; the platform prework is the only version (DEC-014) |
-| [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md) | Facilitator | **Start here.** Read fully before the first teach |
-| [`EXERCISES.md`](EXERCISES.md) | Participant | The 27-minute exercise block, step by step |
-| [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) | Facilitator | Running the exercise block: timing, cues, misfires, fallbacks |
-| [`PRACTICE.md`](PRACTICE.md) | Participant | Handed out at the close |
-| [`CHECKPOINT.md`](CHECKPOINT.md) | Facilitator | The last ten minutes, and afterwards |
-| [`FLOOR_TEST.md`](FLOOR_TEST.md) | Author | Before the session is taught the first time |
-| [`handouts/toil-inventory.md`](handouts/toil-inventory.md) | Participant | Printed, one per person — **used by every later session** |
-| [`handouts/canned-toil.md`](handouts/canned-toil.md) | Participant | Printed, for anyone who can't use their real work |
+| [`platform/prework/01_mental_models.md`](../../platform/prework/01_mental_models.md) | Student | Before the concept track. This session has no `PREWORK.md`; the platform prework is the only version (DEC-014) |
+| [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md) | Instructor | **Start here.** Before your first student |
+| [`EXERCISES.md`](EXERCISES.md) | Student | The three exercises, step by step |
+| [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) | Instructor | Running an exercise live, or answering a thread about it: cues, misfires, fallbacks |
+| [`PRACTICE.md`](PRACTICE.md) | Student | The practice week, after the exercises |
+| [`CHECKPOINT.md`](CHECKPOINT.md) | Instructor, author | The bar; the source of the platform rubric |
+| [`FLOOR_TEST.md`](FLOOR_TEST.md) | Author | The test-student protocol and its results |
+| [`handouts/toil-inventory.md`](handouts/toil-inventory.md) | Student | The sheet and its column definitions. **Used by every later session** |
+| [`handouts/canned-toil.md`](handouts/canned-toil.md) | Student | For anyone who can't use their real work |
+| [`demo/`](demo/README.md) | Instructor | The Northwind demo, for live sessions |
 
-A facilitator running this for the first time reads the facilitator guide
-end to end, then the inventory sheet, then the exercises — both
-[`EXERCISES.md`](EXERCISES.md) and [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md).
-Twenty minutes,
-and it is the difference between running this session and reading it out.
+An instructor new to this session reads the facilitator guide, then the
+inventory sheet, then [`EXERCISES.md`](EXERCISES.md) and
+[`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md). About twenty minutes.
 
 ---
 
@@ -59,27 +61,27 @@ emphasis.
    substitutes for expertise; nothing substitutes for judgment. Delegating
    outside your judgment boundary is the cardinal risk, because
    plausible-but-wrong output passes unchallenged.
-4. **The toil inventory.** Participants start the list they will mine for
+4. **The toil inventory.** Students start the list they will mine for
    their capstone, annotating each entry with whether they could evaluate
    the result.
 
-The demo exists to make point 3 an experience rather than a claim: the
-room is given domain knowledge the agent can't have, the agent produces a
-confident answer that's wrong in exactly that spot, and the room catches
-it. Any capability shown in this session is followed immediately by "how
-would you check this?" (DEC-005, Consequences).
+In a live session, the Northwind demo makes point 3 an experience: the
+student is given domain knowledge the agent can't have, the agent produces
+a confident answer that's wrong in exactly that spot, and the student
+catches it. The concept track makes the same point in words. Any
+capability shown in this session is followed immediately by "how would you
+check this?" (DEC-005, Consequences).
 
 ---
 
 ## Constraints on edits
 
 - **No harness hands-on.** The session must work end to end for a
-  participant whose pre-course setup failed; their remediation is routed
-  to before Session 2. The `commit`/`revert` safety net gets one sentence
+  student whose setup failed; their setup gets fixed before Session 2. The `commit`/`revert` safety net gets one sentence
   in the FAQ if asked, and is taught in Session 2.
 - **No assumed programming or terminal knowledge**, anywhere, including
   the handouts (DEC-004).
-- **Exercises run on the participant's own work**, with the canned persona
+- **Exercises run on the student's own work**, with the canned persona
   as a full-quality fallback rather than a consolation prize.
 - **Terminology is quoted from `docs/trunk/SPEC.md`**, not paraphrased.
   Sessions 2–6 build on these words.

@@ -3,295 +3,240 @@
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 in-session exercises -->
 <!-- Chunk: docs/chunks/fluency_exercise_split - Exercise material split by reader: this file is for the facilitator -->
 
-The facilitator's running order for the exercise block. Participants work
-from [`EXERCISES.md`](EXERCISES.md); this file never restates a step — it
-says what to say, what to watch for, and what to do when it goes wrong.
-Where it mentions an exercise or a step, the text is in `EXERCISES.md`.
+What to say, what to look for and what to do when an exercise goes wrong,
+whether you are running it live with a student or answering a thread about
+it. The student's steps are in [`EXERCISES.md`](EXERCISES.md); this file
+doesn't repeat them.
 
-Five exercises, 59 minutes of the session, in a fixed order. Each one is a
-prerequisite for the next, so they are not a menu — if you run short, cut
-*within* an exercise rather than dropping one.
+Five exercises, about 65 minutes for a student working alone. Each one sets
+up the next, so they run in order. If time is short in a live session,
+shorten an exercise; don't skip one.
 
-Every written exercise targets named files in **`~/course-practice`**, the
-folder the setup guide made. This keeps the work visible and locally
-recoverable; it does not make the folder a security boundary.
+Every exercise works on named files in **`~/course-practice`**, the folder
+the setup made. That keeps changes visible and recoverable; it doesn't make
+the folder a security boundary.
 
-Participants work from
-[`handouts/terminal-card.md`](handouts/terminal-card.md) (the commands, on
-one printable page) and fill in
-[`handouts/what-did-it-do.md`](handouts/what-did-it-do.md) during exercise 4
-— print both (see [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md), "Before
-the room"). They also need their toil inventory from Session 1
-([`../session_01_mental_models/handouts/toil-inventory.md`](../session_01_mental_models/handouts/toil-inventory.md));
-anyone without a usable entry chooses a neutral synthetic task from the
-Session 2 section of
+The student keeps [`handouts/terminal-card.md`](handouts/terminal-card.md)
+open, fills in [`handouts/what-did-it-do.md`](handouts/what-did-it-do.md)
+in exercise 4, and works from the row they starred in the prework. A
+student without a usable row picks one of the prepared tasks in the "For
+Session 2" section of
 [`../session_01_mental_models/handouts/canned-toil.md`](../session_01_mental_models/handouts/canned-toil.md).
 
-**Before starting, say this out loud:** today's written tasks edit local files
-in one practice folder, and by the end of the second exercise you will know
-how to recover ordinary changes to those files. This is local file recovery,
-not a security boundary or permission to take external actions. Also state
-that what participants type and any file pi reads is sent to the model
-provider. Say both before anyone touches a keyboard.
+**Tell the student at the start of a live session:** these exercises
+change files in one practice folder, and by the end of exercise 2 they'll
+know how to get ordinary changes back. That is local file recovery; it
+doesn't undo anything sent or done outside the folder. What they type, and
+any file pi reads, goes to the model provider.
 
-**Before exercise 1 — `course-update`.** Run it on the projector first, then
-have everyone run it. This is where any fix published between sessions
-lands on their machines; most weeks it prints *Nothing to do* in a few
-seconds. If it says to close and reopen the window, wait for the room to do
-that before exercise 1 starts. If the room has no internet it says so in
-one line and changes nothing — carry on; the session does not depend on it.
+**Before exercise 1: `course-update`.** It installs any fix published
+since setup. Most weeks it prints *Nothing to do*. If it says to close and
+reopen the window, do that before exercise 1. With no internet it says so
+and changes nothing; carry on.
 
 ---
 
-## Exercise 1 — Where am I? (11 minutes)
+## Exercise 1 — Where am I? (about 10 minutes)
 
-**What participants do.** Open the course terminal and find their way to the
-practice folder, checking at each step that the terminal and the file browser
-agree about where they are. Steps: `EXERCISES.md`, exercise 1.
+**What the student does.** Opens the course terminal, moves to the
+practice folder, and checks that the terminal and the file browser show
+the same folder.
 
-**Say it like this.** "Three commands, and they are the only three you need
-to never be lost: `pwd` is *where am I*, `ls` is *what's here*, `cd` is *go
-there*. That's it. Everything else today, the agent does for you. And notice
-what just happened with `open .` — that window and this window are the same
-folder. The terminal isn't a different computer. It's the same files, reached
-by typing instead of clicking."
+**Say it like this.** "Three commands: `pwd` is *where am I*, `ls` is
+*what's here*, `cd` is *go there*. And that window and this window are the
+same folder. The terminal is the same files, reached by typing instead of
+clicking."
 
-**Then the reassurance, and don't skip it:** "The cursor blinking at you is
-not waiting for permission and it is not judging you. It's waiting. Nothing
-happens until you press Enter. If you type something and nothing happens, you
-almost certainly forgot to press Enter — that is the most common thing in
-this room today, and it happens to everybody."
+**And this:** "Nothing happens until you press Enter. If you type
+something and nothing happens, you probably didn't press Enter."
 
-**Observable output.** Every participant's terminal shows a path ending in
-`course-practice`, and they have a file-browser window open on the same
-folder.
+**Done when:** the terminal shows a path ending in `course-practice`, and a
+file-browser window is open on the same folder.
 
-**If someone stalls.** Three causes, in order of likelihood:
+**If the student is stuck:**
 
-| What you see | What it is | Fix |
+| What you see | What it is | What to do |
 |---|---|---|
-| Nothing happened when they typed | They didn't press Enter | Point at the Enter key. Don't explain. |
-| `bash: cd: /Users/…/course-practice: No such file or directory` | Setup didn't finish | Pair them (see the triage plan in [`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md)); don't fix it now |
-| A wall of red text | Almost always a typo | `cd ~` to get home, then retype. Never debug the typo — retype it. |
+| Nothing happened when they typed | They didn't press Enter | Press Enter. |
+| `cd: …/course-practice: No such file or directory` | Setup didn't finish | Run `course-smoke-test` and send the instructor everything it prints. Don't try to fix it in the session. |
+| A wall of red text | Almost always a typo | `cd ~`, then retype. Don't debug the typo. |
 
-**Fallback.** A participant with no working terminal pairs with a neighbour
-and drives — they type, the neighbour's laptop runs it. Pairs run every
-exercise today at full value; the person without the laptop should be the one
-holding the keyboard.
+**Don't let them skip `open .` / `explorer .`.** Seeing the same folder in
+both windows is what makes the terminal stop feeling like a separate,
+dangerous computer.
 
-**Most common misfire.** Typing the `$` from the examples. Say once, up
-front: "the `$` is already on your screen; it's the terminal saying it's
-ready. You never type it."
+**Common misfire.** Typing the `$` from the examples. The `$` is already on
+screen; it means the terminal is ready.
 
 ---
 
-## Exercise 2 — The safety net (14 minutes)
+## Exercise 2 — The safety net (about 15 minutes)
 
-The most important fourteen minutes of the session. **Nobody runs an agent
-until this exercise is finished by everyone in the room**, including the
-pairs. pi has no general undo button; this is recovery for ordinary local
-file changes in the checkpointed folder.
+Nobody runs an agent until this exercise is done. pi has no general undo;
+this is how ordinary changes in the practice folder come back.
 
-**What participants do.** Make a file, save a checkpoint, destroy the file on
-purpose, and get it back. Steps: `EXERCISES.md`, exercise 2 — the `revert`
-answers (Enter, Enter, `2`, `yes`) are the table at step 6.
+**What the student does.** Makes a file, saves a checkpoint, deletes the
+file on purpose, and gets it back. The `revert` answers (Enter, Enter,
+`2`, `yes`) are the table at step 6 of the exercise.
 
-**Say it like this — and say the last two sentences slowly.** "You just
-deleted a local file on purpose and got it back. That lets us recover the
-ordinary file edits in today's bounded exercises. `commit` means *save a
-snapshot of this folder as it is right now*. `revert` means *put this folder
-back to one of those snapshots*. It cannot recall a sent message, undo an
-external action, or protect data sent to the model provider."
+**In a live session, warn them before `revert`:** "It's going to ask four
+questions, one at a time. The first starts with the word *Wait* and gives
+three numbered choices. Press Enter. That's it being careful."
 
-**Work the first `commit` on the projector before they start.** Two minutes.
-Run it on your own machine, out loud, so the room has seen the questions
-before they meet them. The `commit` walkthrough asks things nobody has been
-asked by a computer before ("This folder is not saving checkpoints yet —
-turn them on?") and the first encounter should not be alone.
+**Afterwards, say it like this.** "You deleted a file on purpose and got
+it back. `commit` saves a snapshot of this folder. `revert` puts the
+folder back to one. It can't recall a sent message, undo anything outside
+this folder, or pull back what went to the model provider."
 
-**Observable output.** Every participant has run `revert` and watched a file
-they deleted reappear. This is the one thing in the session with no
-substitute — a participant who has only *heard* that revert works will not
-let the agent do anything interesting in exercise 5.
+**Done when:** `notes.txt` is back with the student's line in it. This has
+no substitute: a student who has only read that `revert` works won't let
+the agent do anything interesting in exercise 5.
 
-**Most common misfire.** Skipping step 5 because deleting the file feels
-wasteful. Push: "delete it properly. The exercise is the getting it back, and
-you don't get the feeling from watching someone else." Nobody who skipped the
-deletion trusts the net afterwards.
+**First misfire: not really deleting the file.** Deleting feels wasteful.
+The exercise is getting it back, and skipping the deletion skips that.
 
-**The second misfire.** Reading `revert`'s questions as an error message.
-Anything unexpected on a terminal reads as failure to a new user, and the
-first thing `revert` says is the word "Wait —". Say up front: "`revert` is
-going to ask you four questions, one at a time. The first starts with the
-word *wait* and gives you three numbered choices — just press Enter. That's
-it being careful, not it going wrong."
+**Second misfire: reading `revert`'s questions as an error.** The first
+thing it says is "Wait —". It's asking, and Enter is the right answer.
 
-**The third misfire, and it catches nearly everyone: typing `1`.** The
+**Third misfire, and it catches nearly everyone: typing `1`.** The
 checkpoint they want is number **2**, because `revert` saved their deletion
-as a new number 1 on the way past (the answer is in the table at
-`EXERCISES.md`, exercise 2, step 6). Getting it wrong costs nothing — run
-`revert` again and pick the other number — but say the reason out loud when
-it happens, because the same shape recurs in exercise 5 with a longer list:
-**read the names, not the numbers.**
+as a new number 1 on the way past. Getting it wrong costs nothing: run
+`revert` again and pick the other number. Say why, because the same thing
+happens in exercise 5 with a longer list: **read the names, not the
+numbers.**
 
-**If `revert` says there are no checkpoints.** Their `commit` didn't
-complete — usually they answered `no` to the first question. Run `commit`
-again, answer `yes`, then carry on. Costs thirty seconds.
+**If `revert` says there are no checkpoints.** The `commit` didn't finish,
+usually because the first question was answered `no`. Run `commit` again,
+answer `yes`, carry on.
 
-**Fallback.** Pairs do this exercise twice in the same practice folder, once
-each: after the first person restores `notes.txt`, the second person changes
-or deletes it in the file browser and then runs `commit` and `revert` using
-the reference card. It is worth the extra minutes: both people need to use
-the recovery move themselves. The facilitator confirms pi is closed before
-they return to the terminal prompt.
+**Two people, one practice folder.** Each does the exercise once. After
+the first person restores `notes.txt`, the second changes or deletes it
+and runs `commit` and `revert` themselves. Both need to have done it.
 
 ---
 
-## Exercise 3 — Your first delegation (14 minutes)
+## Exercise 3 — Your first delegation (about 15 minutes)
 
-By now the room has heard what an agent is (Session 1) and what pi's four
-tools are (the beat before this one). This is where they see it.
+**What the student does.** Starts pi in the practice folder and asks it to
+make a messy file shaped like the input to their starred row. Exercise 4
+works on that file. The prompt is at step 2.
 
-**What participants do.** Start pi in the practice folder and ask it to build
-the material the next exercise works on — a messy file shaped like the input
-to one of their own toil entries. Steps: `EXERCISES.md`, exercise 3 — the
-prompt they send is at step 2.
+**In a live session, work the prompt with them before they send it.** The
+gaps are "what your data looks like" and "the mess in it". People fill the
+first with a task when it needs a thing: "a list of tickets with the
+priorities written four different ways", not "sort my ticket queue".
 
-**Say it like this.** "Notice what you just did and did not do. You did not
-open a spreadsheet. You did not type fifteen rows. You described what you
-wanted in the same words you'd use with a colleague, and something went and
-made it. That's the whole shape of the thing. The rest of this course is
-about pointing it at work that matters and knowing whether it did it right."
+**Afterwards, say it like this.** "You didn't open a spreadsheet or type
+fifteen rows. You described what you wanted, and it made it. The rest of
+the course is about pointing it at work that matters and knowing whether
+it got it right."
 
-**Say this too, before anyone asks:** "What you typed was sent to the model
-provider, and pi would also send the contents of any file it reads. We did
-not give it your work data: you described only the general shape and it
-invented plausible rows. Everything in the practice file is made up."
+**And this:** "What you typed went to the model provider, and so would any
+file pi reads. You described only the shape of your work, so everything in
+the file is made up."
 
-**Observable output.** A file exists in `~/course-practice` that the
-participant did not create by hand, and there is a checkpoint of it.
+**Done when:** `sample.csv` is in the folder, the student didn't type it,
+and there's a checkpoint named "the messy sample". Have them open it in
+the file browser; seeing a real file they didn't make is the point.
 
-**Most common misfire.** A prompt describing the *task* instead of the
-*material*: "sort my ticket queue". They get an empty file or a lecture. Ask:
-"what would the file look like *before* you fixed it? Describe that." Column
-1 of their sheet almost always has the answer already.
+**First misfire: describing the task instead of the material.** They get
+an empty file or an explanation. Ask: "What does the file look like
+*before* you fix it?" Column 1 of the sheet usually says.
 
-**The second misfire.** Waiting silently and assuming it's broken. Agents
-pause. Say it up front: "there will be a few seconds where nothing moves.
-That's normal. Escape stops it if you ever want to, but give it a minute
-first."
+**Second misfire: thinking it has frozen.** Agents pause. Wait a minute
+before pressing Escape.
 
-**If the agent asks a question instead of doing it.** Answer it in the box
-and press Enter. Say to the room: "that's a good sign — it knew it didn't
-know. It won't always do that, and Session 2's whole second half is about
-what happens when it doesn't."
+**If the agent asks a question.** Answer it in the box and press Enter. It
+knew it didn't know; it won't always.
 
-**Fallback.** Participants choose one neutral synthetic option — metadata
-cleanup, meeting follow-up, or onboarding coordination — and use its
-ready-made prompt in
-[`../session_01_mental_models/handouts/canned-toil.md`](../session_01_mental_models/handouts/canned-toil.md)
-(section: "For Session 2"). Same exercise, timing, and artifact.
-
-**Fallback for a pair.** One laptop, two turns: the person whose laptop it
-isn't goes first and uses their own toil entry.
+**Prepared task.** The student uses the ready-made prompt for the option
+they chose in the canned sheet's "For Session 2" section. Same exercise,
+same time.
 
 ---
 
-## Exercise 4 — What did it actually do? (13 minutes)
+## Exercise 4 — What did it actually do? (about 15 minutes)
 
-**The core exercise of the session.** Everything before it prepared the
-room for this. Give it the full thirteen minutes; take them from exercise 3
-if you have to.
+The session's content. In a live session, give it the time and take it
+from exercise 3 if you have to.
 
-**What participants do.** Delegate the real task, then reconstruct what
-happened from the evidence rather than from the agent's summary — and decide
-whether it was reasonable. Steps: `EXERCISES.md`, exercise 4 — the prompt is
-at step 2, the three worksheet boxes at step 4.
+**What the student does.** Delegates the real task, then works out what
+happened from the tool calls and the file, and decides whether it was
+right. The prompt is at step 2; the worksheet boxes are at step 4.
 
-**Say it like this, and it is the sentence the session exists for.** "The
-agent wrote you a paragraph explaining what it did. That paragraph is the
-least reliable thing on your screen — not because it lies, but because it's
-describing its intentions, and you care about its effects. The tool calls are
-what it *did*. The file is what *happened*. Read those two, in that order,
-and then use your own check. That habit is the difference between using one
-of these things and being used by one."
+**Say it like this.** "The agent wrote you a paragraph explaining what it
+did. That paragraph describes what it meant to do; you care about what it
+did. The tool calls are what it did. The file is what happened. Read those
+two, in that order, then use your own check."
 
-**Point back at Session 1 explicitly.** Hold up the inventory sheet. "Column
-2 became the instruction. Column 4 became the check. You wrote both of those
-before you'd ever seen this software, and they worked. That's what we meant
-by the judgment being the scarce part."
+**Point back at Session 1.** "Column 2 of your sheet became the
+instruction. Column 4 became the check. You wrote both before you'd seen
+this software."
 
-**Observable output.** Every participant has a filled-in worksheet whose
-third box names a specific thing they looked at and what it told them. "It
-looked fine" is not a filled-in box.
+**Done when:** box 3 names a specific thing the student looked at and what
+it told them. "It looked fine" is an empty box.
 
-**Most common misfire, and it's near-universal:** reading the agent's summary
-and treating that as the check. They'll write "it said it standardized the
-department names" in box 3. Ask the question that fixes it every time:
-*"That's what it told you. What did you look at?"*
+**First misfire, and nearly everyone makes it: the summary as the check.**
+Box 3 says "it said it standardised the department names". Ask: *"That's
+what it told you. What did you look at?"*
 
-**The second misfire.** Box 1 filled in from memory rather than from
-scrolling back. The tell is a box that says "it fixed the file" — that's a
-summary, not a tool call. Have them scroll up; the boxes on screen are
-labelled.
+**Second misfire: box 1 from memory.** A box 1 that says "it fixed the
+file" is a summary. Have them scroll up; each box on screen is labelled
+with its tool. One or two boxes is normal, and noticing it rewrote the
+file without reading it first is a good observation.
 
-**When the agent got it wrong — and in some of the room it will.** This is
-the best thing that can happen and you should treat it as a prize, out loud:
-"Who's got one where it did something you didn't want? … Good. Come on, tell
-us what it did." Then: what did they look at that told them? That's the
-answer to box 3, and it's a better answer than anyone whose run went
-perfectly. Give it thirty seconds of the room's attention.
+**When the agent got it wrong.** A good result. Ask what they looked at
+that showed them. That's box 3, and it's a better answer than a run that
+went perfectly.
 
-**Fallback.** Participants apply the concrete check printed under the
-synthetic task option they chose. They answer from the file evidence, not for
-a fictional person.
+**When nothing went wrong.** Read the agent's explanation with them and
+question one judgment call in it. In the dry runs it merged `Complete`
+into `Done` both times, which loses a distinction at some companies.
 
-**If someone finishes early.** Ask them the harder question: "what would you
-have failed to catch?" That's exercise 4 of Session 3, arriving early, and
-it's a good use of a fast participant.
+**Prepared task.** The student applies the check printed under their
+option, from the file evidence.
+
+**Finished early?** Ask: "What would your check have missed?" That
+question opens Session 3.
 
 ---
 
-## Exercise 5 — Break it on purpose (7 minutes)
+## Exercise 5 — Break it on purpose (about 8 minutes, plus 2 to wrap)
 
-**What participants do.** Deliberately tell the agent to ruin their work, watch
-it comply, and put it back. Steps: `EXERCISES.md`, exercise 5 — the prompt
-is at step 2 and must be sent exactly as written.
+**What the student does.** Tells the agent to ruin `sample.csv`, watches
+it comply, and reverts to "cleaned up". The prompt at step 2 is sent
+exactly as written.
 
-**Say it like this.** "You recovered a deliberately damaged local file in
-about forty seconds. You know this recovery move works because you did it.
-It does not undo messages, disclosures, or other external actions, so later
-work still needs authorization, appropriate delegation, and human approval.
-Be ambitious inside those bounds."
+**Afterwards, say it like this.** "You got back a deliberately ruined file
+in under a minute, and you know it works because you did it. It doesn't
+undo messages, data sent out, or anything outside the folder, so real work
+still needs authorization, the right task, and a person approving anything
+external."
 
-**Observable output.** Every participant's `ls` shows `sample.csv` and no
-`disaster.csv`, after having shown the opposite a minute earlier.
+**Done when:** `ls` shows `sample.csv` and no `disaster.csv`, and the file
+has the cleaned-up data.
 
 **Why this prompt and not "delete everything".** The checkpoints live in a
 hidden folder inside `~/course-practice`. A prompt broad enough to delete
-*everything* can delete those too, and then there is nothing to revert to —
-which would teach precisely the wrong lesson in the most memorable possible
-way. This prompt names the file it ruins. **Don't let the room improvise a
-more dramatic one**, and if someone asks, tell them exactly this; it's a real
-answer and it's the beginning of Session 4.
+everything can delete those too, and then there's nothing to revert to.
+This prompt names the file it ruins. Don't let a student make it more
+dramatic; if they ask, tell them why. Bounding what an agent can touch is
+Session 4.
 
-**Most common misfire.** Reverting to the wrong checkpoint — usually "the
-messy sample" instead of "cleaned up" — and losing exercise 4's work. Not a
-disaster: `revert` is itself undoable, so run it again and pick the other
-number. Worth saying out loud when it happens, because "I reverted too far
-and reverted back" is a genuinely useful thing to have seen.
+**Common misfire: reverting to "the messy sample".** Exercise 4's work
+seems lost. Run `revert` again and pick "cleaned up"; reverting can itself
+be undone.
 
-**If the agent refuses or asks whether you're sure.** It happens. Tell it
-yes, or say "do it anyway". If it still won't, tell the room what just
-happened — *"it declined to destroy my work, which is lovely and which you
-must not rely on"* — and delete `sample.csv` in the file browser instead. The
-exercise is the revert, and the revert works either way.
+**If the agent refuses or asks if they're sure.** Tell it yes, or "do it
+anyway". If it still won't, delete `sample.csv` in the file browser and
+revert from there. The exercise is the revert. Don't present the refusal
+as a safety feature.
 
 ---
 
-## Wrapping the block (1 minute)
+## Wrapping up
 
-Before the checkpoint round, one question to the room, hands up: **who has a
-`sample.csv` in their folder right now with sensible data in it?** That's the
-session's outcome in one show of hands, and it tells you who to catch at the
-end — see [`CHECKPOINT.md`](CHECKPOINT.md).
+The student opens `~/course-practice` and finds a `sample.csv` with
+sensible data they didn't type. That's the session's outcome. A student
+who can't get there is a case for the Recovery section of
+[`CHECKPOINT.md`](CHECKPOINT.md).

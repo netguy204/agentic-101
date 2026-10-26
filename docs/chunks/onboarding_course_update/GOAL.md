@@ -15,7 +15,7 @@ code_paths:
 - setup/PRE_COHORT_CHECKLIST.md
 - setup/tests/test-setup.sh
 - curriculum/README.md
-- curriculum/session_02_meeting_the_harness/PREWORK.md
+- platform/prework/02_meeting_the_harness.md
 - curriculum/session_02_meeting_the_harness/EXERCISES.md
 - curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
 - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
@@ -37,8 +37,8 @@ code_references:
   implements: "--keep-key cases: saved key byte-identical and never prompted; missing key fails naming Step 3"
 - ref: curriculum/README.md
   implements: "Cross-session rule: every session from Session 2 opens with course-update in prework and the first line of EXERCISES.md"
-- ref: curriculum/session_02_meeting_the_harness/PREWORK.md
-  implements: "Prework runs course-update, then course-smoke-test, and replies with the smoke test's word"
+- ref: platform/prework/02_meeting_the_harness.md
+  implements: "Prework runs course-update, then course-smoke-test, and sends a failed result to the instructor (the curriculum PREWORK.md was retired under DEC-014)"
 - ref: curriculum/session_02_meeting_the_harness/EXERCISES.md
   implements: "'Before exercise 1' — the participant runs course-update and reopens the window if told to"
 - ref: curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md

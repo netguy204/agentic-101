@@ -6,9 +6,8 @@
 # This is the only file the platform knows the name of; everything else in
 # platform/ is found through it. The session mapping below is DEC-010 and
 # DEC-011's seven fixed filenames, divided by audience: PREWORK is concept
-# (served from platform/prework/. Session 1 has no curriculum PREWORK.md;
-# platform/prework/ is its only prework (DEC-014). Session 2's
-# platform/prework/ is still derived from its PREWORK.md;
+# (served from platform/prework/. Sessions 1 and 2 have no curriculum
+# PREWORK.md; platform/prework/ is their only prework (DEC-014);
 # chunk: platform_cohort_prework),
 # EXERCISES/PRACTICE/handouts are the lab, and the facilitator's documents
 # are ta_knowledge — which on the platform means the virtual TA may read them
@@ -40,7 +39,7 @@ platform_llm_budget_usd: 10
 pronunciation: platform/pronunciation.yaml
 
 # The gate before session 1: the environment works. In the cohort course this
-# is the pre-course setup guide and the facilitator's setup triage; here the
+# is the pre-course setup guide and the instructor's setup call; here the
 # student runs the same smoke test and pastes what it printed.
 setup:
   guide: setup/README.md
@@ -54,10 +53,8 @@ sessions:
   - id: 01_mental_models
     title: Mental models & the toil inventory
     concept:
-      # The index first, then the prework: a student alone gets "what is this
-      # and what will it cost me" before the reading. In the room that order
-      # is reversed, because the prework is what goes out and the README is
-      # the facilitator's entry point.
+      # The index first, then the prework: the student learns what the
+      # session is and what it costs before doing anything.
       sources:
         - platform/index/01_mental_models.md
         - platform/prework/01_mental_models.md
@@ -76,9 +73,7 @@ sessions:
       # a part may not say anything its exercises do not, so re-timing or
       # re-splitting an exercise is not finished until its part is re-read.
       parts:
-        # Runsheet: brain dump 7 minutes, the check column 12. One sitting in
-        # the room, one sitting alone - with a few more minutes for the second
-        # half, which has no facilitator watching the clock.
+        # Runsheet: brain dump 10 minutes, the check column 15. One sitting.
         - id: the_sheet
           title: Fill the sheet, then fill the check column
           minutes: 25
@@ -89,9 +84,9 @@ sessions:
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-1-brain-dump
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-2-the-check-column
-        # Runsheet: 8 minutes in pairs, 2 to wrap. The exercise is now written
-        # solo-first - the skeptic is the question, asked of your own answer -
-        # with the pair form as an aside, so the minutes hold either way.
+        # Runsheet: 10 minutes, 2 to wrap. Written solo-first - the skeptic is
+        # the question, asked of your own answer - with the instructor or
+        # partner form as an aside.
         - id: skeptic_pass
           title: The skeptic pass
           minutes: 12
@@ -168,7 +163,7 @@ sessions:
       # the contract's ceiling of six and past what a student can hold. The two
       # pairs the runsheet already runs back to back are one part each.
       parts:
-        # Runsheet: where am I? 11 minutes, the safety net 14. Nobody delegates
+        # Runsheet: where am I? 10 minutes, the safety net 15. Nobody delegates
         # anything until the safety net works, so the two are one sitting.
         - id: where_am_i
           title: Find your way, then build the safety net
@@ -185,13 +180,13 @@ sessions:
           # and EXERCISES.md carries it as a "Before exercise 1" paragraph
           # above the first heading — so a part that opened at
           # #exercise-1-where-am-i would send the student past the step the
-          # session is supposed to start with. The room hears it from the
-          # facilitator; a student alone has only where this part opens.
+          # session is supposed to start with. A student alone has only where
+          # this part opens.
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-1-where-am-i
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-2-the-safety-net
-        # Runsheet: 14 minutes.
+        # Runsheet: 15 minutes.
         - id: first_delegation
           title: Your first delegation
           minutes: 15
@@ -200,8 +195,8 @@ sessions:
             the input to one of your own toil entries, mistakes and all.
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-3-your-first-delegation
-        # Runsheet: what did it actually do? 13 minutes, break it on purpose 7,
-        # wrap 1. Reading the evidence and then destroying the work to prove
+        # Runsheet: what did it actually do? 15 minutes, break it on purpose 8,
+        # wrap 2. Reading the evidence and then destroying the work to prove
         # the net holds is one arc, and the second half is short.
         - id: read_and_break
           title: Read what it did, then break it on purpose
@@ -270,4 +265,5 @@ sessions:
       - curriculum/session_02_meeting_the_harness/DRY_RUN.md
       - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
       - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-    estimated_minutes: { concept: 25, lab: 125 }
+    # Concept: the 15-minute prework plus the 15-minute track.
+    estimated_minutes: { concept: 30, lab: 125 }

@@ -30,7 +30,7 @@ Every session directory contains these seven files. A session chunk creates
 all seven even when one of them is short — a missing file reads as "this
 session doesn't have one", which is never what we mean. The exception is
 `PREWORK.md`, which is being retired in favour of
-`platform/prework/<NN>_<slug>.md` (DEC-014); Session 1 no longer has one.
+`platform/prework/<NN>_<slug>.md` (DEC-014); Sessions 1 and 2 no longer have one.
 
 | File | What it is | Audience |
 |---|---|---|

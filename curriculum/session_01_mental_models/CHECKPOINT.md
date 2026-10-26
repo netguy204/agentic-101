@@ -10,41 +10,42 @@ The observable behavior that tells you Session 1's outcome landed
 
 ## The bar
 
-**Every participant leaves the room with:**
+**Every student submits:**
 
 1. A toil inventory containing **at least three entries**, each annotated
    with judgeability — in, out, or not sure — and
-2. the ability to **say out loud, for one of their own tasks, why it sits
-   inside or outside their judgment boundary**, naming the check they
-   would use (or naming why no check is available to them).
+2. an explanation, **for one of their own tasks, of why it sits inside or
+   outside their judgment boundary**, naming the check they would use (or
+   naming why no check is available to them). Typed or as a voice note on
+   the platform; spoken, in a live session.
 
-Both halves are required. Three filled rows without the spoken articulation
-is a filled-in form; the articulation without the rows is a nice
-conversation. The session's outcome is the pair.
+Both halves are required. Three filled rows without the explanation is a
+filled-in form; the explanation without the rows is a nice conversation.
+The session's outcome is the pair.
 
 ---
 
-## How to observe it (7 minutes)
+## How it is observed
 
-Run a round in the last ten minutes. One sentence each, going round the
-room or down the participant list. Give them the frame and stick to it:
+**On the platform.** The student submits the sheet and the explanation.
+The sheet's row and column checks are mechanical; the explanation is judged
+against the examples below. A near-miss gets the corrective question from
+the table below and a second try. After two rounds, or when the judge isn't
+confident, the case goes to the instructor.
+
+**In a live session.** Ask for it at the end, in one frame:
 
 > "One task from your sheet. In or out. And the check — how you'd know if
 > it was wrong."
 
-That's it. Three sentences per person, twelve people, seven minutes. Do
-not discuss, do not improve their answer, do not let it become a
-conversation — say "good", note it, and move to the next person. If
-something is worth picking up, pick it up with that person afterwards.
+Don't improve their answer before they give it. If it's a near-miss, ask
+the corrective question once. With a small group, take one answer from
+each person, or have them submit on the platform.
 
-**For a large or remote cohort:** sample six spoken answers out loud and
-collect the rest in writing — chat message, photo of the sheet, or a
-one-line email that evening. Written counts. What doesn't count is
-assuming.
+**Record it.** Session 2 picks a task from this sheet, and Session 6 picks
+the final project from it:
 
-**Record as you go.** You need this for Session 2 and again for Session 6:
-
-| Participant | ≥3 annotated entries | Spoken articulation | Note |
+| Student | ≥3 annotated entries | Explanation | Note |
 |---|---|---|---|
 | | yes / no | pass / near-miss / no | |
 
@@ -60,10 +61,9 @@ assuming.
 > could not tell you whether a re-worded liability clause is normal, and
 > it'd read fine to me either way."
 
-The second one is a *better* answer than the first, and if you have time
-for one piece of commentary in the whole round, that's the one to make:
-knowing where your judgment runs out is the skill, and saying it in front
-of the cohort is worth more than any confident **in**.
+The second one is the better answer. If you comment on one thing, comment
+on that: knowing where your judgment runs out is the skill, and saying it
+plainly is worth more than any confident **in**.
 
 ## What a near-miss sounds like, and what to say
 
@@ -80,52 +80,49 @@ distinction, not the first attempt.
 
 ## Recovery: someone who can't produce one
 
-Do this **privately, at the end**, never in front of the room. Someone who
-can't articulate a boundary claim is usually not confused about the
-concept — they're stuck on the sheet, and there are only three causes:
+These are the cases the platform sends to the instructor. Handle them in
+the thread, or offer a call. A student who can't explain a boundary is
+usually stuck on the sheet, for one of three reasons:
 
-- **No entries yet** (blank-page freeze, or the work genuinely doesn't feel
-  repetitive). Hand them [`handouts/canned-toil.md`](handouts/canned-toil.md)
-  and do one row with them out loud, right there. Two minutes. Then ask
-  them to do the daily pass in [`PRACTICE.md`](PRACTICE.md) and send you
-  three entries by Friday.
+- **No entries yet** (blank-page freeze, or the work doesn't feel
+  repetitive). Point them at [`handouts/canned-toil.md`](handouts/canned-toil.md)
+  and work one row with them, in the thread or on a call. Then ask them to
+  do the daily pass in [`PRACTICE.md`](PRACTICE.md) and submit three
+  entries by the end of the week.
 - **Entries but no checks.** Ask "what would you actually look at?" on one
   entry until it's concrete. One worked example almost always unblocks the
   rest.
-- **Everything marked out.** Usually the expertise/judgment confusion, and
-  usually in a participant who's new to their role or is being modest.
-  Walk one of their **out** entries back: "if I handed you this finished,
-  would you spot a missing region?" Yes. Then it's in.
+- **Everything marked out.** Usually the expertise/judgment confusion,
+  often in a student who's new to their role or being modest. Walk one
+  **out** entry back: "if I handed you this finished, would you spot a
+  missing region?" Yes. Then it's in.
 
-Book the Friday follow-up and actually check it. This is the cheapest
-intervention in the whole course — a participant who reaches Session 6
-without an inventory has no capstone to pick.
+Follow up when you said you would. A student who reaches Session 6 without
+an inventory has no final project to pick.
 
 ---
 
-## If the checkpoint fails across the room
+## If test students keep failing it
 
-If more than about a third of the cohort can't produce a boundary claim,
-the session didn't land, and that's a curriculum defect rather than a
-cohort problem (`docs/trunk/TESTING_PHILOSOPHY.md`: a confused participant
-is a bug report). Two obligations:
+If a test student can't produce a boundary claim without a person, or
+several students escalate for the same reason, the session didn't land.
+That's a curriculum defect (`docs/trunk/TESTING_PHILOSOPHY.md`: a confused
+participant is a bug report). Two obligations:
 
-1. **Adjust Session 2.** Open it with a ten-minute inventory clinic —
-   re-run exercise 2 on the entries people brought, using the live-worked
-   example. Session 2's own material is short enough at the top to absorb
-   it, and the inventory is a prerequisite for everything downstream.
-2. **Log it.** Record what the answers sounded like in
-   `docs/trunk/FRICTION.md` and in this session's
-   [`FLOOR_TEST.md`](FLOOR_TEST.md) results log. The most likely causes,
-   in order: the demo reveal didn't land (so the boundary stayed
-   abstract), exercise 2 got squeezed for time, or the live-worked example
-   was skipped. All three are fixable in the guide.
+1. **Help the student before Session 2.** Re-run exercise 2 with them on
+   a call, on the rows they have, working one row together first.
+2. **Log it** in `docs/trunk/FRICTION.md` and in this session's
+   [`FLOOR_TEST.md`](FLOOR_TEST.md) results log, with what their answers
+   said. Likely causes: the concept track's boundary argument stayed
+   abstract, the handout's filled-in rows didn't show how specific a check
+   has to be, or the exercise text let "I can't do it" stand for "I can't
+   check it".
 
 ## What this checkpoint feeds
 
-- **Session 2** uses each participant's inventory to pick their first
-  delegation, so a participant arriving without one has nothing to point
-  the agent at.
+- **Session 2** uses the student's inventory to pick their first
+  delegation, so a student arriving without one has nothing to point the
+  agent at.
 - **Session 6** gates capstone selection on the inventory, including the
   judgeability column — an entry marked **out** and correctly ruled out is
   treated as demonstrated skill, not a gap

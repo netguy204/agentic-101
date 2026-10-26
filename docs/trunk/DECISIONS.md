@@ -494,7 +494,8 @@ files, `EXERCISES.md` (participant) and `EXERCISE_RUNSHEET.md`
 (facilitator); seven fixed filenames, not six.
 
 **Amended**: DEC-014 (2026-10-10) — `PREWORK.md` is being retired in favour
-of `platform/prework/<NN>_<slug>.md`; Session 1 no longer has one.
+of `platform/prework/<NN>_<slug>.md`; Sessions 1 and 2 no longer have one
+(Session 2's was deleted 2026-10-10 in its voice pass).
 
 **Decision**: Course material lives in `curriculum/session_<NN>_<slug>/`,
 each session carrying the same six filenames (`README.md`, `PREWORK.md`,
@@ -853,6 +854,12 @@ help" section; Session 1's lists the layers in order. `FACILITATOR_GUIDE.md`
 and `EXERCISE_RUNSHEET.md` are still written for a room; they remain TA
 knowledge and need rewriting for live one-on-one and small-group sessions.
 Sessions 2 and 3 still have a `PREWORK.md` until their voice passes.
+
+**Amended** (2026-10-10): Session 2's `PREWORK.md` is retired; Session 3
+still has one. The Session 1 and 2 `FACILITATOR_GUIDE.md`,
+`EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md` and `CHECKPOINT.md` are rewritten
+for threads, live one-on-one and small-group calls, and the test-student
+protocol. Session 3's are still written for a room.
 
 **Revisit If**: the course is booked for a room again, or test students
 consistently need the facilitator for something the automated layers were

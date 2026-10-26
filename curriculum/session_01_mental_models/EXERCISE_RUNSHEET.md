@@ -3,176 +3,138 @@
 <!-- Chunk: docs/chunks/fluency_session_01 - Session 1 in-session exercises -->
 <!-- Chunk: docs/chunks/fluency_exercise_split - Exercise material split by reader: this file is for the facilitator -->
 
-The facilitator's running order for the exercise block. Participants work
-from [`EXERCISES.md`](EXERCISES.md); this file never restates a step — it
-says what to say, what to watch for, and what to do when it goes wrong.
-Where it mentions an exercise or a step, the text is in `EXERCISES.md`.
+What to say, what to look for and what to do when an exercise goes wrong,
+whether you are running it live with a student or answering a thread about
+it. The student's steps are in [`EXERCISES.md`](EXERCISES.md); this file
+doesn't repeat them.
 
-Three exercises, 27 minutes of the session, run back to back as one block.
-They produce the session's checkpoint: a started toil inventory with the
-judgeability column filled in.
+Three exercises, about 37 minutes for a student working alone. They
+produce the start of the toil inventory with columns 3 and 4 filled.
 
-Participants work on the handout
-[`handouts/toil-inventory.md`](handouts/toil-inventory.md) — printed, or
-copied into whatever they write in. Anyone who can't use their own work
-uses [`handouts/canned-toil.md`](handouts/canned-toil.md) instead; the
-exercises are written so that both paths take the same time and produce
-the same artifact. Have both printed (see
-[`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md), "Before the room").
+The student works on [`handouts/toil-inventory.md`](handouts/toil-inventory.md),
+which is the only place the four columns are defined. A student who can't
+use their own work uses [`handouts/canned-toil.md`](handouts/canned-toil.md)
+instead; both take the same time and produce the same sheet.
 
-**Before starting, say this out loud:** nobody reads anyone else's sheet
-unless they choose to share it. The check column in particular is written
-for yourself. That sentence is what makes honest **out** entries possible,
-and honest **out** entries are the point of the whole block.
+**Tell the student at the start of a live session:** nobody reads their
+sheet unless they choose to share it. That makes honest *out* rows
+possible, and honest *out* rows are what the exercises are for.
 
 ---
 
-## Exercise 1 — Brain dump (7 minutes)
+## Exercise 1 — Brain dump (about 10 minutes)
 
-**What participants do.** Copy the five things from the prework onto the
-inventory sheet, one per row, filling in only the first two columns — the
-task and roughly how often, and one sentence on what "done right" looks
-like. Then keep going: add anything else from the last month that repeats.
-Quantity over polish. Eight rows of scruffy is better than three rows of
-beautiful. Steps: `EXERCISES.md`, exercise 1.
+**What the student does.** Copies the five tasks from the prework onto the
+sheet, columns 1 and 2 only, then adds anything else from the last month
+that repeats.
 
-**Say it like this.** "Don't filter yet. Don't decide whether it's a good
-candidate for anything — you'll do that in a minute, and you'll do it
-better if you're choosing from a long list. Right now I want the boring
-stuff. The thing you do before you can start your actual job."
+**Say it like this.** "Don't filter yet. You'll choose better from a long
+list. Right now I want the boring stuff: the thing you do before you can
+start your actual job."
 
-**Observable output.** Every sheet in the room has at least four rows with
-the first two columns filled.
+**Done when:** at least four rows with columns 1 and 2 filled.
 
-**If someone stalls.** They almost always have the work and not the words.
-Ask one of these, out loud to the room at the three-minute mark:
+**If the student stalls.** They usually have the work and not the words.
+Ask one of these:
 
 - "What did you do on Monday morning before you got to anything real?"
 - "What do you copy out of one place and into another?"
 - "What do you check every time, in case someone got it wrong?"
 - "What would you hand a new joiner first, because it's dull and safe?"
 
-**Fallback.** Participants using the canned set already have eight tasks —
-they copy Priya's tasks onto the sheet and fill in column 2 in their own
-words, which takes about the same time.
+**Canned sheet.** The student copies Priya's eight tasks and writes column
+2 in their own words.
 
-**Most common misfire.** Entries too big to picture: "reporting",
-"stakeholder management". Push for the specific action: not "reporting"
-but "paste last week's ticket counts into the ops deck". You can spot
-these from across the room by the row length — one-word entries are the
-tell.
+**Common misfire.** Rows too big to picture: "reporting", "stakeholder
+management". Ask for the specific action: "paste last week's ticket counts
+into the ops deck". One-word rows are the tell.
 
 ---
 
-## Exercise 2 — The check column (12 minutes)
+## Exercise 2 — The check column (about 15 minutes)
 
-This is the load-bearing exercise of the session. Give it the full twelve
-minutes; take them from exercise 1 if you have to.
+The session's outcome comes from this exercise. In a live session, give it
+the time and take it from exercise 1 if you have to.
 
-**What participants do.** Go back over every row and fill in the last two
-columns. For each task, answer: **could I tell good work from bad work
-here** — in, out, or not sure — and then, in the last column, **how would
-I check?** The last column is the proof of the third. If you can't write a
-concrete check, the honest answer to column 3 isn't "in". Steps:
-`EXERCISES.md`, exercise 2.
+**What the student does.** For every row, fills in column 3 (*in*, *out*
+or *not sure*) and column 4 (the specific thing they'd look at, or, for an
+*out* row, why they couldn't check it). An *in* row with no concrete check
+becomes *not sure*.
 
-**Say it like this.** "Not 'could I do this task' — you can, you've been
-doing it for years. The question is different: if someone handed you the
-finished thing, could you tell whether it was right? And then the harder
-half: *how*? Name the specific thing you'd look at. A number you'd re-add.
-A name you'd recognise. A rule you'd apply. Someone who'd complain if it
-were wrong."
+**Say it like this.** "The question isn't whether you could do this task.
+It's whether, if someone handed you the finished thing, you could tell if
+it was right. Then: how? Name what you'd look at. A number you'd re-add, a
+name you'd recognise, a rule you'd apply, someone who'd complain."
 
-**Work one live before they start.** Take a task from the room — ask for a
-volunteer, or use the Monday roll-up from Priya's sheet — and fill in the
-last two columns on the board with the group, thinking out loud. Doing one
-together is worth more than any amount of explaining, and it sets the
-standard for how specific the check column should be. Two minutes, no
-more.
+**In a live session, work one row together first.** Take one of the
+student's rows, or Priya's Monday roll-up, and fill in columns 3 and 4 out
+loud. Two minutes. It sets how specific a check has to be.
 
-**Observable output.** Every row has one of in / out / not sure, and the
-rows marked **in** have something concrete in the check column.
+**Done when:** every row has *in*, *out* or *not sure* and something in
+column 4, and every *in* row's check is concrete.
 
-**Most common misfire, and it's near-universal:** confusing "I can't do
-it" with "I can't check it". Someone marks a task **out** because they
-couldn't produce the work themselves. That's the exact distinction the
-session is teaching, so treat it as a gift rather than a mistake:
+**First misfire: "I can't do it" read as "I can't check it".** The student
+marks a task *out* because they couldn't produce the work. This is the
+distinction the session teaches:
 
 > "You're right that you couldn't write that summary yourself. But if I
-> handed you one — would you know if it was wrong? … Right. Then it's
-> **in**. Not being able to do it is fine. Not being able to judge it is
-> the problem."
+> handed you one, would you know if it was wrong? … Then it's **in**. Not
+> being able to do it is fine. Not being able to judge it is the problem."
 
-**The second misfire:** "I'd just read it over and I'd know." That's a
-**not sure** until it gets concrete. Ask "what would you be reading *for*?"
-— usually there's a real answer underneath ("I'd check the regions are all
-there and the total matches"), and that answer is the check.
+**Second misfire: "I'd just read it over and I'd know."** That's *not
+sure* until it's concrete. Ask "what would you be reading *for*?" The
+answer underneath ("I'd check the regions are all there and the total
+matches") is the check.
 
-**The third misfire:** frequency in the judgeability column — "it's in
-because I do it every week." Doing a task often suggests they could check
-it; ask them to name what they'd look at. Correct this one every time you
-see it; it survives into Session 6 otherwise.
+**Third misfire: frequency as the reason.** "It's in because I do it every
+week." Doing a task often suggests they could check it; ask them to name
+what they'd look at. Correct it every time; otherwise it survives into
+Session 6.
 
-**Fallback.** Canned-set participants answer for Priya. For some of her
-tasks the sheet genuinely doesn't say enough to decide — noticing *that*
-is a correct answer, and the row gets marked **not sure** with "I'd need
-to know whether she's ever been trained on this" in the check column.
+**Canned sheet.** The student answers for Priya. Where her sheet doesn't
+say enough to decide, *not sure* with "I'd need to know whether she's ever
+been trained on this" is a correct answer.
 
 ---
 
-## Exercise 3 — The skeptic pass (8 minutes)
+## Exercise 3 — The skeptic pass (about 10 minutes, plus 2 to wrap)
 
-**What participants do.** Interrogate their own answers with one question,
-asked over and over:
+**What the student does.** Picks two or three *in* rows and asks of each:
 
-> "How would you know if it was wrong?"
+> "How would I know if it was wrong?"
 
-They keep asking until the answer is genuinely concrete or they say
-"…actually, I couldn't tell." Two or three tasks each is plenty. Steps:
-`EXERCISES.md`, exercise 3.
+They keep asking it of their own answer until the answer is specific
+enough to bet on, or they find they couldn't tell, and change the row if
+the answer changed.
 
-**Pair them — that's the room's version of it.** The exercise is written so
-a participant can do it alone, because they will have to in the practice
-week; in here, the partner asks the question, which is harder to duck than
-asking it of yourself. Four minutes each way, then swap. The participant
-text carries the pair form as an aside — point at it, don't read it out.
+**Alone or with you.** The exercise is written for a student working alone,
+because that's how the practice week works. In a live session, you ask the
+question, which is harder to duck. A student who'd rather not name the task
+can tell you only how they'd check it: "You don't have to tell me what it
+is. Tell me how you'd check it, and I'll tell you if I believe you."
 
-**Say it like this — and say the last sentence twice.** "Your job as the
-skeptic is not to be nice. It's to keep asking until the answer is
-specific enough that you'd bet on it. And if your partner ends up saying
-'actually, I couldn't tell' — that is the exercise working, not failing.
-Getting to a confident 'I couldn't check this' is the single most valuable
-sentence you'll say today."
+**Say it like this.** "I'm going to keep asking until the answer is
+specific enough that you'd bet on it. If you end up saying 'actually, I
+couldn't tell', the exercise has worked. A confident 'I couldn't check
+this' is the most useful thing you'll write today."
 
-**Observable output.** At least one row on most sheets changed after the
-pass — an **in** demoted to **not sure**, a vague check made specific, an
-honest **out**. The facilitator should say this expectation up front, so
-changing an answer reads as success.
+**Done when:** at least one row has changed: an *in* moved to *not sure*,
+a vague check made specific, or an honest *out*. Say up front that you
+expect a change, so changing an answer reads as success.
 
-**Most common misfire.** Partners being polite and accepting the first
-answer. Circulate; when you hear an easy "yeah that sounds fine", stop and
-ask the follow-up yourself in front of them. One demonstration per room is
-usually enough.
+**Common misfire.** Accepting the first answer. Whether it's the student
+asking themselves or a partner asking them, the first answer is rarely the
+check. Ask the follow-up.
 
-**Fallback.** Odd number, a remote participant with no pair, or someone
-who'd rather not discuss their work aloud: the facilitator is their
-skeptic. Budget for one or two of these — do them in sequence, two minutes
-each, while the rest of the room works. A participant who declines to say
-their task aloud can be skepticised abstractly: "you don't have to tell me
-what it is. Tell me how you'd check it, and I'll tell you if I believe
-you."
-
-**Remote delivery.** Breakout rooms of two, four minutes, then swap with a
-broadcast message rather than re-rooming. Warn people the swap is coming —
-in person the swap happens naturally, on a call it needs announcing.
+**With a small group.** Take each person in turn while the others listen,
+or use breakout rooms of two, four minutes each way. Announce the swap;
+on a call it doesn't happen by itself.
 
 ---
 
-## Wrapping the block (2 minutes)
+## Wrapping up
 
-Before moving to the checkpoint, ask everyone to draw a line under their
-last row and count their rows marked **in** with a filled check column.
-Three is the bar. Anyone under three gets the first minute of the practice
-assignment explained to them individually at the end — see
-[`CHECKPOINT.md`](CHECKPOINT.md) for the recovery move, which is
-deliberately not a public one.
+The student draws a line under the last row and writes the number of rows
+with both column 3 and column 4 filled. Three is the bar to submit. A
+student under three gets there in the practice week; if they can't, the
+Recovery section of [`CHECKPOINT.md`](CHECKPOINT.md) covers the causes.

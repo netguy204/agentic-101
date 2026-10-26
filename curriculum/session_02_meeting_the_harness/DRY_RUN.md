@@ -15,12 +15,10 @@ along with the fix.
 
 ## What this run does and does not establish
 
-Read this before trusting anything below it.
-
 | | |
 |---|---|
 | **Established** | Every command in the exercises runs, in order, and produces the output the text now claims. The `commit`/`revert` walkthroughs were driven end to end with real answers. The agent steps made real calls to the prescribed model over OpenRouter and changed real files. `.git` survives exercise 5, so `revert` works afterwards. |
-| **Not established** | The Session 2 exercises on Windows (although the operator has separately verified Windows installation through a functional pi). Anything about the pi TUI's on-screen rendering in this dry run. Anything about whether a non-programmer can follow the text — that is the floor test ([`FLOOR_TEST.md`](FLOOR_TEST.md)) and it has not happened. |
+| **Not established** | The Session 2 exercises on Windows (although the operator has separately verified Windows installation through a functional pi). Anything about the pi TUI's on-screen rendering in this dry run. Anything about whether a non-programmer can follow the text — that is the test-student protocol ([`FLOOR_TEST.md`](FLOOR_TEST.md)) and it has not happened. |
 
 ### Deviations from a true participant environment
 
@@ -73,8 +71,7 @@ Checking your course setup
 FAIL — 1 thing(s) above need attention.
 ```
 
-Correct behaviour, and the failure mode a facilitator will actually meet if a
-participant updated pi. `setup/README.md`'s troubleshooting table already
+Correct behaviour, and the failure a student will meet if they updated pi. `setup/README.md`'s troubleshooting table already
 covers it ("Run Step 3 again — it installs the exact version the course
 expects").
 
@@ -96,10 +93,8 @@ Checking your course setup
 PASS — you are ready for the course.
 ```
 
-> **Finding, and it changed the facilitator guide.** Ten seconds is fast
-> enough that the eight-minute triage opening is comfortable rather than
-> tight, and the guide now says so. The setup guide's "give it up to four
-> minutes" is a worst case, not a typical one.
+> **Finding.** Ten seconds is typical. The setup guide's "give it up to four
+> minutes" is the worst case.
 
 ---
 
@@ -222,7 +217,6 @@ Then `ls` → `notes.txt  README.txt`, and `notes.txt` contained
 > The exercise now has a four-row table giving the exact answer to each
 > question and the reason for it, and the rule **"read the names, not the
 > numbers"** appears in the exercise, the facilitator guide and the handout.
-> This is the clearest case in the session of the dry run earning its place.
 
 ---
 
@@ -245,9 +239,7 @@ prescribed configuration from `setup/pins.env`.
 | Exercise 4 — fix it | 12.1 s | ~11 s |
 | Exercise 5 — wreck it | 9.1 s | ~9 s |
 
-Fast enough that the 14 / 13 / 7-minute exercise budgets are dominated by
-typing, reading and thinking rather than by waiting — which is the right
-shape, and which the facilitator guide now states.
+Fast enough that the exercise time goes on typing, reading and thinking.
 
 ### Tool calls, from the session files
 
@@ -298,14 +290,13 @@ Both runs standardised statuses to one label each and dates to
 > `Done` ← merged `Complete`, `COMPLETE`, `DONE`, `done` (treated "Complete"
 > and "Done" as the same real-world state)
 
-> **This is the session's teaching moment and it arrived by itself, twice.**
-> It is Session 1's Northwind reveal reproduced on the participant's own
-> material: a defensible decision that is wrong at some organisations, made
-> confidently, announced politely, and invisible to every mechanical check
-> (fifteen rows in, fifteen rows out). The facilitator guide now names it as
-> the reliable thing to interrogate if nobody in the room raises something
-> better, and the canned handout tells fallback participants what to watch
-> for.
+> **It arrived by itself in both runs.** It is Session 1's Northwind reveal
+> on the student's own material: a defensible decision that is wrong at
+> some organisations, made confidently, announced politely, and invisible to
+> every mechanical check (fifteen rows in, fifteen rows out). The
+> facilitator guide names it as the judgment call to question if the
+> student doesn't raise a better one, and the canned handout tells students
+> on a prepared task what to watch for.
 
 ### Exercise 5 — break it on purpose
 
@@ -323,9 +314,8 @@ removed `disaster.csv`, in both full runs.
 > **The bounded prompt is doing its job and must not be loosened.** The
 > prompt names the one file it ruins. An unbounded "delete everything in this
 > folder" could reach the hidden checkpoint folder and leave nothing to
-> revert to — the exact opposite of the lesson, taught unforgettably. Both
-> the exercise and the facilitator guide say this, with the reason, because a
-> facilitator who doesn't know *why* will let a keen participant improvise.
+> revert to. Both the exercise and the facilitator guide give the reason, so
+> nobody loosens it.
 
 > **Not observed, but expected eventually.** In three runs the agent never
 > refused and never asked a clarifying question. Both are plausible on other
@@ -368,10 +358,10 @@ up" and type *that* number; it is probably 2; do not assume.
 | Windows installation through functional pi | **Operator-verified separately**; not part of this 2026-08-07 dry run |
 | Session 2 exercises 1–5 on Windows | **Partially observed** — the operator ran exercise 2's `commit`/`revert` on Windows (Git Bash) on 2026-08-22, three defects found and fixed (see the addendum). Exercises 1 and 3–5 remain unrun there |
 
-## Before this session is taught
+## Before the first test student
 
 1. **Re-run everything on the pinned pi** (`setup/pins.env`, currently
-   0.83.0) rather than on 0.84.1, or re-pin the cohort to the version that
+   0.83.0) rather than on 0.84.1, or re-pin the course to the version that
    was actually tested. `setup/PRE_COHORT_CHECKLIST.md` owns this.
 2. **Run exercises 1–5 once on Windows**, in Windows Terminal with the Git
    Bash profile. The operator has verified installation through a functional
@@ -380,9 +370,9 @@ up" and type *that* number; it is probably 2; do not assume.
    and 3–5 remain unverified there.
 3. **Run the session once through the real TUI**, by hand, confirming
    `Ctrl+O`, `Escape`, `/quit` and `pi -c`. Fifteen minutes.
-4. **Do the floor test** ([`FLOOR_TEST.md`](FLOOR_TEST.md)). Nothing in this
-   record tells you whether a non-programmer can follow the text — only that
-   the text is factually accurate about what the commands do.
+4. **Run the test-student protocol** ([`FLOOR_TEST.md`](FLOOR_TEST.md)).
+   This record shows the text is accurate about what the commands do. It
+   doesn't show that a non-programmer can follow it.
 
 ---
 
@@ -428,5 +418,5 @@ historical and stand as written.
 
 What this observation does **not** establish: exercise 1 (`explorer .`),
 the file-browser edit and delete in exercise 2 (the screenshot starts at
-`commit`), and exercises 3–5 on Windows. Item 2 of "Before this session is
-taught" still stands for those.
+`commit`), and exercises 3–5 on Windows. Item 2 of "Before the first test
+student" still stands for those.

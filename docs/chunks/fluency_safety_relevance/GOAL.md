@@ -4,7 +4,7 @@ ticket: null
 parent_chunk: fluency_session_02
 code_paths:
 - curriculum/session_02_meeting_the_harness/README.md
-- curriculum/session_02_meeting_the_harness/PREWORK.md
+- platform/prework/02_meeting_the_harness.md
 - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
 - curriculum/session_02_meeting_the_harness/EXERCISES.md
 - curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
@@ -21,7 +21,7 @@ code_references:
 - ref: curriculum/session_02_meeting_the_harness/README.md
   implements: Session framing that distinguishes local recovery from safety and removes
     memorization expectations
-- ref: curriculum/session_02_meeting_the_harness/PREWORK.md
+- ref: platform/prework/02_meeting_the_harness.md
   implements: Participant-facing provider disclosure, bounded recovery explanation,
     and reference-card framing
 - ref: curriculum/session_02_meeting_the_harness/EXERCISES.md

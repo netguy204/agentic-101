@@ -2,12 +2,11 @@
 # Chunk: docs/chunks/fluency_session_01 - Northwind Coffee demo working directory
 #
 # Sets up a fresh working directory for the Session 1 Northwind Coffee demo
-# (FACILITATOR_GUIDE.md, Beats 3 and 4) and prints the crib you need on
+# (FACILITATOR_GUIDE.md, "The Northwind demo") and prints the crib you need on
 # screen while you run it.
 #
 # Safe to run as many times as you like — every run resets the folder to a
-# pristine headcount.csv, so you can rehearse, wipe, and do it again in
-# front of the room.
+# pristine headcount.csv, so you can rehearse, wipe, and run it again live.
 #
 #   bash start-demo.sh              # default: ~/northwind-demo
 #   bash start-demo.sh /some/where  # somewhere else
@@ -27,7 +26,7 @@ fi
 
 mkdir -p "$WORK_DIR"
 cp "$SRC_DIR/headcount.csv" "$WORK_DIR/headcount.csv"
-# Anything the agent produced on a previous run: gone, so the room never
+# Remove anything the agent produced on a previous run, so the student never
 # sees last rehearsal's output.
 rm -f "$WORK_DIR"/headcount.csv.bak "$WORK_DIR"/*.md 2>/dev/null || true
 
@@ -37,7 +36,7 @@ ${BOLD}Northwind Coffee demo — ready${RESET}
 ${DIM}$WORK_DIR/headcount.csv restored to its original 9 rows${RESET}
 
 ${BOLD}1. Before you touch the keyboard (60 seconds)${RESET}
-   Put these two facts on the board and make the room say them back:
+   Put these two facts in the chat or on a shared slide:
 
      • Brand is NOT part of Marketing here. Brand sits under Product.
      • "Field" means the retail store teams, not sales.
@@ -60,7 +59,7 @@ ${BOLD}4. Let it land, then ask the question${RESET}
 
      "How would you check this?"
 
-   Write every answer on the board. Then: "All of those pass. Every one of
+   Write every answer down where they can see it. Then: "All of those pass. Every one of
    them passes on this file. Is it right?"
 
 ${BOLD}5. The reveal${RESET}
@@ -73,6 +72,6 @@ ${BOLD}5. The reveal${RESET}
    Northwind. Same reveal, same conclusion.
 
 ${DIM}Reset between runs: bash start-demo.sh${RESET}
-${DIM}Full script and timings: ../FACILITATOR_GUIDE.md (Beats 3 and 4)${RESET}
+${DIM}Full script: ../FACILITATOR_GUIDE.md ("The Northwind demo")${RESET}
 
 EOF

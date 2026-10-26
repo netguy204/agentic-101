@@ -2,76 +2,54 @@
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 practice assignment -->
 
-**About 60 minutes, spread across the week. Cap it at 90.**
+**About 60 minutes, spread across a week. Stop at 90.**
 
-Two of the three things on this page are work you were going to do anyway.
-That is deliberate: the point of this course is not to add an hour to your
-week, it is to move an hour of your week onto something else. If this
-assignment feels like homework, you have picked the wrong tasks — pick more
-annoying ones.
+Two of the three parts use work you were going to do anyway. Pick tasks
+that annoy you.
 
-**Where you're heading:** by Session 3, you'll have delegated three times in
-total (once in the room, twice alone) and you'll have one delegation that
-went badly. The one that went badly is the valuable one. Session 3 is about
-why it went badly and how to write instructions that survive contact with an
-agent, and it works much better if you arrive with your own example.
-
----
-
-## The time budget
+By the end you will have delegated three times: once in the lab and twice
+on your own. Session 3 starts from the one that went worst, so a bad run
+is useful.
 
 | When | How long | What |
 |---|---|---|
-| Within 48 hours of the session | 20 min | The solo lap (below) — the same loop, alone, while it's fresh |
-| Twice during the week | 15 min each | Two real delegations on real tasks (below) |
-| Once, before Session 3 | 10 min | Fill in a worksheet for whichever one went worst |
-| | **60 min** | |
-
-The half hour of slack is real. Use it on the second real delegation if it
-turns out to be more interesting than you expected, which happens.
+| Within 48 hours of the lab | 20 min | The solo lap |
+| Twice during the week | 15 min each | Two real delegations |
+| Once, before Session 3 | 10 min | A worksheet on the one that went worst, then submit |
 
 ---
 
 ## 1. The solo lap (20 minutes, within 48 hours)
 
-Do the whole session's loop again, on your own, in `~/course-practice`. Not
-because you need the practice with the commands — because doing it once
-without a facilitator in the room is the difference between having seen
-something and being able to do it.
-
-Everything you need is on
-[`handouts/terminal-card.md`](handouts/terminal-card.md). The loop, in order,
-and the order *is* the lesson:
+Run the whole loop again, alone, in `~/course-practice`:
 
 > **`commit` → delegate → check → `commit`**
 
-1. Open the course terminal, `cd ~/course-practice`, `pwd` to be sure.
+1. Open the course terminal, type `cd ~/course-practice`, then `pwd` to
+   confirm.
 2. `commit`. Name it something like "before Tuesday".
-3. Run `pi` and ask it for something small. Anything — ask it to make you a
-   packing list, tidy a file it made last week, or summarise the README
-   that's sitting in the folder.
-4. Look at what changed: the tool boxes, then the actual file.
-5. `commit` again, or `revert` if you didn't like it.
+3. Type `pi` and ask for something small: a packing list, a tidy-up of a
+   file it made in the lab, or a summary of `README.txt`.
+4. Read the tool boxes, then open the file.
+5. `/quit`, then `commit` to keep it or `revert` to undo it.
 
-**Do it within 48 hours.** This is the single highest-value twenty minutes on
-the page and its value halves every day you leave it.
+Every command is on [`handouts/terminal-card.md`](handouts/terminal-card.md),
+including a "When you feel lost" section.
 
-**If you get stuck**, the card has a "when you feel lost" section with
-bounded ways to stop, reorient, or recover local files. If you're stuck for
-more than five minutes, stop and email your facilitator — the same rule as
-before the course: a confused participant is a bug in our material, and
-struggling alone teaches nobody
-anything.
+**Done when:** you have run the loop once, start to finish, with nobody
+helping.
+
+Stuck for more than five minutes? Stop and contact your instructor
+("Stuck on this session?", then "Send to your instructor").
 
 ---
 
 ## 2. Two real ones (15 minutes each)
 
-Now the part that replaces work rather than adding it. **Transmission
-reminder:** what you type and the contents of files pi reads are sent to the
-model provider. `commit` and `revert` provide local file recovery only.
+What you type, and the contents of any file pi reads, is sent to the model
+provider. `commit` and `revert` recover local files only.
 
-Before using a real task, it must pass **all four questions**:
+A real task must pass **all four questions** before you delegate it:
 
 1. **Evaluable:** Can you tell a reasonable result from an unreasonable one
    and name the check you will apply? If not, do not delegate it.
@@ -87,99 +65,67 @@ Before using a real task, it must pass **all four questions**:
    purchased, scheduled, or otherwise acted on outside the practice folder?
    If not, keep the task synthetic.
 
-**What this looks like in practice:** say a supplier emails asking for
-three things. You can hand the agent the thread and the relevant figures and
-ask it to draft the reply — pull out what they asked, look up the numbers,
-lay out the options in plain English. That is real, substantial work, and it
-is exactly the kind of thing to delegate. What the agent does not get is the
-send button. You read the draft, check the figures against what you know, fix
-what's wrong, and decide whether it goes — and if it does, you are the one
-who sends it. Permission to draft is not permission to send. The agent does
-the work; the person with the judgment reviews it and approves it before it
-reaches anyone. That split — it does, you decide — is the shape of every safe
-delegation in this course, whatever the task is.
+For example, a supplier emails asking for three things. The agent can read
+the thread and the figures and draft the reply. You check the figures,
+fix what's wrong, and decide whether it goes. If it goes, you send it. The
+agent drafts; you decide and send.
 
-**Pick two entries from your toil inventory marked `in` that also pass the
-other three questions.** Not the starred one from the session — two others.
-When each task next comes round — or the next time you do that task,
-whenever that is:
+Pick **two rows from your inventory marked *in*** that pass all four
+questions, other than the one you used in the lab. The next time each
+task comes round:
 
-1. At the terminal prompt, `cd ~/course-practice`, then `commit`. This gives
-   local file recovery only.
-2. Type `pi`, wait for the pi screen, and ask for what you want in a plain
-   sentence. Column 2 of your sheet — "what done right looks like" — is your
-   instruction.
+1. `cd ~/course-practice`, then `commit`.
+2. Type `pi` and ask for what you want in a plain sentence. Column 2 of
+   your sheet is the instruction.
 3. **Apply the check in column 4 to the actual output.**
-4. Keep the result as a draft until the required person reviews and approves
-   any external action.
-5. Type `/quit` to return to the terminal. `commit` if the local files are
-   worth keeping; `revert` if they are not.
+4. Keep the result as a draft until the right person has reviewed it and
+   approved any action outside the folder.
+5. `/quit`. `commit` to keep the local files, or `revert` to undo them.
 
-**About your real data.** You have three honest options and all three are
-fine:
+**Your data.** Use one of these:
 
-| | When to use it |
+| Option | When to use it |
 |---|---|
-| **Describe the shape and let it invent the data**, like we did in the room | Anything sensitive, or anything you can't easily get out of the system it lives in |
-| **Copy a small, real, non-sensitive extract into `~/course-practice`** | Only when you are authorized to send it to the model provider as well as save it locally |
-| **Use the task but not the data** — a made-up version of a real job | When you want the practice more than the output |
+| **Describe the shape and let it invent the data**, as in the lab | Anything sensitive, or hard to get out of the system it lives in |
+| **Copy a small, real, non-sensitive extract into `~/course-practice`** | Only if you are allowed to send it to the model provider |
+| **A made-up version of the real task** | When you want the practice more than the output |
 
-If you're unsure whether something is safe to send, that's a genuine
-question, and the answer is "ask whoever owns it, before you do it, not
-after". Noticing that you should ask is exactly the kind of judgment this
-course is about. Nothing on this assignment requires you to send anything you
-have doubts about.
+Unsure whether something is safe to send? Ask whoever owns it before you
+send it. Nothing here requires you to send anything you have doubts about.
 
-**If the task turns out to be a bad fit** — the agent flounders, or it needs
-something it can't see — **that is a result, not a failure**. Write down what
-was missing. It's the most useful thing you can bring to Session 3.
+If the agent struggles, or needs something it can't see, write down what
+was missing. Session 3 uses it.
+
+**Done when:** you have delegated two real tasks and applied your column 4
+check to each result. Tick both rows on your inventory.
 
 ---
 
 ## 3. One worksheet, on the worst one (10 minutes, before Session 3)
 
-Take the delegation that went least well and fill in a
-[`handouts/what-did-it-do.md`](handouts/what-did-it-do.md) properly. All
-three boxes, plus the question at the bottom:
+Take the delegation that went least well and fill in a fresh
+[`handouts/what-did-it-do.md`](handouts/what-did-it-do.md): all three
+boxes and the question at the bottom. Under it, write one sentence on why
+this one went worst. Session 3 opens on this worksheet.
 
-> **What would I have failed to catch?**
+If all three went well, use the one where the agent made a decision you
+hadn't asked it to make.
 
-Bring it. Session 3 opens with these, and a room full of near-misses is worth
-more than a room full of successes.
-
-If all three of your delegations went perfectly, do the worksheet on the one
-where the agent made a decision you hadn't asked it to make. There will be
-one — it makes small calls constantly and only mentions some of them.
+**Done when:** all three boxes, the bottom question and the sentence are filled in.
+Then submit everything listed in the Session 2 index.
 
 ---
 
-## Optional, if you want more
+## Optional: one row marked *out*
 
-Pick one entry marked **out** — one you honestly could not check. Ask the
-agent to do it, and then sit with the output for two minutes and try to find
-a way to tell whether it's right.
-
-You won't be able to, and the specific way you can't is worth noticing: the
-output will be fluent, well-organised, plausible, and completely
-unverifiable by you. Write down one sentence about what you'd need to know to
-check it. That sentence is the exact distance between where your judgment
-ends and where that task lives, and it's a more useful thing to own than
-another successful delegation.
-
-Don't use the result for anything.
+Pick a row you marked *out*. Ask the agent to do it, then spend two
+minutes trying to tell whether the output is right. Write one sentence on
+what you would need to know to check it. Don't use the result for
+anything.
 
 ---
-
-## Bring to Session 3
-
-- **Your worksheet** from part 3.
-- **Your toil inventory**, with ticks against the entries you delegated.
-- **One sentence about the one that went worst.** You'll be asked for it in
-  the first ten minutes.
 
 ## If the week gets away from you
 
-Do the solo lap and nothing else. Twenty minutes, within 48 hours, and skip
-the rest without guilt. The loop — checkpoint, delegate, check, checkpoint —
-is the thing Session 3 builds on, and having it in your hands once alone
-beats arriving with three half-done exercises and no muscle memory.
+Do the solo lap within 48 hours, and submit with the worksheet from the
+lab. The loop is what Session 3 builds on.

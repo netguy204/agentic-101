@@ -9,9 +9,9 @@
 # including the row the checkpoint says to accept.
 #
 # The bar is a pair, and the checkpoint is emphatic about it: "Three filled
-# rows without the spoken articulation is a filled-in form; the articulation
-# without the rows is a nice conversation. The session's outcome is the
-# pair." So: three criteria on the sheet, two on the claim, and bar: all.
+# rows without the explanation is a filled-in form; the explanation without
+# the rows is a nice conversation. The session's outcome is the pair." So:
+# three criteria on the sheet, two on the claim, and bar: all.
 
 session: 01_mental_models
 bar: all
@@ -57,8 +57,8 @@ criteria:
         table: The sheet
 
   # Not a numbered bar item, and deliberately here anyway. The checkpoint's
-  # Recovery section makes it a state a participant does not leave the room
-  # in — "**Entries but no checks.** Ask 'what would you actually look at?'
+  # Recovery section makes it a case the instructor resolves before the
+  # student moves on — "**Entries but no checks.** Ask 'what would you actually look at?'
   # on one entry until it's concrete" — and DEC-010 says why: the "how I'd
   # check" column "is what makes the checkpoint observable and what stops 'I
   # do it every week' being accepted as an answer to judgeability".
@@ -76,8 +76,8 @@ criteria:
         rows_at_least: 3
         table: The sheet
 
-  # Bar, item 2: "the ability to say out loud, for one of their own tasks,
-  # why it sits inside or outside their judgment boundary".
+  # Bar, item 2: "an explanation, for one of their own tasks, of why it sits
+  # inside or outside their judgment boundary".
   - id: boundary_claim
     statement: >-
       For one of their own tasks, the student says whether it sits inside or
@@ -91,9 +91,8 @@ criteria:
       - artifact: toil_inventory
         expect: the same task appears as a row on the sheet
     # Both quoted from the checkpoint's "What a pass sounds like". The
-    # checkpoint calls the second one the better answer and says to make that
-    # point out loud if there is time for one piece of commentary in the whole
-    # round: knowing where your judgment runs out is the skill.
+    # checkpoint calls the second one the better answer: knowing where your
+    # judgment runs out is the skill.
     pass_examples:
       - >-
         The Monday roll-up. It's in — I'd add up the four regional totals
@@ -168,8 +167,6 @@ escalate_when:
   - conversation_rounds_exhausted
   - integrity_flag
   - judge_confidence_below_threshold
-# The room's version of this is one round: "say 'good', note it, and move to
-# the next person… If something is worth picking up, pick it up with that
-# person afterwards." Two rounds here, because the corrective questions above
-# are the pickup, and the third round is what escalation is for.
+# Two rounds: the corrective questions above are the pickup, and the
+# checkpoint's Recovery section is what escalation to the instructor is for.
 max_conversation_rounds: 2

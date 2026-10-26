@@ -1,6 +1,6 @@
 # Session 1 — Mental models and the toil inventory
 
-<!-- Chunk: docs/chunks/platform_student_index - The student's index for Session 1, written from its README and PREWORK -->
+<!-- Chunk: docs/chunks/platform_student_index - The student's index for Session 1, written from its README and (then) PREWORK -->
 
 In this session you decide what is worth handing to an agent. You list the
 repeating work in your job, and next to each task you write down how you

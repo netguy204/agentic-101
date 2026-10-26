@@ -5,7 +5,6 @@ parent_chunk: null
 code_paths:
 - curriculum/README.md
 - curriculum/session_02_meeting_the_harness/README.md
-- curriculum/session_02_meeting_the_harness/PREWORK.md
 - curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
 - curriculum/session_02_meeting_the_harness/EXERCISES.md
 - curriculum/session_02_meeting_the_harness/EXERCISE_RUNSHEET.md
@@ -24,12 +23,6 @@ code_references:
     load-bearing order, with the constraints an editor must not break — chiefly
     that the safety net precedes the first delegation and that the destructive
     prompt stays bounded to a named file
-- ref: curriculum/session_02_meeting_the_harness/PREWORK.md
-  implements: 'Prework in ~25 minutes that assumes no terminal knowledge and
-    survives a broken setup: what a terminal is as a window onto a folder, the
-    blinking-cursor reassurance, the commit/revert promise Session 1 made, the
-    starred inventory entry with its two pre-written sentences, and a
-    course-update then course-smoke-test result reported rather than debugged'
 - ref: curriculum/session_02_meeting_the_harness/FACILITATOR_GUIDE.md
   implements: 'The re-teachable hands-on session: the eight-minute setup-triage
     opening (smoke test, aggregate tally, immediate pairing with the non-owner

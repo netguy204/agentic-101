@@ -4,8 +4,8 @@
 # Source: curriculum/session_02_meeting_the_harness/CHECKPOINT.md. Four
 # numbered bar items, four criteria, in the checkpoint's order. It splits
 # them itself: "The first and fourth are facts you can see; the second and
-# third are the ones you have to hear, and they are the ones the session is
-# for." So items 1 and 4 are decided by machine and items 2 and 3 are judged,
+# third are the ones you have to hear or read, and they are the ones the
+# session is for." So items 1 and 4 are decided by machine and items 2 and 3 are judged,
 # and the split is the checkpoint's, not a convenience.
 #
 # All six rows of the near-miss table appear below with the facilitator's own
@@ -161,11 +161,8 @@ criteria:
     near_miss_examples:
       - text: I didn't need to revert, mine went fine.
         why: Item 4 missing.
-        # The facilitator's line is "Not a debate — get them to do it, now, in
-        # thirty seconds. `commit`, delete a file in the file browser,
-        # `revert`. They cannot leave without having done it." Said to a
-        # student who is not in the room, it has to end with what to send
-        # back; the substance and the refusal to debate it are unchanged.
+        # Quoted from the checkpoint's near-miss table, which says it to a
+        # student working alone and so ends with what to send back.
         corrective: >-
           Not a debate — do it now, it takes thirty seconds. `commit`, delete
           a file in your file browser, `revert`. Then send me `revert --list`
@@ -182,8 +179,7 @@ escalate_when:
   - conversation_rounds_exhausted
   - integrity_flag
   - judge_confidence_below_threshold
-# The room gives this round six minutes for twelve people and picks the rest
-# up privately at the end. Two rounds here; past that, the checkpoint's own
-# Recovery section is a list of things that need a person — "sit with them,
-# run one delegation on your laptop with them typing".
+# Two rounds; past that, the checkpoint's Recovery section is a list of
+# things that need a person — "run one delegation with them typing and
+# sharing their screen".
 max_conversation_rounds: 2

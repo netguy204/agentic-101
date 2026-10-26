@@ -1,100 +1,85 @@
 # Before the course: setting up your computer
 
 <!-- Chunk: docs/chunks/onboarding_setup_guide - Pre-cohort participant setup guide -->
+<!-- Facilitators: before sending this page, work through
+     PRE_COHORT_CHECKLIST.md. Item 1 verifies the three install commands on
+     this page (two in Step 1, one in Step 3) from a machine with no checkout;
+     env/DISTRIBUTION.md lists every place the repository address lives.
+     setup/pins.env sets which pi and which model the course runs, and the
+     sample outputs in Steps 3 and 4 quote those pins as literal text, so
+     re-pinning means updating them too. Testing status: DRY_RUN.md and
+     ../env/FLOOR_TEST.md. -->
 
-Welcome. This page takes you from a laptop with nothing installed to a laptop
-that is ready for the first session. It should take about **30 minutes**, most
-of which is waiting for downloads.
+**Time:** about 30 minutes, most of it waiting for downloads.
 
-**You do not need to understand any of this.** Every step is a line you copy
-and paste, followed by a picture of what you should see afterwards. If what
-you see matches, move on. If it doesn't, the last section of this page tells
-you what to do. Nothing here requires you to have used a terminal before —
-that gets taught properly in Session 2, with a facilitator in the room.
+Each step is a line to copy and paste, followed by what your screen should
+show afterwards. If your screen matches, go on. If it doesn't, see [If
+something went wrong](#if-something-went-wrong).
 
-The one thing worth knowing up front: you are about to install a **terminal**,
-which is an app where you type instructions instead of clicking them. It looks
-severe and it is not. The blinking cursor isn't waiting for permission —
-it's waiting for you, and nothing happens until you press Enter.
+You will install a **terminal**: an app where you type instructions instead
+of clicking. Nothing runs until you press Enter. Session 2 teaches you how to
+use it.
 
 ---
 
 ## What this costs you: nothing
 
-Your facilitator has given you a key that pays for everything you do on this
-course. There is no account to create, no credit card to enter, no
-subscription to choose, and no bill coming to you. The key has a spending
-limit on it and it is not yours to worry about.
+The key you are given pays for everything you do on this course. There is no
+account to create, no credit card and no bill. The key has a spending limit
+set by your instructor.
 
-If any page ever asks you to enter payment details during this setup, stop —
-you have gone somewhere you shouldn't be. Nothing in these instructions
-requires it.
+Nothing in this guide asks for payment details. If a page does, stop and
+close it.
 
 ---
 
 ## What you need before you start
 
-- **A laptop you can install software on** — macOS or Windows. If your
-  employer manages the machine and blocks installations, tell your
-  facilitator now rather than at the first session; it takes a few days to
-  sort out.
-- **An email from your facilitator** containing two things: your personal
-  key (a long line starting with `sk-or-`) and the exact command from Step 3
-  below with that key already filled in.
-- **About 30 minutes**, and a decent internet connection.
-- On a Mac, you will be asked once for **the password you use to log in to
-  the computer**. That is normal — it's how macOS lets an installer put
-  software on the machine. No other password is ever needed.
+- **A Mac or Windows laptop you can install software on.** If your employer
+  blocks installations, tell your instructor before you start; it can take a
+  few days to sort out.
+- **Your setup command:** one line that starts with `curl` and has your
+  personal key in it (the key starts with `sk-or-`). Your course setup page
+  shows it once, at Step 3; if your instructor emailed it to you, it is in
+  that email.
+- **About 30 minutes** and a working internet connection.
+- **On a Mac, the password you use to log in to the computer.** The installer
+  asks for it once. Nothing else asks for a password.
 
 ---
 
 ## A word about copying and pasting
 
-You'll be pasting commands into a terminal window. Pasting works, but the
-keyboard shortcut is not always the one you expect:
-
 | | To paste into the terminal |
 |---|---|
-| **macOS** | `Command + V`, as usual |
-| **Windows** | `Ctrl + Shift + V`, **or** just right-click |
+| **macOS** | `Command + V` |
+| **Windows** | `Ctrl + Shift + V`, or right-click |
 
-On Windows, plain `Ctrl+V` sometimes does nothing in a terminal. That is the
-one keyboard difference in this whole guide.
+On Windows, plain `Ctrl + V` sometimes does nothing in a terminal.
 
-Paste the command, then press **Enter**. Nothing runs until you do.
+Paste the command, then press **Enter**.
 
 ---
 
 ## Step 1 — Install the course environment
 
-This installs the terminal app the course uses, plus the handful of things it
-needs underneath. Follow the section for your computer and skip the other one.
-
-> **Facilitator: before you send this page to anyone**, verify the three
-> install commands on it (two here, one in Step 3) on a machine with no
-> checkout of this repository — item 1 of
-> [PRE_COHORT_CHECKLIST.md](PRE_COHORT_CHECKLIST.md). They point at the
-> published repository (`netguy204/agentic-101`); if the course moves, see
-> [../env/DISTRIBUTION.md](../env/DISTRIBUTION.md) for every place the
-> address lives.
+This installs the terminal app the course uses and the tools it needs. Follow
+the section for your computer.
 
 ### On a Mac
 
-**1a.** Open the app called **Terminal**. It is already on your Mac: press
-`Command + Space`, type `Terminal`, and press Enter. A small window with a
-blinking cursor appears. (This is *not* the terminal you'll use for the
-course — it's just the one that's already there, and we use it once to
-install the real one.)
+**1a.** Open **Terminal**: press `Command + Space`, type `Terminal`, press
+Enter. You use this window once, to install the course terminal.
 
-**1b.** Paste this single line and press Enter:
+**1b.** Paste this line and press Enter:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/netguy204/agentic-101/main/env/install.sh | bash
 ```
 
-**1c.** Wait. It will print a lot, ask once for your login password, and take
-several minutes the first time. When it finishes you should see something
-very like this at the bottom:
+**1c.** Wait. It prints a lot, asks once for your login password, and takes
+several minutes. When you type the password, no characters appear; type it
+and press Enter. It should end with something like this:
 
 ```
 Course environment 1.1.0
@@ -113,27 +98,23 @@ You're set up. One last thing:
   Everything you do in the course happens in that window.
 ```
 
-The version numbers on your machine may differ slightly. What matters is the
-word **PASS**. If you got FAIL, jump to [If something went
-wrong](#if-something-went-wrong).
+Your version numbers may differ. Look for **PASS**. If you see FAIL, go to
+[If something went wrong](#if-something-went-wrong).
 
 ### On Windows
 
-**1a.** Open **PowerShell**. Click Start, type `PowerShell`, and press Enter
-on "Windows PowerShell". A blue window with a blinking cursor appears. (This
-is *not* the terminal you'll use for the course — it's just the one Windows
-already has.)
+**1a.** Open **PowerShell**: click Start, type `PowerShell`, press Enter on
+"Windows PowerShell". You use this window once, to install the course
+terminal.
 
-**1b.** Paste this single line and press Enter (remember: `Ctrl + Shift + V`
-or right-click to paste):
+**1b.** Paste this line and press Enter:
 
 ```powershell
 irm https://raw.githubusercontent.com/netguy204/agentic-101/main/env/install.ps1 | iex
 ```
 
-**1c.** Wait. Windows may show an installer progress bar or two. When it
-finishes you should see the same `[ok]` list and the word **PASS**, followed
-by:
+**1c.** Wait. Windows may show an installer progress bar or two. It should
+end with the same `[ok]` list, the word **PASS**, and then:
 
 ```
 You're set up. One last thing:
@@ -144,49 +125,43 @@ You're set up. One last thing:
   Do NOT use the "Git Bash" icon in the Start menu — pi behaves worse there.
 ```
 
-That last line matters. There are two things on your Start menu that look
-like they'd work; only **Windows Terminal** is the right one. If you got FAIL,
-jump to [If something went wrong](#if-something-went-wrong).
+Use **Windows Terminal**. The "Git Bash" icon in the Start menu looks similar
+but is not set up for the course. If you see FAIL, go to [If something went
+wrong](#if-something-went-wrong).
 
 ---
 
 ## Step 2 — Open the course terminal
 
-Close the window from Step 1 completely. From here on, everything happens in
-the course terminal.
+Close the window from Step 1. From now on, use the course terminal.
 
 **On a Mac:** press `Command + Space`, type `Ghostty`, press Enter.
 
 **On Windows:** click Start, type `Terminal`, press Enter on **Windows
-Terminal**. (Not "Git Bash". Not "Command Prompt".)
+Terminal**. Do not use "Git Bash" or "Command Prompt".
 
-Either way you should get a window showing a short line that ends with a
-`$`, with the cursor blinking after it. It looks like this — the `~` (which
-names the folder you're in) appears in blue:
+You should see a short line ending in `$`, with the cursor after it. The `~`
+names the folder you are in and appears in blue:
 
 ```
 ~ $
 ```
 
-That `$` is the prompt. It means the terminal is ready for you to type. If
-your window looks nothing like that, or the app didn't open, see [If
-something went wrong](#if-something-went-wrong).
+The `$` means the terminal is ready for you to type. If the app didn't open,
+or the window looks nothing like this, go to [If something went
+wrong](#if-something-went-wrong).
 
 ---
 
 ## Step 3 — Install pi and save your key
 
-**pi** is the agent you'll be using — the actual subject of the course. This
-step installs it, saves the key your facilitator emailed you, and sets it to
-the same model everyone else on the course is using, so that when a
-facilitator says "you should see X", you do.
+**pi** is the agent you use throughout the course. This step installs it,
+saves your key, and sets the model the course uses, so your screen matches
+the course material.
 
-**3a.** Find the email from your facilitator. It contains one long line that
-starts with `curl` and has your personal key in the middle of it. Copy that
-whole line — it is written for you specifically, so use theirs rather than
-retyping the one below.
-
-It will look like this, with a real key where the placeholder is:
+**3a.** Copy your setup command (see [What you need before you
+start](#what-you-need-before-you-start)). Copy the whole line. Use your own
+line; the one below has a placeholder where your key goes:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/netguy204/agentic-101/main/setup/install-pi.sh | bash -s -- --key PASTE-YOUR-KEY-HERE
@@ -194,10 +169,8 @@ curl -fsSL https://raw.githubusercontent.com/netguy204/agentic-101/main/setup/in
 
 **3b.** Paste it into the course terminal and press Enter.
 
-**3c.** It installs pi, saves your key, makes you a practice folder, and
-then runs the check from Step 4 automatically. While pi downloads,
-**nothing appears on screen for a minute or two** — the window will look
-frozen. That is normal; don't close it. You should see:
+**3c.** Wait. While pi downloads, **nothing appears on screen for a minute
+or two**. Don't close the window. You should see:
 
 ```
 Setting up pi for the agentic-101 course
@@ -228,10 +201,9 @@ Step 5 of 5 — making your practice folder
   Created /Users/you/course-practice
 ```
 
-and then, without you doing anything, it runs the course check. This is the
-one moment in setup where something talks to the model over the internet, so
-it can be slow — **give it up to four minutes**, and expect quiet pauses
-after each "asking…" line. What you want to see:
+It then runs the course check by itself. The check talks to the model over
+the internet, so **give it up to four minutes**; it pauses after each
+"asking…" line. You should see:
 
 ```
 Checking your course setup
@@ -251,114 +223,100 @@ Nothing else to do. Your practice folder is /Users/you/course-practice.
 That's setup finished. Nothing else to do before the first session.
 ```
 
-If the last line instead says setup is *not* finished, read Step 4 and the
-troubleshooting section below.
+If the last line says setup is *not* finished, go to [If something went
+wrong](#if-something-went-wrong).
 
-You never have to type or remember that key again. It is saved in a file only
-your account can read.
+Your key is now saved in a file only your account can read. You don't type
+it again.
 
 ---
 
 ## Step 4 — Check that everything works
 
-The check that ran by itself at the end of Step 3 is also a command of its
-own, and it is the one to reach for any time something seems broken. Run it
-yourself now so you know where it lives — it costs nothing to run.
-
-Type this and press Enter:
+The check at the end of Step 3 is also a command you can run any time
+something seems broken. It costs you nothing. Run it now:
 
 ```bash
 course-smoke-test
 ```
 
-You should see the same "Checking your course setup" list from the end of
-Step 3 — the `[ok]` lines, the same quiet pauses while it talks to the model
-(**give it up to four minutes**), and then:
+It prints the same list as the end of Step 3 (give it up to four minutes)
+and ends with:
 
 ```
 PASS — you are ready for the course.
 Nothing else to do. Your practice folder is /Users/you/course-practice.
 ```
 
-**If the last line says PASS, you are finished.** Close the window and come to
-the first session. Nothing else is expected of you.
+The last two checks ask the model a question, then ask the agent to create a
+file and look on your disk to confirm the file is there.
 
-The fifth and sixth checks in that list are worth a moment of your
-attention, because they're the first thing you'll see the agent do: the fifth asks the model a
-question and waits for the right answer back, and the sixth asks the agent to
-*create a file* and then goes and looks on your disk to see whether it really
-did. That second one is the course in miniature — the agent did something
-real, and we checked the result rather than taking its word for it.
+**Done when:** the last line says **PASS**. Copy the whole terminal window
+(select all of it, then copy) and paste it into the last step of your course
+setup page. Session 1 opens once it is accepted.
 
 ---
 
 ## If something went wrong
 
-Nothing in this list is your fault, and none of it is unusual. Find the line
-that matches what you saw.
+First try this, which fixes most problems: close every terminal window, open
+the course terminal again (Step 2), and run `course-smoke-test`. New commands
+often only work in windows opened after the install.
 
-**Before anything else, try the fix that solves most of these:** close every
-terminal window, open the course terminal again (Step 2), and run
-`course-smoke-test`. Newly installed commands often only appear in windows
-opened *after* the install.
+Otherwise, find the line that matches what you saw.
 
 | What you saw | What to do |
 |---|---|
-| `bash: course-smoke-test: command not found` | Close the window, open the course terminal again (Step 2), and retype it. If it still says that, Step 3 didn't finish — run it again. |
-| Nothing happened when I pasted | Press **Enter**. The terminal waits for it. If nothing pasted at all, use the right shortcut: `Command+V` on Mac, `Ctrl+Shift+V` or right-click on Windows. |
-| `unknown option` right after pasting the Step 3 line | Your email program split the long line in two — the second half of your key became a separate command. Ask your facilitator to resend it as a single line (or copy it from the attachment instead), and paste again. |
+| `bash: course-smoke-test: command not found` | Close the window, open the course terminal again (Step 2), and retype it. If it still says that, Step 3 didn't finish. Run Step 3 again. |
+| Nothing happened when I pasted | Press **Enter**. If nothing pasted, use `Command + V` on a Mac, or `Ctrl + Shift + V` or right-click on Windows. |
+| `unknown option` right after pasting the Step 3 line | The line was split in two, so the end of your key ran as a separate command. Copy it again as a single line. If it came by email, copy it from the attachment, or ask your instructor to resend it as one line. |
 | `[no] the course environment has a problem` | Run Step 1 again, then close every terminal window and open a new one. |
 | `[no] pi is not installed` | Close the window, open the course terminal again, and run Step 3 again. |
-| `[no] pi is version …, but this course uses …` | Run Step 3 again — it installs the exact version the course expects. If it comes back, send a screenshot. |
-| `[no] pi is not set to the course model` or `pi's course settings are missing` | Run Step 3 again (it rewrites the settings), then `course-smoke-test`. |
-| `[no] your key is not saved` | Run Step 3 again, using the exact line from your facilitator's email — the whole line, including the key at the end. |
-| `[no] could not reach the model` | Check you're online (load any web page). If you are, your key may not be switched on yet — send your facilitator a screenshot. |
-| `[no] the model did not answer within …` or `the agent did not finish within …` | Usually a slow connection or a busy model. Run `course-smoke-test` once more; if it happens twice, send a screenshot. |
-| `[no] the model replied, but not as expected` | Run `course-smoke-test` once more. If it happens twice, send your facilitator the lines it printed. |
-| `[no] the agent ran but did not create the file` | Run `course-smoke-test` once more. Agents are not perfectly repeatable, and a single retry usually settles it. If it fails twice, send a screenshot. |
-| `course-update` says it could not reach the course updates | You're offline, or the course site is briefly down. Check you can load a web page, try once more, and otherwise carry on — nothing was changed. Tell your facilitator. |
-| Step 1 asked for a password | Type the password you use to log in to the computer. It won't show any characters as you type — that's normal, keep typing and press Enter. |
-| macOS says Ghostty "cannot be opened" | Right-click the Ghostty icon in your Applications folder and choose **Open**, then confirm. macOS only asks this the first time. |
-| Windows: I opened "Git Bash" from the Start menu | Close it. Open **Windows Terminal** instead (Start → type `Terminal`). They look similar; only one is set up for the course. |
-| Windows: something about winget being blocked | Your employer's IT settings are blocking installations. Send your facilitator the message you saw — this needs sorting before the first session. |
+| `[no] pi is version …, but this course uses …` | Run Step 3 again; it installs the version the course uses. If the message comes back, contact your instructor. |
+| `[no] pi is not set to the course model` or `pi's course settings are missing` | Run Step 3 again, then `course-smoke-test`. |
+| `[no] your key is not saved` | Run Step 3 again with your whole setup command, including the key at the end. |
+| `[no] could not reach the model` | Check you're online by loading any web page. If you are, your key may not be active yet. Contact your instructor. |
+| `[no] the model did not answer within …` or `the agent did not finish within …` | Usually a slow connection or a busy model. Run `course-smoke-test` again. If it happens twice, contact your instructor. |
+| `[no] the model replied, but not as expected` | Run `course-smoke-test` again. If it happens twice, contact your instructor. |
+| `[no] the agent ran but did not create the file` | Run `course-smoke-test` again. The agent doesn't behave identically every run, and one retry usually passes. If it fails twice, contact your instructor. |
+| `course-update` says it could not reach the course updates | Check you can load a web page and try once more. If it still fails, carry on and tell your instructor; nothing on your computer was changed. |
+| The installer asked for a password | Type the password you use to log in to the computer. No characters appear as you type. Press Enter when done. |
+| macOS says Ghostty "cannot be opened" | In your Applications folder, right-click Ghostty, choose **Open**, then confirm. macOS asks this only the first time. |
+| Windows: I opened "Git Bash" from the Start menu | Close it and open **Windows Terminal** (Start, type `Terminal`). |
+| Windows: a message about winget being blocked | Your employer's IT settings block installations. Send the message to your instructor; this has to be fixed before Session 1. |
 
-**If none of these match, or you tried the fix and it didn't help:** take a
-screenshot of the whole terminal window and send it to your facilitator. Do
-that sooner rather than later — setup problems are expected, they're quick to
-diagnose from a screenshot, and there is nothing to be gained by struggling
-alone the night before session one. A confused participant is a bug in these
-instructions, not a bug in you.
+**Contacting your instructor.** On your course setup page, under "Stuck on
+any step?", choose "Ask the TA". The TA is automated; a person answers within
+a day. Copy the whole terminal window and paste it in, with the step you were
+on. Ask early: a setup problem is quick to diagnose from the terminal text.
 
 ---
 
 ## What just got installed on your computer
 
-The honest inventory, because you should know what's on your own machine:
-
 | | What it is |
 |---|---|
-| **Ghostty** (Mac) or **Windows Terminal** (Windows) | The terminal app the course uses. On Windows it's usually already there. |
-| **Node.js** and **git** | Two pieces of plumbing pi needs. Widely used, uncontroversial, quiet. |
-| **`~/.agentic-101/`** | A folder holding the course's own commands: `commit`, `revert`, `course-check`, `course-update`, `course-smoke-test`. |
-| **pi** (`@earendil-works/pi-coding-agent`) | The agent itself — the subject of the course. |
-| **`~/.pi/agent/`** | pi's own settings folder: the course model configuration, and your key in a file only your account can read. |
-| **`~/course-practice/`** | Your practice folder. A normal folder — you can open it in Finder or File Explorer. Everything you do on the course happens here. |
+| **Ghostty** (Mac) or **Windows Terminal** (Windows) | The terminal app the course uses. Windows usually has it already. |
+| **Node.js** and **git** | Two widely used tools pi needs. |
+| **`~/.agentic-101/`** | A folder with the course's own commands: `commit`, `revert`, `course-check`, `course-update`, `course-smoke-test`. |
+| **pi** (`@earendil-works/pi-coding-agent`) | The agent. |
+| **`~/.pi/agent/`** | pi's settings: the course model, and your key in a file only your account can read. |
+| **`~/course-practice/`** | Your practice folder. You can open it in Finder or File Explorer. Your course work happens here. |
 
-A few small edits are also made to the settings files that control how your
-terminal starts up and how it handles the keyboard — so the course commands
-are there when you open a window, and so pi's shortcuts work. Each edit is a
-clearly marked block in a file that is backed up before it is touched, and
-each is reversible.
+The installer also adds a marked block to the files that control how your
+terminal starts and handles the keyboard, so the course commands are
+available and pi's shortcuts work. Each file is backed up before it is
+changed, and each change can be undone.
 
-Nothing runs in the background. Nothing starts when your computer starts.
+Nothing runs in the background, and nothing starts when your computer
+starts.
 
-**To remove all of it later** takes two steps, and it's worth being precise
-about what each one removes:
+**To remove everything later:**
 
-1. The environment uninstaller described in
-   [../env/README.md](../env/README.md) removes the course commands
-   (`commit`, `revert`, `course-check`) and undoes the terminal edits.
-2. That still leaves the pieces this page installed. To remove those too:
+1. Run the environment uninstaller described in
+   [../env/README.md](../env/README.md). It removes the course commands
+   (`commit`, `revert`, `course-check`) and undoes the terminal changes.
+2. Remove pi, its settings and your practice folder:
 
    ```bash
    npm uninstall -g @earendil-works/pi-coding-agent   # removes pi
@@ -366,49 +324,27 @@ about what each one removes:
    rm -rf ~/course-practice                           # removes your practice folder and its contents
    ```
 
-   The `~/.pi` folder is the important one: **your course key is stored
-   there**, and no uninstaller touches it automatically. If you only do
-   step 1, the key stays on your computer.
+   Your course key is stored in `~/.pi`. The uninstaller does not remove
+   it.
 
-Both steps deliberately leave Node, git, and the terminal app alone —
-those may be things you now use for other reasons, and removing them isn't
-ours to decide.
+Neither step removes Node, git or the terminal app, in case you use them for
+other things.
 
 ---
 
 ## Three things to know for the first session
 
-**Your practice folder.** To get to it in the terminal, type:
+**Your practice folder.** To go to it in the terminal, type:
 
 ```bash
 cd ~/course-practice
 ```
 
-**The safety net.** pi can change and delete files, and it has no undo button.
-That's why the course lives in one folder and why you have two commands:
-`commit` saves a checkpoint of your practice folder, and `revert` puts it
-back the way it was. You'll be taught both properly in Session 2 — for now,
-just know they exist and that nothing you do is permanent.
+**The safety net.** pi can change and delete files, and it has no undo. Two
+course commands give you one: `commit` saves a checkpoint of your practice
+folder, and `revert` puts it back to the last checkpoint. Session 2 teaches
+both.
 
-**Getting updates.** The course's commands get fixed and improved between
-sessions. From Session 2 on, the first thing you'll do at every session is
-type `course-update` — it fetches anything new in a few seconds and says
-*Nothing to do* when there's nothing. You don't need to run it now.
-
----
-
-## For facilitators
-
-Everything on this page assumes the operator-side work is done. Before
-sending this to a cohort, work through
-[PRE_COHORT_CHECKLIST.md](PRE_COHORT_CHECKLIST.md) — it covers publishing the
-installers (without which the commands in Steps 1 and 3 do not work),
-re-pinning versions, per-key spend limits, and the dry-runs that are still
-outstanding. Current testing status is in [DRY_RUN.md](DRY_RUN.md) and
-[../env/FLOOR_TEST.md](../env/FLOOR_TEST.md).
-
-[pins.env](pins.env) is the authority on which pi and which model a cohort
-runs — the scripts read it, so changing a pin is a one-file edit. The sample
-outputs on this page quote those pins as literal text, so re-pinning means
-updating the expected-output blocks in Steps 3 and 4 too. The checklist says
-so at the point where it matters.
+**Getting updates.** From Session 2 on, start each session by typing
+`course-update`. It fetches any fixes in a few seconds, and says *Nothing to
+do* when there are none. You don't need to run it now.

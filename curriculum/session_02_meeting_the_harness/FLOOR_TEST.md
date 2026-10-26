@@ -1,168 +1,136 @@
-# Floor Test Protocol — Session 2
+# Test-student protocol — Session 2
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 floor test protocol and results -->
 
-Per `docs/trunk/TESTING_PHILOSOPHY.md` (Floor Testing): before this session
-is taught for the first time, at least one person matching the audience floor
-(DEC-004: comfortable with everyday computer use, **no programming or
-terminal background**) works through its prework and exercises while an
-author observes silently. Observed friction is fixed, not explained away;
-findings route to `docs/trunk/FRICTION.md`.
+A session is proven by a test student working through it (DEC-014): one
+person at the audience floor (DEC-004: comfortable with everyday computer
+use, **no programming or terminal background**) takes the session on the
+platform, self-paced, with you available as their instructor. What they
+hit is fixed in the material. Findings go to `docs/trunk/FRICTION.md` and
+the results log below.
 
-Session 1's floor test measured **comprehension** — whether an argument
-landed. This one measures something harder and more falsifiable: whether a
-person who has never used a terminal can **type the right things and
-correctly interpret what comes back**, unaided, from the written text. That
-is a much sharper test, and it is the one that decides whether this session
-is teachable.
+Session 1's test measures comprehension. This one measures whether a person
+who has never used a terminal can **type the right things and correctly
+read what comes back**, from the written text, with nobody beside them.
 
-[`DRY_RUN.md`](DRY_RUN.md) has already established that the commands work and
-that the text describes them accurately. It establishes nothing at all about
-whether a human can follow them. Those are different questions and this is
-the second one.
+[`DRY_RUN.md`](DRY_RUN.md) established that the commands work and that the
+text describes them accurately. It says nothing about whether a person can
+follow them; that is what this test is for.
 
 ## Preconditions
 
-- A tester at the floor who has **not** seen the material, has never used a
-  terminal, and has not been coached. Someone who has "picked up a bit of
-  command line" tests a different session.
-- **A machine set up exactly as a participant's would be**: the environment
-  installer run, `setup/install-pi.sh` run with a real key, and
-  `course-smoke-test` reporting PASS *before* the tester sits down. The floor
-  test is not a test of setup — `setup/DRY_RUN.md` and
-  `env/FLOOR_TEST.md` own that.
-- **The real interactive pi**, not print mode. The one thing the dry run
-  could not exercise is the interface the tester will actually meet.
-- The prework sent exactly as a participant would receive it, by email, with
-  no verbal preamble, a week ahead.
-- Printed [`handouts/terminal-card.md`](handouts/terminal-card.md) and
-  [`handouts/what-did-it-do.md`](handouts/what-did-it-do.md), and a filled-in
-  toil inventory (the tester's own, or Priya's).
-- A timer. The exercise timings are assertions, and this is where they get
-  checked.
-- Observer says nothing after the start except "what are you thinking?" when
-  the tester goes quiet for more than ~30 seconds. **The temptation to help
-  is enormous in this session** — a stuck tester in a terminal looks
-  genuinely distressed. Helping destroys the data. If they cannot proceed,
-  that is a defect; record it and *then* help.
+- A test student at the floor who has **not** seen the material, has never
+  used a terminal, and has not been coached. Someone who has "picked up a
+  bit of command line" tests a different session.
+- The student's own machine, set up from `setup/README.md` with
+  `course-smoke-test` reporting PASS before they start. Setup is tested
+  separately (`setup/DRY_RUN.md`, `env/FLOOR_TEST.md`); if the smoke test
+  fails, that's a setup finding, and this test starts after it's fixed.
+- **The real interactive pi.** The dry run used print mode; this is the
+  first time the text meets the interface the student actually sees.
+- The session published on the platform at a tag, exactly as a student
+  receives it, and a Session 1 inventory (their own, or Priya's).
+- You do not explain anything before they start. Help only through the
+  normal route ("Stuck on this session?", then "Send to your instructor"),
+  and log every time they use it.
 
-## Tasks (read to the tester verbatim)
+## How the test runs
 
-1. "Here's an email you'd have got before the session. Do what it asks."
-   ([`PREWORK.md`](PREWORK.md), cold, timed. Watch: does the concept-map
-   table get read or skipped? Does part 2 produce a *material* sentence or a
-   *task* sentence? Does part 3 get run at all?)
-2. "Work through this and stop when you get to exercise 2."
-   ([`EXERCISES.md`](EXERCISES.md), exercise 1, unaided, timed against 11
-   minutes.)
-3. "Now exercise 2." (Timed against 14 minutes. **The single most important
-   observation in the protocol** — see watch-fors 3 and 4.)
-4. "Here's what pi is." (Read the facilitator guide's beat 4 aloud, once,
-   exactly as written. Then:) "What are the four tools?" Ask it thirty
-   minutes later too.
-5. "Exercise 3." (Timed against 14 minutes. Watch the prompt they compose
-   before they send it — that is the exercise's real difficulty.)
-6. "Exercise 4, and fill in the worksheet." (Timed against 13 minutes. This
-   is the session's outcome; everything else is instrumentation.)
-7. "Exercise 5." (Timed against 7 minutes.)
-8. "Tell me what you asked for, what tools it used, what you checked, and
-   whether you used revert." (The checkpoint, cold.)
-9. "Read this and tell me what you'd do over the next week."
-   ([`PRACTICE.md`](PRACTICE.md). Watch whether the 60-minute budget reads as
-   reasonable or as homework, and whether "two real ones" reads as
-   *replacing* work or *adding* it.)
+1. **The student works alone on the platform**, prework through
+   submission. Ask them to note, per step, how long it took and anything
+   that made them stop.
+2. **You answer threads as you would for any student**, and copy each
+   question into the results log verbatim. In this session every thread is
+   likely to be a terminal moment worth fixing in the text.
+3. **Read the checkpoint result**, including near-miss rounds and
+   escalations, and the submitted session log against the worksheet.
+4. **Hold a debrief call** of 20–30 minutes after they submit. Ask the
+   questions under "Watch-fors". Then ask, cold: "Tell me what you asked
+   for, what tools it used, what you checked, and whether you used
+   revert."
 
-## What the observer records
+**If you can, watch exercises 2 and 4 live** over a screen share, saying
+nothing except "what are you thinking?" when they go quiet for more than
+~30 seconds. A stuck student in a terminal looks distressed, and the urge
+to help is strong. Helping destroys the data. If they can't go on, record
+it as a defect and *then* help.
 
-- **Time per exercise**, against the claims: 11 / 14 / 14 / 13 / 7 minutes.
-- Hesitations longer than ~10 seconds, and what was on the screen.
-- **Every keystroke that wasn't the instruction** — typed the `$`, typed a
-  smart quote, hit Enter twice, retyped a command that had already worked.
-- Words the tester misread or asked about. Particular suspects: "checkpoint",
-  "revert", "delegation", "tool call", "harness", "prompt", "session".
-- Every question asked aloud, verbatim.
-- **Every moment the tester believed something had gone wrong when it hadn't.**
-  This is the richest data in the session and the easiest to miss, because
-  they usually don't say anything — watch the face and the pause.
-- **Defect** = the tester could not proceed without help, or proceeded to an
+## What to record
+
+- **Time per step**, against `platform/index/02_meeting_the_harness.md`:
+  prework 15 min, concept track 15, exercises 1–2 25, exercise 3 15,
+  exercises 4–5 25, solo lap 20, two real ones 15 each, one worksheet 10.
+- Hesitations longer than ~10 seconds, and what was on screen.
+- **Every keystroke that wasn't the instruction**: typed the `$`, typed a
+  smart quote, pressed Enter twice, retyped a command that had worked.
+- Words they misread or asked about. Suspects: "checkpoint", "revert",
+  "delegation", "tool call", "harness", "prompt", "session".
+- Every question they asked, verbatim, and where: course assistant,
+  checkpoint conversation, or you.
+- **Every moment they believed something had gone wrong when it hadn't.**
+  The richest data in the session, and the easiest to miss, because they
+  rarely say so. Ask in the debrief.
+- **Defect** = they could not proceed without a person, or reached an
   outcome they didn't intend. **Observation** = friction that didn't block.
-  Both get logged; defects block cohort use until fixed.
+  Log both; defects block the next student until fixed.
 
 ## Watch-fors specific to this session
 
-1. **The blank or unexpected response.** Does a command that prints nothing —
-   or prints something unfamiliar — read as failure? Count how many times the
-   tester types a working command a second time because they didn't believe
-   it worked.
-2. **The prompt versus the `$`.** Do they type the `$`? Do they know when the
-   terminal is ready for them and when it is busy?
-3. **`revert`'s four questions.** The dry run found two traps here: the word
-   "Wait —" reads as an error, and the checkpoint they want is number 2, not
-   1. The exercise now warns about both. **Does the warning work?** If the
-   tester still types `1`, the fix isn't the text — the command's list
-   ordering is a candidate defect in `env/bin/revert` and should be logged
-   there.
-4. **Does the safety net actually remove the fear?** Ask directly after
-   exercise 2: *"On a scale of one to ten, how worried are you about breaking
-   something?"* Ask again after exercise 5. **If the number doesn't drop, the
-   session has failed at its central job**, regardless of how many exercises
-   were completed. This is the most important single question in the
-   protocol.
-5. **Composing the exercise-3 prompt.** How long between reading the fill-in
-   sentence and sending it? Do they describe the *material* or the *task*?
-   The prework asks them to write this sentence in advance — did having done
-   so help, or did they rewrite it anyway?
-6. **Box 3 of the worksheet.** Does it contain something specific, or "looked
-   fine"? Did they look at the *file*, or at the terminal? Watch which window
-   they click on — this is observable and it is the whole session.
-7. **The tool-call boxes.** Can the tester point at one on screen and say
-   what it is? Do they distinguish a tool call from the agent's prose without
-   being told which is which? If not, the beat-4 script needs work — the
-   facilitator gets one pass at that explanation and it has to hold.
-8. **`/quit` and `pi -c`.** Two pieces of vocabulary carried across three
-   exercises. Does the tester remember them, or reach for the card, or get
-   stuck? Reaching for the card is a **pass** — that's what it's for.
-9. **Does the practice assignment read as replacing work or adding it?** Ask
-   directly. If it reads as homework, the framing has failed and the audience
-   will quietly not do it.
+1. **The blank or unexpected response.** Does a command that prints
+   nothing, or prints something unfamiliar, read as failure? How often do
+   they retype a command that worked?
+2. **The `$` and the prompt.** Do they type the `$`? Do they know when the
+   terminal is ready and when it's busy?
+3. **`revert`'s four questions.** The dry run found two traps: "Wait —"
+   reads as an error, and the checkpoint they want is number 2. The
+   exercise warns about both. **Does the warning work?** If they still
+   type `1`, the list ordering in `env/bin/revert` is a candidate defect.
+4. **Does the safety net remove the fear?** Ask after exercise 2 and again
+   after exercise 5 (in the debrief if you didn't watch): *"On a scale of
+   one to ten, how worried are you about breaking something?"* **If the
+   number doesn't drop, the session has failed at its central job**,
+   however many exercises were completed.
+5. **The exercise 3 prompt.** How long between reading it and sending it?
+   Did they describe the material or the task? Did the two sentences from
+   the prework help, or did they rewrite them?
+6. **Box 3 of the worksheet.** Something specific, or "looked fine"? Did
+   they look at the file, or only at the terminal?
+7. **The tool-call boxes.** Can they point at one and say what it is? Do
+   they tell a tool call from the agent's prose without being told? If not,
+   the concept track's explanation needs work.
+8. **`/quit` and `pi -c`.** Do they remember them, reach for the card, or
+   get stuck? Reaching for the card is a **pass**.
+9. **Does the practice week read as replacing work or adding it?** Ask. If
+   it reads as homework, they won't do it.
+10. **Did they know when to ask for help, and how?** In particular: when the
+    smoke test failed, did they stop and send the output, or start
+    searching the error?
 
-## Facilitator dry-run (separate, technical)
+## Instructor dry run (separate, technical)
 
-See [`DRY_RUN.md`](DRY_RUN.md), which is complete for macOS on an unpinned pi.
-Before first teach: re-run on the pinned version, run Session 2 exercises
-1–5 on Windows (installation through functional pi is already
-operator-verified), run once through the real interactive TUI, and perform
-this human floor test.
+See [`DRY_RUN.md`](DRY_RUN.md), which is complete for macOS on an unpinned
+pi. Before the first test student: re-run on the pinned version, run
+exercises 1–5 on Windows (installation through functional pi is already
+operator-verified), and run once through the real interactive pi.
 
 ## Results log
 
-### Human floor test
+### Test student
 
-**PENDING** — not yet performed. Requires a tester at the audience floor and
-a fully provisioned machine; **operator follow-up**. Nothing in this session's
-central claim — that a non-programmer can be made unafraid of a terminal and
-an agent in ninety minutes — can be verified without one. The dry run tells
-you the commands work. It cannot tell you whether anyone can follow them.
+**PENDING** — not yet performed. Needs a test student at the audience floor
+on their own set-up machine. Whether a non-programmer can be made unafraid
+of a terminal and an agent in one session can't be verified without one.
 
 ### Windows pass
 
-**PARTIAL.** The operator has verified Windows installation end to end through
-a fully functional pi. The complete Session 2 exercise path is still
-**PENDING**: `explorer .`, editing and deleting through File Explorer, all
-five exercises in order, their timings, and participant interpretation have
-not been verified on Windows. This is not a human floor-test pass.
+**PARTIAL.** The operator has verified Windows installation end to end
+through a functional pi, and exercise 2's `commit`/`revert` (DRY_RUN.md,
+addendum). The rest of the Session 2 path is **PENDING**: `explorer .`,
+editing and deleting through File Explorer, exercises 1 and 3–5, their
+timings, and how a student reads them on Windows.
 
-### Interactive TUI pass
+### Interactive pi pass
 
-**PENDING** — the dry run used pi's print mode. `Ctrl+O`, `Escape`, `/quit`
-and interactive `pi -c` are described in the material from pi's documentation
-and have not been exercised against this session's text.
-
-### First teach
-
-**PENDING** — checkpoint results (the table in
-[`CHECKPOINT.md`](CHECKPOINT.md)) get summarised here after the first live
-delivery, along with actual timings against the timing table in
-[`FACILITATOR_GUIDE.md`](FACILITATOR_GUIDE.md), and the setup-triage tally.
-The 90-minute budget is a first estimate; the triage opening in particular is
-a guess at eight minutes and is the most likely thing to move.
+**PENDING** — the dry run used pi's print mode. `Ctrl+O`, `Escape`,
+`/quit` and interactive `pi -c` are described from pi's documentation and
+haven't been exercised against this session's text.

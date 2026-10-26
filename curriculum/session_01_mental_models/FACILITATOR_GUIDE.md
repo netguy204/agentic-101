@@ -2,228 +2,192 @@
 
 <!-- Chunk: docs/chunks/fluency_session_01 - Session 1 facilitator guide -->
 
-**Length:** 90 minutes live. A 60-minute variant is marked in the timing
-table.
+The student works through Session 1 alone on the platform (DEC-014). You
+are their instructor: you answer what the automated help can't, and you
+run live sessions, one to one or with a small group on a video call, when
+a student needs one or you have scheduled one. Students see you as "your
+instructor".
 
-**The one thing this session must achieve:** every participant leaves
-believing the course is *for them*, holding a list of their own work with
-an honest mark against each entry saying whether they could tell good from
-bad. Everything else is in service of that.
+**The outcome:** the student has a list of their own repeating work, with
+an honest mark against each row saying whether they could tell good work
+from bad, and can explain that mark for one row. The bar is in
+[`CHECKPOINT.md`](CHECKPOINT.md).
 
-**What this session is not:** a tool demonstration. Nobody installs
-anything, nobody types a command, and the only agent in the room is on
-your screen. That is deliberate — participants whose pre-course setup
-failed take part in every minute of this session, and their setup gets
-fixed before Session 2, which is the one that needs it.
-
----
-
-## Before the room
-
-- **Read** `docs/trunk/GOAL.md` (the problem statement and thesis) and
-  `docs/trunk/SPEC.md` (Terminology). The vocabulary in this guide is
-  quoted from SPEC.md deliberately; every later session builds on it, so
-  use these words rather than synonyms you prefer.
-- **Read** [`handouts/toil-inventory.md`](handouts/toil-inventory.md),
-  [`EXERCISES.md`](EXERCISES.md) (what participants follow) and
-  [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) (what you run the block
-  from) properly. You will be filling in a live
-  example on the board and you should not be reading the columns for the
-  first time in front of people.
-- **Print** the inventory sheet, one per participant plus spares, and the
-  canned-toil sheet for anyone who asked for it in prework. Print them
-  even for a remote cohort — say "print this or copy the four columns
-  onto anything" in the joining email.
-- **The prework** is
-  [`platform/prework/01_mental_models.md`](../../platform/prework/01_mental_models.md),
-  served by the platform. It no longer asks for a setup-status reply; the
-  platform's setup gate covers that. Ask each participant directly whether
-  their setup works and whether they want the canned task set.
-- **Test the demo** (see Demo, below) on your own machine the day before,
-  on the pinned model. It needs a working pi install on the *facilitator's*
-  machine — not on anyone else's. If you don't have one, you install it the
-  same way the participants did: follow `setup/README.md` end to end,
-  including its smoke test. Do this a week out, not the night before.
-- **Tally the answers**: who reported `PASS`, who reported `FAIL`,
-  who didn't reply, who asked for the canned set.
-
-### Setup status: collect it, don't solve it
-
-Setup status is a fact you need and a problem you must not open in the
-room. Keep a table:
-
-| Participant | Setup status | Canned set? | Remediation slot booked |
-|---|---|---|---|
-| | PASS / FAIL / no reply / didn't attempt | | |
-
-At the door — as people arrive, or in the first two minutes — confirm the
-tally out loud in aggregate, never individually: *"About a third of you
-had the setup work first time and a couple of you hit a wall. That's
-completely normal and it does not affect today at all. If yours didn't
-work, I'll grab you at the end for two minutes to book a slot."*
-
-**The remediation route:** anyone with `FAIL`, no reply, or an unattempted
-setup gets a 20–30 minute one-to-one **before Session 2**. Book it at the
-end of this session, not during it. The setup guide (`setup/README.md`)
-and its troubleshooting table are the script for that slot.
-
-**Do not** attempt to fix a laptop during this session, and do not let a
-participant open one to try. It costs the room fifteen minutes, it teaches
-the person that the course is about fighting software, and it fixes
-something nothing today depends on.
+Nobody installs or types anything in this session. A student whose setup
+failed can do all of it; their setup needs fixing before Session 2.
 
 ---
 
-## Timing
+## What the student does
 
-| Start | Min | Beat | 60-min variant |
-|---|---|---|---|
-| 0:00 | 5 | Arrival, welcome, setup tally | 5 |
-| 0:05 | 11 | **Cold open — why the moment matters** | 9 |
-| 0:16 | 8 | Mental models: what an agent is, and how it differs from a chatbot | 5 |
-| 0:24 | 6 | **Demo, beat 1** — the agent does something impressive | 4 |
-| 0:30 | 8 | **Demo, beat 2** — "how would you check this?", then the reveal | 4 |
-| 0:38 | 8 | Judgment vs expertise; the judgment boundary; the thought experiment | 6 |
-| 0:46 | 5 | Break; hand out the sheets | — |
-| 0:51 | 7 | Exercise 1 — brain dump | 5 |
-| 0:58 | 12 | **Exercise 2 — the check column** | 10 |
-| 1:10 | 8 | Exercise 3 — the skeptic pass | 5 |
-| 1:18 | 2 | Wrap the block, count the rows | 1 |
-| 1:20 | 7 | **Checkpoint round** | 4 |
-| 1:27 | 3 | Practice assignment, close | 2 |
+| Step | Time | Source |
+|---|---|---|
+| Prework: five things they did more than once last week | 10 min | `platform/prework/01_mental_models.md` |
+| Concept track: four audio segments, each closed by a recall question | 15 min | `platform/audio/01_mental_models.md` |
+| Fill the sheet, then the check column (exercises 1 and 2) | 25 min | [`EXERCISES.md`](EXERCISES.md) |
+| The skeptic pass (exercise 3) | 12 min | [`EXERCISES.md`](EXERCISES.md) |
+| The practice week: daily pass, check test, consolidation | 55 min over a week | [`PRACTICE.md`](PRACTICE.md) |
+| Submit the sheet and one task, explained | — | The platform's checkpoint |
 
-**Cutting rules, in the order you should cut.** Drop the break. Shorten
-the cold open by cutting the "what changed" section but never the "why
-you" section. Compress the demo to one beat plus the reveal. Run
-exercise 3 as one facilitator-led round in front of the room instead of in
-pairs. **Never cut exercise 2, and never cut the checkpoint round** —
-between them they are the session's outcome and the evidence that it
-landed. If you're at 1:15 with the exercises unfinished, run exercise 2 to
-completion and hand the checkpoint to the practice assignment as
-"send me your three entries by Friday", noting it in your session log.
+The sheet and its column definitions are
+[`handouts/toil-inventory.md`](handouts/toil-inventory.md). A student who
+can't use their own work uses
+[`handouts/canned-toil.md`](handouts/canned-toil.md) for the whole session.
+
+The platform checks the submission against the rubric. If the student's
+answer is a near-miss, it asks the corrective question from
+[`CHECKPOINT.md`](CHECKPOINT.md) and gives them a second try. After two
+rounds, or when it isn't confident, it sends the case to you.
 
 ---
 
-## Beat 1 — Cold open: why the moment matters (11 min)
+## Before your first student
 
-Open with the argument, not with definitions. The participants have been
-told, by every other piece of AI material they've seen, that they are
-behind. This eleven minutes exists to tell them the opposite, and it has
-to land before they will invest in anything else.
-
-**Say these three things. In this order.**
-
-**1. One profession has had leveraged judgment for forty years, and it
-wasn't because they were smarter.** A software engineer could take a
-decision — *this input is suspicious; this case needs a human* — write it
-down once, and have it govern thousands of executions without them in the
-room. Their judgment compounded. Everyone else's ran live: one meeting,
-one review, one document at a time. Thousands of good calls, each applied
-exactly once.
-
-**2. That gap existed for a boring structural reason, and it just
-closed.** The only way to encode a decision was code, and learning to code
-was a career rather than an afternoon. Agentic tools take instructions in
-plain language. "Flag anything from a customer who's mentioned cancelling,
-because retention is what we're protecting this quarter" is now a thing
-you write down once and have applied every time.
-
-**3. So the bottleneck has moved, and you already own the new one.** It
-used to be finding an engineer's time and iterating until they got it
-right. Now the bottleneck is knowing what's worth automating and what
-good looks like — which makes the room the scarce resource. That is
-exactly the thing you have and exactly the thing the tool doesn't. *"The
-agent does the typing; you supply the judgment."*
-
-**Land it personally.** Ask the room, and take three or four answers
-aloud: *"What's the thing you'd have automated years ago if you'd had a
-programmer sitting next to you?"* Write the answers on the board and leave
-them up — you will point back at them during the exercises, and a couple
-of them will end up as capstones in Session 6.
-
-**Two framings to avoid, hard.**
-
-- **Threat framing.** No "AI is coming for these jobs", no "adapt or be
-  left behind", not even as a joke. The argument is that their judgment
-  becomes more valuable, not that they're at risk. Anyone who hears threat
-  spends the rest of the session defending themselves instead of listing
-  their work.
-- **Hype framing.** No "this changes everything", no breathless demo
-  language, no numbers you can't source. This audience has been sold to
-  before and it has made them appropriately suspicious. Understated and
-  specific beats enthusiastic every time — and the demo in twenty minutes
-  is going to show the agent being *wrong*, which only works if you
-  haven't spent the cold open promising magic.
+- **Read** `docs/trunk/GOAL.md` and the Terminology section of
+  `docs/trunk/SPEC.md`. Use SPEC's words for agent, judgment, expertise
+  and judgment boundary; every later session builds on them.
+- **Read** the handout, [`EXERCISES.md`](EXERCISES.md),
+  [`EXERCISE_RUNSHEET.md`](EXERCISE_RUNSHEET.md) and
+  [`CHECKPOINT.md`](CHECKPOINT.md).
+- **Listen to the concept track** once, so you know what the student has
+  heard.
+- **Rehearse the Northwind demo** (below) if you will run live sessions.
+  It needs a working pi install on your machine. If you don't have one,
+  follow `setup/README.md` end to end, including the smoke test, a week
+  ahead.
 
 ---
 
-## Beat 2 — Mental models: agent vs chatbot (8 min)
+## Threads from students
 
-Now the definitions, and only now. Two of them, both quoted from SPEC.md
-Terminology so that Sessions 2–6 can build on the same words.
+Students reach you through "Stuck on this session?", then "Send to your
+instructor". Escalations from the checkpoint arrive the same way. Reply in
+the thread within a day.
+
+What usually arrives in Session 1:
+
+- **A checkpoint escalation.** The rubric's near-miss rows tell you what
+  the student said and which question they have already been asked. Ask
+  the next question down; the Recovery section of
+  [`CHECKPOINT.md`](CHECKPOINT.md) lists the three usual causes and what to
+  do for each.
+- **"Can I use this task from my job?"** If the data or the task is
+  confidential, they write the shape of the task and leave out the
+  contents, or use the canned sheet. If their work can't be described even
+  in outline, flag it now: Session 6 needs something real to point at.
+- **A failed setup.** Nothing in Session 1 needs it. Offer a 20–30 minute
+  call before they start Session 2, and work through `setup/README.md` and
+  its troubleshooting table on that call.
+
+If a thread would take more than three exchanges, offer a call.
+
+---
+
+## A live session
+
+Offer one when a student is stuck on the check column, when their
+checkpoint escalates twice, or as a scheduled group session. 30–45 minutes
+on a video call, one student or a small group. The student has usually
+heard the concept track, so the call does three things the platform can't:
+
+1. **The Northwind demo, 10 minutes.** The student watches an agent give a
+   confident, well-explained, wrong answer that only they can catch. The
+   concept track describes this; the demo is the only place they see it.
+2. **One row worked together, 5 minutes.** Take one of their rows, or
+   Priya's Monday roll-up from the canned sheet, and fill in columns 3 and
+   4 out loud. It sets how specific a check has to be.
+3. **You as the skeptic, 10–15 minutes.** Run exercise 3 with you asking
+   "How would you know if it was wrong?" until you believe the answer. A
+   student who would rather not name the task can tell you only how they'd
+   check it.
+
+End with the checkpoint frame: "One task from your sheet. In or out. And
+the check: how you'd know if it was wrong." A corrected near-miss counts.
+
+**With a small group:** do the demo for everyone, then take each person in
+turn for the skeptic pass while the others listen, or use breakout rooms of
+two for four minutes each way. Ask for the checkpoint frame from each
+person at the end, or have them submit it on the platform.
+
+Don't fix a laptop during a Session 1 call. Book the setup call separately.
+
+---
+
+## The argument, if you have to make it live
+
+The concept track makes the argument, and the student should hear it
+before a call. If you need to restate it, keep the order:
+
+1. **Software engineers have had leveraged judgment for forty years.** They
+   could write a decision down once and have it applied thousands of times.
+   Everyone else's judgment ran live, one call at a time.
+2. **The reason was structural, and it has gone.** Encoding a decision
+   meant writing code. Agentic tools take instructions in plain language.
+3. **So the bottleneck has moved to knowing what's worth automating and
+   what good looks like.** The student has that. The tool doesn't. "The
+   agent does the typing; you supply the judgment."
+
+Two framings to keep out:
+
+- **Threat.** No "AI is coming for these jobs" or "adapt or be left
+  behind", even as a joke. A student who hears threat defends themselves
+  and stops listing their work.
+- **Hype.** No "this changes everything" and no numbers you can't source.
+  This audience has been sold to before. The demo shows the agent being
+  wrong, which only works if you haven't promised magic.
+
+### The terms, quoted from SPEC.md
 
 > An **agent** is an LLM running in a harness with the ability to take
 > actions — read and write files, run commands, call tools — not just
 > converse.
-
-The distinction that matters to this room is not technical:
-
-| A chatbot | An agent |
-|---|---|
-| Converses. Produces text for you to use. | Acts. Reads and changes real files and systems. |
-| You are the hands: you copy, paste, and apply. | It has hands of its own. |
-| One exchange at a time. | Multiple steps, chained, without asking between each one. |
-| Wrong answer costs you the time to notice. | Wrong action has already changed something. |
-
-**The analogy that works** (adapt to your room, keep the shape): a chatbot
-is a very well-read colleague on the phone. An agent is a colleague you
-handed your laptop to. The advice may be identical. The consequences of it
-being wrong are not.
-
-Two more terms, said once and left to settle — the exercises are where
-they get real:
 
 > **Judgment** is the ability to discern a reasonable result from an
 > unreasonable one *in a given domain* — to *evaluate* work without
 > necessarily being able to produce it. **Expertise** is the ability to
 > produce the work yourself.
 
-"In a given domain" is doing real work in that sentence — judgment isn't a
-personality trait you have or lack, it's something you have *here* and
-don't have *there*. Say it; the exercises depend on people believing it.
-
-Then the sentence this whole course hangs on. Put it on a slide, say it
-slowly, and don't explain it yet — the demo is the explanation:
+> Your **judgment boundary** is the edge of the space where you can
+> evaluate outcomes. Tasks inside it are candidates for delegation. Tasks
+> outside it are not — regardless of how capable the agent is.
 
 > **Delegation can substitute for expertise. Nothing substitutes for
 > judgment.**
 
+"In a given domain" matters: a person has judgment about some tasks and
+not others. Priya can judge a status roll-up cold and can't judge a
+liability clause.
+
+A chatbot is a well-read colleague on the phone. An agent is a colleague
+you handed your laptop to. The advice may be identical; the consequences
+of it being wrong are not.
+
 ---
 
-## Beats 3 and 4 — The demo, in two halves (6 min + 8 min)
+## The Northwind demo
 
-The demo is not a capability showcase. It is the argument for the judgment
-boundary, delivered as an experience rather than a claim, and it only
-works if you run both halves. If you are short of time, cut the first half
-down — never run it without the second.
+Run both halves. The first shows the agent doing good work; the second
+shows that only the student could catch where it went wrong. Never run the
+first half without the second.
 
-### Setting up: give the room the domain knowledge first
+`demo/start-demo.sh` creates a clean working folder and prints a crib
+(see [`demo/README.md`](demo/README.md)).
 
-This is the trick that makes it work. Sixty seconds before you touch the
-keyboard, make the room the domain expert:
+### Set up: give the student the domain knowledge
 
-> "For the next ten minutes you all work at Northwind Coffee. Two things
-> you know about Northwind that nobody outside would: **Brand isn't part
-> of Marketing here.** Brand sits under Product — it's a long-running org
+Before you touch the keyboard, say:
+
+> "For the next ten minutes you work at Northwind Coffee. Two things you
+> know about Northwind that nobody outside would: **Brand isn't part of
+> Marketing here.** Brand sits under Product; it's a long-running org
 > quirk everyone internally knows about. And **'Field' means the retail
-> store teams**, not sales. Everyone got that? You are now the only people
-> in the room who know how this company is organised."
+> store teams**, not sales."
 
-Have those two facts visible on the board for the rest of the demo.
+Keep those two facts visible, in the chat or on a shared slide.
 
 ### The file
 
-Create `headcount.csv` in a scratch folder before the session:
+`demo/headcount.csv`:
 
 ```csv
 name,department
@@ -238,181 +202,123 @@ Hank,Field
 Ivy,Field Sales
 ```
 
-### Beat 1 — the agent does the work (6 min)
+### First half: the agent does the work
 
-Share your screen, run the agent in that folder, and send exactly this:
+Share your screen, run the agent in the demo folder, and send exactly:
 
 > `headcount.csv` has department names written inconsistently.
 > Standardize them to one clean name per department, and tell me what you
 > chose and why.
 
-Narrate what scrolls past, in plain language, without teaching any
-mechanics: *"It's reading the file… it's decided how to group them… now
-it's writing the file back."* Do not explain tool calls, the terminal, or
-anything on screen that isn't the reasoning. Somebody will ask what an
-app or a command is; say "Session 2, I promise" and move on.
+Narrate the reasoning in plain language ("it's reading the file… it's
+decided how to group them… it's writing the file back"). Don't explain
+tool calls or the terminal; that is Session 2. Show the result. It will be
+good: five spellings of Marketing collapsed correctly, each ambiguous call
+explained.
 
-Then show the result. It will be genuinely good: the five spellings of
-Marketing collapsed correctly, an explanation of each ambiguous call
-written in confident, professional prose. Let that land. Let someone say
-"that's quite impressive." It is.
+### Second half: "how would you check this?"
 
-### Beat 2 — "how would you check this?" (8 min)
-
-Now, before you say anything about whether it's right:
+Before you say whether it's right, ask:
 
 > **"How would you check this?"**
 
-Take answers and write them on the board. You will get some or all of:
-count the rows before and after; list the distinct department values and
-see if the list makes sense; look for a name you recognise; check nobody
-got dropped; read the explanation and see if the reasoning holds.
+Expect: count the rows; list the distinct values; look for a name you
+recognise; check nobody was dropped; read the explanation. Praise the row
+count and the distinct-values list; they are real, cheap checks. Then:
+*"All of those pass on this file. Is it right?"*
 
-Praise the row count and the distinct-values list — they are real checks,
-they are cheap, and they generalise. Then push once: *"All of those pass.
-Every one of them passes on this file. Is it right?"*
-
-Wait. Someone will get there: **Grace.** `Brand & Mktg` has been folded
-into Marketing, which is correct at almost every company on earth and
-wrong at Northwind. The agent had no way to know. Nothing in the file said
-so. The output is confident, well-explained, and wrong in a way that no
-mechanical check catches — only someone who knows the company catches it.
-
-**Say the conclusion explicitly, because this is the moment the session
-turns:**
+Wait for **Grace.** `Brand & Mktg` has been folded into Marketing, which
+is right almost everywhere and wrong at Northwind. Nothing in the file
+said so. Then say:
 
 > "It wasn't a bad answer. It was the best answer available to anyone who
 > didn't know this company. The only thing that caught it was you knowing
-> something the agent couldn't. That's your judgment, and it's the whole
-> reason you're the one who has to be in the loop. Notice also that the
-> checks we listed on the board — the row count, the value list — all
-> passed. Mechanical checks catch mechanical errors. They don't catch
-> this."
+> something the agent couldn't. That's your judgment, and it's why you
+> have to be in the loop. The row count and the value list both passed.
+> Mechanical checks catch mechanical errors. They don't catch this."
 
-**If the room doesn't get there**, walk down the file name by name until
-someone says Grace. Don't tell them; the value of the beat is that they
-caught it.
+If the student doesn't get there, go down the file name by name until they
+say Grace. Don't tell them.
 
-**Backup ambiguous row.** If the agent handles Grace correctly — it
-happens; the model may split Brand out or ask about it — use **Hank and
-Ivy** instead. Agents commonly fold `Field` and `Field Sales` together, or
-map `Field` to Sales, both wrong at Northwind. Same reveal, same
-conclusion. Have the second one ready every time so you're never left
-without a reveal.
+**Backup row.** If the agent handles Grace correctly (it may split Brand
+out or ask about it), use **Hank and Ivy**: agents often fold `Field` and
+`Field Sales` together or map `Field` to Sales, both wrong at Northwind.
+Check which trap fired before you ask the question.
 
-### The other direction: outside your boundary (part of beat 5)
+### The other direction
 
-Immediately after the reveal, flip it. This one is a thought experiment,
-not a live demo — it's faster and it makes the point harder:
+Straight after, as a thought experiment:
 
 > "Now imagine I ask the same agent to review the data-protection clause
-> in a supplier contract and tell me whether anything's unusual. It will
-> produce something fluent, structured, and confident. Hands up who could
-> tell me whether it was right." *(No hands, or one lawyer.)* "That's the
-> other side of the same line. Same tool, same quality of output — the
-> difference is entirely in us. Northwind's file, we caught it. The
-> contract, we wouldn't have, and we'd have shipped it."
-
----
-
-## Beat 5 — Judgment vs expertise and the boundary (8 min)
-
-Name what just happened, using the terms from beat 2.
-
-> Your **judgment boundary** is the edge of the space where you can
-> evaluate outcomes. Tasks inside it are candidates for delegation. Tasks
-> outside it are not — regardless of how capable the agent is.
-
-Three points, briefly, then get to the sheets:
-
-1. **Expertise is not the limit.** You can safely hand over work you
-   couldn't do yourself. You do it constantly — you brief designers, hire
-   contractors, sign off on things you couldn't have built. That's normal
-   and it's fine.
-2. **Judgment is the limit.** What you cannot safely hand over is work
-   whose result you couldn't evaluate. Not because the agent is unreliable,
-   but because you would never find out. You'd find out later, from
-   someone else, expensively.
-3. **The boundary is personal and it's specific.** It's not "I'm technical"
-   or "I'm not." Priya can judge a status roll-up cold and can't judge a
-   liability clause, and both facts are about the task, not about her.
-
-**Anticipate the objection here**, because someone always raises it: *"So
-I can only automate things I already understand? That's limiting."* The
-answer is yes, and it is the point — plus the boundary moves. Learning
-enough about a domain to *evaluate* it is a fraction of the work of
-learning to *produce* it, and that's the cheapest expansion of leverage
-available to anyone. Say it as an invitation, not a rule.
-
-Then hand out the sheets and read the four columns aloud once, pointing at
-the check column: *"This one is the one that matters. Everything else on
-the sheet is context for this one."*
+> in a supplier contract. It will produce something fluent and confident.
+> Could you tell me whether it was right? … That's the other side of the
+> same line. Northwind's file, you caught it. The contract, you wouldn't
+> have."
 
 ---
 
 ## Anticipated failure points and recovery moves
 
-| What goes wrong | What you do |
+| What goes wrong | What to do |
 |---|---|
-| **The demo won't run** — no network, model errors, install broken. | Don't debug in front of the room; you get one 30-second attempt. Switch to the transcript in the appendix, read it aloud, and run beat 2 identically. The reveal is what matters, and it works read from paper. Then log it as friction (`docs/trunk/FRICTION.md`). |
-| **The demo gets Grace right.** | Use Hank/Ivy (above). Always know your second row before you start. |
-| **The agent asks a clarifying question instead of deciding.** | This is a gift — say so. *"Look what it did: it knew it didn't know. It won't always do that, and that's exactly the problem — sometimes it just decides."* Answer the question wrongly-but-plausibly ("yes, fold Brand into Marketing"), let it proceed, and run the reveal as planned. |
-| **The demo produces something baffling** — reformats the whole file, writes a script, drops a column. | Use it. *"That's the other failure mode, and it's the friendly one: obviously wrong is easy to catch. The dangerous one is what we were about to see."* Then read the transcript for the intended reveal. |
-| **A participant argues the thesis** — "this is just autocomplete", "we tried AI, it hallucinated". | Agree, out loud and without hedging: *"Yes. That's exactly why we spent ten minutes on how to check it rather than on how clever it is."* Their skepticism is the asset the course is built on; recruit it, don't defend against it. Then move on — don't litigate model capability in Session 1. |
-| **A participant says they have no recurring toil.** | Almost always a definition problem. Ask what they did before lunch, then what they'll do again next Tuesday. If it's genuinely true (rare — usually a very senior participant), have them do the exercises on work their *team* does repeatedly; the inventory is still valid and the capstone can be one of those. |
-| **Silence in the room during the exercises.** | Expected for the first two minutes; people are thinking. If it persists past three, work a second live example on the board — silence is usually "I don't know what a good answer looks like", and one more worked row fixes it. |
-| **Someone opens a laptop to fix their setup.** | Close it, kindly and immediately. *"Nothing today needs it, and I'd rather have you in the room. Grab me at the end and we'll book fifteen minutes."* |
-| **A technical participant races ahead** and starts asking about tools, models, or automating the inventory itself. | Give them the optional-depth item from [`PRACTICE.md`](PRACTICE.md) — write one entry's check column as a brief for a new hire — and park the tooling questions to Session 2 explicitly. Do not let the session become a conversation between you and them. |
-| **The room is remote-only.** | Breakout rooms of two for exercise 3, four minutes, then announce the swap in broadcast rather than re-rooming. Ask for cameras on during the checkpoint round only. Watch the chat during exercise 2 — the "wait, does frequency count?" questions arrive there rather than aloud. |
-| **You are running fifteen minutes late at the break.** | Apply the cutting rules from the timing table. Protect exercise 2 and the checkpoint. |
+| **The student marks a task *out* because they couldn't do it themselves.** The checkpoint's most common near-miss. | Ask: "If someone handed you a finished one, would you know if it was wrong?" If yes, it's *in*. Doing the work and judging it are different abilities; only judging limits what can be delegated. |
+| **The student marks a task *in* because they do it often.** | Doing it often suggests they could check it. Ask them to name what they would look at; that goes in column 4. |
+| **The check column says "I'd read it over".** | That's *not sure* until it's concrete. Ask: "Reading it for what?" There is usually a real answer one question down: the regions are all there, the total matches. |
+| **Everything is marked *out*.** | Usually the can't-do / can't-check confusion, often in someone new to their role. Take one *out* row and ask whether they would spot a specific error in it, such as a missing region. If yes, it's *in*. |
+| **The student says they have no repeating work.** | Ask what they did before lunch, and what they'll do again next Tuesday. If it's still true, have them list work their team does repeatedly. If the page stays blank, they copy a row or two from the canned sheet and come back to their own. |
+| **The student can't use their own work** (confidential, or new in the job). | The canned sheet ([`handouts/canned-toil.md`](handouts/canned-toil.md)) produces the same result for the whole session. For a row that doesn't say enough to decide, *not sure* with "I'd need to know …" is a correct answer. Flag it to the instructor early if they'll need the canned set beyond Session 1. |
+| **The skeptic pass changes nothing.** | Expect at least one row to change. Ask "how would you know if it was wrong?" of the answer itself, again, until the answer is specific enough to bet on or the student finds they couldn't tell. "I couldn't tell" is a good result. |
+| **The student argues the thesis**: "this is just autocomplete", "we tried AI, it hallucinated". | Agree: "Yes. That's why the course spends its time on how to check it." Their skepticism is what the course builds on. Don't argue model capability. |
+| **The student races ahead** to tools, models, or automating the sheet. | Point them at the optional page in [`PRACTICE.md`](PRACTICE.md) and say the tools start in Session 2. |
+| **The student's setup failed.** | Nothing in Session 1 needs it. In a call, don't try to fix it; book a separate 20–30 minute setup call before Session 2. |
+| **(Live) The demo won't run**: no network, model errors, install broken. | One 30-second attempt, then read the transcript in the appendix aloud and run the second half as written. The reveal works from paper. Log it in `docs/trunk/FRICTION.md`. |
+| **(Live) The agent gets Grace right.** | Use Hank and Ivy. Know which trap fired before you ask the question. |
+| **(Live) The agent asks a clarifying question.** | Point it out: "It knew it didn't know. It won't always do that." Answer wrongly but plausibly ("yes, fold Brand into Marketing"), let it carry on, and run the reveal. |
+| **(Live) The agent does something baffling**: rewrites the whole file, writes a script, drops a column. | "Obviously wrong is easy to catch. The dangerous one is what we were about to see." Then read the appendix transcript for the reveal. |
 
 ---
 
 ## FAQ — questions you will be asked
 
-**"Is this going to take my job?"** No — and notice which half of the work
-the demo relied on. The typing was free. The knowledge that Brand isn't in
-Marketing was the whole ballgame, and it was yours. The honest version:
-work that's *purely* mechanical is getting cheaper, which is why we spend
-this course finding the judgment in your work and pointing it somewhere
-useful.
+**"Is this going to take my job?"** No. Look at which half of the work the
+demo relied on: the typing was free, and knowing that Brand isn't in
+Marketing was everything. Work that is purely mechanical is getting
+cheaper, which is why this course finds the judgment in your work and
+points it somewhere useful.
 
-**"What if it deletes my files?"** It's a fair worry and you'll get a real
-answer in Session 2. Short version: the course environment gives you two
-commands — `commit` saves a snapshot of your work, `revert` puts it back —
-so anything an agent does is undoable. You don't need to know anything
-about them today. *(Don't teach these. One sentence and move on;
-`onboarding_terminal_env` owns them and Session 2 teaches them.)*
+**"What if it deletes my files?"** Session 2 answers this properly. The
+course gives you two commands: `commit` saves a snapshot of your practice
+folder and `revert` puts it back, so ordinary file changes there can be
+undone. Nothing today needs them.
 
-**"Why aren't we using the software today?"** Two reasons. Some of you
-have setups that didn't work and I'm not spending your first session
-watching other people install things. And the tool is the easy part —
-picking what to point it at is the hard part, and it's the part that's
-still true when the tool changes.
+**"Why aren't we using the software in this session?"** The tool is the
+easy part. Choosing what to point it at is the hard part, and it stays true
+when the tools change. A failed setup also costs nothing here.
 
-**"Can I put confidential work on the sheet?"** Your sheet is yours;
-nobody reads it. For the pair exercise, describe the shape and not the
-contents — "a monthly reconciliation" tells your partner everything they
-need to skepticise you. If your work genuinely can't be discussed even in
-outline, tell me today, because Session 6 needs something real to point
-at and that's easier to solve with six weeks' notice.
+**"Can I put confidential work on the sheet?"** Your sheet is private
+unless you share it. If you work with a partner or your instructor,
+describe the shape and leave out the contents: "a monthly reconciliation"
+is enough to ask how you'd check it. If your work can't be discussed even
+in outline, tell your instructor now; Session 6 needs something real to
+point at.
 
-**"What if I mark something wrong?"** You will, and it doesn't matter
-today. The sheet is a working document — you'll revise entries every week,
-and Session 6 re-checks every one of them before anything gets built.
+**"What if I mark something wrong?"** It doesn't matter yet. You'll revise
+the sheet every week, and Session 6 re-checks every row before anything is
+built.
 
-**"Which AI is it?"** Give the pinned model name from `setup/pins.env` and
-one sentence: the course pins one model so everyone sees the same thing.
-Don't be drawn into model comparisons in Session 1.
+**"Which AI is it?"** The pinned model in `setup/pins.env`. The course
+pins one model so everyone sees the same thing.
+
+**"Do I have to be good at the job to do this?"** You have to know the
+work well enough to tell a right result from a wrong one. Rows you can't
+judge are marked *out*, and finding them counts as skill.
 
 ---
 
 ## Appendix — demo transcript for reading aloud
 
-Use this when the live demo can't run. Read the participant's prompt, then
-the agent's reply, then run beat 2 exactly as scripted. The reveal
-survives being read from paper because the reveal is about the room's
-knowledge, not the machine's behaviour.
+Use this when the demo can't run. Read the prompt, then the agent's reply,
+then run the second half as written.
 
 > **You:** `headcount.csv` has department names written inconsistently.
 > Standardize them to one clean name per department, and tell me what you
@@ -435,8 +341,6 @@ knowledge, not the machine's behaviour.
 > All nine rows are preserved and every name is unchanged. Let me know if
 > Brand should be tracked separately — some organisations do split it out.
 
-That closing line is worth pointing at after the reveal: it flagged the
-exact thing it got wrong, politely, in a sentence most people skim past.
-Sometimes the agent tells you where to look. You still have to be the one
-who knows the answer.
-
+After the reveal, point at the last line: it flagged the exact thing it got
+wrong, in a sentence most people skim past. Sometimes the agent tells you
+where to look. You still have to know the answer.

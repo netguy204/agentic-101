@@ -43,7 +43,7 @@ is out of date, and updates whichever is. Takes a few seconds when there is
 nothing to do. Run it at the start of every session.
 
 It does not update your terminal app's configuration or the applications
-installed in Step 1 of the setup guide; if your facilitator says those
+installed in Step 1 of the setup guide; if your instructor says those
 changed, run Step 1 again.
 
 Options:
@@ -61,7 +61,7 @@ fetch() { # fetch <url> <dest-file>
 unreachable() {
     blank
     warn "Could not reach the course updates (no internet, or the course site is down)."
-    warn "Nothing was changed — carry on with the session and tell your facilitator."
+    warn "Nothing was changed — carry on with the session and tell your instructor."
     exit 1
 }
 
@@ -131,7 +131,7 @@ main() {
                 updated=1
             else
                 tail -n 8 "$tmp/env.log" >&2
-                fail "course-update: the environment update did not finish. Nothing else was changed — tell your facilitator."
+                fail "course-update: the environment update did not finish. Nothing else was changed — tell your instructor."
             fi
         fi
     else
@@ -164,7 +164,7 @@ main() {
                 updated=1
             else
                 tail -n 8 "$tmp/pi.log" >&2
-                fail "course-update: the pi update did not finish. The course environment is current — tell your facilitator."
+                fail "course-update: the pi update did not finish. The course environment is current — tell your instructor."
             fi
         fi
     else

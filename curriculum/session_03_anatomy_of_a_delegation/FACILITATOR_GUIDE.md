@@ -349,8 +349,8 @@ inventory is the first.
 ## Appendix — what a normal run looks like
 
 From [`DRY_RUN.md`](DRY_RUN.md), so you know what "normal" is before you're
-standing in front of people. Priya's three briefs, on the course model
-(`anthropic/claude-sonnet-5` over OpenRouter), from the written text:
+standing in front of people. Priya's three briefs, on the model
+(`anthropic/claude-sonnet-5` over OpenRouter, the course model when the dry run was recorded), from the written text:
 
 | Brief | What happened |
 |---|---|

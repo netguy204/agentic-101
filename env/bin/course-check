@@ -128,5 +128,5 @@ fi
 printf '%sFAIL — %s thing(s) above need attention.%s\n' "$A101_RED" "$failures" "$A101_RESET"
 say "What to do: run the course environment installer again, then close every"
 say "terminal window and open a new one. If it still says FAIL, send this whole"
-say "screen to your facilitator."
+say "screen to your instructor."
 exit 1

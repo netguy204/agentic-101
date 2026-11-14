@@ -72,6 +72,7 @@ make_stub_pi() {
     cat > "$1/pi" <<STUB
 #!/usr/bin/env bash
 for a in "\$@"; do [ "\$a" = "--version" ] && { echo $PI_VERSION; exit 0; }; done
+for a in "\$@"; do [ "\$a" = "--list-models" ] && { echo "$PI_PROVIDER    $PI_MODEL"; exit 0; }; done
 mode=$2
 prompt="\${@: -1}"
 if [ "\$mode" = auth ]; then
@@ -130,6 +131,9 @@ exists "pins copied to the install root" "$ROOT/pins.env"
 has "settings pin the provider" "\"defaultProvider\": \"$PI_PROVIDER\"" "$FAKE/.pi/agent/settings.json"
 has "settings pin the model" "\"defaultModel\": \"$PI_MODEL\"" "$FAKE/.pi/agent/settings.json"
 has "settings pin the thinking level" "\"defaultThinkingLevel\": \"$PI_THINKING_LEVEL\"" "$FAKE/.pi/agent/settings.json"
+if [ -f "$SETUP_DIR/pi-models.json" ]; then
+    has "models.json defines the course model" "\"id\": \"$PI_MODEL\"" "$FAKE/.pi/agent/models.json"
+fi
 has "auth holds the key" "$KEY" "$FAKE/.pi/agent/auth.json"
 has "auth names the provider" "\"$PI_PROVIDER\"" "$FAKE/.pi/agent/auth.json"
 hasnt "the key is never echoed in full" "$KEY" "$LOG"
@@ -155,7 +159,13 @@ install_env
 mkdir -p "$FAKE/.pi/agent"
 printf '{\n  "theme": "light",\n  "defaultModel": "somebody-elses-model"\n}\n' > "$FAKE/.pi/agent/settings.json"
 printf '{\n  "anthropic": { "type": "api_key", "key": "sk-ant-keepme" }\n}\n' > "$FAKE/.pi/agent/auth.json"
+printf '{"providers":{"openrouter":{"models":[{"id":"their/own-model"}]},"ollama":{"baseUrl":"http://localhost:11434"}}}\n' > "$FAKE/.pi/agent/models.json"
 run_setup --skip-packages --no-smoke-test --key "$KEY"
+if [ -f "$SETUP_DIR/pi-models.json" ]; then
+    has "their own model definitions survive" "their/own-model" "$FAKE/.pi/agent/models.json"
+    has "their other providers survive" "localhost:11434" "$FAKE/.pi/agent/models.json"
+    has "the course model is added alongside theirs" "\"id\": \"$PI_MODEL\"" "$FAKE/.pi/agent/models.json"
+fi
 has "unrelated settings preserved" "\"theme\": \"light\"" "$FAKE/.pi/agent/settings.json"
 has "the course model overrides theirs" "$PI_MODEL" "$FAKE/.pi/agent/settings.json"
 hasnt "their old model is gone" "somebody-elses-model" "$FAKE/.pi/agent/settings.json"

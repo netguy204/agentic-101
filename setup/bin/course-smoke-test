@@ -227,14 +227,26 @@ else
                     MINGW*|MSYS*|CYGWIN*) ok "your key is saved" ;;
                     *)
                         ok "your key is saved"
-                        info "the key file is readable by other accounts on this computer ($perms); tell your facilitator" ;;
+                        info "the key file is readable by other accounts on this computer ($perms); tell your instructor" ;;
                 esac ;;
             *)
                 ok "your key is saved"
-                info "the key file's permissions are $perms; ask your facilitator to check this" ;;
+                info "the key file's permissions are $perms; ask your instructor to check this" ;;
         esac
     else
         bad "your key file has no $PI_PROVIDER key in it — run the pi installer again with your key"
+    fi
+fi
+
+# The course model may be one pi only knows from models.json (setup/pi-models.json),
+# so check pi can find it. pi lists only the providers it has a key for, so
+# this runs only once the key check above has passed.
+if [ -n "$pi_found" ] && [ -n "$PI_MODEL" ] && [ -f "$auth_file" ] &&
+   grep -q "\"$PI_PROVIDER\"" "$auth_file"; then
+    if pi --list-models </dev/null 2>/dev/null | grep -F -- "$PI_MODEL" | grep -qF -- "$PI_PROVIDER"; then
+        ok "pi knows the course model"
+    else
+        bad "pi does not know the course model ($PI_MODEL) — run the pi installer again"
     fi
 fi
 
@@ -269,7 +281,7 @@ else
         if [ "$answer" = "42" ]; then
             ok "your key works and $PI_MODEL answered"
         else
-            bad "the model replied, but not as expected — send this to your facilitator:"
+            bad "the model replied, but not as expected — send this to your instructor:"
             head -5 "$model_out" | sed 's/^/      /'
         fi
     else
@@ -278,7 +290,7 @@ else
             bad "the model did not answer within $A101_MODEL_TIMEOUT seconds — check your internet connection"
         else
             bad "could not reach the model. The usual causes are no internet, or a key"
-            bad "that has not been activated yet. Send this to your facilitator:"
+            bad "that has not been activated yet. Send this to your instructor:"
             head -8 "$model_out" | sed 's/^/      /'
         fi
     fi
@@ -300,7 +312,7 @@ else
                     ok "the agent did a real task: it created a file when asked"
                 else
                     bad "the agent ran but did not create the file it was asked for."
-                    bad "Try once more — if it fails again, send this to your facilitator:"
+                    bad "Try once more — if it fails again, send this to your instructor:"
                     head -8 "$model_out" | sed 's/^/      /'
                 fi
             else
@@ -308,7 +320,7 @@ else
                 if [ "$status" -eq 124 ]; then
                     bad "the agent did not finish within $A101_TASK_TIMEOUT seconds — check your internet connection"
                 else
-                    bad "the agent could not complete a simple task. Send this to your facilitator:"
+                    bad "the agent could not complete a simple task. Send this to your instructor:"
                     head -8 "$model_out" | sed 's/^/      /'
                 fi
             fi
@@ -335,5 +347,5 @@ fi
 printf '%sFAIL — %s thing(s) above need attention.%s\n' "$A101_RED" "$failures" "$A101_RESET"
 say "What to do: read the [no] lines above — each one says what to try. If you"
 say "have already tried it, take a screenshot of this whole window and send it"
-say "to your facilitator. This is a setup problem, not something you did wrong."
+say "to your instructor. This is a setup problem, not something you did wrong."
 exit 1

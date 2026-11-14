@@ -26,7 +26,7 @@ Just type:
 
 and it will walk you through it.
 
-Options (for facilitators and scripts, not needed in the course):
+Options (for instructors and scripts, not needed in the course):
   -m, --message TEXT   name the checkpoint without being asked
   -y, --yes            accept every default; never wait for an answer
   -h, --help           show this

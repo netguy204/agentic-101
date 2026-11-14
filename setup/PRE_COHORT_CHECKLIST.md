@@ -50,6 +50,9 @@ model.
       `setup/pins.env` is still in the catalog. Model IDs get retired; a
       retired one fails the smoke test at check 5 with an unhelpful provider
       error.
+      If pi does not list the model yet, define it in `setup/pi-models.json`
+      (pi's `models.json` format); `install-pi.sh` merges it in. Once the
+      pinned pi lists the model itself, delete `setup/pi-models.json`.
 - [ ] Run `env/install.sh` and `env/install.ps1` on clean machines; copy the
       values from `~/.agentic-101/installed-versions.txt` into
       `env/versions.env`; bump `ENV_VERSION`.

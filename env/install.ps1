@@ -144,7 +144,7 @@ if ($SkipPackages) {
     if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
         throw ('winget is not available on this computer. Install "App Installer" from the ' +
                'Microsoft Store, then run this again. If your workplace blocks the Store, ' +
-               'tell your facilitator — this is the one step that needs it.')
+               'tell your instructor — this is the one step that needs it.')
     }
     Install-WingetPackage -Id 'Git.Git' -Label 'Git for Windows' -Version $pins['GIT_WINDOWS_VERSION']
     Install-WingetPackage -Id 'OpenJS.NodeJS.LTS' -Label 'Node.js' -Version $pins['NODE_WINDOWS_VERSION']

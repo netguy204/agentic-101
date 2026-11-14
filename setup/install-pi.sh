@@ -10,7 +10,7 @@
 #   bash setup/install-pi.sh --key sk-or-v1-...      # from a checkout
 #
 # Asks the participant nothing when --key is supplied — the setup guide has
-# them paste one line their facilitator emailed them (chunk GOAL.md: no step
+# them paste one line their instructor emailed them (chunk GOAL.md: no step
 # may require understanding what the command does).
 #
 # Written for bash 3.2 (macOS system bash) so the same file runs unmodified
@@ -23,7 +23,7 @@ A101_BASE_URL_DEFAULT="https://raw.githubusercontent.com/netguy204/agentic-101/m
 A101_BASE_URL="${AGENTIC101_SETUP_BASE_URL:-$A101_BASE_URL_DEFAULT}"
 
 # Files this script needs beside itself. Paths are relative to setup/.
-A101_PAYLOAD="pins.env bin/course-smoke-test"
+A101_PAYLOAD="pins.env pi-models.json bin/course-smoke-test"
 
 dry_run=""
 skip_packages=""
@@ -36,7 +36,7 @@ usage() {
     cat <<'EOF'
 install-pi.sh — install pi and set it up for the agentic-101 course.
 
-  --key KEY           the OpenRouter key your facilitator gave you
+  --key KEY           the OpenRouter key your instructor gave you
   --keep-key          reuse the key already saved on this machine (updates)
   --dry-run           say what would happen, change nothing
   --skip-packages     configure only; do not install pi from npm
@@ -152,7 +152,7 @@ practice_path="$HOME/$PRACTICE_DIR"
 
 blank
 bold "Setting up pi for the agentic-101 course"
-dim  "This installs pi $PI_VERSION, saves the key your facilitator gave you, and"
+dim  "This installs pi $PI_VERSION, saves the key your instructor gave you, and"
 dim  "sets the model everyone on the course uses."
 [ -n "$dry_run" ] && dim "DRY RUN — nothing will actually change."
 
@@ -172,7 +172,7 @@ if [ -f "$install_root/VERSION" ]; then
     found_env=$(tr -d '\r' < "$install_root/VERSION")
     if [ -n "${EXPECTED_ENV_VERSION:-}" ] && [ "$found_env" != "$EXPECTED_ENV_VERSION" ]; then
         warn "  The course environment is version $found_env; this setup expects"
-        warn "  $EXPECTED_ENV_VERSION. Continuing, but tell your facilitator."
+        warn "  $EXPECTED_ENV_VERSION. Continuing, but tell your instructor."
     else
         dim "  course environment $found_env — found"
     fi
@@ -213,7 +213,7 @@ if [ -z "$api_key" ] && [ -z "$dry_run" ] && [ -z "$keep_key" ]; then
     # instead of blocking on a terminal that may not exist.
     if [ -r /dev/tty ] && [ -z "${A101_ASSUME_DEFAULTS:-}" ]; then
         # stdin is the script itself under `curl | bash`, so read the tty.
-        printf '%sPaste the key your facilitator emailed you, then press Enter.%s\n' \
+        printf '%sPaste the key your instructor emailed you, then press Enter.%s\n' \
             "$A101_BOLD" "$A101_RESET" >&2
         printf '%s(Nothing will appear as you paste — that is deliberate, it keeps the%s\n' \
             "$A101_DIM" "$A101_RESET" >&2
@@ -235,14 +235,14 @@ if [ -z "$dry_run" ] && [ -z "$keep_key" ]; then
     case "$api_key" in
         "")
             fail "install-pi.sh: no key given. Run this again with --key followed by
-the key your facilitator emailed you." ;;
+the key your instructor emailed you." ;;
         *PASTE*|*paste*|*YOUR-KEY*|*your-key*|*REPLACE*|sk-or-v1-xxx*)
             fail "install-pi.sh: that looks like the placeholder, not a real key.
-Copy the whole line your facilitator emailed you, including the key." ;;
+Copy the whole line your instructor emailed you, including the key." ;;
         sk-or-*) ;;
         *)
             fail "install-pi.sh: that does not look like an OpenRouter key — they
-start with sk-or-. Check what your facilitator emailed you." ;;
+start with sk-or-. Check what your instructor emailed you." ;;
     esac
     masked="${api_key%${api_key#??????????}}"
     dim "  key ${masked}… — looks right"
@@ -272,7 +272,7 @@ else
     else
         if grep -q 'EACCES' "$npm_log"; then
             warn "  npm was not allowed to install pi for your whole account."
-            warn "  Send this to your facilitator — it is a one-line fix on their end,"
+            warn "  Send this to your instructor — it is a one-line fix on their end,"
             warn "  and not something you should work around with sudo."
         fi
         tail -20 "$npm_log" >&2
@@ -290,7 +290,7 @@ if [ -z "$dry_run" ] && [ -z "$skip_packages" ]; then
         warn "  pi installed but is not on your PATH yet. Close this window, open a"
         warn "  new one, and run course-smoke-test."
     else
-        warn "  pi reports $installed_pi but the course pins $PI_VERSION. Tell your facilitator."
+        warn "  pi reports $installed_pi but the course pins $PI_VERSION. Tell your instructor."
     fi
 fi
 
@@ -308,6 +308,7 @@ settings_file="$pi_config_dir/settings.json"
 
 if [ -n "$dry_run" ]; then
     would "write $settings_file"
+    [ -f "$A101_SRC/pi-models.json" ] && would "merge the course model into $pi_config_dir/models.json"
 else
     mkdir -p "$pi_config_dir" || fail "install-pi.sh: could not create $pi_config_dir."
     backup_file "$settings_file"
@@ -329,6 +330,39 @@ else
       s.defaultThinkingLevel = process.env.A101_THINKING;
       fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");
     ' || fail "install-pi.sh: could not write $settings_file."
+
+    # A model pi does not list yet is defined in pi-models.json. Merge it into
+    # pi's models.json: each listed model replaces the one with the same id,
+    # and every other provider, model and setting is kept.
+    if [ -f "$A101_SRC/pi-models.json" ]; then
+        models_file="$pi_config_dir/models.json"
+        backup_file "$models_file"
+        A101_MODELS_FILE="$models_file" \
+        A101_COURSE_MODELS="$A101_SRC/pi-models.json" \
+        node -e '
+          const fs = require("fs");
+          const f = process.env.A101_MODELS_FILE;
+          const add = JSON.parse(fs.readFileSync(process.env.A101_COURSE_MODELS, "utf8"));
+          let m = {};
+          if (fs.existsSync(f)) {
+            try { m = JSON.parse(fs.readFileSync(f, "utf8")) || {}; }
+            catch (e) { m = {}; }          // unreadable models: start clean, the backup has the original
+            if (typeof m !== "object" || Array.isArray(m)) m = {};
+          }
+          m.providers = (m.providers && typeof m.providers === "object") ? m.providers : {};
+          for (const [name, p] of Object.entries(add.providers || {})) {
+            const cur = (m.providers[name] && typeof m.providers[name] === "object") ? m.providers[name] : {};
+            const models = Array.isArray(cur.models) ? cur.models : [];
+            for (const model of p.models || []) {
+              const i = models.findIndex((x) => x && x.id === model.id);
+              if (i >= 0) models[i] = model; else models.push(model);
+            }
+            cur.models = models;
+            m.providers[name] = cur;
+          }
+          fs.writeFileSync(f, JSON.stringify(m, null, 2) + "\n");
+        ' || fail "install-pi.sh: could not write $models_file."
+    fi
     good "  Model configured"
 fi
 
@@ -404,11 +438,11 @@ EOF
             :
         else
             warn "  Could not install the course-smoke-test command into $install_root/bin."
-            warn "  Everything else is set up. Tell your facilitator you could not run the check."
+            warn "  Everything else is set up. Tell your instructor you could not run the check."
         fi
     else
         warn "  Could not create $install_root/bin, so the course-smoke-test command"
-        warn "  is not installed. Everything else is set up — tell your facilitator."
+        warn "  is not installed. Everything else is set up — tell your instructor."
     fi
     cp "$A101_SRC/pins.env" "$install_root/pins.env" 2>/dev/null || true
 fi
@@ -437,7 +471,7 @@ if [ ! -x "$install_root/bin/course-smoke-test" ]; then
     # The step above already explained why. Do not send anyone to a command
     # that is not there.
     bold "Done, but the course-smoke-test command could not be installed."
-    say  "Send your facilitator the messages above before the first session."
+    say  "Send your instructor the messages above before the first session."
     blank
     exit 1
 fi

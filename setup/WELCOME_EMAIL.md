@@ -2,8 +2,9 @@
 
 <!-- Chunk: docs/chunks/onboarding_setup_guide - Pre-cohort participant setup guide -->
 
-The per-student email the pre-cohort checklist tells you to prepare
-(`PRE_COHORT_CHECKLIST.md`, section 3). One email per student.
+The email every student gets when they enrol, including students enrolled
+on the platform (`PRE_COHORT_CHECKLIST.md`, section 3). One email per
+student.
 
 **Placeholders:** `<NAME>`, `<COURSE PAGE>`, `<KEY>`, `<INSTRUCTOR NAME>`.
 

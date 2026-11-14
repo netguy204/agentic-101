@@ -28,7 +28,7 @@ Just type:
 
 and it will show you your checkpoints and walk you through it.
 
-Options (for facilitators and scripts, not needed in the course):
+Options (for instructors and scripts, not needed in the course):
   -l, --list           show the checkpoints and stop
   -t, --to N           choose checkpoint number N from that list
   -y, --yes            accept every default; never wait for an answer
@@ -146,7 +146,7 @@ if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
         2)
             blank
             say "Setting changes aside means this folder forgets them, but they are not"
-            say "destroyed — your facilitator can bring them back if you need them."
+            say "destroyed — your instructor can bring them back if you need them."
             blank
             sure=$(ask "Type the word ${A101_BOLD}aside${A101_RESET} to confirm, or press Enter to stop." "")
             if [ "$sure" != "aside" ]; then

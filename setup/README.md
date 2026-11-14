@@ -174,7 +174,7 @@ or two**. Don't close the window. You should see:
 
 ```
 Setting up pi for the agentic-101 course
-This installs pi 0.83.0, saves the key your facilitator gave you, and
+This installs pi 1.2.0, saves the key your instructor gave you, and
 sets the model everyone on the course uses.
 
 Step 1 of 5 — checking your machine
@@ -182,15 +182,15 @@ Step 1 of 5 — checking your machine
   node v22.20.0 — found
   key sk-or-v1-a… — looks right
 
-Step 2 of 5 — installing pi 0.83.0
+Step 2 of 5 — installing pi 1.2.0
   Downloading pi. This usually takes a minute or two, and
   nothing at all will appear on screen while it runs.
   That is normal. Do not close this window.
   pi installed
-  pi reports version 0.83.0 — matches the pin
+  pi reports version 1.2.0 — matches the pin
 
 Step 3 of 5 — setting the model everyone on the course uses
-  provider openrouter, model anthropic/claude-sonnet-5, thinking medium
+  provider openrouter, model google/gemini-4-hydrogen, thinking medium
   Model configured
 
 Step 4 of 5 — saving your key
@@ -209,11 +209,12 @@ the internet, so **give it up to four minutes**; it pauses after each
 Checking your course setup
 
   [ok]   the course environment is healthy (commit, revert, git, node)
-  [ok]   pi is installed, version 0.83.0
-  [ok]   pi is set to the course model (openrouter, anthropic/claude-sonnet-5)
+  [ok]   pi is installed, version 1.2.0
+  [ok]   pi is set to the course model (openrouter, google/gemini-4-hydrogen)
   [ok]   your key is saved and only readable by you
+  [ok]   pi knows the course model
   [--]   asking the model a question — this can take up to a minute…
-  [ok]   your key works and anthropic/claude-sonnet-5 answered
+  [ok]   your key works and google/gemini-4-hydrogen answered
   [--]   asking the agent to do a small task — this can take a few minutes…
   [ok]   the agent did a real task: it created a file when asked
 

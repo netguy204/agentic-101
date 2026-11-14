@@ -1,7 +1,7 @@
 # agentic-101 as a self-paced module. Module Contract v1.
 # Chunk: docs/chunks/platform_module_contract - The manifest the platform ingests
 # Chunk: docs/chunks/platform_lab_parts - Each session's lab as the sittings it is consumed in
-# Chunk: docs/chunks/platform_student_index - concept.sources serves the student index, not the session README
+# Chunk: docs/chunks/platform_student_index - concept.intro serves the session intro, not the session README
 #
 # This is the only file the platform knows the name of; everything else in
 # platform/ is found through it. The session mapping below is DEC-010 and
@@ -16,8 +16,10 @@
 # README.md is the exception, and it is deliberate. It is a session's index
 # for its author and its facilitator — the artifact table, the teaching
 # spine, the constraints on edits — so the platform does not serve it. What
-# concept.sources lists instead is platform/index/<NN>_<slug>.md: the same
-# orientation written for the student, in the course's voice.
+# the student sees instead is concept.intro, platform/intro/<NN>_<slug>.md: a
+# few sentences on what the session is about, shown under the session title.
+# The session page itself lists the steps, what to submit and where to get
+# help, so no module file repeats them.
 #
 # CHECKPOINT.md appears nowhere below, on purpose. It is the source the
 # rubrics were written from, and handing it to the TA as well would hand a
@@ -46,6 +48,10 @@ setup:
   smoke_test_artifact: smoke_test
   artifacts:
     - id: smoke_test
+      label: "The setup check"
+      description: >-
+        The whole terminal window after you run `course-smoke-test`, copied and
+        pasted here. It ends with PASS when your computer is ready for the course.
       kind: text
   rubric: platform/rubrics/setup.yaml
 
@@ -53,11 +59,8 @@ sessions:
   - id: 01_mental_models
     title: Mental models & the toil inventory
     concept:
-      # The index first, then the prework: the student learns what the
-      # session is and what it costs before doing anything.
-      sources:
-        - platform/index/01_mental_models.md
-        - platform/prework/01_mental_models.md
+      intro: platform/intro/01_mental_models.md
+      prework: platform/prework/01_mental_models.md
       listenable_script: platform/audio/01_mental_models.md
       recall_prompts: platform/recall/01_mental_models.yaml
     lab:
@@ -141,19 +144,27 @@ sessions:
           materials:
             - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
               label: "Your toil inventory sheet"
-            - path: platform/index/01_mental_models.md
-              label: "What you'll submit"
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#3-the-consolidation-pass-20-minutes-before-session-2
     artifacts:
       # The sheet that outlives every session (DEC-010). Session 6 gates the
       # capstone on it, so this is the artifact with the longest life.
       - id: toil_inventory
+        label: "Your toil inventory sheet"
+        description: >-
+          At least three rows with all four columns filled in, each marked in, out or
+          not sure. Every row marked in names a specific check, and every row marked
+          out says why you couldn't check it.
         kind: worksheet
         template: curriculum/session_01_mental_models/handouts/toil-inventory.md
       # The checkpoint says "say out loud", and its remote-cohort note already
       # accepts a written answer. So: spoken on a drive, or typed at the desk.
       - id: boundary_claim
+        label: "One task, explained"
+        description: >-
+          Pick one row from your toil inventory sheet. In a few sentences, typed or as
+          a voice note, say whether it's inside or outside what you can judge, and how
+          you'd know if the result were wrong.
         kind: [voice_note, text]
     rubric: platform/rubrics/01_mental_models.yaml
     ta_knowledge:
@@ -169,9 +180,8 @@ sessions:
   - id: 02_meeting_the_harness
     title: Meeting the harness
     concept:
-      sources:
-        - platform/index/02_meeting_the_harness.md
-        - platform/prework/02_meeting_the_harness.md
+      intro: platform/intro/02_meeting_the_harness.md
+      prework: platform/prework/02_meeting_the_harness.md
       listenable_script: platform/audio/02_meeting_the_harness.md
       recall_prompts: platform/recall/02_meeting_the_harness.yaml
     lab:
@@ -293,9 +303,17 @@ sessions:
       # finds them. This is the record of what the agent actually did, as
       # opposed to what it said about itself.
       - id: session_log
+        label: "Your session log"
+        description: >-
+          The record pi keeps of each session on your computer. It shows the steps the
+          agent actually took. Type `pi -r` to find it after the lab.
         kind: harness_log
         accepts: ["*.jsonl"]
       - id: what_did_it_do
+        label: "The what-did-it-do worksheet"
+        description: >-
+          Your filled-in worksheet, with Box 3, *Was it reasonable, and how do I know?*,
+          naming the check you applied and what it told you.
         kind: worksheet
         template: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
       # `revert` is a course command the participant types (env/bin/revert),
@@ -303,10 +321,17 @@ sessions:
       # What it does leave is a checkpoint named "Back to: <name>", which
       # `revert --list` prints. That listing is the evidence.
       - id: checkpoint_list
+        label: "Your list of checkpoints"
+        description: >-
+          What `revert --list` prints in your practice folder. It shows the checkpoint
+          you went back to, which is how you show you undid something.
         kind: text
       # The folder itself. Bar item 1 is "an agent changed a real file on
       # their own machine", and the file is the plainest form of that.
       - id: practice_files
+        label: "Your practice folder's files"
+        description: >-
+          The files in your practice folder, including the one the agent changed.
         kind: files
         accepts: ["*.csv", "*.md", "*.txt"]
     rubric: platform/rubrics/02_meeting_the_harness.yaml

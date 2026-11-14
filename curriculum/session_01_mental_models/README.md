@@ -3,7 +3,7 @@
 <!-- Chunk: docs/chunks/fluency_session_01 - Session 1 index -->
 
 **Arc 1 — Fluency, session 1 of 5.** About an hour of prework, concept and lab,
-then a practice week (`platform/index/01_mental_models.md` has the steps).
+then a practice week (the lab parts in `platform/module.yaml` have the steps).
 Delivered self-paced on the platform, with an instructor reachable and
 optional live sessions (DEC-014).
 

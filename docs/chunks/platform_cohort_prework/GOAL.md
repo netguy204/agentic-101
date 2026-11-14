@@ -6,8 +6,8 @@ code_paths:
   - platform/prework/01_mental_models.md
   - platform/prework/02_meeting_the_harness.md
   - platform/module.yaml
-  - platform/index/01_mental_models.md
-  - platform/index/02_meeting_the_harness.md
+  - platform/intro/01_mental_models.md
+  - platform/intro/02_meeting_the_harness.md
   - docs/trunk/PLATFORM_AUTHORING.md
 code_references: []
 narrative: null

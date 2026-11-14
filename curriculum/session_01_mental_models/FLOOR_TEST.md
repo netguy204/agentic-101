@@ -47,8 +47,8 @@ for more than ~30 seconds.
 
 ## What to record
 
-- **Time per step**, against the claims in `platform/index/01_mental_models.md`:
-  prework 10 min, concept track 15, fill the sheet 25, skeptic pass 12,
+- **Time per step**, against the times the session page shows:
+  prework 10 min, audio 15, fill the sheet 25, skeptic pass 12,
   daily pass 5 × 4, check test 15, consolidate and submit 20.
 - Words they misread or asked about. Suspects: "judgment boundary",
   "toil", "judgeability", "harness".

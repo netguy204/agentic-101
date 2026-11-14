@@ -3,26 +3,21 @@ status: ACTIVE
 ticket: null
 parent_chunk: null
 code_paths:
-- platform/index/01_mental_models.md
-- platform/index/02_meeting_the_harness.md
+- platform/intro/01_mental_models.md
+- platform/intro/02_meeting_the_harness.md
 - platform/module.yaml
 - platform/README.md
 - docs/trunk/PLATFORM_AUTHORING.md
 code_references:
-- ref: platform/index/01_mental_models.md
-  implements: "Session 1's index for the student: the outcome as their own, concept
-    30 / lab 92 with the practice week named as part of the lab, the arc of the sheet,
-    the prework's facilitator email reconciled for somebody working alone, and the
-    two things they hand in"
-- ref: platform/index/02_meeting_the_harness.md
-  implements: "Session 2's index for the student: the outcome as their own, concept
-    25 / lab 125 with the practice laps named as the last sittings, the safety-net-first
-    ordering, the setup check and the model-provider warning, and the four things
-    they hand in — including why `revert --list` is one of them"
+- ref: platform/intro/01_mental_models.md
+  implements: "Session 1's intro for the student: what the session is about, in the
+    instructor's voice (concept.intro; the platform shows steps, times and submission)"
+- ref: platform/intro/02_meeting_the_harness.md
+  implements: "Session 2's intro for the student: what the session is about, in the
+    instructor's voice (concept.intro; the platform shows steps, times and submission)"
 - ref: platform/module.yaml
-  implements: "concept.sources for both served sessions: the student index first,
-    then PREWORK.md; the session README no longer served, with the header comment
-    saying why"
+  implements: "concept.intro and concept.prework for both served sessions; the
+    session README no longer served, with the header comment saying why"
 - ref: docs/trunk/PLATFORM_AUTHORING.md
   implements: "The authoring rule — a served session owes a student index, bound to
     the same transcription discipline as the rubric — the consumption table that

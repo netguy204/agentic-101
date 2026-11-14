@@ -3,8 +3,8 @@
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 index -->
 
 **Arc 1 — Fluency, session 2 of 5.** About 95 minutes of prework, concept
-and lab, then a practice week (`platform/index/02_meeting_the_harness.md`
-has the steps). Delivered self-paced on the platform, with an instructor
+and lab, then a practice week (the lab parts in `platform/module.yaml`
+have the steps). Delivered self-paced on the platform, with an instructor
 reachable and optional live sessions (DEC-014).
 
 The session where the course becomes hands-on. Session 1 was conceptual so

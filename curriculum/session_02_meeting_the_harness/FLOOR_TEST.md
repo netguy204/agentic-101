@@ -57,8 +57,8 @@ it as a defect and *then* help.
 
 ## What to record
 
-- **Time per step**, against `platform/index/02_meeting_the_harness.md`:
-  prework 15 min, concept track 15, exercises 1–2 25, exercise 3 15,
+- **Time per step**, against the times the session page shows:
+  prework 15 min, audio 15, exercises 1–2 25, exercise 3 15,
   exercises 4–5 25, solo lap 20, two real ones 15 each, one worksheet 10.
 - Hesitations longer than ~10 seconds, and what was on screen.
 - **Every keystroke that wasn't the instruction**: typed the `$`, typed a

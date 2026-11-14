@@ -3,7 +3,7 @@
 <!-- Chunk: docs/chunks/platform_authoring_guide - How to write session material that lands well on the self-paced platform -->
 <!-- Chunk: docs/chunks/platform_lab_parts - "A lab is parts" pointed at the manifest key that carries it -->
 <!-- Chunk: docs/chunks/platform_dual_authoring - "A new session, in order" as the dual-authoring flow (DEC-013, superseded by DEC-014) -->
-<!-- Chunk: docs/chunks/platform_student_index - The student index a served session owes, and the README the platform stopped serving -->
+<!-- Chunk: docs/chunks/platform_student_index - The session intro a served session owes, and the README the platform stopped serving -->
 
 The course is delivered on a self-paced platform (the peer repository
 `../learning-platform`), combined with one-on-one or one-on-many virtual
@@ -51,9 +51,9 @@ What this means in practice:
 | You write | A facilitator uses it as | The platform uses it as |
 |---|---|---|
 | `PREWORK.md` | Being retired (DEC-014). Session 1 has none | Nothing directly. Where one remains, the platform serves its derivative (next row) instead. |
-| `platform/prework/<NN>_<slug>.md` | The prework to point a student at | Part of the **concept track**, written for the student working alone. For Session 1 it is the only prework. **Students see every file listed as a concept source.** |
+| `platform/prework/<NN>_<slug>.md` | The prework to point a student at | `concept.prework`: shown as its own "Before you start" step, before the audio, written for the student working alone. |
 | `README.md` | The session's index for you and a facilitator | Nothing. The platform does not serve it; its student-facing counterpart does that job instead. |
-| `platform/index/<NN>_<slug>.md` | What the student sees first | The **student's index** for the session, listed first in `concept.sources`: the outcome, what they will do, honest minutes, what they submit |
+| `platform/intro/<NN>_<slug>.md` | What the student sees first | `concept.intro`: a few sentences on what the session is about, shown under the session title. Under 120 words. |
 | `EXERCISES.md`, `PRACTICE.md`, `handouts/` | The steps, when working through them live with a student | The **lab** — desk material, unlocked when the previous session certifies |
 | `CHECKPOINT.md` | The bar the facilitator applies in a live session | The **rubric** (via `platform/rubrics/`) that an automated certifier applies, near-miss corrections included |
 | `FACILITATOR_GUIDE.md`, `EXERCISE_RUNSHEET.md`, `FLOOR_TEST.md`, `DRY_RUN.md` | Threads, live one-to-one and small-group sessions, and the test-student protocol (Sessions 1 and 2 rewritten for this; Session 3 still written for a room) | The **TA's knowledge** — the virtual TA reads and cites them; students never see them |
@@ -61,18 +61,16 @@ What this means in practice:
 
 Two consequences an author must hold in mind:
 
-**A served session owes a student index.** The session `README.md` is
+**A served session owes a short intro.** The session `README.md` is
 written for you and for a facilitator — artifact tables that link the
 facilitator's documents, "Constraints on edits", the from/to-session
 tables — so the platform does not serve it. Each served session instead
-has `platform/index/<NN>_<slug>.md`: a one-page derivative of `README.md`
-and `PREWORK.md`, in the course's voice and addressed to the student,
-carrying the outcome, what they will do, honest minutes that match
-`estimated_minutes`, and what they submit. It is part of a session's
-platform version exactly as the rubric, the recall prompts and the script
-are, and it obeys the same transcription rule: it may not say anything its
-sources do not, so a change to a session's outcome, shape or timings is
-not finished until its index has been re-read.
+has `platform/intro/<NN>_<slug>.md`: a few sentences, in the instructor's
+voice, on what the session is about. The session page itself shows the
+steps (prework, each audio segment, each lab part, submit) with their
+times, what to submit, and where to get help, so no module file repeats
+them. (Until 2026-11-14 a longer `platform/index/` page did, and it
+duplicated the session page.)
 
 **And a student prework.** `platform/prework/<NN>_<slug>.md` is the
 prework the student is served, written for the student working alone.
@@ -233,11 +231,11 @@ When writing session material, give it this structure:
   result overwhelms. The facilitator's commentary belongs in
   `ta_knowledge` files where the TA retrieves the right sentence at the
   right moment — not in the student's reading.
-- **Every session index ends with "Getting help".** Session 1's lists the
-  layers in order: the material, the automated course assistant, the
-  checkpoint conversation, and the instructor, a person who sees what the
-  assistant can't resolve. Say plainly which help is automated. Later
-  sessions point back to it in two or three lines. Setup failures and
+- **Getting help is the session page's.** It lists the layers in order:
+  the material, the automated course assistant, the checkpoint
+  conversation, and the instructor, a person who sees what the assistant
+  can't resolve. Module text points a student to "Stuck on this session?"
+  where they'd need it. Setup failures and
   "may I use this real task from my job?" go straight to the instructor.
 - **Student-facing text says "instructor".** That is the platform's name
   for the human facilitator, and the route to them is the platform's own:
@@ -306,13 +304,13 @@ before the platform serves it (DEC-014).
    rules in mind: a binary bar with named evidence, pass and near-miss
    exemplars with the corrective question in your words, submittable
    residue, separable why/how, and the voice above. The `README.md` stays
-   yours and the facilitator's; the student's version of it is the index
+   yours and the facilitator's; the student's version of it is the intro
    in step 2.
 
 2. **Author the draft platform version alongside it**, into
    `platform/drafts/<NN>_<slug>/`: the rubric transcribed from
-   `CHECKPOINT.md`, the listenable script, the recall prompts, the student
-   index, the student prework, and a manifest fragment in the shape of one
+   `CHECKPOINT.md`, the listenable script, the recall prompts, the session
+   intro, the student prework, and a manifest fragment in the shape of one
    `module.yaml` `sessions:` entry — Contract v1.1, so `lab.parts`
    included, and `estimated_minutes.lab` the sum of the parts with the
    practice week in it. Do this while the material is still warm. The

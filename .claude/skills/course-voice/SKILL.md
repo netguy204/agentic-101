@@ -36,9 +36,9 @@ will have at the end. Steps are numbered. Each exercise ends with a
 **Done when:** line naming a thing they can see. Each part ends with
 **Next:**.
 
-**Give honest minutes.** The index has a steps table with a time per step.
-The times agree with `module.yaml` (`estimated_minutes`, part `minutes`) and
-the runsheet. If you change one, change all three.
+**Give honest minutes.** The session page shows each lab part's `minutes`
+from `module.yaml`. They agree with `estimated_minutes` and the runsheet. If
+you change one, change all three.
 
 **Make each argument once.** The audio script carries the why. The prework
 and the lab say what to do and point back. If a paragraph in the lab
@@ -61,7 +61,7 @@ that heading reaches the student inside the part.
 - Run the link check (Checks, below) before finishing.
 
 **Define each thing in one place.** A handout defines its columns; the
-exercises, practice and index point to it. When you find the same
+exercises and practice point to it. When you find the same
 definition in two files, keep the one in the handout.
 
 **No commentary on the material.** Cut lines that rate a step ("the
@@ -91,7 +91,7 @@ wherever it appears.
 
 | Document | Shape |
 |---|---|
-| Platform index | A short welcome and what the session is for; what you'll submit; steps table with minutes; Getting help; Next. |
+| Session intro (`platform/intro/`) | A few sentences, under 120 words: a welcome and what the session is about. The session page shows the steps, submission and help, so don't repeat them. |
 | Prework | Only what must be done before the session, with its time. No essay. |
 | Audio script | Short intro, then segments of 300–450 words, each ending with its `> Recall:` line. No tables, no code, no reference to the medium ("this recording", "on your commute", "as I said a moment ago"); scripts are also read as pages. |
 | Recall yaml | Question and model answer the script supports. Change an answer only if the script no longer supports it. |
@@ -133,7 +133,7 @@ wherever it appears.
 
 ## Working with the operator
 
-Rewrite one sample first (the index and the prework, or one audio
+Rewrite one sample first (the intro and the prework, or one audio
 segment) and show it before doing the rest of a session. Report word
 counts before and after, frozen strings checked, and the judgment calls
 you made, so the operator can review the calls without rereading every

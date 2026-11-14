@@ -124,9 +124,8 @@ If all three went well, use the one where the agent made a decision you
 hadn't asked it to make.
 
 **Done when:** all three boxes, the question at the bottom and your sentence
-are filled in. Then submit everything listed under
-[What you'll submit](../../platform/index/02_meeting_the_harness.md#what-youll-submit)
-in the Session 2 overview.
+are filled in. Then submit your work. The Submit step on the session page
+lists exactly what's needed.
 
 ---
 

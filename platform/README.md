@@ -3,7 +3,7 @@
 <!-- Chunk: docs/chunks/platform_module_contract - What this directory is, and the rules for keeping it true -->
 <!-- Chunk: docs/chunks/platform_lab_parts - The lab-as-parts rules: transcription, load-bearing headings, honest minutes -->
 <!-- Chunk: docs/chunks/platform_dual_authoring - The drafts convention: staging a session's platform version until the room has proven it -->
-<!-- Chunk: docs/chunks/platform_student_index - index/, the student's session index that concept.sources serves instead of README.md -->
+<!-- Chunk: docs/chunks/platform_student_index - intro/, the session intro that concept.intro serves instead of README.md -->
 <!-- Chunk: docs/chunks/platform_session_03_draft - Session 3's draft, the first session staged under the drafts convention -->
 
 Everything else in this repository is written for a person: a participant
@@ -29,11 +29,12 @@ prose itself* so it transcribes well is the trunk's concern:
 | File | What it is |
 |---|---|
 | `module.yaml` | The manifest. The only file the platform knows the name of; everything else is found through it. Module identity, budgets, the setup gate, and per session: which files are concept, which are lab, which are the facilitator's, what a student submits, how long it takes, and the lab's **parts** — the sittings a student stops and resumes between. |
-| `index/01_mental_models.md`, `index/02_meeting_the_harness.md` | Each session's index, for the student. What the session is for, what it costs in honest minutes, what they will do and what they submit — written from the session's `README.md` and, where one remains, its `PREWORK.md`. This is what `concept.sources` lists in place of `README.md`, which is a session's index for its author and its facilitator and is not served at all. |
+| `intro/01_mental_models.md`, `intro/02_meeting_the_harness.md` | Each session's intro (`concept.intro`): a few sentences, in the instructor's voice, on what the session is about, shown under the session title. The session page shows the steps, times, submission and help itself. `README.md` is a session's index for its author and its facilitator and is not served at all. |
 | `rubrics/setup.yaml` | The gate before Session 1: `course-smoke-test` reported PASS. |
 | `rubrics/01_mental_models.yaml`, `rubrics/02_meeting_the_harness.yaml` | Each session's `CHECKPOINT.md`, structured. Criteria, the evidence that satisfies each, pass exemplars, near-miss exemplars with the facilitator's corrective question, and — where the checkpoint names a fact a machine can see — a deterministic check. |
 | `recall/*.yaml` | The question-and-answer beat that closes each audio segment. |
-| `audio/*.md` | The concept tracks, written for the ear. |
+| `prework/*.md` | Each session's prework (`concept.prework`), shown as a "Before you start" step. |
+| `audio/*.md` | The audio scripts, written for the ear. |
 | `pronunciation.yaml` | How the voice says pi, Ghostty, OpenRouter and the rest. |
 | `drafts/<NN>_<slug>/` | A session's platform version, written alongside the session itself and staged until a test student has proven it. Nothing in here is served — or read by anything at all — until it is promoted. See "Drafting a session before it is served". |
 
@@ -143,7 +144,7 @@ session will be served as, and holds everything the served session needs:
 | `rubric.yaml` | `rubrics/<NN>_<slug>.yaml` |
 | `audio.md` | `audio/<NN>_<slug>.md` |
 | `recall.yaml` | `recall/<NN>_<slug>.yaml` |
-| `index.md` | the student-facing concept index, in its served location (`index/<NN>_<slug>.md`) |
+| `intro.md` | the session intro, in its served location (`intro/<NN>_<slug>.md`) |
 | `session.yaml` | one entry under `sessions:` in `module.yaml` |
 
 `session.yaml` is a manifest fragment: a single `sessions:` entry written in
@@ -223,11 +224,9 @@ transcription work is the same either way; only its destination waits.
    `estimated_minutes.lab` to the sum.
 5. Write the script, then the recall prompts, in that order. A prompt has to
    ask about what its segment actually said.
-6. Write the student's index, from the session's `README.md` and
-   `PREWORK.md` — one page in the course's voice, addressed to the student:
-   the outcome, what they will do, the minutes the fragment now promises,
-   and what they submit. It goes in `concept.sources` and the `README.md`
-   does not, so this is the step that decides what a student reads first.
+6. Write the session intro: a few sentences, under 120 words, in the
+   instructor's voice, on what the session is about. It is `concept.intro`,
+   the first thing a student reads under the session title.
 7. Stop there, and wait for the test student. Promotion (above) is what runs the
    validator, and since nothing in a draft is read by anything, that run is
    the first thing to check this session at all. Read its warnings; they

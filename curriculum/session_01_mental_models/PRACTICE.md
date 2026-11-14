@@ -75,9 +75,8 @@ Go over the whole sheet once:
    makes a poor final project.
 4. **Star your three most annoying rows.** These are the ones you'll most
    want automated by the end of the course.
-5. **Submit** your sheet and your one-task explanation. The
-   [Session 1 overview](../../platform/index/01_mental_models.md#what-youll-submit)
-   lists exactly what's needed.
+5. **Submit** your sheet and your one-task explanation. The Submit step on
+   the session page lists exactly what's needed.
 
 ---
 

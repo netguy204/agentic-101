@@ -253,19 +253,22 @@ When writing session material, give it this structure:
 
 ## Voice
 
-Session 1's student index, prework, concept script and lab are the model
-(revised 2026-10-10). The full procedure, with examples and checks, is the
-`course-voice` skill (`.claude/skills/course-voice/SKILL.md`). The rules:
+Student-facing text uses the `instructor-voice` skill
+(`~/.claude/skills/instructor-voice/SKILL.md`, adopted 2026-11-14): an
+experienced instructor who expects the student to succeed, in whole
+sentences, with warmth where it fits. The course-specific procedure (frozen
+strings, document shapes, checks) is the `course-voice` skill
+(`.claude/skills/course-voice/SKILL.md`). The content rules:
 
 - **Lead with what the student does.** Step tables with honest minutes;
   "Done when:" lines; "Next:" at the end of each part.
-- **Make each argument once.** The concept track carries the why. The
+- **Make each argument once.** The audio carries the why. The
   prework and the lab do not repeat it.
 - **Define each thing in one place.** The toil inventory handout defines
   its columns; the exercises point to it.
 - **No commentary on the material.** Cut lines that rate a step ("the
-  load-bearing exercise", "the highest-value fifteen minutes"), praise the
-  student, or announce what is coming.
+  load-bearing exercise", "the highest-value fifteen minutes") or announce
+  what is coming. Warmth belongs where a student would feel it, once.
 - **Do not overstate.** "Frequency has nothing to do with judgeability"
   is false; "I do it every week is a reason to think you could check it,
   and it becomes a check once you can name what you'd look at" is the

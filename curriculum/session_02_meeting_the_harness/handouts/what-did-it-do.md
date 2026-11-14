@@ -2,23 +2,23 @@
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 delegation worksheet -->
 
-Fill one in after each delegation. Do the boxes in order: **what it did**,
-then **what changed**, then **was that reasonable**.
+Fill one of these in after each delegation. Do the boxes in order: **what
+it did**, then **what changed**, then **was that reasonable**.
 
-Skip the paragraph the agent wrote about itself. It describes what the
-agent *intended*. The boxes on your screen and the file show what
+Skip the paragraph the agent wrote about itself. It describes what the agent
+*intended*. The boxes on your screen and the file itself show what
 *happened*.
 
 ---
 
 ## The delegation
 
-**What I asked for** (roughly — the sentence you sent):
+**What I asked for** (roughly the sentence you sent):
 
 >
 >
 
-**Which entry on my toil inventory this came from:**
+**Which row on my [toil inventory sheet](../../session_01_mental_models/handouts/toil-inventory.md#the-sheet) this came from:**
 
 >
 
@@ -27,8 +27,10 @@ agent *intended*. The boxes on your screen and the file show what
 ## Box 1 — What tools did it use?
 
 Scroll back through the session and list the boxes in order, in your own
-words: "It wrote the file." "It ran a command to rename it." Write what
-the boxes show, not what it said it did.
+words: "It wrote the file." "It ran a command to rename it." Write what the
+boxes show rather than what it said it did. The
+[terminal card](terminal-card.md#the-four-tools) explains the four tool
+names.
 
 | # | Tool | What that means in plain words |
 |---|---|---|
@@ -64,7 +66,8 @@ Open the file itself in your file browser.
 
 ## Box 3 — Was it reasonable, and how do I know?
 
-Use column 4 of your toil inventory, "How I'd check".
+Use the *How I'd check* column for this row on your
+[toil inventory sheet](../../session_01_mental_models/handouts/toil-inventory.md#the-sheet).
 
 **The check I applied** (the specific thing I looked at):
 
@@ -95,4 +98,4 @@ it:
 >
 
 What could it have got wrong that your check wouldn't find? A row count
-catches missing rows; it misses two figures swapped between rows.
+catches missing rows, but it misses two figures swapped between rows.

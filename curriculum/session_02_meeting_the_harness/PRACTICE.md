@@ -4,12 +4,12 @@
 
 **About 60 minutes, spread across a week. Stop at 90.**
 
-Two of the three parts use work you were going to do anyway. Pick tasks
+Two of the three parts use work you were going to do anyway, so pick tasks
 that annoy you.
 
-By the end you will have delegated three times: once in the lab and twice
-on your own. Session 3 starts from the one that went worst, so a bad run
-is useful.
+By the end you'll have delegated three times: once in the lab and twice on
+your own. Session 3 starts from the one that went worst, so a bad run is
+useful here.
 
 | When | How long | What |
 |---|---|---|
@@ -21,30 +21,36 @@ is useful.
 
 ## 1. The solo lap (20 minutes, within 48 hours)
 
-Run the whole loop again, alone, in `~/course-practice`:
+**You'll need:** the [terminal card](handouts/terminal-card.md). Its
+[When you feel lost](handouts/terminal-card.md#when-you-feel-lost) section
+covers most of the ways this can go sideways.
+
+Run the whole loop again, on your own, in `~/course-practice`:
 
 > **`commit` → delegate → check → `commit`**
 
 1. Open the course terminal, type `cd ~/course-practice`, then `pwd` to
-   confirm.
-2. `commit`. Name it something like "before Tuesday".
+   confirm where you are.
+2. Type `commit`. Name it something like "before Tuesday".
 3. Type `pi` and ask for something small: a packing list, a tidy-up of a
    file it made in the lab, or a summary of `README.txt`.
 4. Read the tool boxes, then open the file.
-5. `/quit`, then `commit` to keep it or `revert` to undo it.
+5. Type `/quit`, then `commit` to keep it or `revert` to undo it.
 
-Every command is on [`handouts/terminal-card.md`](handouts/terminal-card.md),
-including a "When you feel lost" section.
-
-**Done when:** you have run the loop once, start to finish, with nobody
+**Done when:** you've run the loop once, start to finish, with nobody
 helping.
 
-Stuck for more than five minutes? Stop and contact your instructor
-("Stuck on this session?", then "Send to your instructor").
+If you're stuck for more than five minutes, stop and get in touch with your
+instructor: choose "Stuck on this session?", then "Send to your
+instructor".
 
 ---
 
 ## 2. Two real ones (15 minutes each)
+
+**You'll need:** your
+[toil inventory sheet](../session_01_mental_models/handouts/toil-inventory.md#the-sheet)
+and the [terminal card](handouts/terminal-card.md).
 
 What you type, and the contents of any file pi reads, is sent to the model
 provider. `commit` and `revert` recover local files only.
@@ -65,62 +71,70 @@ A real task must pass **all four questions** before you delegate it:
    purchased, scheduled, or otherwise acted on outside the practice folder?
    If not, keep the task synthetic.
 
-For example, a supplier emails asking for three things. The agent can read
-the thread and the figures and draft the reply. You check the figures,
+Here's an example. A supplier emails asking for three things. The agent can
+read the thread and the figures and draft the reply. You check the figures,
 fix what's wrong, and decide whether it goes. If it goes, you send it. The
-agent drafts; you decide and send.
+agent drafts, and you decide and send.
 
-Pick **two rows from your inventory marked *in*** that pass all four
-questions, other than the one you used in the lab. The next time each
-task comes round:
+Pick **two rows on your sheet marked *in*** that pass all four questions,
+other than the one you used in the lab. The next time each task comes
+round:
 
-1. `cd ~/course-practice`, then `commit`.
-2. Type `pi` and ask for what you want in a plain sentence. Column 2 of
-   your sheet is the instruction.
-3. **Apply the check in column 4 to the actual output.**
+1. Type `cd ~/course-practice`, then `commit`.
+2. Type `pi` and ask for what you want in a plain sentence. Your row's
+   *What "done right" looks like* column is the instruction.
+3. **Apply the check in your row's *How I'd check* column to the actual
+   output.**
 4. Keep the result as a draft until the right person has reviewed it and
    approved any action outside the folder.
-5. `/quit`. `commit` to keep the local files, or `revert` to undo them.
+5. Type `/quit`. Then `commit` to keep the local files, or `revert` to undo
+   them.
 
 **Your data.** Use one of these:
 
 | Option | When to use it |
 |---|---|
 | **Describe the shape and let it invent the data**, as in the lab | Anything sensitive, or hard to get out of the system it lives in |
-| **Copy a small, real, non-sensitive extract into `~/course-practice`** | Only if you are allowed to send it to the model provider |
+| **Copy a small, real, non-sensitive extract into `~/course-practice`** | Only if you're allowed to send it to the model provider |
 | **A made-up version of the real task** | When you want the practice more than the output |
 
-Unsure whether something is safe to send? Ask whoever owns it before you
-send it. Nothing here requires you to send anything you have doubts about.
+If you're unsure whether something is safe to send, ask whoever owns it
+first. Nothing here requires you to send anything you have doubts about.
 
 If the agent struggles, or needs something it can't see, write down what
 was missing. Session 3 uses it.
 
-**Done when:** you have delegated two real tasks and applied your column 4
-check to each result. Tick both rows on your inventory.
+**Done when:** you've delegated two real tasks and applied your *How I'd
+check* column to each result. Tick both rows on your sheet.
 
 ---
 
 ## 3. One worksheet, on the worst one (10 minutes, before Session 3)
 
-Take the delegation that went least well and fill in a fresh
-[`handouts/what-did-it-do.md`](handouts/what-did-it-do.md): all three
-boxes and the question at the bottom. Under it, write one sentence on why
-this one went worst. Session 3 opens on this worksheet.
+**You'll need:** a fresh
+[what-did-it-do worksheet](handouts/what-did-it-do.md).
+
+Take the delegation that went least well and fill in your worksheet: all
+three boxes and
+[the one question to carry away](handouts/what-did-it-do.md#the-one-question-to-carry-away)
+at the bottom. Under it, write one sentence on why this one went worst.
+Session 3 opens with this worksheet.
 
 If all three went well, use the one where the agent made a decision you
 hadn't asked it to make.
 
-**Done when:** all three boxes, the bottom question and the sentence are filled in.
-Then submit everything listed in the Session 2 index.
+**Done when:** all three boxes, the question at the bottom and your sentence
+are filled in. Then submit everything listed under
+[What you'll submit](../../platform/index/02_meeting_the_harness.md#what-youll-submit)
+in the Session 2 overview.
 
 ---
 
 ## Optional: one row marked *out*
 
-Pick a row you marked *out*. Ask the agent to do it, then spend two
-minutes trying to tell whether the output is right. Write one sentence on
-what you would need to know to check it. Don't use the result for
+Pick a row on your sheet you marked *out*. Ask the agent to do it, then
+spend two minutes trying to tell whether the output is right. Write one
+sentence on what you'd need to know to check it. Don't use the result for
 anything.
 
 ---

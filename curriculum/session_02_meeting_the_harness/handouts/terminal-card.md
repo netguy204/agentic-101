@@ -1,13 +1,13 @@
-# The card: everything the course asks you to type
+# The terminal card: everything the course asks you to type
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 terminal and pi reference card -->
 
-Print this page or keep it open beside the terminal. You don't need to
-remember any of it.
+Print this page or keep it open beside the terminal. It's here so you
+don't need to remember any of it.
 
 - **Nothing happens until you press Enter.** If you typed something and
   nothing happened, press Enter.
-- **Don't type the `$`.** It's already on the screen; it means the
+- **Don't type the `$`.** It's already on the screen, and it means the
   terminal is ready.
 
 ---
@@ -16,7 +16,7 @@ remember any of it.
 
 | You want to… | Type this | With a mouse |
 |---|---|---|
-| Know which folder you're in | `pwd` | Read the window's title |
+| Know which folder you're in | `pwd` | Read the folder name at the top of the window |
 | See what's in this folder | `ls` | Look at the icons |
 | Go to your practice folder | `cd ~/course-practice` | Double-click your way in |
 | Go up one level | `cd ..` | The back arrow |
@@ -60,7 +60,7 @@ using `commit`, `revert`, `pwd` or `ls`.
 | Key | What it does |
 |---|---|
 | **Enter** | Send what you typed |
-| **Escape** | Stop pi's current work; then check what already changed |
+| **Escape** | Stop pi's current work, then check what already changed |
 | **Ctrl+O** | Collapse or expand the tool boxes |
 | **Ctrl+C**, twice | Quit in a hurry |
 
@@ -76,7 +76,7 @@ Each thing the agent does appears as a box, using one of four tools:
 | `bash` | It ran a command: moved, renamed, listed, searched |
 
 The boxes show what the agent did. Then open the file to see the result.
-The paragraph it writes afterwards describes what it meant to do; don't
+The paragraph it writes afterwards describes what it meant to do, so don't
 use it as proof.
 
 **Privacy:** what you type, and the contents of files pi reads, are sent to
@@ -94,5 +94,5 @@ the model provider. A checkpoint doesn't prevent that.
 | Nothing happened | Press Enter. |
 
 Use only the named files in `~/course-practice`. The folder is not a
-security boundary. `revert` recovers checkpointed file changes; it can't
+security boundary. `revert` recovers checkpointed file changes. It can't
 undo something sent or done outside the folder.

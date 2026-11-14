@@ -1,7 +1,7 @@
 # Session 2 — Meeting the harness
 
-This is the concept track for Session 2 of Agentic 101. It has four
-segments. Each one ends with a question: answer it yourself, out loud if
+This is Session 2 of Agentic 101. It has four
+parts. Each one ends with a question: answer it yourself, out loud if
 you can, before the model answer. Nothing here asks you to type anything.
 Every command and every step is in the lab, where you will need it.
 
@@ -130,9 +130,10 @@ of it. No client names, no real figures, no confidential files. If you
 would rather not describe your work at all, the lab has prepared tasks
 that work the same way.
 
-Three things from your inventory sheet go in: the row you starred, one
-sentence on what the messy version looks like, and column 2, what done
-right looks like. You wrote column 2 before you had seen this software.
+Three things from your toil inventory sheet go in: the row you starred, one
+sentence on what the messy version looks like, and the second column, what
+done right looks like. You wrote that column before you had seen this
+software.
 
 > Lab card: the two delegation prompts, and the prepared alternative if you
 > would rather not describe your own work, are in the exercise steps.

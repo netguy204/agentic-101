@@ -10,7 +10,7 @@ in at Session 2.
 
 ## What you'll submit
 
-1. **Your toil inventory sheet.** It needs at least three rows with all
+1. **Your [toil inventory sheet](../../curriculum/session_01_mental_models/handouts/toil-inventory.md#the-sheet).** It needs at least three rows with all
    four columns filled in, each marked *in*, *out* or *not sure*. Every row
    you mark *in* should name a specific check, such as a total you'd add up
    again, a name you'd recognise, or a person who'd complain. "I'd read it
@@ -26,9 +26,9 @@ You'll need both to complete the session.
 
 | Step | Time | What you do |
 |---|---|---|
-| 1. Prework | 10 min | Write down five things you did more than once last week. |
+| 1. [Prework](../prework/01_mental_models.md) | 10 min | Write down five things you did more than once last week. |
 | 2. The audio | 15 min | Four short parts. Listen, or read the same material if you prefer. |
-| 3. Fill the sheet | 25 min | Copy your five tasks onto the sheet and add more. Then mark each one *in*, *out* or *not sure*, and write how you'd check it. |
+| 3. Fill in your toil inventory sheet | 25 min | Copy your five tasks onto the [sheet](../../curriculum/session_01_mental_models/handouts/toil-inventory.md#the-sheet) and add more. Then mark each one *in*, *out* or *not sure*, and write how you'd check it. |
 | 4. Skeptic pass | 12 min | Take two or three of your *in* rows and ask "how would I know if it was wrong?" Expect to change at least one. |
 | 5. Daily pass | 5 min, four days | At the end of each day, add anything you did again. |
 | 6. Check test | 15 min | Settle two *not sure* rows by checking them for real. |

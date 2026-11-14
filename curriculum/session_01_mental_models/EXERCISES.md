@@ -4,84 +4,95 @@
 <!-- Chunk: docs/chunks/fluency_exercise_split - Exercise material split by reader: this file is for the participant -->
 <!-- Chunk: docs/chunks/platform_solo_labs - Followable by a student with no room; the contract before the work -->
 
-**What you'll have at the end.** Your toil inventory sheet with at least
-three rows, each marked *in*, *out* or *not sure*, and every *in* row with
-a specific check. You will also be able to say, for one row, why it is
-inside or outside what you can judge and how you would know.
-
-Everything goes on the toil inventory sheet,
-[`handouts/toil-inventory.md`](handouts/toil-inventory.md). Its "The four
-columns" section defines what goes in each column; keep it open. If you
-can't use your own work, use
-[`handouts/canned-toil.md`](handouts/canned-toil.md) instead. It takes the
-same time.
+By the end of these three exercises you'll have your toil inventory sheet
+with at least three rows, each marked *in*, *out* or *not sure*, and every
+*in* row naming a specific check. You'll also be able to say, for one row,
+why it's inside or outside what you can judge and how you'd know.
 
 Your sheet is private unless you choose to share it.
-
-Stuck on a blank page? Copy a row or two from the canned sheet, then come
-back to your own.
 
 ---
 
 ## Exercise 1 — Brain dump
 
-1. Copy the five tasks from your prework onto the sheet, one per row. Fill
-   in columns 1 and 2 only.
-2. Add anything else from the last month that repeats. Don't filter yet;
-   you will choose better from a long list.
-3. Make each row specific enough to picture (see column 1 in the handout).
+**You'll need:** your
+[toil inventory sheet](handouts/toil-inventory.md#the-sheet), which you can
+copy into a document or spreadsheet or rule up on paper, and the list of
+five tasks you wrote for the
+[prework](../../platform/prework/01_mental_models.md).
 
-**Done when:** at least four rows have columns 1 and 2 filled.
+1. Copy your five tasks onto the sheet, one per row. Fill in only the first
+   two columns, *The task, and how often* and *What "done right" looks
+   like*.
+2. Add anything else from the last month that repeats. Don't filter yet.
+   You'll choose better from a long list.
+3. Make each row specific enough to picture. The handout's notes on the
+   [first column](handouts/toil-inventory.md#the-four-columns) show what
+   that looks like.
 
-**Using the canned sheet?** Copy Priya's eight tasks onto the sheet and
-write column 2 in your own words.
+**Done when:** at least four rows have the first two columns filled in.
+
+**Can't use your own work?** Use
+[Priya's sample tasks](handouts/canned-toil.md#priyas-recurring-tasks)
+instead. Copy her eight tasks onto your sheet and write the second column in
+your own words. If you're just stuck on a blank page, copying a row or two
+of hers is a fine way to get going.
 
 ---
 
 ## Exercise 2 — The check column
 
-1. For every row, fill in column 3: *in*, *out* or *not sure*.
-2. For every row, fill in column 4: the specific thing you would look at,
-   or, for an *out* row, why you couldn't check it.
+**You'll need:** your toil inventory sheet from exercise 1, and the
+[column definitions](handouts/toil-inventory.md#the-four-columns) in the
+handout.
+
+1. For every row, fill in the third column, *In or out of my judgment
+   boundary?*, with *in*, *out* or *not sure*.
+2. For every row, fill in the fourth column, *How I'd check*. Write the
+   specific thing you'd look at. For an *out* row, write why you couldn't
+   check it.
 3. If an *in* row has no concrete check, change it to *not sure*.
 
-The handout's column 3 and column 4 entries cover the two common mix-ups:
+The column definitions cover the two mix-ups people run into most here:
 marking a task *out* because you couldn't do it yourself, and marking it
 *in* because you do it every week.
 
-**Done when:** every row has *in*, *out* or *not sure* and something in
-column 4, and every *in* row's check is concrete.
+**Done when:** every row is marked *in*, *out* or *not sure*, every row has
+something in *How I'd check*, and every *in* row's check is concrete.
 
-**Using the canned sheet?** Answer for Priya. If her description doesn't
-tell you enough to decide, mark the row *not sure* and write what you would
-need to know, for example "I'd need to know whether she's ever been trained
-on this."
+**Using Priya's tasks?** Answer for Priya. If her description doesn't tell
+you enough to decide, mark the row *not sure* and write what you'd need to
+know, for example "I'd need to know whether she's ever been trained on
+this."
 
 ---
 
 ## Exercise 3 — The skeptic pass
 
-Pick two or three rows marked *in*. For each one:
+**You'll need:** your toil inventory sheet, with the check column filled in.
 
-1. Ask yourself: **"How would I know if it was wrong?"**
-2. Answer, then ask the same question of your answer. Keep going until the
-   answer is specific enough that you'd bet on it, or until you find you
-   couldn't tell.
-3. Change the row if your answer changed: an *in* moved to *not sure*, a
-   vague check made specific, or an honest *out*.
+Pick two or three rows you marked *in*. For each one:
+
+1. Ask yourself, **"How would I know if it was wrong?"**
+2. Answer it, then ask the same question of your answer. Keep going until
+   the answer is specific enough that you'd bet on it, or until you find
+   you couldn't tell.
+3. If your answer changed, change the row. An *in* might become *not sure*,
+   a vague check might become specific, or the row might honestly be *out*.
 
 Expect to change at least one row.
 
-**Working with your instructor or a partner?** Have them ask the question
-and keep asking until they believe your answer. You can keep the task
-itself private and tell them only how you would check it.
+**Working with your instructor or a partner?** Have them ask the question,
+and keep asking until they believe your answer. You can keep the task itself
+private and tell them only how you'd check it.
 
 ---
 
 ## Wrapping up
 
-Draw a line under your last row and write the number of rows that have
-both column 3 and column 4 filled. You need three to submit. If you have
-fewer, the practice week is where you get there.
+Draw a line under your last row and write down how many rows have both the
+third and fourth columns filled in. You need three to submit. If you have
+fewer, the practice week is where you'll get there.
 
-**Next:** the daily pass in [`PRACTICE.md`](PRACTICE.md).
+**Next:** the [daily pass](PRACTICE.md#1-the-daily-pass-5-minutes-4), which
+you'll do at the end of each working day this week.

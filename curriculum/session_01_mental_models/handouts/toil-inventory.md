@@ -92,7 +92,8 @@ what you'd look at. For an **out** row, write why you couldn't check it.
 
 Leave off work you have never done and could not describe; you cannot
 judge it. If your work is confidential, write the shape of the task and
-leave out the contents, or use `canned-toil.md`.
+leave out the contents, or use
+[Priya's sample tasks](canned-toil.md#priyas-recurring-tasks).
 
 ---
 

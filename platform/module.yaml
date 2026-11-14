@@ -75,12 +75,12 @@ sessions:
       parts:
         # Runsheet: brain dump 10 minutes, the check column 15. One sitting.
         - id: the_sheet
-          title: Fill the sheet, then fill the check column
+          title: Fill in your toil inventory sheet
           minutes: 25
           outcome: >-
-            At least four rows with the task and how often; every row marked
-            in, out or not sure; and the rows marked in have something concrete
-            in the check column.
+            At least four rows on your toil inventory sheet. Every row is
+            marked in, out or not sure, and every row marked in has a concrete
+            check in the How I'd check column.
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-1-brain-dump
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-2-the-check-column
@@ -92,8 +92,8 @@ sessions:
           minutes: 12
           outcome: >-
             At least one row changed after asking "how would I know if it was
-            wrong?", and a line under the last row with the count of rows
-            that have columns 3 and 4 filled.
+            wrong?", and a line under your last row with the number of rows
+            that have the third and fourth columns filled in.
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-3-the-skeptic-pass
             - curriculum/session_01_mental_models/EXERCISES.md#wrapping-up
@@ -101,27 +101,27 @@ sessions:
         # 15 once, 20 before session 2. A student with no cohort has no
         # "between sessions" - these are simply the last three sittings.
         - id: daily_pass
-          title: The daily pass — five short passes spread over the week, not one sitting
+          title: The daily pass, five minutes at the end of four working days
           minutes: 20
           outcome: >-
-            Four end-of-day passes, each adding whatever you caught yourself
-            doing again - first two columns only, or "nothing new".
+            Four end-of-day passes, each adding whatever you did again, with the
+            first two columns filled in, or "nothing new".
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#1-the-daily-pass-5-minutes-4
         - id: check_test
           title: The check test
           minutes: 15
           outcome: >-
-            Two entries that were not sure resolved to in or out, with what you
-            actually looked at written in the check column.
+            Two rows that were not sure changed to in or out, with what you
+            actually looked at written in the How I'd check column.
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#2-the-check-test-15-minutes-once
         - id: consolidation
           title: The consolidation pass
           minutes: 20
           outcome: >-
-            The whole sheet gone over once: checks filled, big rows split,
-            time added, and your three most annoying entries starred.
+            Your whole sheet gone over once: checks filled in, big rows split,
+            times added, and your three most annoying tasks starred.
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#3-the-consolidation-pass-20-minutes-before-session-2
     artifacts:
@@ -170,9 +170,9 @@ sessions:
           minutes: 25
           outcome: >-
             A terminal and a file browser open on the same course-practice
-            folder, and a file you deleted on purpose and got back with
-            revert — really delete it; getting it back is what makes the
-            rest of the session safe to try.
+            folder, and a file you really deleted on purpose and got back with
+            revert. Getting it back is what makes the rest of the session safe
+            to try.
           # Chunk: docs/chunks/platform_drift_audit - Where this part opens (F-1)
           # Unanchored first, which is deliberate and is the one part in
           # either session that opens at the top of its document. DEC-012
@@ -191,8 +191,9 @@ sessions:
           title: Your first delegation
           minutes: 15
           outcome: >-
-            A sample.csv in the practice folder that an agent made, shaped like
-            the input to one of your own toil entries, mistakes and all.
+            A sample.csv in your practice folder that the agent made, shaped
+            like the input to the row you starred on your toil inventory sheet,
+            mistakes and all.
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-3-your-first-delegation
         # Runsheet: what did it actually do? 15 minutes, break it on purpose 8,
@@ -202,9 +203,9 @@ sessions:
           title: Read what it did, then break it on purpose
           minutes: 25
           outcome: >-
-            A filled what-did-it-do worksheet naming the check you applied, and
-            a sample.csv you deliberately ruined and reverted to the version
-            you had cleaned up.
+            A filled-in what-did-it-do worksheet naming the check you applied,
+            and a sample.csv you ruined on purpose and then reverted to the
+            version you had cleaned up.
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-4-what-did-it-actually-do
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-5-break-it-on-purpose
@@ -214,8 +215,8 @@ sessions:
           title: The solo lap
           minutes: 20
           outcome: >-
-            The whole loop once with nobody watching - commit, delegate, check,
-            commit - within 48 hours of the session.
+            The whole loop once on your own (commit, delegate, check, commit)
+            within 48 hours of the session.
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#1-the-solo-lap-20-minutes-within-48-hours
         # Two 15-minute laps, and the page says so; they are one part because
@@ -224,16 +225,18 @@ sessions:
           title: Two real ones
           minutes: 30
           outcome: >-
-            Two real tasks delegated, each one that passed all four questions
-            first, with the check you named applied to what came back.
+            Two real tasks from your toil inventory sheet delegated, each one
+            passing all four questions first, with your How I'd check column
+            applied to what came back.
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#2-two-real-ones-15-minutes-each
         - id: worst_one_worksheet
           title: One worksheet, on the worst one
           minutes: 10
           outcome: >-
-            A what-did-it-do worksheet filled properly on the delegation that
-            went least well, including what you would have failed to catch.
+            A what-did-it-do worksheet filled in for the delegation that went
+            least well, including what you would have failed to catch, and one
+            sentence on why it went worst.
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#3-one-worksheet-on-the-worst-one-10-minutes-before-session-3
     artifacts:

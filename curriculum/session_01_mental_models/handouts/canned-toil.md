@@ -1,8 +1,8 @@
-# Canned toil: Priya's week
+# Priya's sample tasks
 
 <!-- Chunk: docs/chunks/fluency_session_01 - Fallback material for the Session 1 exercises -->
 
-Use this sheet if you can't use your own work for the exercises: your
+Use these tasks if you can't use your own work for the exercises: your
 tasks are confidential, your notes aren't with you, or the page stays
 blank. You do the same thinking on someone else's tasks, then apply it to
 your own list during the practice week.
@@ -64,7 +64,8 @@ covers most, but not all, of them.
 
 Work through Priya's eight tasks as you would your own.
 
-- **Brain dump:** copy the eight tasks onto the inventory sheet.
+- **Brain dump:** copy the eight tasks onto your
+  [toil inventory sheet](toil-inventory.md#the-sheet).
 - **The check column:** for each task, decide whether *Priya* could tell
   the finished work was right, and how. Use only what her description
   says. If it doesn't tell you enough, mark the row **not sure** and write

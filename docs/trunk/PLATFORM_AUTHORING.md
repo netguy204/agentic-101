@@ -264,6 +264,11 @@ strings, document shapes, checks) is the `course-voice` skill
   "Done when:" lines; "Next:" at the end of each part.
 - **Make each argument once.** The audio carries the why. The
   prework and the lab do not repeat it.
+- **Every reference can be found from where it's made.** One ordinary
+  name per thing, linked at the point of use (with a `#section` anchor
+  where it helps), and a "You'll need:" line at the top of each exercise.
+  A lab part starts at its anchored heading, so links above it never reach
+  the student.
 - **Define each thing in one place.** The toil inventory handout defines
   its columns; the exercises point to it.
 - **No commentary on the material.** Cut lines that rate a step ("the

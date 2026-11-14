@@ -44,6 +44,22 @@ the runsheet. If you change one, change all three.
 and the lab say what to do and point back. If a paragraph in the lab
 explains why the exercise matters, cut it.
 
+**Every reference can be found from where it's made.** A student must be
+able to open anything the text names, right there, and know what it is.
+The platform starts each lab part at its anchored heading, so nothing above
+that heading reaches the student inside the part.
+
+- Give each thing one ordinary name and use it everywhere: "your toil
+  inventory sheet", "Priya's sample tasks", "the terminal card", "the
+  what-did-it-do worksheet", "the prework".
+- Link it at the point of use with a relative link, with a `#section`
+  anchor when the text means one section (anchors use the platform's slug:
+  lowercase, punctuation dropped, spaces to hyphens).
+- Open every exercise and practice section that uses something with a
+  **You'll need:** line that names and links it.
+- Name columns and boxes by their headings, not only by number.
+- Run the link check (Checks, below) before finishing.
+
 **Define each thing in one place.** A handout defines its columns; the
 exercises, practice and index point to it. When you find the same
 definition in two files, keep the one in the handout.
@@ -104,6 +120,9 @@ wherever it appears.
 2. Grep for `the room`, `this recording`, `concept track`, `hand in`,
    `facilitator` (in student-facing text), `most common`.
 3. Check every frozen string from "Before you edit" is unchanged.
+   Then check every relative link and `#anchor` in the student files
+   resolves: each link must name a file the module serves, and each anchor
+   a heading in it.
 4. Grep for references to anything you deleted or renamed.
 5. Run `uvx --from vibe-engineer ve validate` and, from
    `../learning-platform`, `pnpm contract:validate

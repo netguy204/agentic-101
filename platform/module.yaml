@@ -81,6 +81,13 @@ sessions:
             At least four rows on your toil inventory sheet. Every row is
             marked in, out or not sure, and every row marked in has a concrete
             check in the How I'd check column.
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
+            - path: platform/prework/01_mental_models.md
+              label: "Your prework list"
+            - path: curriculum/session_01_mental_models/handouts/canned-toil.md
+              label: "Priya's sample tasks"
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-1-brain-dump
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-2-the-check-column
@@ -94,6 +101,9 @@ sessions:
             At least one row changed after asking "how would I know if it was
             wrong?", and a line under your last row with the number of rows
             that have the third and fourth columns filled in.
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
           sources:
             - curriculum/session_01_mental_models/EXERCISES.md#exercise-3-the-skeptic-pass
             - curriculum/session_01_mental_models/EXERCISES.md#wrapping-up
@@ -106,6 +116,9 @@ sessions:
           outcome: >-
             Four end-of-day passes, each adding whatever you did again, with the
             first two columns filled in, or "nothing new".
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#1-the-daily-pass-5-minutes-4
         - id: check_test
@@ -114,6 +127,9 @@ sessions:
           outcome: >-
             Two rows that were not sure changed to in or out, with what you
             actually looked at written in the How I'd check column.
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#2-the-check-test-15-minutes-once
         - id: consolidation
@@ -122,6 +138,11 @@ sessions:
           outcome: >-
             Your whole sheet gone over once: checks filled in, big rows split,
             times added, and your three most annoying tasks starred.
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
+            - path: platform/index/01_mental_models.md
+              label: "What you'll submit"
           sources:
             - curriculum/session_01_mental_models/PRACTICE.md#3-the-consolidation-pass-20-minutes-before-session-2
     artifacts:
@@ -182,6 +203,9 @@ sessions:
           # #exercise-1-where-am-i would send the student past the step the
           # session is supposed to start with. A student alone has only where
           # this part opens.
+          materials:
+            - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+              label: "The terminal card"
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-1-where-am-i
@@ -194,6 +218,13 @@ sessions:
             A sample.csv in your practice folder that the agent made, shaped
             like the input to the row you starred on your toil inventory sheet,
             mistakes and all.
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
+            - path: platform/prework/02_meeting_the_harness.md
+              label: "The row you picked in the prework"
+            - path: curriculum/session_01_mental_models/handouts/canned-toil.md
+              label: "Priya's sample tasks"
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-3-your-first-delegation
         # Runsheet: what did it actually do? 15 minutes, break it on purpose 8,
@@ -206,6 +237,13 @@ sessions:
             A filled-in what-did-it-do worksheet naming the check you applied,
             and a sample.csv you ruined on purpose and then reverted to the
             version you had cleaned up.
+          materials:
+            - path: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
+              label: "The what-did-it-do worksheet"
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
+            - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+              label: "The terminal card"
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-4-what-did-it-actually-do
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-5-break-it-on-purpose
@@ -217,6 +255,9 @@ sessions:
           outcome: >-
             The whole loop once on your own (commit, delegate, check, commit)
             within 48 hours of the session.
+          materials:
+            - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+              label: "The terminal card"
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#1-the-solo-lap-20-minutes-within-48-hours
         # Two 15-minute laps, and the page says so; they are one part because
@@ -228,6 +269,11 @@ sessions:
             Two real tasks from your toil inventory sheet delegated, each one
             passing all four questions first, with your How I'd check column
             applied to what came back.
+          materials:
+            - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
+              label: "Your toil inventory sheet"
+            - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
+              label: "The terminal card"
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#2-two-real-ones-15-minutes-each
         - id: worst_one_worksheet
@@ -237,6 +283,9 @@ sessions:
             A what-did-it-do worksheet filled in for the delegation that went
             least well, including what you would have failed to catch, and one
             sentence on why it went worst.
+          materials:
+            - path: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
+              label: "The what-did-it-do worksheet"
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#3-one-worksheet-on-the-worst-one-10-minutes-before-session-3
     artifacts:

@@ -80,6 +80,10 @@ sessions:
         - id: the_sheet
           title: Fill in your toil inventory sheet
           minutes: 25
+          # Hosted students can do parts 1 and 2 as one interview with their
+          # agent; the interview file is instructions to the agent and is not
+          # served to students.
+          agent_interview: platform/interviews/01_toil_inventory.md
           outcome: >-
             At least four rows on your toil inventory sheet. Every row is
             marked in, out or not sure, and every row marked in has a concrete

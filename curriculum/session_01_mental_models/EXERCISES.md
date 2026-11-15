@@ -15,6 +15,12 @@ Your sheet is private unless you choose to share it.
 
 ## Exercise 1 — Brain dump
 
+**Would you rather talk it through?** You can do exercises 1 to 3 as a
+conversation with your agent instead. Choose "Do this with your agent" on
+this part. Your agent asks you about your work one question at a time, and
+your sheet fills in beside the conversation with your answers, in your
+words.
+
 **You'll need:** your
 [toil inventory sheet](handouts/toil-inventory.md#the-sheet), which you can
 copy into a document or spreadsheet or rule up on paper, and the list of
@@ -70,6 +76,9 @@ this."
 ## Exercise 3 — The skeptic pass
 
 **You'll need:** your toil inventory sheet, with the check column filled in.
+
+If you did the first part as a conversation with your agent, you've
+already done the skeptic pass, so you can move on to the wrap-up below.
 
 Pick two or three rows you marked *in*. For each one:
 

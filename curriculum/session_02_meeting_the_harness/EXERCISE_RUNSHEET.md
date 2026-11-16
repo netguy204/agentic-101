@@ -12,12 +12,16 @@ Five exercises, about 65 minutes for a student working alone. Each one sets
 up the next, so they run in order. If time is short in a live session,
 shorten an exercise; don't skip one.
 
-Every exercise works on named files in **`~/course-practice`**, the folder
-the setup made. That keeps changes visible and recoverable; it doesn't make
-the folder a security boundary.
+**Two paths (DEC-016).** Most students work on their agent page: the
+agent's folder is "Your files", each tool call appears as a step (Read,
+Wrote, Changed, Ran a command), and the undo is "Undo the last request" or
+"Earlier versions". A student who runs pi on their own computer follows the
+local box in each exercise and works on named files in
+**`~/course-practice`**. Either way, the folder keeps changes visible and
+recoverable; it isn't a security boundary.
 
-The student keeps [`handouts/terminal-card.md`](handouts/terminal-card.md)
-open, fills in [`handouts/what-did-it-do.md`](handouts/what-did-it-do.md)
+A local student keeps [`handouts/terminal-card.md`](handouts/terminal-card.md)
+open. Every student fills in [`handouts/what-did-it-do.md`](handouts/what-did-it-do.md)
 in exercise 4, and works from the row they starred in the prework. A
 student without a usable row picks one of the prepared tasks in the "For
 Session 2" section of
@@ -25,11 +29,11 @@ Session 2" section of
 
 **Tell the student at the start of a live session:** these exercises
 change files in one practice folder, and by the end of exercise 2 they'll
-know how to get ordinary changes back. That is local file recovery; it
-doesn't undo anything sent or done outside the folder. What they type, and
-any file pi reads, goes to the model provider.
+know how to get ordinary changes back. That is file recovery; it doesn't
+undo anything sent or done outside the folder. What they type, and any
+file the agent reads, goes to the model provider.
 
-**Before exercise 1: `course-update`.** It installs any fix published
+**Local path, before exercise 1: `course-update`.** It installs any fix published
 since setup. Most weeks it prints *Nothing to do*. If it says to close and
 reopen the window, do that before exercise 1. With no internet it says so
 and changes nothing; carry on.
@@ -38,9 +42,14 @@ and changes nothing; carry on.
 
 ## Exercise 1 — Where am I? (about 10 minutes)
 
-**What the student does.** Opens the course terminal, moves to the
-practice folder, and checks that the terminal and the file browser show
-the same folder.
+**On the agent page.** The student finds the request box, "Your files",
+"Earlier versions" and "Undo the last request", and asks the agent what's
+in its folder without changing anything. They should see a Read step and
+nothing else. Say: "Everything it makes or changes appears under Your
+files, and every step it takes appears here as it works."
+
+**Local path.** Opens the course terminal, moves to the practice folder,
+and checks that the terminal and the file browser show the same folder.
 
 **Say it like this.** "Three commands: `pwd` is *where am I*, `ls` is
 *what's here*, `cd` is *go there*. And that window and this window are the
@@ -50,10 +59,11 @@ clicking."
 **And this:** "Nothing happens until you press Enter. If you type
 something and nothing happens, you probably didn't press Enter."
 
-**Done when:** the terminal shows a path ending in `course-practice`, and a
+**Done when:** on the agent page, they know where those four things are;
+locally, the terminal shows a path ending in `course-practice`, and a
 file-browser window is open on the same folder.
 
-**If the student is stuck:**
+**If the student is stuck (local path):**
 
 | What you see | What it is | What to do |
 |---|---|---|
@@ -72,12 +82,21 @@ screen; it means the terminal is ready.
 
 ## Exercise 2 — The safety net (about 15 minutes)
 
-Nobody runs an agent until this exercise is done. pi has no general undo;
-this is how ordinary changes in the practice folder come back.
+Nobody gives the agent real work until this exercise is done.
 
-**What the student does.** Makes a file, saves a checkpoint, deletes the
-file on purpose, and gets it back. The `revert` answers (Enter, Enter,
-`2`, `yes`) are the table at step 6 of the exercise.
+**On the agent page.** The student asks for `notes.txt`, undoes it with
+"Undo the last request", asks again, asks the agent to delete it, then goes
+back with "Earlier versions" to the version from the request that made it.
+Say afterwards: "Undo the last request takes back the agent's last request.
+Earlier versions takes every file back to any earlier point, and you can
+come forward again. Neither recalls what was sent to the model provider."
+Misfires: going back to the wrong entry (open the list again; nothing is
+lost), and undoing a request that changed no file (nothing to undo).
+
+**Local path.** pi has no general undo, so the student makes a file, saves
+a checkpoint, deletes the file on purpose, and gets it back. The `revert`
+answers (Enter, Enter, the number next to "before anything", `yes`) are the
+table in the exercise's local box.
 
 **In a live session, warn them before `revert`:** "It's going to ask four
 questions, one at a time. The first starts with the word *Wait* and gives
@@ -89,7 +108,7 @@ folder back to one. It can't recall a sent message, undo anything outside
 this folder, or pull back what went to the model provider."
 
 **Done when:** `notes.txt` is back with the student's line in it. This has
-no substitute: a student who has only read that `revert` works won't let
+no substitute: a student who has only read that the undo works won't let
 the agent do anything interesting in exercise 5.
 
 **First misfire: not really deleting the file.** Deleting feels wasteful.
@@ -117,8 +136,9 @@ and runs `commit` and `revert` themselves. Both need to have done it.
 
 ## Exercise 3 — Your first delegation (about 15 minutes)
 
-**What the student does.** Starts pi in the practice folder and asks it to
-make a messy file shaped like the input to their starred row. Exercise 4
+**What the student does.** Asks the agent (on the agent page, or pi in
+the practice folder) to make a messy file shaped like the input to their
+starred row. Exercise 4
 works on that file. The prompt is at step 2.
 
 **In a live session, work the prompt with them before they send it.** The
@@ -132,21 +152,22 @@ the course is about pointing it at work that matters and knowing whether
 it got it right."
 
 **And this:** "What you typed went to the model provider, and so would any
-file pi reads. You described only the shape of your work, so everything in
-the file is made up."
+file the agent reads. You described only the shape of your work, so
+everything in the file is made up."
 
-**Done when:** `sample.csv` is in the folder, the student didn't type it,
-and there's a checkpoint named "the messy sample". Have them open it in
-the file browser; seeing a real file they didn't make is the point.
+**Done when:** `sample.csv` is in the folder and the student didn't type it
+(locally, there's also a checkpoint named "the messy sample"). Have them
+open it, from "Your files" or the file browser; seeing a real file they
+didn't make is the point.
 
 **First misfire: describing the task instead of the material.** They get
 an empty file or an explanation. Ask: "What does the file look like
 *before* you fix it?" Column 1 of the sheet usually says.
 
 **Second misfire: thinking it has frozen.** Agents pause. Wait a minute
-before pressing Escape.
+before choosing "Stop" (or pressing Escape in pi).
 
-**If the agent asks a question.** Answer it in the box and press Enter. It
+**If the agent asks a question.** Answer it in the request box and send it. It
 knew it didn't know; it won't always.
 
 **Prepared task.** The student uses the ready-made prompt for the option
@@ -181,8 +202,9 @@ Box 3 says "it said it standardised the department names". Ask: *"That's
 what it told you. What did you look at?"*
 
 **Second misfire: box 1 from memory.** A box 1 that says "it fixed the
-file" is a summary. Have them scroll up; each box on screen is labelled
-with its tool. One or two boxes is normal, and noticing it rewrote the
+file" is a summary. Have them scroll up; each step on screen is labelled
+with what it did (Read, Wrote, Changed, Ran a command; locally, the pi
+tool names read, write, edit, bash). One or two boxes is normal, and noticing it rewrote the
 file without reading it first is a good observation.
 
 **When the agent got it wrong.** A good result. Ask what they looked at
@@ -204,8 +226,9 @@ question opens Session 3.
 ## Exercise 5 — Break it on purpose (about 8 minutes, plus 2 to wrap)
 
 **What the student does.** Tells the agent to ruin `sample.csv`, watches
-it comply, and reverts to "cleaned up". The prompt at step 2 is sent
-exactly as written.
+it comply, and goes back to the cleaned-up version: on the agent page, the
+"Earlier versions" entry from the exercise 4 request; locally, `revert` to
+"cleaned up". The prompt is sent exactly as written.
 
 **Afterwards, say it like this.** "You got back a deliberately ruined file
 in under a minute, and you know it works because you did it. It doesn't
@@ -213,30 +236,31 @@ undo messages, data sent out, or anything outside the folder, so real work
 still needs authorization, the right task, and a person approving anything
 external."
 
-**Done when:** `ls` shows `sample.csv` and no `disaster.csv`, and the file
-has the cleaned-up data.
+**Done when:** the folder shows `sample.csv` and no `disaster.csv`, and the
+file has the cleaned-up data.
 
-**Why this prompt and not "delete everything".** The checkpoints live in a
-hidden folder inside `~/course-practice`. A prompt broad enough to delete
+**Why this prompt and not "delete everything".** Locally, the checkpoints
+live in a hidden folder inside `~/course-practice`. A prompt broad enough to delete
 everything can delete those too, and then there's nothing to revert to.
 This prompt names the file it ruins. Don't let a student make it more
 dramatic; if they ask, tell them why. Bounding what an agent can touch is
 Session 4.
 
-**Common misfire: reverting to "the messy sample".** Exercise 4's work
-seems lost. Run `revert` again and pick "cleaned up"; reverting can itself
-be undone.
+**Common misfire: going back to the messy sample.** Exercise 4's work
+seems lost. On the agent page, open "Earlier versions" again and pick the
+entry from the cleanup request; locally, run `revert` again and pick
+"cleaned up". Going back can itself be undone.
 
 **If the agent refuses or asks if they're sure.** Tell it yes, or "do it
-anyway". If it still won't, delete `sample.csv` in the file browser and
-revert from there. The exercise is the revert. Don't present the refusal
+anyway". Locally, if it still won't, delete `sample.csv` in the file
+browser and revert from there. The exercise is the undo. Don't present the refusal
 as a safety feature.
 
 ---
 
 ## Wrapping up
 
-The student opens `~/course-practice` and finds a `sample.csv` with
-sensible data they didn't type. That's the session's outcome. A student
+The student opens "Your files" (or `~/course-practice`) and finds a
+`sample.csv` with sensible data they didn't type. That's the session's outcome. A student
 who can't get there is a case for the Recovery section of
 [`CHECKPOINT.md`](CHECKPOINT.md).

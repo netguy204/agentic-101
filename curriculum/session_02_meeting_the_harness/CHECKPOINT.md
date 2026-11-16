@@ -12,17 +12,19 @@ The observable behavior that tells you Session 2's outcome landed
 
 **Every student submits evidence of having:**
 
-1. **Run at least one delegation** in `~/course-practice` — an agent changed
-   a real file on their own machine at their instruction.
+1. **Run at least one delegation**: an agent changed a real file at their
+   instruction, in the agent's folder on their agent page or in
+   `~/course-practice` if they run pi on their own computer.
 2. **Said what the agent did by reading its tool calls**, not by repeating
    its summary. "It wrote the file" is a pass. "It cleaned up my statuses" is
    not — that's the paragraph talking.
 3. **Named what they checked** to decide whether the result was reasonable,
    and what that check told them. Specific. "The row count was still fifteen
    and I read the status column" passes; "it looked fine" does not.
-4. **Used `revert` at least once** to recover an ordinary local file change
-   they or the agent made on purpose. This demonstrates local recovery, not
-   broader safety.
+4. **Undone a change at least once** and recovered a file they or the agent
+   changed on purpose: with "Undo the last request" or "Earlier versions" on
+   the agent page, or with `revert` if they run pi locally. This
+   demonstrates recovering files, not broader safety.
 
 All four. The first and fourth are facts you can see; the second and third
 are the ones you have to hear or read, and they are the ones the session is
@@ -34,18 +36,21 @@ software, which is not what this course is selling.
 
 ## How it is observed
 
-**On the platform.** The student submits four things: the pi session log
-(item 1), the what-did-it-do worksheet (box 1 is item 2, box 3 is item 3),
-the output of `revert --list` (item 4), and the files from the practice
-folder. Items 1 and 4 are checked mechanically; items 2 and 3 are judged
-against the examples below. A near-miss gets the corrective question from
+**On the platform.** A student who submits from their agent page sends the
+what-did-it-do worksheet (box 1 is item 2, box 3 is item 3), and the
+platform adds the agent's record (item 1, and item 4, because an undo or a
+go-back is written into it) and the files from the agent's folder. A
+student who runs pi locally submits their pi session log (item 1), the
+worksheet, the output of `revert --list` (item 4) and the files from
+`~/course-practice`. Items 1 and 4 are checked mechanically; items 2 and 3
+are judged against the examples below. A near-miss gets the corrective question from
 the table below and a second try. After two rounds, or when the judge
 isn't confident, the case goes to the instructor.
 
 **In a live session.** Ask for it at the end, in one frame:
 
-> "What you asked for. What tools it used. What you checked. And say the
-> words 'I used revert' if you did."
+> "What you asked for. What tools it used. What you checked. And tell me
+> how you undid a change."
 
 Don't improve their answer before they give it. If it's a near-miss, ask
 the corrective question once. With a small group, take one answer from
@@ -53,7 +58,7 @@ each person, or have them submit on the platform.
 
 **Record it.** Session 3 starts from this:
 
-| Student | Ran a delegation | Read the tool calls | Named a real check | Used revert | Note |
+| Student | Ran a delegation | Read the tool calls | Named a real check | Undid a change | Note |
 |---|---|---|---|---|---|
 | | yes / no | yes / no | yes / vague / no | yes / no | |
 
@@ -82,11 +87,12 @@ have found it. That is Session 1's judgment boundary, on their own work.
 
 | They say | What's missing | Say this |
 |---|---|---|
-| "It standardised all my statuses and tidied the dates." | That's the summary, not the tool calls. **The most common near-miss by far.** | "That's what it told you. What did the boxes say, and what did you look at?" |
+| "It standardised all my statuses and tidied the dates." | That's the summary, not the tool calls. **The most common near-miss by far.** | "That's what it told you. What did the steps say, and what did you look at?" |
 | "It looked fine." | No check. | "Fine how? What's the first thing your eye went to?" There is nearly always a real answer one question down. |
 | "I checked it against what it said it did." | Circular — the summary checking the summary. | "So you checked the paragraph against the paragraph. What's in the file?" |
-| "It used all four tools." | Guessing from the handout rather than reading the screen. | "Scroll up. How many boxes are actually there?" Usually one or two. |
+| "It used all four tools." | Guessing from the handout rather than reading the screen. | "Scroll up. How many steps are actually there?" Usually one or two. |
 | "I didn't need to revert, mine went fine." | Item 4 missing. | "Not a debate — do it now, it takes thirty seconds. `commit`, delete a file in your file browser, `revert`. Then send me `revert --list` again. You cannot finish this session without having done it once." |
+| "I didn't need to undo anything, mine went fine." (agent page) | Item 4 missing. | "Do it now, it takes thirty seconds. Ask the agent to make a small file, then choose Undo the last request. Then submit again." |
 | "It only used one tool, so I don't think it really did anything." | Reading a short list as a failure. | "One `write` is a whole file created. Short lists are normal — what changed in the folder?" |
 
 A near-miss corrected on the spot counts as a pass. The point is the habit,
@@ -103,16 +109,19 @@ the thread, or offer a call. There are four usual causes:
   exercise 1). Offer a setup call, then run one delegation with them
   typing and sharing their screen. Session 3 assumes they have done it.
 - **Ran it but read only the summary.** Go back through their session
-  with them (`pi -r` finds it) and point at the boxes. One walk-through
-  usually fixes this; they haven't yet seen the boxes as separate from the
+  with them (on the agent page, the steps are still there and "The agent's
+  record" has them all; locally, `pi -r` finds it) and point at the steps. One walk-through
+  usually fixes this; they haven't yet seen the steps as separate from the
   prose.
 - **No check, because the task was outside their judgment boundary.** They
   picked a row marked `out`, or one whose column 4 was always vague. Say
   that this is a good diagnosis, and pick a different row with them for
   the practice week.
-- **Didn't use `revert`.** Thirty seconds: `commit`, delete a file in the
-  file browser, `revert`, then send `revert --list`. A student who hasn't
-  done it won't experiment during the practice week.
+- **Didn't undo anything.** Thirty seconds. On the agent page: ask for a
+  small file, then "Undo the last request", then submit again. Locally:
+  `commit`, delete a file in the file browser, `revert`, then send
+  `revert --list`. A student who hasn't done it won't experiment during the
+  practice week.
 
 Note who needed which. Two students with the same cause is a defect in the
 material.
@@ -127,12 +136,13 @@ curriculum defect (`docs/trunk/TESTING_PHILOSOPHY.md`: a confused
 participant is a bug report). Two obligations:
 
 1. **Help the student before Session 3.** On a call, go back through
-   their session (`pi -r`) and their worksheet: "what did yours actually
+   their session (the agent's record, or `pi -r` locally) and their
+   worksheet: "what did yours actually
    do?" Session 3 is about writing instructions an agent can follow, and
    it's no use to someone who can't yet tell what the agent did.
 2. **Log it** in `docs/trunk/FRICTION.md` and in this session's
    [`FLOOR_TEST.md`](FLOOR_TEST.md), with what their answers said. Likely
-   causes: setup problems ate the time for exercise 4; the "boxes versus
+   causes: setup problems ate the time for exercise 4; the "steps versus
    paragraph" point didn't come through in the concept track or the
    exercise text; or exercise 3's file was too trivial to have anything to
    check.

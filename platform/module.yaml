@@ -200,26 +200,27 @@ sessions:
       parts:
         # Runsheet: where am I? 10 minutes, the safety net 15. Nobody delegates
         # anything until the safety net works, so the two are one sitting.
+        # The agent page is the main path (DEC-016); students who run pi on
+        # their own computer follow the boxes in each exercise.
         - id: where_am_i
           title: Find your way, then build the safety net
           minutes: 25
           outcome: >-
-            A terminal and a file browser open on the same course-practice
-            folder, and a file you really deleted on purpose and got back with
-            revert. Getting it back is what makes the rest of the session safe
-            to try.
+            You know where the request box, Your files and Earlier versions
+            are on your agent page, and you've undone a change and brought a
+            file back yourself. Getting it back is what makes the rest of the
+            session safe to try.
           # Chunk: docs/chunks/platform_drift_audit - Where this part opens (F-1)
           # Unanchored first, which is deliberate and is the one part in
           # either session that opens at the top of its document. DEC-012
-          # requires every session from Session 2 to open with `course-update`,
-          # and EXERCISES.md carries it as a "Before exercise 1" paragraph
-          # above the first heading — so a part that opened at
-          # #exercise-1-where-am-i would send the student past the step the
-          # session is supposed to start with. A student alone has only where
-          # this part opens.
+          # requires every session from Session 2 to open with `course-update`
+          # for students who run pi locally, and EXERCISES.md carries it in a
+          # box above the first heading, so a part that opened at
+          # #exercise-1-where-am-i would skip it. A student alone has only
+          # where this part opens.
           materials:
             - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-              label: "The terminal card"
+              label: "The terminal card, if you run pi on your own computer"
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-1-where-am-i
@@ -229,7 +230,7 @@ sessions:
           title: Your first delegation
           minutes: 15
           outcome: >-
-            A sample.csv in your practice folder that the agent made, shaped
+            A sample.csv in your agent's folder that the agent made, shaped
             like the input to the row you starred on your toil inventory sheet,
             mistakes and all.
           materials:
@@ -249,15 +250,13 @@ sessions:
           minutes: 25
           outcome: >-
             A filled-in what-did-it-do worksheet naming the check you applied,
-            and a sample.csv you ruined on purpose and then reverted to the
+            and a sample.csv you ruined on purpose and then brought back to the
             version you had cleaned up.
           materials:
             - path: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
               label: "The what-did-it-do worksheet"
             - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
               label: "Your toil inventory sheet"
-            - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-              label: "The terminal card"
           sources:
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-4-what-did-it-actually-do
             - curriculum/session_02_meeting_the_harness/EXERCISES.md#exercise-5-break-it-on-purpose
@@ -267,11 +266,11 @@ sessions:
           title: The solo lap
           minutes: 20
           outcome: >-
-            The whole loop once on your own (commit, delegate, check, commit)
-            within 48 hours of the session.
+            The whole loop once on your own, within 48 hours of the session:
+            delegate, check, and keep the result or undo it.
           materials:
             - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-              label: "The terminal card"
+              label: "The terminal card, if you run pi on your own computer"
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#1-the-solo-lap-20-minutes-within-48-hours
         # Two 15-minute laps, and the page says so; they are one part because
@@ -286,8 +285,6 @@ sessions:
           materials:
             - path: curriculum/session_01_mental_models/handouts/toil-inventory.md
               label: "Your toil inventory sheet"
-            - path: curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-              label: "The terminal card"
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#2-two-real-ones-15-minutes-each
         - id: worst_one_worksheet
@@ -303,14 +300,16 @@ sessions:
           sources:
             - curriculum/session_02_meeting_the_harness/PRACTICE.md#3-one-worksheet-on-the-worst-one-10-minutes-before-session-3
     artifacts:
-      # pi keeps its sessions as JSONL under ~/.pi/agent/sessions; `pi -r`
-      # finds them. This is the record of what the agent actually did, as
-      # opposed to what it said about itself.
+      # The record of what the agent actually did, as opposed to what it said
+      # about itself. Submitted from the agent page, the platform fills it with
+      # the agent's record (a pi.dev session log). Locally, pi keeps it as
+      # JSONL under ~/.pi/agent/sessions, and `pi -r` finds it.
       - id: session_log
-        label: "Your session log"
+        label: "The agent's record"
         description: >-
-          The record pi keeps of each session on your computer. It shows the steps the
-          agent actually took. Type `pi -r` to find it after the lab.
+          The record of every step the agent took. When you submit from your agent,
+          it's added for you. If you run pi on your own computer, submit your pi
+          session log instead: type `pi -r` to find it.
         kind: harness_log
         accepts: ["*.jsonl"]
       - id: what_did_it_do
@@ -320,22 +319,26 @@ sessions:
           naming the check you applied and what it told you.
         kind: worksheet
         template: curriculum/session_02_meeting_the_harness/handouts/what-did-it-do.md
-      # `revert` is a course command the participant types (env/bin/revert),
-      # not a tool the agent calls, so it leaves no trace in the session log.
-      # What it does leave is a checkpoint named "Back to: <name>", which
-      # `revert --list` prints. That listing is the evidence.
+      # Only for students who run pi locally. `revert` is a course command the
+      # participant types (env/bin/revert), not a tool the agent calls, so it
+      # leaves no trace in the session log. What it does leave is a checkpoint
+      # named "Back to: <name>", which `revert --list` prints. On the agent
+      # page, an undo or a go-back is written into the agent's record instead.
       - id: checkpoint_list
+        local_only: true
         label: "Your list of checkpoints"
         description: >-
-          What `revert --list` prints in your practice folder. It shows the checkpoint
-          you went back to, which is how you show you undid something.
+          What `revert --list` prints in your practice folder. It shows the
+          checkpoint you went back to.
         kind: text
-      # The folder itself. Bar item 1 is "an agent changed a real file on
-      # their own machine", and the file is the plainest form of that.
+      # The folder itself. Bar item 1 is "an agent changed a real file", and
+      # the file is the plainest form of that.
       - id: practice_files
-        label: "Your practice folder's files"
+        label: "Your agent's files"
         description: >-
-          The files in your practice folder, including the one the agent changed.
+          The files the agent made or changed, including `sample.csv`. When you submit
+          from your agent, they're added for you. If you run pi on your own
+          computer, upload them from your practice folder.
         kind: files
         accepts: ["*.csv", "*.md", "*.txt"]
     rubric: platform/rubrics/02_meeting_the_harness.yaml
@@ -346,5 +349,6 @@ sessions:
       - curriculum/session_02_meeting_the_harness/DRY_RUN.md
       - curriculum/session_02_meeting_the_harness/FLOOR_TEST.md
       - curriculum/session_02_meeting_the_harness/handouts/terminal-card.md
-    # Concept: the 15-minute prework plus the 15-minute track.
-    estimated_minutes: { concept: 30, lab: 125 }
+    # Concept: the 10-minute prework plus the 15-minute audio (five minutes
+    # more of prework for a student who runs pi locally).
+    estimated_minutes: { concept: 25, lab: 125 }

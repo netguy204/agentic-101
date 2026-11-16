@@ -864,3 +864,40 @@ protocol. Session 3's are still written for a room.
 **Revisit If**: the course is booked for a room again, or test students
 consistently need the facilitator for something the automated layers were
 meant to handle.
+
+### DEC-015: The in-app agent is every student's default; running pi locally is the option
+
+**Status**: ACCEPTED (2026-11-15)
+
+**Context**: The learning platform gives every enrollment a hosted agent
+(learning-platform DEC-016): a page with a request box, each tool call shown
+as it runs, "Undo the last request", "Earlier versions" and "Your files". It
+runs the same pinned model with no install and no key. Session 2 was written
+for pi in the course terminal on the student's own computer, and a student
+using the in-app agent could not follow it.
+
+**Decision**: The in-app agent is the main path in every session. Each
+exercise that uses an agent gives the in-app steps first and a short "If you
+run pi on your own computer" box with the terminal steps. A checkpoint
+accepts either path's evidence against the same bar: for Session 2, the
+agent's record or a local session log for what the agent did, and an undo or
+go-back in the agent's record or the pasted `revert --list` for having undone
+a change. The setup gate (the smoke test) applies only to students who run
+pi on their own computer; the platform passes in-app students through setup
+on its own record.
+
+**Rationale**: Brian decided it on 2026-11-15. The course's subject is
+judgment about delegated work; installing and running a terminal is a
+barrier for the audience floor, and the in-app agent shows the same tool
+calls and gives the same undo. Keeping the local path preserves the option
+for students who want the agent close to their own files.
+
+**Consequences**: Session 2's exercises, prework, worksheet, audio and
+checkpoint are rewritten for both paths, with the terminal card as the local
+students' reference. Accepting either path needs a platform contract change
+(a criterion whose checks pass if any one passes, and an artifact only local
+students submit), which learning-platform is taking to Brian. Later sessions
+are written in-app first.
+
+**Revisit If**: most students choose the local path, or the in-app agent
+stops showing tool calls or undo.

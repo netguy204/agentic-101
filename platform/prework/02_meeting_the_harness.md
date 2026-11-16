@@ -2,8 +2,10 @@
 
 <!-- Chunk: docs/chunks/platform_cohort_prework - The self-paced student's prework; Session 2's only prework (DEC-014) -->
 
-**Time:** about 15 minutes. You'll pick one row from your toil inventory
-sheet, then check that the course software still works.
+**Time:** about 10 minutes. You'll pick one row from your toil inventory
+sheet for the agent to work on. If you run pi on your own computer, you'll
+also check that the course software still works, which takes about five
+minutes more.
 
 ---
 
@@ -39,36 +41,26 @@ instead.
 
 ---
 
-## 2. Run two commands (5 minutes)
+## 2. If you run pi on your own computer: run two commands (5 minutes)
+
+If you use your agent page, there's nothing to check here, so skip this
+step.
 
 Open the course terminal. **Mac:** `Command + Space`, type `Ghostty`,
 Enter. **Windows:** Start, type `Terminal`, Enter on **Windows Terminal**
 (not "Git Bash").
 
-Type this and press Enter:
+Type `course-update` and press Enter. It fetches any course fixes published
+since you set up. Most weeks it says **Nothing to do.** If it tells you to
+close the window and open a new one, do that.
 
-```
-course-update
-```
-
-It fetches any course fixes published since you set up. Most weeks it says
-**Nothing to do.** If it tells you to close the window and open a new one,
-do that.
-
-Then type this and press Enter:
-
-```
-course-smoke-test
-```
-
-It prints a short list and ends with **PASS** or **FAIL**. PASS means
-you're ready.
+Then type `course-smoke-test` and press Enter. It prints a short list and
+ends with **PASS** or **FAIL**. PASS means you're ready.
 
 **If it says FAIL, or anything else goes wrong, stop there.** Don't
 reinstall anything or try fixes from the internet. Copy everything the
 window printed and send it to your instructor: choose "Stuck on this
-session?", then "Send to your instructor". A FAIL means the setup
-instructions need fixing, and that output shows your instructor what went
-wrong.
+session?", then "Send to your instructor". In the meantime you can do
+Session 2 on your agent page.
 
 **Next:** the audio.

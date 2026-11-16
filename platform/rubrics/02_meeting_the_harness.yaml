@@ -24,9 +24,13 @@ criteria:
     check: deterministic
     evidence:
       - artifact: session_log
-        expect: at least one write, edit or bash tool call
+        expect: >-
+          at least one write, edit or bash tool call (on the agent page, the
+          agent's record)
       - artifact: practice_files
-        expect: the file the agent made or changed, from the practice folder
+        expect: >-
+          the file the agent made or changed, from the agent's folder or the
+          practice folder
     deterministic:
       kind: harness_log.tool_calls_at_least
       artifact: session_log
@@ -45,8 +49,9 @@ criteria:
     evidence:
       - artifact: what_did_it_do
         expect: >-
-          box 1 lists the tools in order, in the student's own words, and
-          names anything surprising in that list
+          box 1 lists the steps in order, in the student's own words (the
+          agent page's Read, Wrote, Changed or Ran a command, or pi's read,
+          write, edit or bash), and names anything surprising in that list
       - artifact: session_log
         expect: the calls they name actually appear, in that order
     pass_examples:
@@ -55,17 +60,21 @@ criteria:
         spelled inconsistently. It used write once. Then I asked it to fix
         them, and it used write again — it never re-read the file, which I
         noticed.
+      - >-
+        I asked for a messy list of purchase orders and saw one Wrote. Then I
+        asked it to fix them and saw another Wrote. It never did a Read
+        first, which I noticed.
     near_miss_examples:
       - text: It standardised all my statuses and tidied the dates.
         why: >-
           That's the summary, not the tool calls. The most common near-miss by
           far.
         corrective: >-
-          That's what it told you. What did the boxes say, and what did you
+          That's what it told you. What did the steps say, and what did you
           look at?
       - text: It used all four tools.
         why: Guessing from the handout rather than reading the screen.
-        corrective: "Scroll up. How many boxes are actually there? Usually one or two."
+        corrective: "Scroll up. How many steps are actually there? Usually one or two."
       - text: It only used one tool, so I don't think it really did anything.
         why: Reading a short list as a failure.
         corrective: >-
@@ -82,14 +91,15 @@ criteria:
           The summary, not the tool calls — in worksheet form. A Tool cell
           holding a description of the outcome instead of a tool name.
         corrective: >-
-          That's what it told you. What did the boxes say, and what did you
+          That's what it told you. What did the steps say, and what did you
           look at?
       - text: "Worksheet box 1 lists 'cleaned up my statuses' as tool 1 and is otherwise empty."
         why: >-
           The paragraph copied into the table. A tool name is read, write,
-          edit or bash; anything else in that column came from the summary.
+          edit or bash (Read, Wrote, Changed or Ran a command on the agent
+          page); anything else in that column came from the summary.
         corrective: >-
-          That's what it told you. What did the boxes say, and what did you
+          That's what it told you. What did the steps say, and what did you
           look at?
 
   # Bar, item 3: "Named what they checked to decide whether the result was
@@ -148,16 +158,27 @@ criteria:
   # already have participants read, so nothing new is being asked of them
   # here beyond doing it a session earlier.
   - id: used_revert
-    statement: The student used `revert` at least once and recovered a change.
+    statement: >-
+      The student undid a change at least once and recovered a file: with
+      Undo the last request or Earlier versions on the agent page, or with
+      `revert` if they run pi on their own computer.
     check: either
     evidence:
+      - artifact: session_log
+        expect: >-
+          on the agent page, a course.checkpoint entry in the agent's record
+          that starts "[The student undid" or "[The student went back"
       - artifact: checkpoint_list
         expect: >-
-          the pasted output of `revert --list`, showing a checkpoint named
-          "Back to: …" — the record `revert` writes when it puts a folder back
+          on their own computer, the pasted output of `revert --list`,
+          showing a checkpoint named "Back to: …" — the record `revert`
+          writes when it puts a folder back
     pass_examples:
       - And yes, I reverted — it renamed my file and I put it back.
       - And I reverted twice — the first time I picked the wrong checkpoint.
+      - >-
+        And yes, I undid it. I went back to the version from my cleanup
+        request in Earlier versions.
     near_miss_examples:
       - text: I didn't need to revert, mine went fine.
         why: Item 4 missing.
@@ -167,13 +188,22 @@ criteria:
           Not a debate — do it now, it takes thirty seconds. `commit`, delete
           a file in your file browser, `revert`. Then send me `revert --list`
           again. You cannot finish this session without having done it once.
+      - text: I didn't need to undo anything, mine went fine.
+        why: Item 4 missing, on the agent page.
+        corrective: >-
+          Do it now, it takes thirty seconds. Ask the agent to make a small
+          file, then choose Undo the last request. Then submit again.
+    # Either path passes: the agent's record shows an undo or go-back, or
+    # the pasted `revert --list` shows a "Back to:" checkpoint (DEC-015).
     deterministic:
-      kind: text.contains_all
-      artifact: checkpoint_list
-      params:
-        phrases:
-          - "Your checkpoints, newest first:"
-          - "Back to:"
+      - kind: harness_log.revert_or_restore_present
+        artifact: session_log
+      - kind: text.contains_all
+        artifact: checkpoint_list
+        params:
+          phrases:
+            - "Your checkpoints, newest first:"
+            - "Back to:"
 
 escalate_when:
   - conversation_rounds_exhausted

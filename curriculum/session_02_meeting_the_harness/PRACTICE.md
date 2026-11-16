@@ -21,21 +21,17 @@ useful here.
 
 ## 1. The solo lap (20 minutes, within 48 hours)
 
-**You'll need:** the [terminal card](handouts/terminal-card.md). Its
-[When you feel lost](handouts/terminal-card.md#when-you-feel-lost) section
-covers most of the ways this can go sideways.
+**You'll need:** your agent page.
 
-Run the whole loop again, on your own, in `~/course-practice`:
+Run the whole loop again, on your own:
 
-> **`commit` → delegate → check → `commit`**
+> **delegate → check → keep it, or undo it**
 
-1. Open the course terminal, type `cd ~/course-practice`, then `pwd` to
-   confirm where you are.
-2. Type `commit`. Name it something like "before Tuesday".
-3. Type `pi` and ask for something small: a packing list, a tidy-up of a
-   file it made in the lab, or a summary of `README.txt`.
-4. Read the tool boxes, then open the file.
-5. Type `/quit`, then `commit` to keep it or `revert` to undo it.
+1. Ask for something small: a packing list, a tidy-up of the file from the
+   lab, or a summary of a file under **Your files**.
+2. Read the steps the agent took, then open the file.
+3. Keep it if it's right. If it isn't, choose **Undo the last request**, or
+   go back with **Earlier versions**.
 
 **Done when:** you've run the loop once, start to finish, with nobody
 helping.
@@ -44,16 +40,25 @@ If you're stuck for more than five minutes, stop and get in touch with your
 instructor: choose "Stuck on this session?", then "Send to your
 instructor".
 
+**If you run pi on your own computer:** keep the
+[terminal card](handouts/terminal-card.md) open; its
+[When you feel lost](handouts/terminal-card.md#when-you-feel-lost) section
+covers most of the ways this can go sideways. In `~/course-practice`: type
+`commit` (name it something like "before Tuesday"), then `pi`, and ask for
+something small. Read the tool boxes, open the file, type `/quit`, then
+`commit` to keep it or `revert` to undo it.
+
 ---
 
 ## 2. Two real ones (15 minutes each)
 
 **You'll need:** your
 [toil inventory sheet](../session_01_mental_models/handouts/toil-inventory.md#the-sheet)
-and the [terminal card](handouts/terminal-card.md).
+and your agent page.
 
-What you type, and the contents of any file pi reads, is sent to the model
-provider. `commit` and `revert` recover local files only.
+What you type, and the contents of any file the agent reads, is sent to the
+model provider. **Undo the last request** and **Earlier versions** (or
+`commit` and `revert`) recover files in the agent's folder only.
 
 A real task must pass **all four questions** before you delegate it:
 
@@ -80,22 +85,27 @@ Pick **two rows on your sheet marked *in*** that pass all four questions,
 other than the one you used in the lab. The next time each task comes
 round:
 
-1. Type `cd ~/course-practice`, then `commit`.
-2. Type `pi` and ask for what you want in a plain sentence. Your row's
-   *What "done right" looks like* column is the instruction.
-3. **Apply the check in your row's *How I'd check* column to the actual
+1. Ask your agent for what you want in a plain sentence. Your row's *What
+   "done right" looks like* column is the instruction. If the task needs a
+   file, add it with **Upload files** first.
+2. **Apply the check in your row's *How I'd check* column to the actual
    output.**
-4. Keep the result as a draft until the right person has reviewed it and
-   approved any action outside the folder.
-5. Type `/quit`. Then `commit` to keep the local files, or `revert` to undo
-   them.
+3. Keep the result as a draft until the right person has reviewed it and
+   approved any action outside the agent's folder.
+4. Keep the files, or undo them with **Undo the last request** or **Earlier
+   versions**.
+
+**If you run pi on your own computer:** in `~/course-practice`, `commit`
+first, then `pi`. Afterwards, `/quit`, then `commit` to keep the files or
+`revert` to undo them. The [terminal card](handouts/terminal-card.md) has
+every command.
 
 **Your data.** Use one of these:
 
 | Option | When to use it |
 |---|---|
 | **Describe the shape and let it invent the data**, as in the lab | Anything sensitive, or hard to get out of the system it lives in |
-| **Copy a small, real, non-sensitive extract into `~/course-practice`** | Only if you're allowed to send it to the model provider |
+| **Add a small, real, non-sensitive extract** with **Upload files** (or copy it into `~/course-practice`) | Only if you're allowed to send it to the model provider |
 | **A made-up version of the real task** | When you want the practice more than the output |
 
 If you're unsure whether something is safe to send, ask whoever owns it

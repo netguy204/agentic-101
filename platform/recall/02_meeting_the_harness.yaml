@@ -10,15 +10,14 @@ session: 02_meeting_the_harness
 prompts:
   - id: what_is_a_terminal
     prompt: >-
-      Somebody who has never opened one asks you what a terminal is. Say it in
-      one sentence — and then tell them the one thing that unsettles people
-      about it.
+      A friend asks where the agent does its work, and how you'd find out what
+      it did. What do you tell them?
     model_answer: >-
-      A terminal is a window onto a folder: the same folders and files you see
-      in your file browser, except you say what you want in words instead of
-      pointing. The thing that unsettles people is that it looks like it is
-      waiting for them to get something right. It is not. Nothing happens
-      until you press enter, and it will sit there as long as you like.
+      It works in a folder of its own, which you can see on the page under Your
+      files. Everything it makes or changes is there. And as it works, each
+      thing it does appears as a step on the page, so you can watch it read,
+      write, change a file or run a command, and then look in the folder for
+      the result.
     segment_after: 1
 
   - id: why_the_safety_net_comes_first
@@ -26,24 +25,23 @@ prompts:
       Why does this session teach you to undo things before it lets you run a
       single delegation? And what does that undo not cover?
     model_answer: >-
-      Because the agent changes files and has no undo of its own — and because
-      somebody who has only been told the safety net exists does not believe
-      it, and somebody who does not believe it will not experiment. It rolls
-      back ordinary changes to files in the practice folder. It does not
-      unsend an email, does not reach outside that folder, and cannot pull
-      back anything already sent to a model provider.
+      Because the agent changes files, and somebody who has only been told the
+      safety net exists doesn't believe it, and won't experiment. Once you've
+      seen a file come back, you'll try things. Undo puts files in the agent's
+      folder back. It doesn't unsend an email, doesn't reach outside that
+      folder, and can't pull back anything already sent to the model
+      provider.
     segment_after: 2
 
   - id: what_tool_calls_are
     prompt: >-
-      You run your first delegation and only two boxes appear on the screen.
-      What are those boxes, and what does two of them mean?
+      You run your first delegation and only two steps appear on the screen.
+      What are those steps, and what does two of them mean?
     model_answer: >-
-      They are tool calls — one box per thing it actually did, read a file,
-      wrote a file, ran a command. They are the closest thing to a receipt you
-      will get. Two is normal. One write is a whole file created; a short list
-      is what competence looks like from the outside, not a sign that nothing
-      happened.
+      They're tool calls, one step for each thing it actually did: read a
+      file, wrote a file, changed one, ran a command. They're the closest thing
+      to a receipt you'll get. Two is normal. One write is a whole file
+      created, and a short list doesn't mean nothing happened.
     segment_after: 3
 
   - id: the_three_questions
@@ -51,9 +49,9 @@ prompts:
       Three questions, in order, after every delegation. What are they — and
       which one is the session actually for?
     model_answer: >-
-      What did it do, read off the boxes and not off its paragraph. What
+      What did it do, read off the steps and not off its paragraph. What
       changed in the folder, read off the actual file. And then the one the
       session is for: was that reasonable, and how do I know? The answer to
-      the third is the check you already wrote in column four of your
-      inventory, before you had ever seen this software.
+      the third is the check you already wrote in the How I'd check column of
+      your toil inventory sheet, before you'd ever seen the agent.
     segment_after: 4

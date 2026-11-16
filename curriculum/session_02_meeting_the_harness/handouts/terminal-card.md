@@ -2,6 +2,9 @@
 
 <!-- Chunk: docs/chunks/fluency_session_02 - Session 2 terminal and pi reference card -->
 
+This card is for students who run pi on their own computer. If you use
+your agent page, you don't need it.
+
 Print this page or keep it open beside the terminal. It's here so you
 don't need to remember any of it.
 

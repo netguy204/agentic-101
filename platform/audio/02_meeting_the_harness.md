@@ -1,119 +1,100 @@
 # Session 2 — Meeting the harness
 
-This is Session 2 of Agentic 101. It has four
-parts. Each one ends with a question: answer it yourself, out loud if
-you can, before the model answer. Nothing here asks you to type anything.
-Every command and every step is in the lab, where you will need it.
+This is Session 2 of Agentic 101. It has four parts. Each one ends with a
+question. Answer it yourself, out loud if you can, before you hear the model
+answer. Nothing here asks you to type anything. Every step is in the lab,
+where you'll need it.
 
-## Segment 1 — A window onto a folder
+## Segment 1 — The agent's folder
 
-In this session you work in an app where you type instructions instead of
-clicking them. That app is a terminal.
+In this session you work with an agent for the first time. You'll do it on
+your agent page, which comes with the course and needs nothing installed.
 
-A terminal is a window onto a folder. They are the same folders you see in
-Finder or File Explorer, the same files, on the same computer. You say what
-you want in words instead of pointing at it.
+The agent has a folder of its own. Everything it makes or changes lives
+there, and you can see the whole folder on the page, listed under Your
+files. When you ask the agent for something, it works inside that folder
+and nowhere else. So the folder is where you look to see what it did.
 
-Everything the course asks you to type is something you already do by
-clicking. In Finder or File Explorer, the folder's name is at the top of
-the window, so you can see which folder you are in. In a terminal you ask,
-and it tells you. In Finder or File Explorer, you see what is in a folder
-by looking at its icons. In a terminal you ask for a list. In Finder or
-File Explorer, you go into a folder by double-clicking it. In a terminal
-you say go there.
+The page shows you the work as it happens. Each time the agent does
+something, a step appears, labelled with what it did. It read a file. It
+wrote a file. It changed part of a file. It ran a command. You'll get to
+know these four in the lab.
 
-Those three ideas are where am I, what is here, and go there. The words
-for them are on your terminal card. You do not need to remember them. The
-course never tests whether you know a command.
+The page also waits for you. Nothing happens until you send a request, and
+the agent stops when it has finished what you asked. If it's taking a
+while, you'll see a Stop button, and you can use it.
 
-The terminal does one thing that clicking does not. It shows a blinking
-cursor and nothing else moves. Many people read that as the machine
-waiting for them to get something right. It is waiting for you to type and
-press Enter. Nothing happens before that. It never goes ahead on its own
-and it does not care how long you take. If you type something and nothing
-happens, you have probably not pressed Enter. That is the most common
-problem in this session, and it happens to everyone.
+Your first exercise is simply finding your way round the page. You'll ask
+the agent what's in its folder and tell it not to change anything. You'll
+see it look and nothing else.
 
-The three commands for where am I, what is here and go there only look.
-They cannot change or delete anything, and you can run them as often as
-you like. The first exercise ends with the same folder open twice: the
-terminal on one side, your ordinary file browser on the other, showing the
-same files.
+Some students run the agent on their own computer instead, in a terminal.
+If that's you, the lab gives you the same exercises with terminal steps,
+and a card with every command on it. Either way, the ideas in this audio
+are the same.
 
-This is the first session that needs the software you installed. If it
-does not work, stop and tell your instructor. Do not reinstall anything
-or follow fixes from the internet. A failed install is a problem with the
-setup instructions, and it is quick to diagnose from what the window
-printed.
-
-> Lab card: the three commands, what each one shows you, and how to get to
-> your practice folder are on the terminal card. Keep it beside the laptop.
-
-> Lab card: one thing to do before the first exercise, and the exercise steps
-> open with it — a single word that fetches any course fixes published since
-> you set up. It takes seconds, most weeks it says there is nothing to do,
-> and it is on the terminal card with the rest.
+> Lab card: where the request box, Your files and the list of earlier
+> versions are on your agent page, and the terminal card if you run the
+> agent on your own computer.
 
 > Recall: what_is_a_terminal
 
 ## Segment 2 — Why you learn to undo first
 
-An agent changes files, and it has no general undo. So before you let one
-near anything, you learn two commands. The first, commit, saves a snapshot
-of your practice folder exactly as it is now. The second, revert, puts the
-folder back to one of those snapshots. Save a state; go back to a saved
-state.
+An agent changes files. So before you let it near anything that matters,
+you learn how to put things back.
 
-You use them before any agent runs. You delete a file yourself, see that
-it is gone from your file browser, and get it back. Later in the session
-you tell the agent to ruin a named file, and you undo that too.
+Your agent page gives you two ways. Undo the last request takes back
+whatever the agent changed in answer to your most recent request. Earlier
+versions is a list of points you can go back to, usually named after the
+request each one came from. Going back puts every file as it was then. If
+you run the agent on your own computer, the same two ideas are two
+commands: commit saves a snapshot of your folder, and revert puts the
+folder back to one.
+
+You use them before the agent does any real work. You'll ask it to make a
+small file, undo that, and then get the file back from the list of earlier
+versions. Later in the session you'll tell the agent to ruin a file on
+purpose, and you'll put that right too.
 
 The order matters. Someone who has only been told the safety net exists
-does not believe it, and someone who does not believe it does not
-experiment. They give the agent small, cautious instructions and learn
-very little. Someone who has deleted a file and got it back will try
-things. The practice week depends on that.
+doesn't believe it, and someone who doesn't believe it doesn't experiment.
+They give the agent small, cautious instructions and learn very little.
+Someone who has seen a file come back will try things. The practice week
+depends on that.
 
-Two properties of revert make it safe to use. First, going back can itself
-be undone. When you put the folder back, revert records that as a new
-snapshot and erases nothing. If you pick the wrong snapshot, run revert
-again and pick the other one. The list is newest first, and most people
-pick the wrong one at least once, so read the names, not the numbers.
-Second, if you have changed something since your last snapshot, revert
-stops and offers to save it before it goes anywhere.
+Going back can itself be undone. Going back to an earlier version loses
+nothing, and you can come forward again from the same list. If you pick the
+wrong one, pick again. Read the names in the list rather than counting.
 
-Know the limits before you rely on it. Revert rolls back ordinary changes
-to files in your practice folder. It does not unsend an email. It does not
-reach outside that folder. It does not undo anything the agent did
-elsewhere. It cannot pull back anything already sent to a model provider:
-whatever you type to the agent is sent as soon as you send it. The
-practice folder keeps your work visible and recoverable. It is not a
-security boundary, so follow the written steps and do not rely on the
-folder to protect anything.
+Know the limits before you rely on it. Undoing puts files in the agent's
+folder back. It doesn't unsend an email, and it doesn't reach anything
+outside that folder. It can't pull back anything already sent to the model
+provider, because whatever you type to the agent is sent as soon as you
+send it. Undo keeps your work recoverable. It doesn't make it private.
 
-> Lab card: the two commands, the questions the undo command asks you, and
-> what to do if it says there are no checkpoints yet — all on the terminal
-> card, with the exercise steps.
+> Lab card: Undo the last request and Earlier versions on your agent page,
+> or commit and revert on the terminal card, with the exercise steps.
 
 > Recall: why_the_safety_net_comes_first
 
 ## Segment 3 — Watching something act
 
 Session 1 said that a chatbot produces text about the work, and an agent
-does the work. In this session you see that happen in your own folder.
+does the work. In this session you see that happen.
 
 You give the agent a piece of work in plain English. Instead of a
-paragraph, small boxes appear on the screen, one after another. Each box
-is one thing it did: it read a file, wrote a file, or ran a command. These
-boxes are called tool calls. They are the nearest thing you get to a
+paragraph, steps appear on the screen, one after another. Each step is one
+thing it did: it read a file, wrote a file, changed one, or ran a command.
+These steps are called tool calls. They're the nearest thing you get to a
 receipt.
 
-Expect few of them. Two boxes is a normal run. A single write is a whole
+Expect few of them. Two steps is a normal run. A single write is a whole
 file created, correctly formatted, in a few seconds. A short list does not
 mean it did nothing, or that you missed something. The work is in the
 file.
 
-Sometimes the boxes show it doing something you would not have done. It
+Sometimes the steps show it doing something you wouldn't have done. It
 might rewrite a file without reading it first, or rename something you did
 not mention. Noticing that is the skill this session teaches, so when it
 happens, write it down.
@@ -144,21 +125,20 @@ software.
 
 When the agent finishes, it writes a paragraph about what it did. The
 paragraph is fluent and confident, and it describes what the agent
-intended. The boxes show what it did. The file shows the result. Read the
-boxes and the file.
+intended. The steps show what it did. The file shows the result. Read the
+steps and the file.
 
 After every delegation, ask three questions in this order.
 
-First: what did it do? Scroll back through the boxes and name each one in
+First: what did it do? Scroll back through the steps and name each one in
 your own words. It wrote the file. It ran a command to rename it. Note
 anything that surprises you.
 
-Second: what changed in the folder? Open the actual file in your file
-browser and look at it. Check whether anything else in the folder changed.
+Second: what changed in the folder? Open the actual file and look at it. Check whether anything else in the folder changed.
 
 Third: was that reasonable, and how do I know? This is the question the
-session is for. You already wrote the answer: column 4 of your inventory
-sheet, the number you would re-add or the name you would recognise. Apply
+session is for. You already wrote the answer, in the How I'd check column
+of your toil inventory sheet: the number you would re-add or the name you would recognise. Apply
 that check to what the agent made.
 
 Your check gives one of four answers. Fine: it did what I would have done.

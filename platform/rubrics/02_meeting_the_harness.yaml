@@ -13,7 +13,7 @@
 
 session: 02_meeting_the_harness
 bar: all
-version: 1
+version: 2
 criteria:
   # Bar, item 1: "Run at least one delegation in ~/course-practice — an agent
   # changed a real file on their own machine at their instruction."
